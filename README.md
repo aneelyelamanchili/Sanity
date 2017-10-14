@@ -1,4 +1,4 @@
-# Pocket Change
+# $anity
 iOS App made from scratch that helps users visualize their personal expenses and log their day-to-day transactions
 
 # Screenshots

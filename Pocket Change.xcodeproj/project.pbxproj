@@ -12,6 +12,8 @@
 		9A0010DE1E0A27DF008E7092 /* MyBudget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0010DC1E0A27DF008E7092 /* MyBudget+CoreDataClass.swift */; };
 		9A0010DF1E0A27DF008E7092 /* MyBudget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0010DD1E0A27DF008E7092 /* MyBudget+CoreDataProperties.swift */; };
 		9A005ABE1E0D24F10081142A /* BarGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A005ABD1E0D24F10081142A /* BarGraphViewController.swift */; };
+		9A09B72A1E0CB96A00D0F4A4 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A09B7291E0CB96A00D0F4A4 /* Charts.framework */; };
+		9A09B72B1E0CB96A00D0F4A4 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9A09B7291E0CB96A00D0F4A4 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9A213F101E6A7D2D0037C182 /* Google_Maps_Night_Theme.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A213F0F1E6A7D2D0037C182 /* Google_Maps_Night_Theme.json */; };
 		9A27BF2B1E0A01B100146EEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A27BF2A1E0A01B100146EEA /* AppDelegate.swift */; };
 		9A27BF2D1E0A01B100146EEA /* SpendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A27BF2C1E0A01B100146EEA /* SpendViewController.swift */; };
@@ -55,6 +57,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				9A09B72B1E0CB96A00D0F4A4 /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +74,7 @@
 		9A0010DD1E0A27DF008E7092 /* MyBudget+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MyBudget+CoreDataProperties.swift"; path = "../MyBudget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9A005ABD1E0D24F10081142A /* BarGraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarGraphViewController.swift; sourceTree = "<group>"; };
 		9A09B71D1E0CB92600D0F4A4 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "Pocket Change/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
+		9A09B7291E0CB96A00D0F4A4 /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A213F0F1E6A7D2D0037C182 /* Google_Maps_Night_Theme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Google_Maps_Night_Theme.json; sourceTree = "<group>"; };
 		9A27BF271E0A01B100146EEA /* Pocket Change.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Change.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A27BF2A1E0A01B100146EEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A09B72A1E0CB96A00D0F4A4 /* Charts.framework in Frameworks */,
 				9BEEB8B3237E9316D22EC5F1 /* libPods-Pocket Change.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -118,6 +123,7 @@
 		9A27BF1E1E0A01B100146EEA = {
 			isa = PBXGroup;
 			children = (
+				9A09B7291E0CB96A00D0F4A4 /* Charts.framework */,
 				9A27BF291E0A01B100146EEA /* Pocket Change */,
 				9A09B71D1E0CB92600D0F4A4 /* Charts.xcodeproj */,
 				9A27BF281E0A01B100146EEA /* Products */,
@@ -200,6 +206,7 @@
 				TargetAttributes = {
 					9A27BF261E0A01B100146EEA = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = QDXV9N79EB;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -453,11 +460,11 @@
 			baseConfigurationReference = 703EF1DA9E0B13718BB778C5 /* Pods-Pocket Change.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MS7GBK46MH;
+				DEVELOPMENT_TEAM = QDXV9N79EB;
 				INFOPLIST_FILE = "Pocket Change/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = aneel.sanity;
+				PRODUCT_BUNDLE_IDENTIFIER = "nwtsai.Pocket-Change";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 3.0;
@@ -469,11 +476,11 @@
 			baseConfigurationReference = 8F0F7F4F5510AE26864AF489 /* Pods-Pocket Change.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MS7GBK46MH;
+				DEVELOPMENT_TEAM = QDXV9N79EB;
 				INFOPLIST_FILE = "Pocket Change/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = aneel.sanity;
+				PRODUCT_BUNDLE_IDENTIFIER = "nwtsai.Pocket-Change";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;

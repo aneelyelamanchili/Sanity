@@ -25,11 +25,13 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         super.viewDidLoad()
         
         // Set the logo for the app through an image created with Adobe Illustrator
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 157.11974, height: 35))
-        imageView.contentMode = .scaleAspectFit
-        let image = UIImage(named: "Pocket_Change_Logo")
-        imageView.image = image
-        navigationItem.titleView = imageView
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 157.11974, height: 35))
+//        imageView.contentMode = .scaleAspectFit
+//        let image = UIImage(named: "Pocket_Change_Logo")
+//        imageView.image = image
+//        navigationItem.titleView = imageView
+        
+        navigationItem.title = "Sanity"
         
         budgetTable.dataSource = self
         budgetTable.delegate = self

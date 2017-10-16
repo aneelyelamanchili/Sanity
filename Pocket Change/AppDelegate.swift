@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
-        UINavigationBar.appearance().barTintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        UINavigationBar.appearance().barTintColor = #colorLiteral(red: 0.5098039216, green: 0.862745098, blue: 0.6549019608, alpha: 1)
         let textAttributes = [NSForegroundColorAttributeName:UIColor.white]
         UINavigationBar.appearance().titleTextAttributes = textAttributes
         GMSServices.provideAPIKey("AIzaSyCHUZmpbGe968KwSlHZ-fWODKrDUSchOlg")

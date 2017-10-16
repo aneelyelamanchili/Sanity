@@ -86,7 +86,7 @@ public class Application {
 			else if (message.get("message").equals("editUser")) {
 //				wsep.sendToSession(session, toBinary(refreshData(message, conn)));
 			}
-			else if (message.get("message").equals("editprofile")) {
+			else if (message.get("message").equals("changePassword")) {
 				wsep.sendToSession(session, toBinary(editProfile(message, session, conn)));
 //				wsep.sendToSession(session, toBinary(editProfile(message, conn)));
 			}
@@ -274,13 +274,19 @@ public class Application {
 		try {
 			Statement st = conn.createStatement();
 			ResultSet rs = null;
-			String newPassword = message.getString("newpassword");
+			String newPassword = message.getString("newPassword");
 			String email = message.getString("email");
-			st.executeUpdate("UPDATE TotalUsers SET Password='" + newPassword + "' WHERE Email='" + email + "';");
-			response.put("message", "updateProfileSuccess");
-			response.put("email", rs.getString("Email"));
-			response.put("firstName", rs.getString("FirstName"));
-			response.put("lastName", rs.getString("LastName"));
+			rs = st.executeQuery("SELECT * from TotalUsers WHERE Email='" + email + "';");
+			if (rs.next()) {
+				st.executeUpdate("UPDATE TotalUsers SET Password='" + newPassword + "' WHERE Email='" + email + "';");
+				response.put("message", "passwordSuccess");
+				response.put("email", rs.getString("Email"));
+				response.put("firstName", rs.getString("FirstName"));
+				response.put("lastName", rs.getString("LastName"));
+			}
+			else {
+				response.put("message",  "passwordFail");
+			}
 		} catch(SQLException sqle) {
 			
 		} catch (JSONException e) {

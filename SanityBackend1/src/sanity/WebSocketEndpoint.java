@@ -47,7 +47,6 @@ public class WebSocketEndpoint {
 	public void onMessage(byte[] b, boolean last, Session session) {
 		lock.lock();
 		String printMe="";
-		System.out.println("fuk");
 		try {
 			printMe = new String(b, "US-ASCII");
 			System.out.println(printMe);

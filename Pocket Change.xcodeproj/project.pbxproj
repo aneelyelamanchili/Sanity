@@ -206,6 +206,7 @@
 				TargetAttributes = {
 					9A27BF261E0A01B100146EEA = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = QDXV9N79EB;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -459,11 +460,11 @@
 			baseConfigurationReference = 703EF1DA9E0B13718BB778C5 /* Pods-Pocket Change.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MS7GBK46MH;
+				DEVELOPMENT_TEAM = QDXV9N79EB;
 				INFOPLIST_FILE = "Pocket Change/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = aneel.sanity;
+				PRODUCT_BUNDLE_IDENTIFIER = "nwtsai.Pocket-Change";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 3.0;
@@ -475,11 +476,11 @@
 			baseConfigurationReference = 8F0F7F4F5510AE26864AF489 /* Pods-Pocket Change.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MS7GBK46MH;
+				DEVELOPMENT_TEAM = QDXV9N79EB;
 				INFOPLIST_FILE = "Pocket Change/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = aneel.sanity;
+				PRODUCT_BUNDLE_IDENTIFIER = "nwtsai.Pocket-Change";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;

@@ -10,12 +10,10 @@ import UIKit
 import CoreData
 import GoogleMaps
 
-class BudgetListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate
+class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate
 {
     // sharedDelegate
     var sharedDelegate: AppDelegate!
-    
-    var budgetName: String!
     
     // IBOutlets
     @IBOutlet weak var composeButton: UIBarButtonItem!
@@ -27,13 +25,13 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         super.viewDidLoad()
         
         // Set the logo for the app through an image created with Adobe Illustrator
-//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 157.11974, height: 35))
-//        imageView.contentMode = .scaleAspectFit
-//        let image = UIImage(named: "Pocket_Change_Logo")
-//        imageView.image = image
-//        navigationItem.titleView = imageView
+        //        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 157.11974, height: 35))
+        //        imageView.contentMode = .scaleAspectFit
+        //        let image = UIImage(named: "Pocket_Change_Logo")
+        //        imageView.image = image
+        //        navigationItem.titleView = imageView
         
-        navigationItem.title = budgetName
+        navigationItem.title = "Sanity"
         
         budgetTable.dataSource = self
         budgetTable.delegate = self
@@ -49,8 +47,6 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
         
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        
         // Gets rid of the empty cells
         budgetTable.tableFooterView = UIView(frame: CGRect.zero)
     }
@@ -61,7 +57,7 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         super.viewWillAppear(animated)
         
         // Get data from CoreData
-        BudgetVariables.getData()
+        BigBudgetVariables.getData()
         
         // Reload the budget table
         self.budgetTable.reloadData()
@@ -113,10 +109,10 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
                     }
                     
                     // Generate the correct name taking into account repeats
-                    inputName = BudgetVariables.createName(myName: inputName!, myNum: 0)
+                    inputName = BigBudgetVariables.createName(myName: inputName!, myNum: 0)
                     
                     let context = self.sharedDelegate.persistentContainer.viewContext
-                    let budget = MyBudget(context: context)
+                    let budget = MyBigBudget(context: context)
                     budget.name = inputName
                     budget.balance = inputAmount
                     budget.descriptionArray = [String]()
@@ -130,10 +126,10 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
                     
                     // Save and get data to coredata
                     self.sharedDelegate.saveContext()
-                    BudgetVariables.getData()
+                    BigBudgetVariables.getData()
                     
                     // Set the new current index and reload the table
-                    BudgetVariables.currentIndex = BudgetVariables.budgetArray.count - 1
+                    BigBudgetVariables.currentIndex = BigBudgetVariables.budgetArray.count - 1
                     self.budgetTable.reloadData()
                 }
             }
@@ -280,21 +276,21 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         // Represents the number of rows the UITableView should have
-        return BudgetVariables.budgetArray.count + 1
+        return BigBudgetVariables.budgetArray.count + 1
     }
     
     // Set the title and description of each corresponding cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let myCell:UITableViewCell = self.budgetTable.dequeueReusableCell(withIdentifier: "clickableCell", for: indexPath)
-        let count = BudgetVariables.budgetArray.count
+        let count = BigBudgetVariables.budgetArray.count
         
         // If it's the last cell, customize the message, make it unselectable, and remove the last separator
         if indexPath.row == count
         {
             myCell.textLabel?.textColor = UIColor.lightGray
             myCell.detailTextLabel?.textColor = UIColor.lightGray
-            myCell.textLabel?.text = "Category"
+            myCell.textLabel?.text = "Budget"
             // myCell.detailTextLabel?.text = "Balance / Budget"
             myCell.detailTextLabel?.text = "Balance"
             myCell.selectionStyle = UITableViewCellSelectionStyle.none
@@ -304,10 +300,10 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         {
             myCell.textLabel?.textColor = UIColor.black
             myCell.detailTextLabel?.textColor = UIColor.black
-            myCell.textLabel?.text = BudgetVariables.budgetArray[indexPath.row].name
-            let currentBalance = (BudgetVariables.budgetArray[indexPath.row].balance).roundTo(places: 2)
-            let currentBalanceString = BudgetVariables.numFormat(myNum: currentBalance)
-            // let totalBudgetAmt = lround((BudgetVariables.budgetArray[indexPath.row].totalBudgetAmount))
+            myCell.textLabel?.text = BigBudgetVariables.budgetArray[indexPath.row].name
+            let currentBalance = (BigBudgetVariables.budgetArray[indexPath.row].balance).roundTo(places: 2)
+            let currentBalanceString = BigBudgetVariables.numFormat(myNum: currentBalance)
+            // let totalBudgetAmt = lround((BigBudgetVariables.budgetArray[indexPath.row].totalBudgetAmount))
             // let totalBudgetAmtString = String(totalBudgetAmt)
             // myCell.detailTextLabel?.text = currentBalanceString + " / $" + totalBudgetAmtString
             myCell.detailTextLabel?.text = currentBalanceString
@@ -322,7 +318,7 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         // If it is the last cell which contains information, user cannot delete this cell
-        if indexPath.row == BudgetVariables.budgetArray.count
+        if indexPath.row == BigBudgetVariables.budgetArray.count
         {
             return false
         }
@@ -334,10 +330,12 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         // If it is not the last row, set current index to row # of cell pressed, then segue
-        if indexPath.row != BudgetVariables.budgetArray.count
+        if indexPath.row != BigBudgetVariables.budgetArray.count
         {
-            BudgetVariables.currentIndex = indexPath.row
-            performSegue(withIdentifier: "viewBudget", sender: nil)
+            BigBudgetVariables.currentIndex = indexPath.row
+            let destination = storyboard?.instantiateViewController(withIdentifier: "BudgetListViewController") as! BudgetListViewController
+            destination.budgetName = BigBudgetVariables.budgetArray[BigBudgetVariables.currentIndex].name
+            navigationController?.pushViewController(destination, animated: true)
         }
     }
     
@@ -349,13 +347,13 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         // Title is the text of the button
         let delete = UITableViewRowAction(style: .normal, title: " Delete  ")
         { (action, indexPath) in
-            let budget = BudgetVariables.budgetArray[indexPath.row]
+            let budget = BigBudgetVariables.budgetArray[indexPath.row]
             context.delete(budget)
             self.sharedDelegate.saveContext()
             
             do
             {
-                BudgetVariables.budgetArray = try context.fetch(MyBudget.fetchRequest())
+                BigBudgetVariables.budgetArray = try context.fetch(MyBigBudget.fetchRequest())
             }
             catch
             {
@@ -363,7 +361,7 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
             }
             
             tableView.deleteRows(at: [indexPath], with: .fade)
-            BudgetVariables.currentIndex = BudgetVariables.budgetArray.count - 1
+            BigBudgetVariables.currentIndex = BigBudgetVariables.budgetArray.count - 1
             
         }
         
@@ -374,8 +372,8 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         }
         
         // Change the color of the buttons
-        rename.backgroundColor = BudgetVariables.hexStringToUIColor(hex: "BBB7B0")
-        delete.backgroundColor = BudgetVariables.hexStringToUIColor(hex: "E74C3C")
+        rename.backgroundColor = BigBudgetVariables.hexStringToUIColor(hex: "BBB7B0")
+        delete.backgroundColor = BigBudgetVariables.hexStringToUIColor(hex: "E74C3C")
         
         return [delete, rename]
     }
@@ -392,7 +390,7 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
             textField.placeholder = "New Name"
             
             // Set the initial text to be the budget name of the row selected
-            textField.text = BudgetVariables.budgetArray[indexPath.row].name
+            textField.text = BigBudgetVariables.budgetArray[indexPath.row].name
             
             textField.delegate = self
             textField.autocapitalizationType = .words
@@ -406,14 +404,14 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
             var inputName = editAlert.textFields![0].text
             
             // If the input name isn't empty and it isn't the old name
-            if inputName != "" && inputName != BudgetVariables.budgetArray[BudgetVariables.currentIndex].name
+            if inputName != "" && inputName != BigBudgetVariables.budgetArray[BigBudgetVariables.currentIndex].name
             {
                 // Trim all extra white space and new lines
                 inputName = inputName?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
                 
                 // Create the name with the newly trimmed String
-                inputName = BudgetVariables.createName(myName: inputName!, myNum: 0)
-                BudgetVariables.budgetArray[indexPath.row].name = inputName!
+                inputName = BigBudgetVariables.createName(myName: inputName!, myNum: 0)
+                BigBudgetVariables.budgetArray[indexPath.row].name = inputName!
                 self.budgetTable.reloadRows(at: [indexPath], with: .right)
             }
             
@@ -421,7 +419,7 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
             self.sharedDelegate.saveContext()
             
             // Get data
-            BudgetVariables.getData()
+            BigBudgetVariables.getData()
         })
         
         editAlert.addAction(save)
@@ -439,7 +437,7 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         let input = (textField.text)?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
         // If the input is not empty and it doesn't currently exist, enable the Save button
-        if input != "" && BudgetVariables.nameExistsAlready(str: input!) == false
+        if input != "" && BigBudgetVariables.nameExistsAlready(str: input!) == false
         {
             self.nameSaveButton?.isEnabled = true
         }
@@ -449,3 +447,4 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
 }
+

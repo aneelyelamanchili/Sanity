@@ -86,7 +86,7 @@ class LoginViewController : UIViewController {
             
             print(sendMessage?["message"])
             
-            let mainViewController = storyboard.instantiateViewController(withIdentifier: "BudgetListViewController") as! BudgetListViewController
+            let mainViewController = storyboard.instantiateViewController(withIdentifier: "BigBudgetListViewController") as! BigBudgetListViewController
             
             //mainViewController.toPopulate = sendMessage
             

@@ -77,7 +77,11 @@ class SignUpViewController: UIViewController {
             
             self.dismissKeyboard()
             
-            self.navigationController?.pushViewController(mainViewController, animated: true)
+//            self.navigationController?.pushViewController(mainViewController, animated: true)
+            
+            let targetNavigationController = UINavigationController(rootViewController: mainViewController)
+            
+            UIApplication.topViewController()?.present(targetNavigationController, animated: true, completion: nil)
             
         }
         

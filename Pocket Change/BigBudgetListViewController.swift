@@ -446,5 +446,16 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
             self.nameSaveButton?.isEnabled = false
         }
     }
+    
+    @IBAction func logout(_ sender: UIBarButtonItem) {
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let mainViewController = mainStoryBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = mainViewController
+        self.dismiss(animated: true) {
+            let _ = self.navigationController?.popToRootViewController(animated: true)
+        }
+        
+    }
 }
 

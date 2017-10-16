@@ -71,9 +71,9 @@ class SignUpViewController: UIViewController {
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            let mainViewController = storyboard.instantiateViewController(withIdentifier: "BudgetListViewController") as! BudgetListViewController
+            let mainViewController = storyboard.instantiateViewController(withIdentifier: "BigBudgetListViewController") as! BigBudgetListViewController
             
-            UIApplication.shared.delegate?.window??.rootViewController = mainViewController
+            //UIApplication.shared.delegate?.window??.rootViewController = mainViewController
             
             self.dismissKeyboard()
             

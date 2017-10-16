@@ -41,6 +41,8 @@ class Client: NSObject, WebSocketDelegate {
                 LoginViewController().didReceiveData()
             } else if(json!["message"] as? String == "signupsuccess" || json!["message"] as? String == "signupfail") {
                 SignUpViewController().didReceiveData()
+            } else if(json!["message"] as? String == "passwordSuccess" || json!["message"] as? String == "passwordFail") {
+                LoginViewController().didReceiveData()
             }
         } else {
             print("not a valid UTF-8 sequence")

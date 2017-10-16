@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class LoginViewController : UIViewController {
+class LoginViewController : UIViewController, UITextFieldDelegate {
     let sharedModel = Client.sharedInstance
     
     var sendMessage: [String: Any]?
@@ -27,6 +27,10 @@ class LoginViewController : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        Client.sharedInstance.closeConnection()
+        Client.sharedInstance.establishConnection {
+            
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,6 +75,16 @@ class LoginViewController : UIViewController {
             myAlert.addButton(withTitle: "Dismiss")
             myAlert.delegate = self
             myAlert.show()
+        } else if (Client.sharedInstance.json?["message"] as! String == "passwordFail") {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            
+            let myAlert = UIAlertView()
+            myAlert.title = "Password Not Changed"
+            myAlert.message = Client.sharedInstance.json?["passwordFail"] as! String?
+            myAlert.addButton(withTitle: "Dismiss")
+            myAlert.delegate = self
+            myAlert.show()
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
@@ -98,6 +112,48 @@ class LoginViewController : UIViewController {
             UIApplication.topViewController()?.present(targetNavigationController, animated: true, completion: nil)
             
         }
+    }
+    
+    weak var confirmButton : UIAlertAction?
+    
+    // Function that shows the alert pop-up
+    @IBAction func showAlert(_ sender: UIButton)
+    {
+        let alert = UIAlertController(title: "Change Password", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addTextField(configurationHandler: {(textField: UITextField) in
+            textField.placeholder = "Email"
+            textField.delegate = self
+        })
+        alert.addTextField(configurationHandler: {(textField: UITextField) in
+            textField.placeholder = "New Password"
+            textField.delegate = self as! UITextFieldDelegate
+        })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { (_) -> Void in
+        })
+        
+        let change = UIAlertAction(title: "Change", style: UIAlertActionStyle.default, handler: { (_) -> Void in
+            var inputEmail = alert.textFields![0].text
+            var inputPassword = alert.textFields![1].text
+            
+            let json:NSMutableDictionary = NSMutableDictionary()
+            json.setValue("changePassword", forKey: "message")
+            json.setValue(inputEmail, forKey: "email")
+            json.setValue(inputPassword, forKey: "newPassword")
+            let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+            var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+            
+            Client.sharedInstance.socket.write(data: jsonData as Data)
+            
+        })
+        
+        alert.addAction(change)
+        alert.addAction(cancel)
+        
+        self.confirmButton = change
+        change.isEnabled = true
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

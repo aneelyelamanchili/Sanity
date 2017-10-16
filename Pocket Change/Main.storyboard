@@ -258,7 +258,7 @@
         <!--Budget List View Controller-->
         <scene sceneID="Ibv-9A-dme">
             <objects>
-                <viewController id="9o8-Ar-hfP" customClass="BudgetListViewController" customModule="Pocket_Change" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BudgetListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9o8-Ar-hfP" customClass="BudgetListViewController" customModule="Pocket_Change" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bav-lg-KxE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -323,7 +323,7 @@
         <!--Login View Controller-->
         <scene sceneID="TW7-Ma-2nt">
             <objects>
-                <viewController id="8Yw-kf-cov" customClass="LoginViewController" customModule="Pocket_Change" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="8Yw-kf-cov" customClass="LoginViewController" customModule="Pocket_Change" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Uh9-4k-r4f"/>
                         <viewControllerLayoutGuide type="bottom" id="7F1-To-Xkz"/>
@@ -349,6 +349,9 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="login:" destination="8Yw-kf-cov" eventType="touchUpInside" id="7hA-9y-Fu9"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wf5-o0-7ou">
                                 <rect key="frame" x="64" y="433" width="246" height="30"/>
@@ -394,6 +397,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="password" destination="grI-UI-bee" id="EXf-Sy-TN3"/>
+                        <outlet property="username" destination="9Bn-RL-eb0" id="5Ym-tn-20M"/>
                         <segue destination="OXd-cA-3Lr" kind="show" id="wjv-N5-vgF"/>
                     </connections>
                 </viewController>
@@ -472,7 +477,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="kWw-Fe-mXz">
             <objects>
-                <viewController id="Elx-QG-Fp2" customClass="SignUpViewController" customModule="Pocket_Change" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" id="Elx-QG-Fp2" customClass="SignUpViewController" customModule="Pocket_Change" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UQy-wB-UFQ"/>
                         <viewControllerLayoutGuide type="bottom" id="vtp-Ss-LtO"/>
@@ -553,10 +558,19 @@
                                 <state key="normal" title="Signup">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="signupUser:" destination="Elx-QG-Fp2" eventType="touchUpInside" id="1a6-fw-P7C"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.50980392159999999" green="0.86274509799999999" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="email" destination="NPF-Cz-HEE" id="e4V-2i-jEJ"/>
+                        <outlet property="firstname" destination="37A-np-R1g" id="ExW-c2-EG6"/>
+                        <outlet property="lastname" destination="V9W-yI-bL3" id="faI-Ld-Mzd"/>
+                        <outlet property="password" destination="5HV-gh-FJo" id="anI-ro-6Ck"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ne2-2B-RAx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

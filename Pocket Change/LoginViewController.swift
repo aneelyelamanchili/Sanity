@@ -10,6 +10,12 @@ import Foundation
 import UIKit
 
 class LoginViewController : UIViewController {
+    let sharedModel = Client.sharedInstance
+    
+    var sendMessage: [String: Any]?
+    
+    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var password: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,20 +39,81 @@ class LoginViewController : UIViewController {
         view.endEditing(true)
     }
     
-    @IBAction func loginButton(_ sender: Any) {
-//        let json:NSMutableDictionary = NSMutableDictionary()
-//        json.setValue("login", forKey: "message")
-//        json.setValue(username.text, forKey: "email")
-//        json.setValue(password.text, forKey: "password")
-//        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
-//        var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
-//        //        jsonString += "\n\n"
-//        print(jsonString)
-//        print(jsonData)
-//
-//        Client.sharedInstance.socket.write(data: jsonData as Data)
-//        //        Client.sharedInstance.socket.write(string: jsonString)
-//        print("HERE")
+    @IBAction func login(_ sender: Any) {
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("login", forKey: "message")
+        json.setValue(username.text, forKey: "email")
+        json.setValue(password.text, forKey: "password")
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        print(jsonString)
+        print(jsonData)
+
+        Client.sharedInstance.socket.write(data: jsonData as Data)
+        //Client.sharedInstance.socket.write(string: jsonString)
+        if Client.sharedInstance.socket.isConnected {
+            print("HERE")
+        }
+        //print("HERE")
         
+    }
+    
+    public func didReceiveData() {
+        print(Client.sharedInstance.json?["message"])
+        
+        if (Client.sharedInstance.json?["message"] as! String == "loginfail") {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            
+            let myAlert = UIAlertView()
+            myAlert.title = "Login Failure"
+            myAlert.message = Client.sharedInstance.json?["loginfail"] as! String?
+            myAlert.addButton(withTitle: "Dismiss")
+            myAlert.delegate = self
+            myAlert.show()
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            print("SUCCESS")
+            // Convert dictionary to string
+            //            do {
+            //                sendMessage = try JSONSerialization.jsonObject(with: Client.sharedInstance.json?["message"] as! Data, options: .allowFragments) as! Dictionary<String, Any>
+            //            } catch {
+            //                print("parse error")
+            //            }
+            
+            sendMessage = Client.sharedInstance.json
+            
+            print(sendMessage?["message"])
+            
+            let mainViewController = storyboard.instantiateViewController(withIdentifier: "BudgetListViewController") as! BudgetListViewController
+            
+            //mainViewController.toPopulate = sendMessage
+            
+            print(self.navigationController)
+            
+            //self.navigationController?.pushViewController(mainViewController, animated: true)
+            let targetNavigationController = UINavigationController(rootViewController: mainViewController)
+            
+            UIApplication.topViewController()?.present(targetNavigationController, animated: true, completion: nil)
+            
+        }
+    }
+}
+
+extension UIApplication {
+    class func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return topViewController(base: nav.visibleViewController)
+        }
+        if let tab = base as? UITabBarController {
+            if let selected = tab.selectedViewController {
+                return topViewController(base: selected)
+            }
+        }
+        if let presented = base?.presentedViewController {
+            return topViewController(base: presented)
+        }
+        return base
     }
 }

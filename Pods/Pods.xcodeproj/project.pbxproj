@@ -7,153 +7,252 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		007DE0581EE55F1923196159BFB778A3 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = E372371E433AF6B27C4F651019178ED7 /* WebSocket.swift */; };
-		0C7874EA8203F5490BF8D4ACAD3BC4E0 /* SwiftIconFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF4045793E0FC50502BC67C42E93755 /* SwiftIconFont.swift */; };
-		0D1884522DE3B9FC241460565F021FDF /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2FD68A1470F77CC315E0D8153494FC /* FontAwesome.swift */; };
-		163B86D1E3C6C66F6B9218351FB71F26 /* Pods-Pocket Change-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AAA1E502DFA71D1C7D157CD4774D94 /* Pods-Pocket Change-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2298484E2AC8929AED501F7135826A20 /* Pods-Pocket Change-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC0C1568177A458561EEB28E60D2590 /* Pods-Pocket Change-dummy.m */; };
-		2DB5C5E985C1B440FDF33E036AA67208 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
-		31973CA1B7B814F93626800A10CCF055 /* Starscream-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C00D5645EAD24A2BB070938D19A6A65 /* Starscream-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		335ADFBD554019893DEBDD303ADDFBC2 /* SwiftIconFont-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DFAA98EADA400A2B790084A9D1B196A /* SwiftIconFont-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		34F9D4364250B850E82EBC8E265B76AC /* MapIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F13E3372A414C0D06945962D2282D3 /* MapIcon.swift */; };
-		3C93DC40679C0B50BE2360B072F6ED51 /* IonIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336DAB9E4F2AE1F42B2AC8815C8FE63B /* IonIcons.swift */; };
-		3E79A7D1D073BDFFC4FA176D6D310D6E /* open-iconic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00C3AE61751E1A09FF5748A882E841E6 /* open-iconic.ttf */; };
-		45E480AE6123B7EE97074E56E08579E2 /* SwiftIconTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8EA76EE93AAB690263816AED87A474 /* SwiftIconTabBarItem.swift */; };
-		524C9C86D60509E6AD144EF59D8B818D /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3ABE76A7B161298C7BF4CC4E1D367A6D /* octicons.ttf */; };
-		58B3E63C8FC33A5BC144E77D0F52EB8E /* SwiftIconTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4CA0DF2E68A5709C7978BC12EEFCBF /* SwiftIconTextView.swift */; };
-		5C0FBC307EA461EEDE77FED4CBFE513A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B108866B998320825E2F3DBB7AC64DC8 /* FontAwesome.ttf */; };
-		5C47A9367CAC5204CFF1E7DF5912552B /* SwiftBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E3693AB98D69EEA9C3F02BE1986DB4 /* SwiftBarButtonItem.swift */; };
-		6AA885487F8E2DD96BC5D5303E89E091 /* map-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21969DEF78BBBD24D6B534750F746BED /* map-icons.ttf */; };
-		6F61BDBB34032E9A86F49033418F9241 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
-		7B55FDA837A81008B48A6A21270D005F /* SwiftIconTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053BF799C0E1FFFD0E2CDC47C279056 /* SwiftIconTextField.swift */; };
-		8126F2FBB8FC88DC3722ECF41AE0566A /* SwiftIconFontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC021230208FACCCB3358B11D17D938 /* SwiftIconFontView.swift */; };
-		834AE91C7E599F73D586FE5CE8BC7827 /* Starscream-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 789B91F7A24EA388005095DE57A40AF8 /* Starscream-dummy.m */; };
-		8BAE9B320B2CF51CED43F05D040AE786 /* MaterialIcons-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 810ED980017D41AFC525B764602F0855 /* MaterialIcons-Regular.ttf */; };
-		8FF15574D65D5FBBA26234228D1387E0 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F85398922EE0D425F251C2FDFB023EC /* Ionicons.ttf */; };
-		A1A7990C9D1BEBA255C6A19469BE4167 /* SSLSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C446ABB9F5BFB44E48001058E0F89F /* SSLSecurity.swift */; };
-		A616D7967475F84DA9D3CE35A38DCBCB /* Octicon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EABAB7ACEC07ED3CA1222147198BD0 /* Octicon.swift */; };
-		AEEF08FF5A88407912F13226DEADD8B4 /* Iconic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF544001208BA2110FC7D73D5E87DFE6 /* Iconic.swift */; };
-		BA9D052C12F18B7616D18B6ED69C64E3 /* SwiftIconFont-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E803C174AF2535AC1E3FE857BAA740 /* SwiftIconFont-dummy.m */; };
-		BC3F2AFCA9EABB1D996ABE8CE1177E65 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */; };
-		CBF2F23240AEF6703029A8CBFE9EAB6C /* MaterialIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D55E5BE75C93B0A047820A7B0464DD /* MaterialIcon.swift */; };
-		D50303200AA0510FF9F3B27D33044E96 /* themify.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1E47C49A0EFB9D5134993DCEA393D13B /* themify.ttf */; };
-		DE74147ABFB6762FCF9A447E5AA9BCAF /* ThemifyIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4370184662EDC7E15E88DCEAA1C8F6 /* ThemifyIcon.swift */; };
-		EA62B13BBEBDE5DD7A5A7C49AC405EAE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
-		EEF38C61A2A6CECEA5413F120AFF6ECD /* Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4996B932F850FE42AE49397CD3918770 /* Compression.swift */; };
-		F3C4CA1A632C42AEA0C16B0D5B415258 /* FontLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AA4B93045584A15361B59E04DA3223 /* FontLoader.swift */; };
-		F919486170439DBF5A963F888A4666C2 /* SwiftIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D5B6847811745ABEAB453BB4E88064 /* SwiftIconButton.swift */; };
-		FD30286277BA735DCD1CAF46DA1EF37B /* SwiftIconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1752B7B2E409D25AE27DD8A4ADEF278F /* SwiftIconLabel.swift */; };
+		052431C33A874364E90EEAC1D5102DAA /* MaterialIcons-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03EE76379D12D442FE101F7808A383AF /* MaterialIcons-Regular.ttf */; };
+		15EBF90A34396CFB0E9126ED1633EB69 /* IonIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885C52519C8FD60B525704EF8E945CBE /* IonIcons.swift */; };
+		20CA9C2C3E3A007FF2AD795083FF9A36 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 07B84DBEB07091AD7A0B60039B7D073A /* FontAwesome.ttf */; };
+		2410B55EFD3F9E5916D23EED664EB93D /* Pods-Pocket Change-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AAA1E502DFA71D1C7D157CD4774D94 /* Pods-Pocket Change-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27F42716F1DA0708A65DAB7235A61D81 /* SwiftIconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188A942ED401302DA8AC94632501C3E /* SwiftIconLabel.swift */; };
+		320558DACA1242F69E0A4F4B13C55FA6 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCB2F31788723EE78814D523AC7F5E2F /* Ionicons.ttf */; };
+		461630436B7CBFACABB8292D4064E8DA /* TextFieldEffects-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 35B21D65A06A43D76C29ABF3CD0254E8 /* TextFieldEffects-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		473D1460B0C7E146EBAB3BBB8A4F043F /* open-iconic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6336CA90118B44127E643F7059E9189 /* open-iconic.ttf */; };
+		491EC3FFEF41CC9615C6C46EE47A56C0 /* AkiraTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743BF05F5FB26DA92ECDB71E8AFA4488 /* AkiraTextField.swift */; };
+		503D15BB4FC448CAC663663AA9934047 /* Starscream-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF7805C2FDD075E4ACA469C26C574 /* Starscream-dummy.m */; };
+		53AA63333CB6E15C2B54049F6A75A9AB /* MapIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63F9ABF8410E7D762E47BA0A795C6C3 /* MapIcon.swift */; };
+		5A4EE6E03B6DF492C379B6A6606A3003 /* FontLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57C3B82912C294EBCA60920DC750A21 /* FontLoader.swift */; };
+		5D30ECE1229D8FFDC5FCC891DF5B5F12 /* SwiftIconTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D611335B5A7B73C5D47DCE94997C914C /* SwiftIconTabBarItem.swift */; };
+		603B2A0C5CC06149ADDEEABB8579CBAD /* SwiftIconFont-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E96242903684C26A370AE56B73CD7BCC /* SwiftIconFont-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6151F8B809CFE8A4902700EFD83003A0 /* Starscream-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 86BC21298889D2F6712F680456E0015E /* Starscream-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		62C05C1D7A949069D1859DF789B4C9A0 /* TextFieldEffects-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D41B65D242301BB13480ABB95D2BF27 /* TextFieldEffects-dummy.m */; };
+		63C8BAA4D51F5DFACC5E321D3595AF72 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */; };
+		6565C58A0F0DACC6C2395AB5B20B8146 /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F767A4D8C76A1A6DC3925D5F1C9117 /* TextFieldEffects.swift */; };
+		730164E8C38B23058004AA187B2F0845 /* SwiftIconFont-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5DA0D26600653885F46F9BDFCF1DA0 /* SwiftIconFont-dummy.m */; };
+		78E60DEFCBB59CA32C90DE1762A74A99 /* map-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD478E46450C007A45D55D399E05E171 /* map-icons.ttf */; };
+		79BF5A183688B7170BA246D4620662AB /* Octicon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D473D2862A5BFAFADC05E88DB84C0A /* Octicon.swift */; };
+		7BF470C86F1E3ACE670CAA19320E25F8 /* YokoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608778EE58F4E6A0B52699203D20954E /* YokoTextField.swift */; };
+		7DA8E526D2A2ED6AABFF34DF41795208 /* SwiftIconFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2A5A4B7F3292001CB252B98690CFEA /* SwiftIconFont.swift */; };
+		819919E200632151DE0328441C0ED073 /* SSLSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC113447752A042EC947DEA9D5E9AD0 /* SSLSecurity.swift */; };
+		8BEC1E138F0B717DB8159C36A8C64B92 /* themify.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79AB1EAC59D626790676F1482DD09D03 /* themify.ttf */; };
+		8F30CCA257C876B46B636DAE253A07D9 /* Pods-Pocket Change-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC0C1568177A458561EEB28E60D2590 /* Pods-Pocket Change-dummy.m */; };
+		92FFA893BEEABFD43638DAFDF5DA7C99 /* Iconic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8893F9D8B351323D2533DD23088E60B5 /* Iconic.swift */; };
+		9FB7A436DA44308A9FF3842186223E76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		A25F345F215D198EF13B7392A7BFA1DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		A3EF29CA57F4C689249B55DDD4D41175 /* SwiftBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6999F0ADCA2D2ECF8161D7C6281A49E /* SwiftBarButtonItem.swift */; };
+		A7C622AD3A6C8B3CE4C5BA6A56E46422 /* YoshikoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE6D7F366F3CC44C59007B6CE68F9CC /* YoshikoTextField.swift */; };
+		A977293F97BF80D00480A56FDD389F96 /* MadokaTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4730A87D543DCB51E8FF3EF05070696C /* MadokaTextField.swift */; };
+		AA2541C92189F97034044A3AF0E437B1 /* ThemifyIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644CF9173751837E9A0D712273B640EC /* ThemifyIcon.swift */; };
+		B0F3A27C986DF8BBB73C42CD56DE73CB /* SwiftIconFontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2BBF57442D659BB35E784B2A675457 /* SwiftIconFontView.swift */; };
+		B5C76FCB3B283500A01A2971AE2CC188 /* SwiftIconTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D05471236D000305A8FFDB36618E47 /* SwiftIconTextField.swift */; };
+		B6219524E5ED53E4D5FC1B75AD1CFA14 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508759CF5E0743DCE84200C711A6EBE /* FontAwesome.swift */; };
+		BB269D7ABD8A46FD5DAB4AA5B4C52DAE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		BD8D95682D8E84AFFDC1AD5E9FC656DB /* SwiftIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C821FE7552094365AF51B99C0D36A6 /* SwiftIconButton.swift */; };
+		C1F02834578E7542CA716BC1208E3BAF /* Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F28DC34975FC6DD8291CF88E57404B /* Compression.swift */; };
+		C4FEB3F5841F070A0F348405A272EFB8 /* JiroTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650711488BC5F8684844C2576C5AAC60 /* JiroTextField.swift */; };
+		C74477517574A70CF42993CC543BEC06 /* MaterialIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A21F7E81EA537D798E6B983704F3B0 /* MaterialIcon.swift */; };
+		C8042370BD31AF531C6C44D125AB6DC9 /* IsaoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CBC8DA493CF38D10298A510D164FBB /* IsaoTextField.swift */; };
+		C824CEF2BC69A36E64CDE38E8CDFDA7D /* MinoruTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0341257F0B15C890D3DE70DFD4FCAFDA /* MinoruTextField.swift */; };
+		C8490DFE9823E1B6DE407624018DBEC1 /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E309CC1D34C8D7BF6D0704259AE7D8 /* HoshiTextField.swift */; };
+		D8E104E30F8FE16487F751CCE9BF8CD3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		F4F69868900F7414166B9567A482F292 /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB57971AB7062403CF67DB3802D6E708 /* octicons.ttf */; };
+		F51195C49BA6D50DDEE74DAFBE4C27E4 /* KaedeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32628CA841DCE138675F3D6EA4C30C3B /* KaedeTextField.swift */; };
+		F77D5BE709AD6FA1558DD01C5CB40118 /* SwiftIconTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999B1E5E4627D98B038D2E17B6B46129 /* SwiftIconTextView.swift */; };
+		F78B939749F2A5C206147FF71F41BFEB /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39A2B697D07C932CD16B8C0E9CB6708 /* WebSocket.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0715BE1FD8E156860242FC03436FD142 /* PBXContainerItemProxy */ = {
+		8A63A42060F2D8DF08B7E0F005B64D38 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 3DCA87E4B7DC53A363BDDA3177E0FB74;
-			remoteInfo = Starscream;
-		};
-		E9183E62E3702B4B3EE2C581FF0CA47A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 59F1979B3F2A5CCDAAB1F2C45C58D148;
+			remoteGlobalIDString = 017862C27717ED1805560B6562898FA7;
 			remoteInfo = SwiftIconFont;
+		};
+		F1BCAC093ED26A3592D964A010747206 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8780DDA27803ACA01C54A3B0CF4F483;
+			remoteInfo = TextFieldEffects;
+		};
+		FED63B766EE87AC877F1D1A73370F4F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AC7ED508BE6C286E219A9A16EADC13FC;
+			remoteInfo = Starscream;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00C3AE61751E1A09FF5748A882E841E6 /* open-iconic.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "open-iconic.ttf"; path = "SwiftIconFont/Resources/open-iconic.ttf"; sourceTree = "<group>"; };
-		05C446ABB9F5BFB44E48001058E0F89F /* SSLSecurity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SSLSecurity.swift; path = Sources/SSLSecurity.swift; sourceTree = "<group>"; };
+		0341257F0B15C890D3DE70DFD4FCAFDA /* MinoruTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MinoruTextField.swift; path = TextFieldEffects/TextFieldEffects/MinoruTextField.swift; sourceTree = "<group>"; };
+		03A21F7E81EA537D798E6B983704F3B0 /* MaterialIcon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MaterialIcon.swift; path = SwiftIconFont/Classes/MaterialIcon.swift; sourceTree = "<group>"; };
+		03EE76379D12D442FE101F7808A383AF /* MaterialIcons-Regular.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "MaterialIcons-Regular.ttf"; path = "SwiftIconFont/Resources/MaterialIcons-Regular.ttf"; sourceTree = "<group>"; };
 		07AAA1E502DFA71D1C7D157CD4774D94 /* Pods-Pocket Change-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Pocket Change-umbrella.h"; sourceTree = "<group>"; };
-		07EABAB7ACEC07ED3CA1222147198BD0 /* Octicon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Octicon.swift; path = SwiftIconFont/Classes/Octicon.swift; sourceTree = "<group>"; };
-		0DADB938BD3F12B2DDCF0B1068200FD8 /* Starscream.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Starscream.modulemap; sourceTree = "<group>"; };
-		10B01B172F28A9C3885E8C9D8D6BB3AB /* SwiftIconFont-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftIconFont-prefix.pch"; sourceTree = "<group>"; };
-		1752B7B2E409D25AE27DD8A4ADEF278F /* SwiftIconLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconLabel.swift; path = SwiftIconFont/Classes/SwiftIconLabel.swift; sourceTree = "<group>"; };
-		1C00D5645EAD24A2BB070938D19A6A65 /* Starscream-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Starscream-umbrella.h"; sourceTree = "<group>"; };
-		1D2FD68A1470F77CC315E0D8153494FC /* FontAwesome.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesome.swift; path = SwiftIconFont/Classes/FontAwesome.swift; sourceTree = "<group>"; };
-		1E47C49A0EFB9D5134993DCEA393D13B /* themify.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = themify.ttf; path = SwiftIconFont/Resources/themify.ttf; sourceTree = "<group>"; };
-		21969DEF78BBBD24D6B534750F746BED /* map-icons.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "map-icons.ttf"; path = "SwiftIconFont/Resources/map-icons.ttf"; sourceTree = "<group>"; };
-		2336849C9C0A75ADD2240E05B3D61C8D /* Starscream-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Starscream-prefix.pch"; sourceTree = "<group>"; };
-		236029EECB6918A6DA2A9FE14701CCF6 /* Starscream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Starscream.framework; path = Starscream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2BF4045793E0FC50502BC67C42E93755 /* SwiftIconFont.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconFont.swift; path = SwiftIconFont/Classes/SwiftIconFont.swift; sourceTree = "<group>"; };
-		30E803C174AF2535AC1E3FE857BAA740 /* SwiftIconFont-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftIconFont-dummy.m"; sourceTree = "<group>"; };
-		31DD382D8A7CED05DDE4361A108D4172 /* SwiftIconFont.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SwiftIconFont.modulemap; sourceTree = "<group>"; };
-		336DAB9E4F2AE1F42B2AC8815C8FE63B /* IonIcons.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IonIcons.swift; path = SwiftIconFont/Classes/IonIcons.swift; sourceTree = "<group>"; };
-		35FAB4F2A5037023D22A804FE0CAEC68 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
-		3ABE76A7B161298C7BF4CC4E1D367A6D /* octicons.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = octicons.ttf; path = SwiftIconFont/Resources/octicons.ttf; sourceTree = "<group>"; };
-		40D5B6847811745ABEAB453BB4E88064 /* SwiftIconButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconButton.swift; path = SwiftIconFont/Classes/SwiftIconButton.swift; sourceTree = "<group>"; };
-		429C72FF6D533DC7687744331DC73CCF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		477495B86368454A7DF1093123C7A275 /* SwiftIconFont.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftIconFont.xcconfig; sourceTree = "<group>"; };
-		4996B932F850FE42AE49397CD3918770 /* Compression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Compression.swift; path = Sources/Compression.swift; sourceTree = "<group>"; };
-		4D4370184662EDC7E15E88DCEAA1C8F6 /* ThemifyIcon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ThemifyIcon.swift; path = SwiftIconFont/Classes/ThemifyIcon.swift; sourceTree = "<group>"; };
-		5821DE31DFF4C7A0EDDF56D8C3FD0949 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Maps/Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
-		58C4255F370F72028981831C7CF7DBB1 /* GooglePlaces.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = Frameworks/GooglePlaces.framework/Versions/A/Resources/GooglePlaces.bundle; sourceTree = "<group>"; };
-		6A8EA76EE93AAB690263816AED87A474 /* SwiftIconTabBarItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconTabBarItem.swift; path = SwiftIconFont/Classes/SwiftIconTabBarItem.swift; sourceTree = "<group>"; };
+		07B84DBEB07091AD7A0B60039B7D073A /* FontAwesome.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = FontAwesome.ttf; path = SwiftIconFont/Resources/FontAwesome.ttf; sourceTree = "<group>"; };
+		08CBC8DA493CF38D10298A510D164FBB /* IsaoTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IsaoTextField.swift; path = TextFieldEffects/TextFieldEffects/IsaoTextField.swift; sourceTree = "<group>"; };
+		0FBA909A956F1C8A6B3CCCB9B87EBD7D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		106DC909467EAA7058FEF7018067B97A /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = Base/Frameworks/GoogleMapsBase.framework; sourceTree = "<group>"; };
+		18CDF7805C2FDD075E4ACA469C26C574 /* Starscream-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Starscream-dummy.m"; sourceTree = "<group>"; };
+		1CE6D7F366F3CC44C59007B6CE68F9CC /* YoshikoTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YoshikoTextField.swift; path = TextFieldEffects/TextFieldEffects/YoshikoTextField.swift; sourceTree = "<group>"; };
+		2188A942ED401302DA8AC94632501C3E /* SwiftIconLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconLabel.swift; path = SwiftIconFont/Classes/SwiftIconLabel.swift; sourceTree = "<group>"; };
+		22F767A4D8C76A1A6DC3925D5F1C9117 /* TextFieldEffects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextFieldEffects.swift; path = TextFieldEffects/TextFieldEffects/TextFieldEffects.swift; sourceTree = "<group>"; };
+		24AA09133B04C75469A5A422E7F28DD6 /* TextFieldEffects.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TextFieldEffects.xcconfig; sourceTree = "<group>"; };
+		294F332121D98A8ED15716F190D5244B /* Starscream.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Starscream.xcconfig; sourceTree = "<group>"; };
+		2AB4A8A940538AF10959994D4176FDE2 /* SwiftIconFont.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SwiftIconFont.modulemap; sourceTree = "<group>"; };
+		2C07991A0A60E6B61BFE0BA6607AF6EA /* Starscream-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Starscream-prefix.pch"; sourceTree = "<group>"; };
+		32628CA841DCE138675F3D6EA4C30C3B /* KaedeTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KaedeTextField.swift; path = TextFieldEffects/TextFieldEffects/KaedeTextField.swift; sourceTree = "<group>"; };
+		35B21D65A06A43D76C29ABF3CD0254E8 /* TextFieldEffects-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TextFieldEffects-umbrella.h"; sourceTree = "<group>"; };
+		40F28DC34975FC6DD8291CF88E57404B /* Compression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Compression.swift; path = Sources/Compression.swift; sourceTree = "<group>"; };
+		4508759CF5E0743DCE84200C711A6EBE /* FontAwesome.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesome.swift; path = SwiftIconFont/Classes/FontAwesome.swift; sourceTree = "<group>"; };
+		4730A87D543DCB51E8FF3EF05070696C /* MadokaTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MadokaTextField.swift; path = TextFieldEffects/TextFieldEffects/MadokaTextField.swift; sourceTree = "<group>"; };
+		4D41B65D242301BB13480ABB95D2BF27 /* TextFieldEffects-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TextFieldEffects-dummy.m"; sourceTree = "<group>"; };
+		4DC154519EB5B253937404614BD03F3C /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlaces.framework; path = Frameworks/GooglePlaces.framework; sourceTree = "<group>"; };
+		53D23EF577CD3175BF0A231C1F60B541 /* Starscream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Starscream.framework; path = Starscream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		54F9B9EB82E9AD170E014E8BFBD72600 /* GooglePlaces.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = Frameworks/GooglePlaces.framework/Versions/A/Resources/GooglePlaces.bundle; sourceTree = "<group>"; };
+		5A403CF99F42BA5D3A0C94B06024839C /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsCore.framework; path = Maps/Frameworks/GoogleMapsCore.framework; sourceTree = "<group>"; };
+		608778EE58F4E6A0B52699203D20954E /* YokoTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YokoTextField.swift; path = TextFieldEffects/TextFieldEffects/YokoTextField.swift; sourceTree = "<group>"; };
+		644CF9173751837E9A0D712273B640EC /* ThemifyIcon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ThemifyIcon.swift; path = SwiftIconFont/Classes/ThemifyIcon.swift; sourceTree = "<group>"; };
+		650711488BC5F8684844C2576C5AAC60 /* JiroTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JiroTextField.swift; path = TextFieldEffects/TextFieldEffects/JiroTextField.swift; sourceTree = "<group>"; };
+		6DC113447752A042EC947DEA9D5E9AD0 /* SSLSecurity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SSLSecurity.swift; path = Sources/SSLSecurity.swift; sourceTree = "<group>"; };
 		6FC0C1568177A458561EEB28E60D2590 /* Pods-Pocket Change-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Pocket Change-dummy.m"; sourceTree = "<group>"; };
-		76F13E3372A414C0D06945962D2282D3 /* MapIcon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MapIcon.swift; path = SwiftIconFont/Classes/MapIcon.swift; sourceTree = "<group>"; };
-		789B91F7A24EA388005095DE57A40AF8 /* Starscream-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Starscream-dummy.m"; sourceTree = "<group>"; };
+		743BF05F5FB26DA92ECDB71E8AFA4488 /* AkiraTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AkiraTextField.swift; path = TextFieldEffects/TextFieldEffects/AkiraTextField.swift; sourceTree = "<group>"; };
+		7993112E18680F1720CC5A2CB09266C7 /* TextFieldEffects.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TextFieldEffects.modulemap; sourceTree = "<group>"; };
+		79AB1EAC59D626790676F1482DD09D03 /* themify.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = themify.ttf; path = SwiftIconFont/Resources/themify.ttf; sourceTree = "<group>"; };
 		7AEBCFA2AFB9F0FC9C24425709882AB6 /* Pods-Pocket Change-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Pocket Change-acknowledgements.plist"; sourceTree = "<group>"; };
-		7C0E07B0B776DB78625B40581B35DCDE /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsCore.framework; path = Maps/Frameworks/GoogleMapsCore.framework; sourceTree = "<group>"; };
 		7F328D2F8EF2EE218066927E8EFB7204 /* Pods-Pocket Change-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Pocket Change-acknowledgements.markdown"; sourceTree = "<group>"; };
-		810ED980017D41AFC525B764602F0855 /* MaterialIcons-Regular.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "MaterialIcons-Regular.ttf"; path = "SwiftIconFont/Resources/MaterialIcons-Regular.ttf"; sourceTree = "<group>"; };
-		83AA4B93045584A15361B59E04DA3223 /* FontLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontLoader.swift; path = SwiftIconFont/Classes/FontLoader.swift; sourceTree = "<group>"; };
-		8A8A5587763E922637FC4DADD9EB64E3 /* SwiftIconFont.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftIconFont.framework; path = SwiftIconFont.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8F85398922EE0D425F251C2FDFB023EC /* Ionicons.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = Ionicons.ttf; path = SwiftIconFont/Resources/Ionicons.ttf; sourceTree = "<group>"; };
-		92D55E5BE75C93B0A047820A7B0464DD /* MaterialIcon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MaterialIcon.swift; path = SwiftIconFont/Classes/MaterialIcon.swift; sourceTree = "<group>"; };
+		83634C5661EBA628772A21B1FCA3AD03 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86BC21298889D2F6712F680456E0015E /* Starscream-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Starscream-umbrella.h"; sourceTree = "<group>"; };
+		885C52519C8FD60B525704EF8E945CBE /* IonIcons.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IonIcons.swift; path = SwiftIconFont/Classes/IonIcons.swift; sourceTree = "<group>"; };
+		8893F9D8B351323D2533DD23088E60B5 /* Iconic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Iconic.swift; path = SwiftIconFont/Classes/Iconic.swift; sourceTree = "<group>"; };
+		8E2A5A4B7F3292001CB252B98690CFEA /* SwiftIconFont.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconFont.swift; path = SwiftIconFont/Classes/SwiftIconFont.swift; sourceTree = "<group>"; };
 		93049C3ABE32946DCAF28179826A4F8D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		930D0C017AF31316457B3AE8DD184E16 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9AC021230208FACCCB3358B11D17D938 /* SwiftIconFontView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconFontView.swift; path = SwiftIconFont/Classes/SwiftIconFontView.swift; sourceTree = "<group>"; };
-		9DFAA98EADA400A2B790084A9D1B196A /* SwiftIconFont-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftIconFont-umbrella.h"; sourceTree = "<group>"; };
+		999B1E5E4627D98B038D2E17B6B46129 /* SwiftIconTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconTextView.swift; path = SwiftIconFont/Classes/SwiftIconTextView.swift; sourceTree = "<group>"; };
 		9E6508D772B41FBD2FC298575D0F72DF /* Pods-Pocket Change-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pocket Change-resources.sh"; sourceTree = "<group>"; };
-		A7DB53C1C23D3460FE107E6670EB55F3 /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlaces.framework; path = Frameworks/GooglePlaces.framework; sourceTree = "<group>"; };
-		AF544001208BA2110FC7D73D5E87DFE6 /* Iconic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Iconic.swift; path = SwiftIconFont/Classes/Iconic.swift; sourceTree = "<group>"; };
-		B108866B998320825E2F3DBB7AC64DC8 /* FontAwesome.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = FontAwesome.ttf; path = SwiftIconFont/Resources/FontAwesome.ttf; sourceTree = "<group>"; };
-		B4E3693AB98D69EEA9C3F02BE1986DB4 /* SwiftBarButtonItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftBarButtonItem.swift; path = SwiftIconFont/Classes/SwiftBarButtonItem.swift; sourceTree = "<group>"; };
+		A14121F5B1654960894DABB42BC5BA65 /* SwiftIconFont.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftIconFont.xcconfig; sourceTree = "<group>"; };
+		A5A83583389E082956E09C3BCBB82BE9 /* TextFieldEffects-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TextFieldEffects-prefix.pch"; sourceTree = "<group>"; };
+		A5DC1120B2C4BC412E8330CB0B3A2141 /* SwiftIconFont.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftIconFont.framework; path = SwiftIconFont.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6999F0ADCA2D2ECF8161D7C6281A49E /* SwiftBarButtonItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftBarButtonItem.swift; path = SwiftIconFont/Classes/SwiftBarButtonItem.swift; sourceTree = "<group>"; };
+		B1195061E4B2C77E98D84E0167FDB054 /* Starscream.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Starscream.modulemap; sourceTree = "<group>"; };
+		B5D473D2862A5BFAFADC05E88DB84C0A /* Octicon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Octicon.swift; path = SwiftIconFont/Classes/Octicon.swift; sourceTree = "<group>"; };
 		B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		B6F85E085565A45862159FECA63B39E1 /* Pods_Pocket_Change.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Pocket_Change.framework; path = "Pods-Pocket Change.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9D05471236D000305A8FFDB36618E47 /* SwiftIconTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconTextField.swift; path = SwiftIconFont/Classes/SwiftIconTextField.swift; sourceTree = "<group>"; };
+		BE2BBF57442D659BB35E784B2A675457 /* SwiftIconFontView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconFontView.swift; path = SwiftIconFont/Classes/SwiftIconFontView.swift; sourceTree = "<group>"; };
 		C7DFBCA66A79525E3088683B2DDD4654 /* Pods-Pocket Change.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Pocket Change.modulemap"; sourceTree = "<group>"; };
+		C8C821FE7552094365AF51B99C0D36A6 /* SwiftIconButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconButton.swift; path = SwiftIconFont/Classes/SwiftIconButton.swift; sourceTree = "<group>"; };
 		CA69C88F3D49B815E07782472FC87867 /* Pods-Pocket Change-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pocket Change-frameworks.sh"; sourceTree = "<group>"; };
-		CB4CA0DF2E68A5709C7978BC12EEFCBF /* SwiftIconTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconTextView.swift; path = SwiftIconFont/Classes/SwiftIconTextView.swift; sourceTree = "<group>"; };
-		D053BF799C0E1FFFD0E2CDC47C279056 /* SwiftIconTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconTextField.swift; path = SwiftIconFont/Classes/SwiftIconTextField.swift; sourceTree = "<group>"; };
+		CF5DA0D26600653885F46F9BDFCF1DA0 /* SwiftIconFont-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftIconFont-dummy.m"; sourceTree = "<group>"; };
+		D1A22296AAF5BBAD74477356E345683D /* TextFieldEffects.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TextFieldEffects.framework; path = TextFieldEffects.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2E309CC1D34C8D7BF6D0704259AE7D8 /* HoshiTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HoshiTextField.swift; path = TextFieldEffects/TextFieldEffects/HoshiTextField.swift; sourceTree = "<group>"; };
+		D39A2B697D07C932CD16B8C0E9CB6708 /* WebSocket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = Sources/WebSocket.swift; sourceTree = "<group>"; };
+		D611335B5A7B73C5D47DCE94997C914C /* SwiftIconTabBarItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconTabBarItem.swift; path = SwiftIconFont/Classes/SwiftIconTabBarItem.swift; sourceTree = "<group>"; };
+		D63F9ABF8410E7D762E47BA0A795C6C3 /* MapIcon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MapIcon.swift; path = SwiftIconFont/Classes/MapIcon.swift; sourceTree = "<group>"; };
 		D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		DB58660B6FB5CED9F23B1F3B42C958FA /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = Base/Frameworks/GoogleMapsBase.framework; sourceTree = "<group>"; };
-		E372371E433AF6B27C4F651019178ED7 /* WebSocket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = Sources/WebSocket.swift; sourceTree = "<group>"; };
-		E6DB78A35DFC3FC861ED72A6FDD210F1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E88D2731E4E45B2DF2433F68D8A6E724 /* Starscream.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Starscream.xcconfig; sourceTree = "<group>"; };
+		DB57971AB7062403CF67DB3802D6E708 /* octicons.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = octicons.ttf; path = SwiftIconFont/Resources/octicons.ttf; sourceTree = "<group>"; };
+		DCB2F31788723EE78814D523AC7F5E2F /* Ionicons.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = Ionicons.ttf; path = SwiftIconFont/Resources/Ionicons.ttf; sourceTree = "<group>"; };
+		DD478E46450C007A45D55D399E05E171 /* map-icons.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "map-icons.ttf"; path = "SwiftIconFont/Resources/map-icons.ttf"; sourceTree = "<group>"; };
+		DFCE115C0A37935C1B08B51EB3A20BAD /* SwiftIconFont-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftIconFont-prefix.pch"; sourceTree = "<group>"; };
+		E57C3B82912C294EBCA60920DC750A21 /* FontLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontLoader.swift; path = SwiftIconFont/Classes/FontLoader.swift; sourceTree = "<group>"; };
+		E96242903684C26A370AE56B73CD7BCC /* SwiftIconFont-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftIconFont-umbrella.h"; sourceTree = "<group>"; };
+		F10D92EC430D69BC5EBCA23311C50CE2 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Maps/Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
 		F2FA26B4CD9029989B57E7731EBE09C1 /* Pods-Pocket Change.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pocket Change.debug.xcconfig"; sourceTree = "<group>"; };
+		F47672C989E88C8E47CD908D4685EBD1 /* Pods_Pocket_Change.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Pocket_Change.framework; path = "Pods-Pocket Change.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6336CA90118B44127E643F7059E9189 /* open-iconic.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "open-iconic.ttf"; path = "SwiftIconFont/Resources/open-iconic.ttf"; sourceTree = "<group>"; };
+		FBC2A960494F44AD314CC49506A1EBE5 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		FCA1A2E32D8EF47C2226463D8BFAF59B /* Pods-Pocket Change.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pocket Change.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		224C72F5B27A240A7AEEDD4B79A0DFFB /* Frameworks */ = {
+		11451705108423057F856EEEE13B69DF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA62B13BBEBDE5DD7A5A7C49AC405EAE /* Foundation.framework in Frameworks */,
-				BC3F2AFCA9EABB1D996ABE8CE1177E65 /* UIKit.framework in Frameworks */,
+				A25F345F215D198EF13B7392A7BFA1DB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		26E83B7A7C716D2D608B0080793E8AEF /* Frameworks */ = {
+		48B64DD7B2BADACC9DCF0DD09B975673 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F61BDBB34032E9A86F49033418F9241 /* Foundation.framework in Frameworks */,
+				9FB7A436DA44308A9FF3842186223E76 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A71FC83BF43099B58D5CDF3149018124 /* Frameworks */ = {
+		695188CC14DFBD46D7F77291E9262F6F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DB5C5E985C1B440FDF33E036AA67208 /* Foundation.framework in Frameworks */,
+				D8E104E30F8FE16487F751CCE9BF8CD3 /* Foundation.framework in Frameworks */,
+				63C8BAA4D51F5DFACC5E321D3595AF72 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1985A5CFC123FB527D9284EB2803357 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB269D7ABD8A46FD5DAB4AA5B4C52DAE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0EF7C58271894916A4CF5176498D6BC0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				07B84DBEB07091AD7A0B60039B7D073A /* FontAwesome.ttf */,
+				DCB2F31788723EE78814D523AC7F5E2F /* Ionicons.ttf */,
+				DD478E46450C007A45D55D399E05E171 /* map-icons.ttf */,
+				03EE76379D12D442FE101F7808A383AF /* MaterialIcons-Regular.ttf */,
+				DB57971AB7062403CF67DB3802D6E708 /* octicons.ttf */,
+				F6336CA90118B44127E643F7059E9189 /* open-iconic.ttf */,
+				79AB1EAC59D626790676F1482DD09D03 /* themify.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		17017DE0B8E5B0701D80BF195943BE53 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0FBA909A956F1C8A6B3CCCB9B87EBD7D /* Info.plist */,
+				2AB4A8A940538AF10959994D4176FDE2 /* SwiftIconFont.modulemap */,
+				A14121F5B1654960894DABB42BC5BA65 /* SwiftIconFont.xcconfig */,
+				CF5DA0D26600653885F46F9BDFCF1DA0 /* SwiftIconFont-dummy.m */,
+				DFCE115C0A37935C1B08B51EB3A20BAD /* SwiftIconFont-prefix.pch */,
+				E96242903684C26A370AE56B73CD7BCC /* SwiftIconFont-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SwiftIconFont";
+			sourceTree = "<group>";
+		};
+		2EB76E6AF447F93EDBCF1C94172D5A3F /* SwiftIconFont */ = {
+			isa = PBXGroup;
+			children = (
+				4508759CF5E0743DCE84200C711A6EBE /* FontAwesome.swift */,
+				E57C3B82912C294EBCA60920DC750A21 /* FontLoader.swift */,
+				8893F9D8B351323D2533DD23088E60B5 /* Iconic.swift */,
+				885C52519C8FD60B525704EF8E945CBE /* IonIcons.swift */,
+				D63F9ABF8410E7D762E47BA0A795C6C3 /* MapIcon.swift */,
+				03A21F7E81EA537D798E6B983704F3B0 /* MaterialIcon.swift */,
+				B5D473D2862A5BFAFADC05E88DB84C0A /* Octicon.swift */,
+				A6999F0ADCA2D2ECF8161D7C6281A49E /* SwiftBarButtonItem.swift */,
+				C8C821FE7552094365AF51B99C0D36A6 /* SwiftIconButton.swift */,
+				8E2A5A4B7F3292001CB252B98690CFEA /* SwiftIconFont.swift */,
+				BE2BBF57442D659BB35E784B2A675457 /* SwiftIconFontView.swift */,
+				2188A942ED401302DA8AC94632501C3E /* SwiftIconLabel.swift */,
+				D611335B5A7B73C5D47DCE94997C914C /* SwiftIconTabBarItem.swift */,
+				B9D05471236D000305A8FFDB36618E47 /* SwiftIconTextField.swift */,
+				999B1E5E4627D98B038D2E17B6B46129 /* SwiftIconTextView.swift */,
+				644CF9173751837E9A0D712273B640EC /* ThemifyIcon.swift */,
+				0EF7C58271894916A4CF5176498D6BC0 /* Resources */,
+				17017DE0B8E5B0701D80BF195943BE53 /* Support Files */,
+			);
+			name = SwiftIconFont;
+			path = SwiftIconFont;
+			sourceTree = "<group>";
+		};
 		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +270,14 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		49D517F908E69EE254001F87AAE17EAF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FBC2A960494F44AD314CC49506A1EBE5 /* GoogleMaps.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		4E062C3FFB86607135858ED362ADB63F /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,74 +286,68 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		4EE65EB166D5ED79C86FA7E2D14F0E12 /* Maps */ = {
+		5CA963093D8F337497071A031EC950B9 /* Starscream */ = {
 			isa = PBXGroup;
 			children = (
-				6CFA2EBB15C643683083023087AA40C6 /* Frameworks */,
-				6F6D1A1C9D5447E7251BBB8A6A20D84D /* Resources */,
+				40F28DC34975FC6DD8291CF88E57404B /* Compression.swift */,
+				6DC113447752A042EC947DEA9D5E9AD0 /* SSLSecurity.swift */,
+				D39A2B697D07C932CD16B8C0E9CB6708 /* WebSocket.swift */,
+				9419A574FE9775A22484D7DBA1AEE265 /* Support Files */,
 			);
-			name = Maps;
+			name = Starscream;
+			path = Starscream;
 			sourceTree = "<group>";
 		};
-		5B265093CB4EF6A1FB568306951AC4E9 /* GoogleMaps */ = {
+		6A1B154219BA4629D354EC5B39FC6F23 /* TextFieldEffects */ = {
 			isa = PBXGroup;
 			children = (
-				C0BC1C5792F88A7AA833FF2A5D975EE7 /* Base */,
-				4EE65EB166D5ED79C86FA7E2D14F0E12 /* Maps */,
+				743BF05F5FB26DA92ECDB71E8AFA4488 /* AkiraTextField.swift */,
+				D2E309CC1D34C8D7BF6D0704259AE7D8 /* HoshiTextField.swift */,
+				08CBC8DA493CF38D10298A510D164FBB /* IsaoTextField.swift */,
+				650711488BC5F8684844C2576C5AAC60 /* JiroTextField.swift */,
+				32628CA841DCE138675F3D6EA4C30C3B /* KaedeTextField.swift */,
+				4730A87D543DCB51E8FF3EF05070696C /* MadokaTextField.swift */,
+				0341257F0B15C890D3DE70DFD4FCAFDA /* MinoruTextField.swift */,
+				22F767A4D8C76A1A6DC3925D5F1C9117 /* TextFieldEffects.swift */,
+				608778EE58F4E6A0B52699203D20954E /* YokoTextField.swift */,
+				1CE6D7F366F3CC44C59007B6CE68F9CC /* YoshikoTextField.swift */,
+				7573E0030582B14C197BDC19F178967E /* Support Files */,
 			);
-			name = GoogleMaps;
-			path = GoogleMaps;
+			name = TextFieldEffects;
+			path = TextFieldEffects;
 			sourceTree = "<group>";
 		};
-		5F17414BF559A6FECA0E6F6C5C9DED74 /* GooglePlaces */ = {
+		7573E0030582B14C197BDC19F178967E /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				DB34A87EBB9E8E683B1B574C7E062BB3 /* Frameworks */,
-				A281D8E0DFE95706E76D6D4B2B4FABCC /* Resources */,
+				83634C5661EBA628772A21B1FCA3AD03 /* Info.plist */,
+				7993112E18680F1720CC5A2CB09266C7 /* TextFieldEffects.modulemap */,
+				24AA09133B04C75469A5A422E7F28DD6 /* TextFieldEffects.xcconfig */,
+				4D41B65D242301BB13480ABB95D2BF27 /* TextFieldEffects-dummy.m */,
+				A5A83583389E082956E09C3BCBB82BE9 /* TextFieldEffects-prefix.pch */,
+				35B21D65A06A43D76C29ABF3CD0254E8 /* TextFieldEffects-umbrella.h */,
 			);
-			name = GooglePlaces;
-			path = GooglePlaces;
+			name = "Support Files";
+			path = "../Target Support Files/TextFieldEffects";
 			sourceTree = "<group>";
 		};
-		6CFA2EBB15C643683083023087AA40C6 /* Frameworks */ = {
+		757780D98078F7C32304A839FDB3FD28 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5821DE31DFF4C7A0EDDF56D8C3FD0949 /* GoogleMaps.framework */,
-				7C0E07B0B776DB78625B40581B35DCDE /* GoogleMapsCore.framework */,
+				4DC154519EB5B253937404614BD03F3C /* GooglePlaces.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6F6D1A1C9D5447E7251BBB8A6A20D84D /* Resources */ = {
+		7A51173865C7ED9D5849D42E3917A91D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				35FAB4F2A5037023D22A804FE0CAEC68 /* GoogleMaps.bundle */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		722BC75ADD733710E0583F76E758AE61 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B6F85E085565A45862159FECA63B39E1 /* Pods_Pocket_Change.framework */,
-				236029EECB6918A6DA2A9FE14701CCF6 /* Starscream.framework */,
-				8A8A5587763E922637FC4DADD9EB64E3 /* SwiftIconFont.framework */,
+				F47672C989E88C8E47CD908D4685EBD1 /* Pods_Pocket_Change.framework */,
+				53D23EF577CD3175BF0A231C1F60B541 /* Starscream.framework */,
+				A5DC1120B2C4BC412E8330CB0B3A2141 /* SwiftIconFont.framework */,
+				D1A22296AAF5BBAD74477356E345683D /* TextFieldEffects.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		7BCBBDECDA9E418C977B473BC4B43D43 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				B108866B998320825E2F3DBB7AC64DC8 /* FontAwesome.ttf */,
-				8F85398922EE0D425F251C2FDFB023EC /* Ionicons.ttf */,
-				21969DEF78BBBD24D6B534750F746BED /* map-icons.ttf */,
-				810ED980017D41AFC525B764602F0855 /* MaterialIcons-Regular.ttf */,
-				3ABE76A7B161298C7BF4CC4E1D367A6D /* octicons.ttf */,
-				00C3AE61751E1A09FF5748A882E841E6 /* open-iconic.ttf */,
-				1E47C49A0EFB9D5134993DCEA393D13B /* themify.ttf */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -254,10 +355,22 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
-				A81A7673531C1BD3A39896A493D8CAB9 /* Pods */,
-				722BC75ADD733710E0583F76E758AE61 /* Products */,
+				7F89333E7536B62E11960648CC72749B /* Pods */,
+				7A51173865C7ED9D5849D42E3917A91D /* Products */,
 				4E062C3FFB86607135858ED362ADB63F /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		7F89333E7536B62E11960648CC72749B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9F24382E74BC664787AEE09FA3E02487 /* GoogleMaps */,
+				BFF1285588ACEF9F1189F1A4A2D57FB8 /* GooglePlaces */,
+				5CA963093D8F337497071A031EC950B9 /* Starscream */,
+				2EB76E6AF447F93EDBCF1C94172D5A3F /* SwiftIconFont */,
+				6A1B154219BA4629D354EC5B39FC6F23 /* TextFieldEffects */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		82E7663C7DE97406AF4412B5C6708125 /* Pods-Pocket Change */ = {
@@ -278,170 +391,128 @@
 			path = "Target Support Files/Pods-Pocket Change";
 			sourceTree = "<group>";
 		};
-		9B7E0D5EC70D311E276D21AE989F54A0 /* Support Files */ = {
+		878A914341C7A56C0E6FDDA5BF8B4CD9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E6DB78A35DFC3FC861ED72A6FDD210F1 /* Info.plist */,
-				31DD382D8A7CED05DDE4361A108D4172 /* SwiftIconFont.modulemap */,
-				477495B86368454A7DF1093123C7A275 /* SwiftIconFont.xcconfig */,
-				30E803C174AF2535AC1E3FE857BAA740 /* SwiftIconFont-dummy.m */,
-				10B01B172F28A9C3885E8C9D8D6BB3AB /* SwiftIconFont-prefix.pch */,
-				9DFAA98EADA400A2B790084A9D1B196A /* SwiftIconFont-umbrella.h */,
+				106DC909467EAA7058FEF7018067B97A /* GoogleMapsBase.framework */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/SwiftIconFont";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A281D8E0DFE95706E76D6D4B2B4FABCC /* Resources */ = {
+		8E951DF9105EE4A0C6EA67EE5138B477 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				58C4255F370F72028981831C7CF7DBB1 /* GooglePlaces.bundle */,
+				54F9B9EB82E9AD170E014E8BFBD72600 /* GooglePlaces.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		A5005EBB5CE22D080AEF222BF52D61B9 /* Support Files */ = {
+		9419A574FE9775A22484D7DBA1AEE265 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				429C72FF6D533DC7687744331DC73CCF /* Info.plist */,
-				0DADB938BD3F12B2DDCF0B1068200FD8 /* Starscream.modulemap */,
-				E88D2731E4E45B2DF2433F68D8A6E724 /* Starscream.xcconfig */,
-				789B91F7A24EA388005095DE57A40AF8 /* Starscream-dummy.m */,
-				2336849C9C0A75ADD2240E05B3D61C8D /* Starscream-prefix.pch */,
-				1C00D5645EAD24A2BB070938D19A6A65 /* Starscream-umbrella.h */,
+				930D0C017AF31316457B3AE8DD184E16 /* Info.plist */,
+				B1195061E4B2C77E98D84E0167FDB054 /* Starscream.modulemap */,
+				294F332121D98A8ED15716F190D5244B /* Starscream.xcconfig */,
+				18CDF7805C2FDD075E4ACA469C26C574 /* Starscream-dummy.m */,
+				2C07991A0A60E6B61BFE0BA6607AF6EA /* Starscream-prefix.pch */,
+				86BC21298889D2F6712F680456E0015E /* Starscream-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Starscream";
 			sourceTree = "<group>";
 		};
-		A81A7673531C1BD3A39896A493D8CAB9 /* Pods */ = {
+		9F24382E74BC664787AEE09FA3E02487 /* GoogleMaps */ = {
 			isa = PBXGroup;
 			children = (
-				5B265093CB4EF6A1FB568306951AC4E9 /* GoogleMaps */,
-				5F17414BF559A6FECA0E6F6C5C9DED74 /* GooglePlaces */,
-				E62221D941B5ECFB1B65A31F0C66ED8A /* Starscream */,
-				CD554524E3DF486ED8E0A32F58B73715 /* SwiftIconFont */,
+				AB9AD6C2B822AF6F122F4035D048CBC5 /* Base */,
+				AB8E07D69F12C33CA79547300C75DC04 /* Maps */,
 			);
-			name = Pods;
+			name = GoogleMaps;
+			path = GoogleMaps;
 			sourceTree = "<group>";
 		};
-		C0BC1C5792F88A7AA833FF2A5D975EE7 /* Base */ = {
+		AB8E07D69F12C33CA79547300C75DC04 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
-				C5812591FB98449A0E757E19312CCA42 /* Frameworks */,
+				E01BD323B4D0471BD259CD233611E8A1 /* Frameworks */,
+				49D517F908E69EE254001F87AAE17EAF /* Resources */,
+			);
+			name = Maps;
+			sourceTree = "<group>";
+		};
+		AB9AD6C2B822AF6F122F4035D048CBC5 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				878A914341C7A56C0E6FDDA5BF8B4CD9 /* Frameworks */,
 			);
 			name = Base;
 			sourceTree = "<group>";
 		};
-		C5812591FB98449A0E757E19312CCA42 /* Frameworks */ = {
+		BFF1285588ACEF9F1189F1A4A2D57FB8 /* GooglePlaces */ = {
 			isa = PBXGroup;
 			children = (
-				DB58660B6FB5CED9F23B1F3B42C958FA /* GoogleMapsBase.framework */,
+				757780D98078F7C32304A839FDB3FD28 /* Frameworks */,
+				8E951DF9105EE4A0C6EA67EE5138B477 /* Resources */,
+			);
+			name = GooglePlaces;
+			path = GooglePlaces;
+			sourceTree = "<group>";
+		};
+		E01BD323B4D0471BD259CD233611E8A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F10D92EC430D69BC5EBCA23311C50CE2 /* GoogleMaps.framework */,
+				5A403CF99F42BA5D3A0C94B06024839C /* GoogleMapsCore.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		CD554524E3DF486ED8E0A32F58B73715 /* SwiftIconFont */ = {
-			isa = PBXGroup;
-			children = (
-				1D2FD68A1470F77CC315E0D8153494FC /* FontAwesome.swift */,
-				83AA4B93045584A15361B59E04DA3223 /* FontLoader.swift */,
-				AF544001208BA2110FC7D73D5E87DFE6 /* Iconic.swift */,
-				336DAB9E4F2AE1F42B2AC8815C8FE63B /* IonIcons.swift */,
-				76F13E3372A414C0D06945962D2282D3 /* MapIcon.swift */,
-				92D55E5BE75C93B0A047820A7B0464DD /* MaterialIcon.swift */,
-				07EABAB7ACEC07ED3CA1222147198BD0 /* Octicon.swift */,
-				B4E3693AB98D69EEA9C3F02BE1986DB4 /* SwiftBarButtonItem.swift */,
-				40D5B6847811745ABEAB453BB4E88064 /* SwiftIconButton.swift */,
-				2BF4045793E0FC50502BC67C42E93755 /* SwiftIconFont.swift */,
-				9AC021230208FACCCB3358B11D17D938 /* SwiftIconFontView.swift */,
-				1752B7B2E409D25AE27DD8A4ADEF278F /* SwiftIconLabel.swift */,
-				6A8EA76EE93AAB690263816AED87A474 /* SwiftIconTabBarItem.swift */,
-				D053BF799C0E1FFFD0E2CDC47C279056 /* SwiftIconTextField.swift */,
-				CB4CA0DF2E68A5709C7978BC12EEFCBF /* SwiftIconTextView.swift */,
-				4D4370184662EDC7E15E88DCEAA1C8F6 /* ThemifyIcon.swift */,
-				7BCBBDECDA9E418C977B473BC4B43D43 /* Resources */,
-				9B7E0D5EC70D311E276D21AE989F54A0 /* Support Files */,
-			);
-			name = SwiftIconFont;
-			path = SwiftIconFont;
-			sourceTree = "<group>";
-		};
-		DB34A87EBB9E8E683B1B574C7E062BB3 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A7DB53C1C23D3460FE107E6670EB55F3 /* GooglePlaces.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E62221D941B5ECFB1B65A31F0C66ED8A /* Starscream */ = {
-			isa = PBXGroup;
-			children = (
-				4996B932F850FE42AE49397CD3918770 /* Compression.swift */,
-				05C446ABB9F5BFB44E48001058E0F89F /* SSLSecurity.swift */,
-				E372371E433AF6B27C4F651019178ED7 /* WebSocket.swift */,
-				A5005EBB5CE22D080AEF222BF52D61B9 /* Support Files */,
-			);
-			name = Starscream;
-			path = Starscream;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		09F8CA954C8CCB38B28D0316E33B6C3F /* Headers */ = {
+		2FCA57C9C8B26B90170E1973439CC33E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				335ADFBD554019893DEBDD303ADDFBC2 /* SwiftIconFont-umbrella.h in Headers */,
+				461630436B7CBFACABB8292D4064E8DA /* TextFieldEffects-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		387E59952B2EE291BC2775248E98D1FF /* Headers */ = {
+		8FD19D705A4DAB7E11FE085568BCC28D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31973CA1B7B814F93626800A10CCF055 /* Starscream-umbrella.h in Headers */,
+				2410B55EFD3F9E5916D23EED664EB93D /* Pods-Pocket Change-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		81D44058180A3B5327B3DA588952A223 /* Headers */ = {
+		94993096650B8F277B3DEAE5B10991F5 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				163B86D1E3C6C66F6B9218351FB71F26 /* Pods-Pocket Change-umbrella.h in Headers */,
+				6151F8B809CFE8A4902700EFD83003A0 /* Starscream-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC7B4BD3F9E903D9D2D92BC70C648513 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				603B2A0C5CC06149ADDEEABB8579CBAD /* SwiftIconFont-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3DCA87E4B7DC53A363BDDA3177E0FB74 /* Starscream */ = {
+		017862C27717ED1805560B6562898FA7 /* SwiftIconFont */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8C415FD4463BCA752DF4E760893EB0E5 /* Build configuration list for PBXNativeTarget "Starscream" */;
+			buildConfigurationList = F0784E6B48A4B9D783941042782D55AC /* Build configuration list for PBXNativeTarget "SwiftIconFont" */;
 			buildPhases = (
-				4D07339D53F8C69A147F71DC4B3E7FB8 /* Sources */,
-				26E83B7A7C716D2D608B0080793E8AEF /* Frameworks */,
-				387E59952B2EE291BC2775248E98D1FF /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Starscream;
-			productName = Starscream;
-			productReference = 236029EECB6918A6DA2A9FE14701CCF6 /* Starscream.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		59F1979B3F2A5CCDAAB1F2C45C58D148 /* SwiftIconFont */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4444E1D0A37771A15B0280FE349B6745 /* Build configuration list for PBXNativeTarget "SwiftIconFont" */;
-			buildPhases = (
-				649D647D3B7C08C851E9C1C8789D8A84 /* Sources */,
-				224C72F5B27A240A7AEEDD4B79A0DFFB /* Frameworks */,
-				B251161A7E275D9A3AF4FD1B3FEDC42E /* Resources */,
-				09F8CA954C8CCB38B28D0316E33B6C3F /* Headers */,
+				876321B23160F3CBA18C93DFF23EB4D0 /* Sources */,
+				695188CC14DFBD46D7F77291E9262F6F /* Frameworks */,
+				44AC4EA48469B0DCD5325A2130B06B97 /* Resources */,
+				DC7B4BD3F9E903D9D2D92BC70C648513 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -449,26 +520,61 @@
 			);
 			name = SwiftIconFont;
 			productName = SwiftIconFont;
-			productReference = 8A8A5587763E922637FC4DADD9EB64E3 /* SwiftIconFont.framework */;
+			productReference = A5DC1120B2C4BC412E8330CB0B3A2141 /* SwiftIconFont.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		63628C443B6F4FA58494468E28D2C299 /* Pods-Pocket Change */ = {
+		77283735CC7D8614B357EC79D738089C /* Pods-Pocket Change */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 48462D71A32F21D87FEE482732E0F6B8 /* Build configuration list for PBXNativeTarget "Pods-Pocket Change" */;
+			buildConfigurationList = 4E58FB7FF681DDA480E881830262B10A /* Build configuration list for PBXNativeTarget "Pods-Pocket Change" */;
 			buildPhases = (
-				8D8D665EDA54412602AE07F488EC72CF /* Sources */,
-				A71FC83BF43099B58D5CDF3149018124 /* Frameworks */,
-				81D44058180A3B5327B3DA588952A223 /* Headers */,
+				4701F11F29B52FEF92EE50AEAA82CDEB /* Sources */,
+				48B64DD7B2BADACC9DCF0DD09B975673 /* Frameworks */,
+				8FD19D705A4DAB7E11FE085568BCC28D /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B2304155CC96AB9D52BBABB907FB3809 /* PBXTargetDependency */,
-				810A7E958254826143D777E0DD77AAE6 /* PBXTargetDependency */,
+				229CDCEF687DDA3331C48CBAD3C9D1ED /* PBXTargetDependency */,
+				81B992C80A90402BFBF95C073F7377B5 /* PBXTargetDependency */,
+				6B1728DF62801495DED69A59EBA905BA /* PBXTargetDependency */,
 			);
 			name = "Pods-Pocket Change";
 			productName = "Pods-Pocket Change";
-			productReference = B6F85E085565A45862159FECA63B39E1 /* Pods_Pocket_Change.framework */;
+			productReference = F47672C989E88C8E47CD908D4685EBD1 /* Pods_Pocket_Change.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		AC7ED508BE6C286E219A9A16EADC13FC /* Starscream */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1E4DD98318E929721067703E53D1934 /* Build configuration list for PBXNativeTarget "Starscream" */;
+			buildPhases = (
+				AB1A0B19012DF44C09526FC4175C3FE1 /* Sources */,
+				11451705108423057F856EEEE13B69DF /* Frameworks */,
+				94993096650B8F277B3DEAE5B10991F5 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Starscream;
+			productName = Starscream;
+			productReference = 53D23EF577CD3175BF0A231C1F60B541 /* Starscream.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B8780DDA27803ACA01C54A3B0CF4F483 /* TextFieldEffects */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 936F5EB0AF7AF9DBF4B6C9E71BE34277 /* Build configuration list for PBXNativeTarget "TextFieldEffects" */;
+			buildPhases = (
+				649731044CC754F7E7E98FFC083A9F82 /* Sources */,
+				C1985A5CFC123FB527D9284EB2803357 /* Frameworks */,
+				2FCA57C9C8B26B90170E1973439CC33E /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TextFieldEffects;
+			productName = TextFieldEffects;
+			productReference = D1A22296AAF5BBAD74477356E345683D /* TextFieldEffects.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -488,92 +594,117 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 722BC75ADD733710E0583F76E758AE61 /* Products */;
+			productRefGroup = 7A51173865C7ED9D5849D42E3917A91D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				63628C443B6F4FA58494468E28D2C299 /* Pods-Pocket Change */,
-				3DCA87E4B7DC53A363BDDA3177E0FB74 /* Starscream */,
-				59F1979B3F2A5CCDAAB1F2C45C58D148 /* SwiftIconFont */,
+				77283735CC7D8614B357EC79D738089C /* Pods-Pocket Change */,
+				AC7ED508BE6C286E219A9A16EADC13FC /* Starscream */,
+				017862C27717ED1805560B6562898FA7 /* SwiftIconFont */,
+				B8780DDA27803ACA01C54A3B0CF4F483 /* TextFieldEffects */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B251161A7E275D9A3AF4FD1B3FEDC42E /* Resources */ = {
+		44AC4EA48469B0DCD5325A2130B06B97 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C0FBC307EA461EEDE77FED4CBFE513A /* FontAwesome.ttf in Resources */,
-				8FF15574D65D5FBBA26234228D1387E0 /* Ionicons.ttf in Resources */,
-				6AA885487F8E2DD96BC5D5303E89E091 /* map-icons.ttf in Resources */,
-				8BAE9B320B2CF51CED43F05D040AE786 /* MaterialIcons-Regular.ttf in Resources */,
-				524C9C86D60509E6AD144EF59D8B818D /* octicons.ttf in Resources */,
-				3E79A7D1D073BDFFC4FA176D6D310D6E /* open-iconic.ttf in Resources */,
-				D50303200AA0510FF9F3B27D33044E96 /* themify.ttf in Resources */,
+				20CA9C2C3E3A007FF2AD795083FF9A36 /* FontAwesome.ttf in Resources */,
+				320558DACA1242F69E0A4F4B13C55FA6 /* Ionicons.ttf in Resources */,
+				78E60DEFCBB59CA32C90DE1762A74A99 /* map-icons.ttf in Resources */,
+				052431C33A874364E90EEAC1D5102DAA /* MaterialIcons-Regular.ttf in Resources */,
+				F4F69868900F7414166B9567A482F292 /* octicons.ttf in Resources */,
+				473D1460B0C7E146EBAB3BBB8A4F043F /* open-iconic.ttf in Resources */,
+				8BEC1E138F0B717DB8159C36A8C64B92 /* themify.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		4D07339D53F8C69A147F71DC4B3E7FB8 /* Sources */ = {
+		4701F11F29B52FEF92EE50AEAA82CDEB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEF38C61A2A6CECEA5413F120AFF6ECD /* Compression.swift in Sources */,
-				A1A7990C9D1BEBA255C6A19469BE4167 /* SSLSecurity.swift in Sources */,
-				834AE91C7E599F73D586FE5CE8BC7827 /* Starscream-dummy.m in Sources */,
-				007DE0581EE55F1923196159BFB778A3 /* WebSocket.swift in Sources */,
+				8F30CCA257C876B46B636DAE253A07D9 /* Pods-Pocket Change-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		649D647D3B7C08C851E9C1C8789D8A84 /* Sources */ = {
+		649731044CC754F7E7E98FFC083A9F82 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D1884522DE3B9FC241460565F021FDF /* FontAwesome.swift in Sources */,
-				F3C4CA1A632C42AEA0C16B0D5B415258 /* FontLoader.swift in Sources */,
-				AEEF08FF5A88407912F13226DEADD8B4 /* Iconic.swift in Sources */,
-				3C93DC40679C0B50BE2360B072F6ED51 /* IonIcons.swift in Sources */,
-				34F9D4364250B850E82EBC8E265B76AC /* MapIcon.swift in Sources */,
-				CBF2F23240AEF6703029A8CBFE9EAB6C /* MaterialIcon.swift in Sources */,
-				A616D7967475F84DA9D3CE35A38DCBCB /* Octicon.swift in Sources */,
-				5C47A9367CAC5204CFF1E7DF5912552B /* SwiftBarButtonItem.swift in Sources */,
-				F919486170439DBF5A963F888A4666C2 /* SwiftIconButton.swift in Sources */,
-				BA9D052C12F18B7616D18B6ED69C64E3 /* SwiftIconFont-dummy.m in Sources */,
-				0C7874EA8203F5490BF8D4ACAD3BC4E0 /* SwiftIconFont.swift in Sources */,
-				8126F2FBB8FC88DC3722ECF41AE0566A /* SwiftIconFontView.swift in Sources */,
-				FD30286277BA735DCD1CAF46DA1EF37B /* SwiftIconLabel.swift in Sources */,
-				45E480AE6123B7EE97074E56E08579E2 /* SwiftIconTabBarItem.swift in Sources */,
-				7B55FDA837A81008B48A6A21270D005F /* SwiftIconTextField.swift in Sources */,
-				58B3E63C8FC33A5BC144E77D0F52EB8E /* SwiftIconTextView.swift in Sources */,
-				DE74147ABFB6762FCF9A447E5AA9BCAF /* ThemifyIcon.swift in Sources */,
+				491EC3FFEF41CC9615C6C46EE47A56C0 /* AkiraTextField.swift in Sources */,
+				C8490DFE9823E1B6DE407624018DBEC1 /* HoshiTextField.swift in Sources */,
+				C8042370BD31AF531C6C44D125AB6DC9 /* IsaoTextField.swift in Sources */,
+				C4FEB3F5841F070A0F348405A272EFB8 /* JiroTextField.swift in Sources */,
+				F51195C49BA6D50DDEE74DAFBE4C27E4 /* KaedeTextField.swift in Sources */,
+				A977293F97BF80D00480A56FDD389F96 /* MadokaTextField.swift in Sources */,
+				C824CEF2BC69A36E64CDE38E8CDFDA7D /* MinoruTextField.swift in Sources */,
+				62C05C1D7A949069D1859DF789B4C9A0 /* TextFieldEffects-dummy.m in Sources */,
+				6565C58A0F0DACC6C2395AB5B20B8146 /* TextFieldEffects.swift in Sources */,
+				7BF470C86F1E3ACE670CAA19320E25F8 /* YokoTextField.swift in Sources */,
+				A7C622AD3A6C8B3CE4C5BA6A56E46422 /* YoshikoTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8D8D665EDA54412602AE07F488EC72CF /* Sources */ = {
+		876321B23160F3CBA18C93DFF23EB4D0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2298484E2AC8929AED501F7135826A20 /* Pods-Pocket Change-dummy.m in Sources */,
+				B6219524E5ED53E4D5FC1B75AD1CFA14 /* FontAwesome.swift in Sources */,
+				5A4EE6E03B6DF492C379B6A6606A3003 /* FontLoader.swift in Sources */,
+				92FFA893BEEABFD43638DAFDF5DA7C99 /* Iconic.swift in Sources */,
+				15EBF90A34396CFB0E9126ED1633EB69 /* IonIcons.swift in Sources */,
+				53AA63333CB6E15C2B54049F6A75A9AB /* MapIcon.swift in Sources */,
+				C74477517574A70CF42993CC543BEC06 /* MaterialIcon.swift in Sources */,
+				79BF5A183688B7170BA246D4620662AB /* Octicon.swift in Sources */,
+				A3EF29CA57F4C689249B55DDD4D41175 /* SwiftBarButtonItem.swift in Sources */,
+				BD8D95682D8E84AFFDC1AD5E9FC656DB /* SwiftIconButton.swift in Sources */,
+				730164E8C38B23058004AA187B2F0845 /* SwiftIconFont-dummy.m in Sources */,
+				7DA8E526D2A2ED6AABFF34DF41795208 /* SwiftIconFont.swift in Sources */,
+				B0F3A27C986DF8BBB73C42CD56DE73CB /* SwiftIconFontView.swift in Sources */,
+				27F42716F1DA0708A65DAB7235A61D81 /* SwiftIconLabel.swift in Sources */,
+				5D30ECE1229D8FFDC5FCC891DF5B5F12 /* SwiftIconTabBarItem.swift in Sources */,
+				B5C76FCB3B283500A01A2971AE2CC188 /* SwiftIconTextField.swift in Sources */,
+				F77D5BE709AD6FA1558DD01C5CB40118 /* SwiftIconTextView.swift in Sources */,
+				AA2541C92189F97034044A3AF0E437B1 /* ThemifyIcon.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB1A0B19012DF44C09526FC4175C3FE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1F02834578E7542CA716BC1208E3BAF /* Compression.swift in Sources */,
+				819919E200632151DE0328441C0ED073 /* SSLSecurity.swift in Sources */,
+				503D15BB4FC448CAC663663AA9934047 /* Starscream-dummy.m in Sources */,
+				F78B939749F2A5C206147FF71F41BFEB /* WebSocket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		810A7E958254826143D777E0DD77AAE6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SwiftIconFont;
-			target = 59F1979B3F2A5CCDAAB1F2C45C58D148 /* SwiftIconFont */;
-			targetProxy = E9183E62E3702B4B3EE2C581FF0CA47A /* PBXContainerItemProxy */;
-		};
-		B2304155CC96AB9D52BBABB907FB3809 /* PBXTargetDependency */ = {
+		229CDCEF687DDA3331C48CBAD3C9D1ED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Starscream;
-			target = 3DCA87E4B7DC53A363BDDA3177E0FB74 /* Starscream */;
-			targetProxy = 0715BE1FD8E156860242FC03436FD142 /* PBXContainerItemProxy */;
+			target = AC7ED508BE6C286E219A9A16EADC13FC /* Starscream */;
+			targetProxy = FED63B766EE87AC877F1D1A73370F4F5 /* PBXContainerItemProxy */;
+		};
+		6B1728DF62801495DED69A59EBA905BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TextFieldEffects;
+			target = B8780DDA27803ACA01C54A3B0CF4F483 /* TextFieldEffects */;
+			targetProxy = F1BCAC093ED26A3592D964A010747206 /* PBXContainerItemProxy */;
+		};
+		81B992C80A90402BFBF95C073F7377B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftIconFont;
+			target = 017862C27717ED1805560B6562898FA7 /* SwiftIconFont */;
+			targetProxy = 8A63A42060F2D8DF08B7E0F005B64D38 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -632,6 +763,37 @@
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
+		};
+		1FA3957C73B4CD6A371CF4D4464F513E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A14121F5B1654960894DABB42BC5BA65 /* SwiftIconFont.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftIconFont/SwiftIconFont-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftIconFont/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftIconFont/SwiftIconFont.modulemap";
+				PRODUCT_NAME = SwiftIconFont;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		5B5A1446720EEC8CE963B9BD750713E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -693,167 +855,7 @@
 			};
 			name = Debug;
 		};
-		60DD30CB353CD98DF26EC3C14DE51F29 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F2FA26B4CD9029989B57E7731EBE09C1 /* Pods-Pocket Change.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Pocket Change/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Pocket Change/Pods-Pocket Change.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_Pocket_Change;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		6216099B40E11481EED42709300F2B73 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 477495B86368454A7DF1093123C7A275 /* SwiftIconFont.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SwiftIconFont/SwiftIconFont-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwiftIconFont/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwiftIconFont/SwiftIconFont.modulemap";
-				PRODUCT_NAME = SwiftIconFont;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		637F61290A08D32AA14F451CA2A45336 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E88D2731E4E45B2DF2433F68D8A6E724 /* Starscream.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Starscream/Starscream-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Starscream/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Starscream/Starscream.modulemap";
-				PRODUCT_NAME = Starscream;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		79F6FCEF95CBBC51227116D080758AE7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 477495B86368454A7DF1093123C7A275 /* SwiftIconFont.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SwiftIconFont/SwiftIconFont-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwiftIconFont/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwiftIconFont/SwiftIconFont.modulemap";
-				PRODUCT_NAME = SwiftIconFont;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		8214DD9B2E65249F7D616E49AFD5F390 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E88D2731E4E45B2DF2433F68D8A6E724 /* Starscream.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Starscream/Starscream-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Starscream/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Starscream/Starscream.modulemap";
-				PRODUCT_NAME = Starscream;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		D8FB892BA623DEC5B9288C9F7551DBEE /* Release */ = {
+		6AF05631289FB63A69A521CD0B6702DB /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FCA1A2E32D8EF47C2226463D8BFAF59B /* Pods-Pocket Change.release.xcconfig */;
 			buildSettings = {
@@ -887,6 +889,198 @@
 			};
 			name = Release;
 		};
+		85E036872D52E939C5D64196A7BC4A47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 294F332121D98A8ED15716F190D5244B /* Starscream.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Starscream/Starscream-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Starscream/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Starscream/Starscream.modulemap";
+				PRODUCT_NAME = Starscream;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		92DAE0484B3EAD02770CB8127DBCBB4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 294F332121D98A8ED15716F190D5244B /* Starscream.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Starscream/Starscream-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Starscream/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Starscream/Starscream.modulemap";
+				PRODUCT_NAME = Starscream;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D27ADB373D9FC5754161924FEDE7E7EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24AA09133B04C75469A5A422E7F28DD6 /* TextFieldEffects.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TextFieldEffects/TextFieldEffects-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TextFieldEffects/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TextFieldEffects/TextFieldEffects.modulemap";
+				PRODUCT_NAME = TextFieldEffects;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D389D09285CD4CCA40CC402F48D55431 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24AA09133B04C75469A5A422E7F28DD6 /* TextFieldEffects.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TextFieldEffects/TextFieldEffects-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TextFieldEffects/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TextFieldEffects/TextFieldEffects.modulemap";
+				PRODUCT_NAME = TextFieldEffects;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DFF0F7FFC3323151C523451CCAB86E45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2FA26B4CD9029989B57E7731EBE09C1 /* Pods-Pocket Change.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Pocket Change/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Pocket Change/Pods-Pocket Change.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Pocket_Change;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EA1A84F049CA4D22969BA82C887FFEE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A14121F5B1654960894DABB42BC5BA65 /* SwiftIconFont.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftIconFont/SwiftIconFont-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftIconFont/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftIconFont/SwiftIconFont.modulemap";
+				PRODUCT_NAME = SwiftIconFont;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -899,29 +1093,38 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4444E1D0A37771A15B0280FE349B6745 /* Build configuration list for PBXNativeTarget "SwiftIconFont" */ = {
+		4E58FB7FF681DDA480E881830262B10A /* Build configuration list for PBXNativeTarget "Pods-Pocket Change" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6216099B40E11481EED42709300F2B73 /* Debug */,
-				79F6FCEF95CBBC51227116D080758AE7 /* Release */,
+				DFF0F7FFC3323151C523451CCAB86E45 /* Debug */,
+				6AF05631289FB63A69A521CD0B6702DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		48462D71A32F21D87FEE482732E0F6B8 /* Build configuration list for PBXNativeTarget "Pods-Pocket Change" */ = {
+		936F5EB0AF7AF9DBF4B6C9E71BE34277 /* Build configuration list for PBXNativeTarget "TextFieldEffects" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				60DD30CB353CD98DF26EC3C14DE51F29 /* Debug */,
-				D8FB892BA623DEC5B9288C9F7551DBEE /* Release */,
+				D27ADB373D9FC5754161924FEDE7E7EA /* Debug */,
+				D389D09285CD4CCA40CC402F48D55431 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8C415FD4463BCA752DF4E760893EB0E5 /* Build configuration list for PBXNativeTarget "Starscream" */ = {
+		A1E4DD98318E929721067703E53D1934 /* Build configuration list for PBXNativeTarget "Starscream" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8214DD9B2E65249F7D616E49AFD5F390 /* Debug */,
-				637F61290A08D32AA14F451CA2A45336 /* Release */,
+				92DAE0484B3EAD02770CB8127DBCBB4E /* Debug */,
+				85E036872D52E939C5D64196A7BC4A47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F0784E6B48A4B9D783941042782D55AC /* Build configuration list for PBXNativeTarget "SwiftIconFont" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FA3957C73B4CD6A371CF4D4464F513E /* Debug */,
+				EA1A84F049CA4D22969BA82C887FFEE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

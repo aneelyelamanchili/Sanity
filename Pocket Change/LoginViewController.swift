@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import TextFieldEffects
 
 class LoginViewController : UIViewController, UITextFieldDelegate {
     let sharedModel = Client.sharedInstance
@@ -32,6 +33,18 @@ class LoginViewController : UIViewController, UITextFieldDelegate {
             
         }
     }
+    
+//    override func viewDidLayoutSubviews() {
+//        //let lineColor = UIColor(red:0.12, green:0.23, blue:0.35, alpha:1.0)
+//        //self.username.setBottomLine(borderColor: UIColor.white)
+//        //self.password.setBottomLine(borderColor: UIColor.white)
+//        username = KaedeTextField(frame: textFieldFrame)
+//        username.placeholderColor = .darkGrayColor()
+//        textField.foregroundColor = .lightGrayColor()
+//
+//        view.addSubView(textField)
+//
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -173,3 +186,21 @@ extension UIApplication {
         return base
     }
 }
+
+//extension UITextField {
+//
+//    func setBottomLine(borderColor: UIColor) {
+//
+//        self.borderStyle = UITextBorderStyle.none
+//        self.backgroundColor = UIColor.clear
+//
+//        let borderLine = UIView()
+//        let height = 1.0
+//        borderLine.frame = CGRect(x: 0, y: Double(self.frame.height) - height, width: Double(self.frame.width), height: height)
+//
+//        borderLine.backgroundColor = borderColor
+//        self.addSubview(borderLine)
+//    }
+//
+//}
+

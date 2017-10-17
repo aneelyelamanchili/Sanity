@@ -12,5 +12,6 @@ target 'Pocket Change' do
    pod 'GooglePlaces'
    pod 'GoogleMaps'
    pod 'GooglePlaces'
+   pod "TextFieldEffects"
 
 end

@@ -12,13 +12,13 @@ Follow the installation instructions of [Ngrok](https://ngrok.com/)
 
 # Screenshots
 Login Screen: 
-![Image of Login](LoginScreen.jpg "Login Screen")
+![Image of Login](Screenshots/LoginScreen.jpg)
 
 Sign-up Screen:
-![Image of Sign-Up](SignUpScreen.jpg "Sign-up Screen")
+![Image of Sign-Up](Screenshots/SignUpScreen.jpg)
 
 Incorrect Password:
-![Incorrect Password](ErrorScreen.jpg "Don't try this at home")
+![Incorrect Password](Screenshots/ErrorScreen.jpg)
 
 ## License
 

@@ -16,6 +16,10 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     // sharedDelegate
     var sharedDelegate: AppDelegate!
     
+    var currentIndex: Int!
+    
+    var budgetArray: [MyBudget]!
+    
     // Location manager for finding the current location
     let locationManager = CLLocationManager()
     
@@ -44,7 +48,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         // Set Navbar Color
         let color = UIColor.white
         self.navigationController?.navigationBar.tintColor = color
-        self.navigationItem.title = BudgetVariables.budgetArray[BudgetVariables.currentIndex].name
+        self.navigationItem.title = budgetArray[currentIndex].name
         
         // Set textField delegates to themselves
         inputAmount.delegate = self
@@ -70,7 +74,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         BudgetVariables.getData()
         
         // Refresh the total balance label, in the case that another view modified the balance vaariable
-        totalBalance.text = BudgetVariables.numFormat(myNum: BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance)
+        totalBalance.text = BudgetVariables.numFormat(myNum: budgetArray[currentIndex].balance)
         
         // Reset the text fields and disable the buttons
         inputAmount.text = ""
@@ -170,36 +174,36 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         // If the input amount is a number, round the input to two decimal places before doing further calculations
         if let input = (Double(trimmedInput!))?.roundTo(places: 2)
         {
-            BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance -= input
-            totalBalance.text = BudgetVariables.numFormat(myNum: BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance)
-            BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.append("– $" + String(format: "%.2f", input))
+            budgetArray[currentIndex].balance -= input
+            totalBalance.text = BudgetVariables.numFormat(myNum: budgetArray[currentIndex].balance)
+            budgetArray[currentIndex].historyArray.append("– $" + String(format: "%.2f", input))
             
             // Trim description text before appending
             let description = (descriptionText.text)?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            BudgetVariables.budgetArray[BudgetVariables.currentIndex].descriptionArray.append(description! + "    " + date)
+            budgetArray[currentIndex].descriptionArray.append(description! + "    " + date)
             
             // Log the amount withdrawn for today's spendings for this specific budget
             BudgetVariables.logTodaysSpendings(num: input)
             
             // Log the total amount spent for this budget
-            BudgetVariables.budgetArray[BudgetVariables.currentIndex].totalAmountSpent += input
+            budgetArray[currentIndex].totalAmountSpent += input
             
             // Log the latitude and longitude of the current transaction if the current location is available
             let currentPosition = self.locationManager.location?.coordinate
             if currentPosition != nil
             {
-                BudgetVariables.budgetArray[BudgetVariables.currentIndex].markerLatitude.append((currentPosition?.latitude)!)
-                BudgetVariables.budgetArray[BudgetVariables.currentIndex].markerLongitude.append((currentPosition?.longitude)!)
+                budgetArray[currentIndex].markerLatitude.append((currentPosition?.latitude)!)
+                budgetArray[currentIndex].markerLongitude.append((currentPosition?.longitude)!)
             }
                 
             // If the current position is nil, set the arrays with placeholders of (360,360)
             else
             {
-                BudgetVariables.budgetArray[BudgetVariables.currentIndex].markerLatitude.append(360)
-                BudgetVariables.budgetArray[BudgetVariables.currentIndex].markerLongitude.append(360)
+                budgetArray[currentIndex].markerLatitude.append(360)
+                budgetArray[currentIndex].markerLongitude.append(360)
             }
                         
-            if BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance - input < 0
+            if budgetArray[currentIndex].balance - input < 0
             {
                 spendButton.isEnabled = false
             }
@@ -225,34 +229,34 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
         if let input = (Double(trimmedInput!))?.roundTo(places: 2)
         {
-            BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance += input
-            totalBalance.text = BudgetVariables.numFormat(myNum: BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance)
-            BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.append("+ $" + String(format: "%.2f", input))
+            budgetArray[currentIndex].balance += input
+            totalBalance.text = BudgetVariables.numFormat(myNum: budgetArray[currentIndex].balance)
+            budgetArray[currentIndex].historyArray.append("+ $" + String(format: "%.2f", input))
             
             // Trim description text before appending
             let description = (descriptionText.text)?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            BudgetVariables.budgetArray[BudgetVariables.currentIndex].descriptionArray.append(description! + "    " + date)
+            budgetArray[currentIndex].descriptionArray.append(description! + "    " + date)
             
             // Log this into the history and description arrays, and then update the totalAmountAdded and totalBudgetAmount
-            BudgetVariables.budgetArray[BudgetVariables.currentIndex].totalAmountAdded += input
-            BudgetVariables.budgetArray[BudgetVariables.currentIndex].totalBudgetAmount += input
+            budgetArray[currentIndex].totalAmountAdded += input
+            budgetArray[currentIndex].totalBudgetAmount += input
             
             // Log the latitude and longitude of the current transaction if the current location is available
             let currentPosition = self.locationManager.location?.coordinate
             if currentPosition != nil
             {
-                BudgetVariables.budgetArray[BudgetVariables.currentIndex].markerLatitude.append((currentPosition?.latitude)!)
-                BudgetVariables.budgetArray[BudgetVariables.currentIndex].markerLongitude.append((currentPosition?.longitude)!)
+                budgetArray[currentIndex].markerLatitude.append((currentPosition?.latitude)!)
+                budgetArray[currentIndex].markerLongitude.append((currentPosition?.longitude)!)
             }
                 
             // If the current position is nil, set the arrays with placeholders of (360,360)
             else
             {
-                BudgetVariables.budgetArray[BudgetVariables.currentIndex].markerLatitude.append(360)
-                BudgetVariables.budgetArray[BudgetVariables.currentIndex].markerLongitude.append(360)
+                budgetArray[currentIndex].markerLatitude.append(360)
+                budgetArray[currentIndex].markerLongitude.append(360)
             }
             
-            if BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance + input > 1000000
+            if budgetArray[currentIndex].balance + input > 1000000
             {
                 addButton.isEnabled = false
             }
@@ -274,7 +278,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         // If the input is empty or a period, show current balance and disable buttons
         if trimmedInput == "" || trimmedInput == "."
         {
-            totalBalance.text = BudgetVariables.numFormat(myNum: BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance)
+            totalBalance.text = BudgetVariables.numFormat(myNum: budgetArray[currentIndex].balance)
             spendButton.isEnabled = false
             addButton.isEnabled = false
         }
@@ -291,7 +295,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }
             else
             {
-                totalBalance.text = BudgetVariables.numFormat(myNum: BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance)
+                totalBalance.text = BudgetVariables.numFormat(myNum: budgetArray[currentIndex].balance)
                 
                 // If the input is $0, disable both buttons
                 if input == 0
@@ -302,7 +306,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 else
                 {
                     // If the input can be spent and still result in a valid balance, enable the spend button
-                    if BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance - input < 0
+                    if budgetArray[currentIndex].balance - input < 0
                     {
                         spendButton.isEnabled = false
                     }
@@ -312,7 +316,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     }
                     
                     // If the input can be added and still result in a valid balance, enable the add button
-                    if BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance + input > 1000000
+                    if budgetArray[currentIndex].balance + input > 1000000
                     {
                         addButton.isEnabled = false
                     }
@@ -332,8 +336,13 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.sharedDelegate.saveContext()
         BudgetVariables.getData()
         
+        let destination = storyboard?.instantiateViewController(withIdentifier: "HistoryAndMapViewController") as! HistoryAndMapViewController
+        destination.budgetArray = budgetArray
+        destination.currentIndex = currentIndex
+        navigationController?.pushViewController(destination, animated: true)
+        
         // Show the view controller with history and the map
-        performSegue(withIdentifier: "showHistoryAndMap", sender: nil)
+//        performSegue(withIdentifier: "showHistoryAndMap", sender: nil)
     }
     
     // When the Graphs icon gets pressed segue to the graphs view

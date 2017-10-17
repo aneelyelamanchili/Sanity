@@ -22,6 +22,7 @@ extension MyBigBudget
     @NSManaged public var barGraphColor: Int
     @NSManaged public var descriptionArray: [String]
     @NSManaged public var historyArray: [String]
+    @NSManaged public var categories: [MyBudget]
     @NSManaged public var markerLatitude: [Double]
     @NSManaged public var markerLongitude: [Double]
     @NSManaged public var amountSpentOnDate: [String: Double]

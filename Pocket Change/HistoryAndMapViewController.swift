@@ -16,6 +16,10 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
     // Clean code
     var sharedDelegate: AppDelegate!
     
+    var budgetArray: [MyBudget]!
+    
+    var currentIndex: Int!
+    
     // IBOutlet for components
     @IBOutlet var historyTable: UITableView!
     @IBOutlet weak var clearHistoryButton: UIBarButtonItem!
@@ -53,7 +57,7 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
         historyTable.delegate = self
         
         // If there is no history, disable the clear history button
-        if BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.isEmpty == true
+        if self.budgetArray[self.currentIndex].historyArray.isEmpty == true
         {
             clearHistoryButton.isEnabled = false
         }
@@ -123,10 +127,10 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
         self.markerArray.removeAll()
         
         // Append markers for all the locations in the array
-        for i in 0..<BudgetVariables.budgetArray[BudgetVariables.currentIndex].markerLatitude.count
+        for i in 0..<self.budgetArray[self.currentIndex].markerLatitude.count
         {
-            let latitude = BudgetVariables.budgetArray[BudgetVariables.currentIndex].markerLatitude[i]
-            let longitude = BudgetVariables.budgetArray[BudgetVariables.currentIndex].markerLongitude[i]
+            let latitude = self.budgetArray[self.currentIndex].markerLatitude[i]
+            let longitude = self.budgetArray[self.currentIndex].markerLongitude[i]
             
             // If the latitude and longitude are valid, add a corresponding marker to the map
             if latitude != 360 && longitude != 360
@@ -134,10 +138,10 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
                 let marker = GMSMarker()
                 marker.position.latitude = latitude
                 marker.position.longitude = longitude
-                marker.snippet = BudgetVariables.getDetailFromDescription(descripStr: BudgetVariables.budgetArray[BudgetVariables.currentIndex].descriptionArray[i])
+                marker.snippet = BudgetVariables.getDetailFromDescription(descripStr: self.budgetArray[self.currentIndex].descriptionArray[i])
                 
                 // If the action is a "+", add a green marker instead
-                let str = BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray[i]
+                let str = self.budgetArray[self.currentIndex].historyArray[i]
                 let index = str.index(str.startIndex, offsetBy: 0)
                 if str[index] == "+"
                 {
@@ -218,21 +222,21 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
     @IBAction func clearHistoryButtonWasPressed(_ sender: Any)
     {
         // Empty out arrays
-        BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.removeAll()
-        BudgetVariables.budgetArray[BudgetVariables.currentIndex].descriptionArray.removeAll()
+        self.budgetArray[self.currentIndex].historyArray.removeAll()
+        self.budgetArray[self.currentIndex].descriptionArray.removeAll()
         
         // Revert the balance to its original value, and reset the variables
-        let totalAmtAdded = BudgetVariables.budgetArray[BudgetVariables.currentIndex].totalAmountAdded
-        let totalAmtSpent = BudgetVariables.budgetArray[BudgetVariables.currentIndex].totalAmountSpent
-        let myBalance = BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance
+        let totalAmtAdded = self.budgetArray[self.currentIndex].totalAmountAdded
+        let totalAmtSpent = self.budgetArray[self.currentIndex].totalAmountSpent
+        let myBalance = self.budgetArray[self.currentIndex].balance
         let newBalanceAndBudgetAmount = myBalance - totalAmtAdded + totalAmtSpent
-        BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance = newBalanceAndBudgetAmount
-        BudgetVariables.budgetArray[BudgetVariables.currentIndex].totalBudgetAmount = newBalanceAndBudgetAmount
-        BudgetVariables.budgetArray[BudgetVariables.currentIndex].totalAmountAdded = 0.0
-        BudgetVariables.budgetArray[BudgetVariables.currentIndex].totalAmountSpent = 0.0
-        BudgetVariables.budgetArray[BudgetVariables.currentIndex].markerLatitude.removeAll()
-        BudgetVariables.budgetArray[BudgetVariables.currentIndex].markerLongitude.removeAll()
-        BudgetVariables.budgetArray[BudgetVariables.currentIndex].amountSpentOnDate.removeAll()
+        self.budgetArray[self.currentIndex].balance = newBalanceAndBudgetAmount
+        self.budgetArray[self.currentIndex].totalBudgetAmount = newBalanceAndBudgetAmount
+        self.budgetArray[self.currentIndex].totalAmountAdded = 0.0
+        self.budgetArray[self.currentIndex].totalAmountSpent = 0.0
+        self.budgetArray[self.currentIndex].markerLatitude.removeAll()
+        self.budgetArray[self.currentIndex].markerLongitude.removeAll()
+        self.budgetArray[self.currentIndex].amountSpentOnDate.removeAll()
         
         // Save context and get data
         self.sharedDelegate.saveContext()
@@ -248,14 +252,14 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         // Represents the number of rows the UITableView should have
-        return BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.count + 1
+        return self.budgetArray[self.currentIndex].historyArray.count + 1
     }
     
     // Determines what data goes in what cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let myCell:UITableViewCell = historyTable.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath)
-        let count = BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.count
+        let count = self.budgetArray[self.currentIndex].historyArray.count
         
         // If it's the last cell, customize the message
         if indexPath.row == count
@@ -271,7 +275,7 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
             myCell.textLabel?.textColor = UIColor.black
             myCell.detailTextLabel?.textColor = UIColor.black
             
-            let str = BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray[indexPath.row]
+            let str = self.budgetArray[self.currentIndex].historyArray[indexPath.row]
             let index = str.index(str.startIndex, offsetBy: 0)
             
             if str[index] == "+"
@@ -284,10 +288,10 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
                 myCell.textLabel?.textColor = BudgetVariables.hexStringToUIColor(hex: "FF0212")
             }
             
-            myCell.textLabel?.text = BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray[indexPath.row]
+            myCell.textLabel?.text = self.budgetArray[self.currentIndex].historyArray[indexPath.row]
             
             // String of the description
-            let descripStr = BudgetVariables.budgetArray[BudgetVariables.currentIndex].descriptionArray[indexPath.row]
+            let descripStr = self.budgetArray[self.currentIndex].descriptionArray[indexPath.row]
             
             // Create Detail Text
             let detailText = BudgetVariables.getDetailFromDescription(descripStr: descripStr)
@@ -311,13 +315,13 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         // If it is the last cell which contains information, user cannot delete this cell
-        if indexPath.row == BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.count
+        if indexPath.row == self.budgetArray[self.currentIndex].historyArray.count
         {
             return false
         }
         
         // Extract the amount spent for this specific transaction into the variable amountSpent
-        let historyStr = BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray[indexPath.row]
+        let historyStr = self.budgetArray[self.currentIndex].historyArray[indexPath.row]
         let index1 = historyStr.index(historyStr.startIndex, offsetBy: 0) // Index spans the first character in the string
         let index2 = historyStr.index(historyStr.startIndex, offsetBy: 3) // Index spans the amount spent in that transaction
         let amountSpent = Double(historyStr.substring(from: index2))
@@ -325,7 +329,7 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
         // If after the deletion of a spend action the new balance is over 1M, user cannot delete this cell
         if historyStr[index1] == "–"
         {
-            let newBalance = BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance + amountSpent!
+            let newBalance = self.budgetArray[self.currentIndex].balance + amountSpent!
             if newBalance > 1000000
             {
                 return false
@@ -333,7 +337,7 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
         }
         else if historyStr[index1] == "+"
         {
-            let newBalance = BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance - amountSpent!
+            let newBalance = self.budgetArray[self.currentIndex].balance - amountSpent!
             if newBalance < 0
             {
                 return false
@@ -351,7 +355,7 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
         { (action, indexPath) in
             
             // Extract the key to the map in the format "MM/dd/YYYY" into the variable date
-            let descripStr = BudgetVariables.budgetArray[BudgetVariables.currentIndex].descriptionArray[indexPath.row]
+            let descripStr = self.budgetArray[self.currentIndex].descriptionArray[indexPath.row]
             let dateIndex = descripStr.index(descripStr.endIndex, offsetBy: -10)
             let date = descripStr.substring(from: dateIndex)
             
@@ -364,7 +368,7 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
             let monthKey = monthString + "/" + yearString
             
             // Extract the amount spent for this specific transaction into the variable amountSpent
-            let historyStr = BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray[indexPath.row]
+            let historyStr = self.budgetArray[self.currentIndex].historyArray[indexPath.row]
             let index1 = historyStr.index(historyStr.startIndex, offsetBy: 0) // Index spans the first character in the string
             let index2 = historyStr.index(historyStr.startIndex, offsetBy: 3) // Index spans the amount spent in that transaction
             let historyValue = Double(historyStr.substring(from: index2))
@@ -372,44 +376,44 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
             // If this specific piece of history logged a "Spend" action, the total amount spent should decrease after deletion
             if historyStr[index1] == "–"
             {
-                let newAmtSpentOnDate = BudgetVariables.budgetArray[BudgetVariables.currentIndex].amountSpentOnDate[date]! - historyValue!
-                BudgetVariables.budgetArray[BudgetVariables.currentIndex].amountSpentOnDate[date] = newAmtSpentOnDate
-                let newAmtSpentInMonth = BudgetVariables.budgetArray[BudgetVariables.currentIndex].amountSpentOnDate[monthKey]! - historyValue!
-                BudgetVariables.budgetArray[BudgetVariables.currentIndex].amountSpentOnDate[monthKey] = newAmtSpentInMonth
-                let newTotalAmountSpent = BudgetVariables.budgetArray[BudgetVariables.currentIndex].totalAmountSpent - historyValue!
-                BudgetVariables.budgetArray[BudgetVariables.currentIndex].totalAmountSpent = newTotalAmountSpent
-                let newBalance = BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance + historyValue!
-                BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance = newBalance
+                let newAmtSpentOnDate = self.budgetArray[self.currentIndex].amountSpentOnDate[date]! - historyValue!
+                self.budgetArray[self.currentIndex].amountSpentOnDate[date] = newAmtSpentOnDate
+                let newAmtSpentInMonth = self.budgetArray[self.currentIndex].amountSpentOnDate[monthKey]! - historyValue!
+                self.budgetArray[self.currentIndex].amountSpentOnDate[monthKey] = newAmtSpentInMonth
+                let newTotalAmountSpent = self.budgetArray[self.currentIndex].totalAmountSpent - historyValue!
+                self.budgetArray[self.currentIndex].totalAmountSpent = newTotalAmountSpent
+                let newBalance = self.budgetArray[self.currentIndex].balance + historyValue!
+                self.budgetArray[self.currentIndex].balance = newBalance
             }
                 
             // If this action was an "Added to Budget" action
             else if historyStr[index1] == "+"
             {
-                let newTotalAmountAdded = BudgetVariables.budgetArray[BudgetVariables.currentIndex].totalAmountAdded - historyValue!
-                BudgetVariables.budgetArray[BudgetVariables.currentIndex].totalAmountAdded = newTotalAmountAdded
-                let newBalance = BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance - historyValue!
-                BudgetVariables.budgetArray[BudgetVariables.currentIndex].balance = newBalance
-                let newBudgetAmount = BudgetVariables.budgetArray[BudgetVariables.currentIndex].totalBudgetAmount - historyValue!
-                BudgetVariables.budgetArray[BudgetVariables.currentIndex].totalBudgetAmount = newBudgetAmount
+                let newTotalAmountAdded = self.budgetArray[self.currentIndex].totalAmountAdded - historyValue!
+                self.budgetArray[self.currentIndex].totalAmountAdded = newTotalAmountAdded
+                let newBalance = self.budgetArray[self.currentIndex].balance - historyValue!
+                self.budgetArray[self.currentIndex].balance = newBalance
+                let newBudgetAmount = self.budgetArray[self.currentIndex].totalBudgetAmount - historyValue!
+                self.budgetArray[self.currentIndex].totalBudgetAmount = newBudgetAmount
             }
             
             // Remove the latitude and longitude for the current row
-            BudgetVariables.budgetArray[BudgetVariables.currentIndex].markerLatitude.remove(at: indexPath.row)
-            BudgetVariables.budgetArray[BudgetVariables.currentIndex].markerLongitude.remove(at: indexPath.row)
+            self.budgetArray[self.currentIndex].markerLatitude.remove(at: indexPath.row)
+            self.budgetArray[self.currentIndex].markerLongitude.remove(at: indexPath.row)
             
             // Delete just the marker associated with this cell
             self.markerArray[indexPath.row].map = nil
             self.markerArray.remove(at: indexPath.row)
             
             // Delete the row
-            BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.remove(at: indexPath.row)
-            BudgetVariables.budgetArray[BudgetVariables.currentIndex].descriptionArray.remove(at: indexPath.row)
+            self.budgetArray[self.currentIndex].historyArray.remove(at: indexPath.row)
+            self.budgetArray[self.currentIndex].descriptionArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             self.sharedDelegate.saveContext()
             BudgetVariables.getData()
             
             // Disable the clear history button if the cell deleted was the last item
-            if BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.isEmpty == true
+            if self.budgetArray[self.currentIndex].historyArray.isEmpty == true
             {
                 self.clearHistoryButton.isEnabled = false
             }
@@ -427,9 +431,9 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
         { (action, indexPath) in
             
             // If it is not the last row
-            if indexPath.row != BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.count
+            if indexPath.row != self.budgetArray[self.currentIndex].historyArray.count
             {
-                let descripStr = BudgetVariables.budgetArray[BudgetVariables.currentIndex].descriptionArray[indexPath.row]
+                let descripStr = self.budgetArray[self.currentIndex].descriptionArray[indexPath.row]
                 let index = descripStr.index(descripStr.endIndex, offsetBy: -14)
                 self.oldDescription = descripStr.substring(to: index)
                 self.showEditDescriptionAlert(indexPath: indexPath)
@@ -446,10 +450,10 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         // If it is not the last row
-        if indexPath.row != BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.count
+        if indexPath.row != self.budgetArray[self.currentIndex].historyArray.count
         {
-            let latitude = BudgetVariables.budgetArray[BudgetVariables.currentIndex].markerLatitude[indexPath.row]
-            let longitude = BudgetVariables.budgetArray[BudgetVariables.currentIndex].markerLongitude[indexPath.row]
+            let latitude = self.budgetArray[self.currentIndex].markerLatitude[indexPath.row]
+            let longitude = self.budgetArray[self.currentIndex].markerLongitude[indexPath.row]
             
             // If the latitude and longitude are valid, animate the camera to that location and select that marker, otherwise do nothing
             if latitude != 360 && longitude != 360
@@ -471,7 +475,7 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
             textField.placeholder = "New Description"
             
             // Grab old description and put it into the initial textfield
-            let oldDescription = BudgetVariables.budgetArray[BudgetVariables.currentIndex].descriptionArray[indexPath.row]
+            let oldDescription = self.budgetArray[self.currentIndex].descriptionArray[indexPath.row]
             textField.text = BudgetVariables.getDetailFromDescription(descripStr: oldDescription)
             
             textField.delegate = self
@@ -489,11 +493,11 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
             inputDescription = inputDescription?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             
             // Get old description
-            let oldDescription = BudgetVariables.budgetArray[BudgetVariables.currentIndex].descriptionArray[indexPath.row]
+            let oldDescription = self.budgetArray[self.currentIndex].descriptionArray[indexPath.row]
             
             // Change the current description
             let date = BudgetVariables.getDateFromDescription(descripStr: oldDescription)
-            BudgetVariables.budgetArray[BudgetVariables.currentIndex].descriptionArray[indexPath.row] = inputDescription! + "    " + date
+            self.budgetArray[self.currentIndex].descriptionArray[indexPath.row] = inputDescription! + "    " + date
             self.historyTable.reloadRows(at: [indexPath], with: .fade)
             
             // Save and get data to coredata

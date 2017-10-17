@@ -31,7 +31,7 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
         //        imageView.image = image
         //        navigationItem.titleView = imageView
         
-        navigationItem.title = "Sanity"
+        navigationItem.title = "Budgets"
         
         budgetTable.dataSource = self
         budgetTable.delegate = self
@@ -335,6 +335,9 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
             BigBudgetVariables.currentIndex = indexPath.row
             let destination = storyboard?.instantiateViewController(withIdentifier: "BudgetListViewController") as! BudgetListViewController
             destination.budgetName = BigBudgetVariables.budgetArray[BigBudgetVariables.currentIndex].name
+            destination.budgetArray = BigBudgetVariables.budgetArray[BigBudgetVariables.currentIndex].categories
+            destination.currBigBudget = BigBudgetVariables.budgetArray[BigBudgetVariables.currentIndex]
+            destination.currentIndex = BigBudgetVariables.currentIndex
             navigationController?.pushViewController(destination, animated: true)
         }
     }

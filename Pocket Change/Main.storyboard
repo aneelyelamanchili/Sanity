@@ -23,7 +23,7 @@
         <!--Spend View Controller-->
         <scene sceneID="1VC-f8-jap">
             <objects>
-                <viewController id="sds-LB-aBh" customClass="SpendViewController" customModule="Pocket_Change" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SpendViewController" id="sds-LB-aBh" customClass="SpendViewController" customModule="Pocket_Change" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M3A-vS-Q4U"/>
                         <viewControllerLayoutGuide type="bottom" id="Jcm-fI-l1A"/>
@@ -193,7 +193,7 @@
         <!--History and Map View Controller-->
         <scene sceneID="STd-v6-pbN">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="4en-47-sPL" userLabel="History and Map View Controller" customClass="HistoryAndMapViewController" customModule="Pocket_Change" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HistoryAndMapViewController" automaticallyAdjustsScrollViewInsets="NO" id="4en-47-sPL" userLabel="History and Map View Controller" customClass="HistoryAndMapViewController" customModule="Pocket_Change" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fjv-8B-5bL"/>
                         <viewControllerLayoutGuide type="bottom" id="3T3-TZ-EwR"/>

@@ -12,10 +12,22 @@ import CoreData
 class BigBudgetVariables: UIViewController
 {
     // CoreData maintains this array even when app isn't running
+//    static var budgetArray = [MyBigBudget]()
     static var budgetArray = [MyBigBudget]()
     
     // The current index always gets initialized to 0 when the app opens
     static var currentIndex = 0
+    
+//    required init?(coder aDecoder: NSCoder) {
+//
+//    }
+//
+//    override func encode(with aCoder: NSCoder) {
+//
+//    }
+//
+    
+//    required convenience init?(coder decoder: NSCoder)
     
     // This function fetches from CoreData
     class func getData()

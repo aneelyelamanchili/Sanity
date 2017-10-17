@@ -7,18 +7,45 @@
 # Overview
 $anity is an iOS app that consollidates financial information into one location and determines how much money you are spending, alerting you if you are going over your allocated budget.
 
-# Set-Up
-Follow the installation instructions of [Ngrok](https://ngrok.com/)
+# Installation/Set-Up
+
+## Install Ngrok
+Ngrok allows for testing mobile apps against a development backend running on your machine.
+
+Follow the installation instructions of [Ngrok](https://ngrok.com/). 
+
+Once installed run the following command: `ngrok http 80`
+
+When you start ngrok, it will display a UI in your terminal with the public URL of your tunnel and other status and metrics information about connections made over your tunnel.
+
+```
+ngrok by @inconshreveable
+  
+Tunnel Status                 online
+Version                       2.0/2.0
+Web Interface                 http://127.0.0.1:4040
+Forwarding                    http://92832de0.ngrok.io -> localhost:80
+Forwarding                    https://92832de0.ngrok.io -> localhost:80
+  
+Connnections                  ttl     opn     rt1     rt5     p50     p90
+                              0       0       0.00    0.00    0.00    0.00
+```
+
+## Run Swift
+Once you have the server listening, it's time to set up the clients. 
 
 # Screenshots
-Login Screen: 
-![Image of Login](Screenshots/LoginScreen.jpg)
+Login Screen:
+![Image of Login]
+(Screenshots/LoginScreen.jpg)
 
 Sign-up Screen:
-![Image of Sign-Up](Screenshots/SignUpScreen.jpg)
+![Image of Sign-Up]
+(Screenshots/SignUpScreen.jpg)
 
 Incorrect Password:
-![Incorrect Password](Screenshots/ErrorScreen.jpg)
+![Incorrect Password]
+(Screenshots/ErrorScreen.jpg)
 
 ## License
 

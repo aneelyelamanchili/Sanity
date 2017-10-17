@@ -36,16 +36,8 @@ Once you have the server listening, it's time to set up the clients.
 
 # Screenshots
 Login Screen:
-![Image of Login]
-(Screenshots/LoginScreen.jpg)
+![Image of Login](Screenshots/LoginScreen.jpg)
 
-Sign-up Screen:
-![Image of Sign-Up]
-(Screenshots/SignUpScreen.jpg)
-
-Incorrect Password:
-![Incorrect Password]
-(Screenshots/ErrorScreen.jpg)
 
 ## License
 

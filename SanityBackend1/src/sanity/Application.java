@@ -66,7 +66,7 @@ public class Application {
 				wsep.sendToSession(session, toBinary(signIn(message, session, conn)));
 			}
 			else if (message.get("message").equals("createBigBudget")) {
-//				wsep.sendToSession(session, toBinary(createBigBudget(message, session, conn)));
+				wsep.sendToSession(session, toBinary(createBigBudget(message, session, conn)));
 			}
 			else if (message.get("message").equals("createBudget")) {
 //				wsep.sendToSession(session, toBinary(joinRide(message, conn, wsep)));
@@ -81,7 +81,7 @@ public class Application {
 //				wsep.sendToSession(session, toBinary(search(message, conn)));
 			}
 			else if (message.get("message").equals("deleteBudget")) {
-//				wsep.sendToSession(session, toBinary(searchView(message, conn)));
+				wsep.sendToSession(session, toBinary(deleteBudget(message, session, conn)));
 			}
 			else if (message.get("message").equals("editUser")) {
 //				wsep.sendToSession(session, toBinary(refreshData(message, conn)));
@@ -153,6 +153,9 @@ public class Application {
 				String signuplastname = message.getString("lastname");
 				String signuppassword = (String)message.get("password");
 				signuppassword.replaceAll("\\s+","");
+				
+				int s = hash(signuppassword);
+				
 
 				
 				if (signupfirstname.equals("") || signuplastname.equals("") || signuppassword.equals("") || signupemail.equals("")) {
@@ -164,7 +167,9 @@ public class Application {
 
 				
 				//Account has successful inputs and is now entered into the database.
+				
 				String addUser = "('" + signupfirstname + "', '" + signuplastname + "', '" + signuppassword + "', '" + signupemail + "')";
+//				String addUser = "('" + signupfirstname + "', '" + signuplastname + "', " + signuppassword + "', '" + signupemail + "')";
 				st.execute(Constants.SQL_INSERT_USER + addUser + ";");
 //				emailSessions.put(signupemail, session);
 				response.put("message", "signupsuccess");
@@ -302,12 +307,27 @@ public class Application {
 			Statement st = conn.createStatement();
 			ResultSet rs = null;
 			String name = message.getString("budgetName");
-			String amount = message.getString("budgetAmount");
+			double amount = message.getDouble("budgetAmount");
+			int user = message.getInt("userID");
+			String addBigBudget = "(" + user + ", '"+ name + "', ' green ', 34.0222, -118.282, " + amount + ", 0)";
+			boolean success = st.execute(Constants.SQL_INSERT_BIGBUDGET + addBigBudget);
+			if (success) {
+				response.put("message", "createbudgetsuccess");
+			}
+			else {
+				response.put("message", "createbudgetfail");
+				response.put("createbudgetfail", "Create budget failed.");
+			}
+			
+			//add budgets to feed
+			
+			return response;
 		} catch (SQLException sqle) {
 			try {
 				sqle.printStackTrace();
-				response.put("message", "signupfail");
-				response.put("signupfail", "Sign up failed.");
+				response.put("message", "createbudgetfail");
+				response.put("createbudgetfail", "Create budget failed.");
+				return response;
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -315,9 +335,110 @@ public class Application {
 	    } catch (JSONException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return response;
 		
 	}
+	public JSONObject editBigBudget(JSONObject message, Session session, Connection conn) {
+		JSONObject response = new JSONObject();
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = null;
+			int id = message.getInt("budgetID");
+			String name = message.getString("budgetName");
+			double amount = message.getDouble("budgetAmount");
+			String editBigBudget = "BigBudgetName='" + name + "', BigBudgetAmount=" + amount + " WHERE bigBudgetID=" + id + ";";
+			st.execute(editBigBudget);
+			response.put("message", "editbudgetsuccess");
+			response.put("editbudgetsuccess", "Edit budget success.");
+			return response;
+			
+		} catch (SQLException sqle) {
+			try {
+				sqle.printStackTrace();
+				response.put("message", "editbudgetfail");
+				response.put("editbudgetfail", "Edit budget failed.");
+				return response;
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return response;
+	    } catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return response;
+	}
+	
+	public JSONObject createBudget(JSONObject message, Session session, Connection conn) {
+		JSONObject response = new JSONObject();
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = null;
+			int user = message.getInt("userID");
+			String name = message.getString("categoryName");
+			int budgetID = message.getInt("budgetID");
+			double amount = message.getDouble("categoryAmount");
+			String result = "(" + budgetID + ", " + amount + ", '" + name + "')";
+			boolean success = st.execute(Constants.SQL_INSERT_BUDGET + result);
+			if (success) {
+				response.put("message", "createcategorysuccess");
+			}
+			else {
+				response.put("message", "createcategoryfailed");
+			}
+			return response;
+		} catch (SQLException sqle) {
+			try {
+				sqle.printStackTrace();
+				response.put("message", "createcategoryfailed");
+				response.put("createbudgetfail", "Create category failed.");
+				return response;
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return response;
+	    } catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return response;
+	}
+	public int hash(String p) {
+		int hash = 7;
+		for (int i = 0; i < p.length(); i++) {
+		    hash = hash*31 + p.charAt(i);
+		}
+		return hash;
+	}
+	
+	public JSONObject deleteBudget(JSONObject message, Session session, Connection conn) {
+		JSONObject response = new JSONObject(); 
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = null;
+			int id = message.getInt("budgetID");
+			
+			String deleteBudgetcmd = "DELETE FROM Budgets WHERE budgetID=" + id + ";"; 
+			st.execute(deleteBudgetcmd);
+			
+			response.put("message", "removebudgetsuccess");
+			response.put("removebudgetsuccess", "You removed a budget. Good job.");
+			return response;
+			
+		} catch (SQLException sqle) {
+			try {
+				sqle.printStackTrace();
+				response.put("message", "removebudgetfailure");
+				response.put("removebudgetfailure", "SQLException in backend. ID not removed.");
+				return response;
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return response;
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return response;
+	}
+
 	
 //	/*
 //	 * When a user clicks makeRide and has inputted all of the info, they are sent here.

@@ -2,8 +2,7 @@
 //  MyBudget+CoreDataProperties.swift
 //  Pocket Change
 //
-//  Created by Nathan Tsai on 12/20/16.
-//  Copyright © 2016 Nathan Tsai. All rights reserved.
+//  Copyright © 2017 Aneel Yelamanchili. All rights reserved.
 //  This file was automatically generated and should not be edited.
 //
 

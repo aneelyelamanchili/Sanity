@@ -13,7 +13,7 @@ class Client: NSObject, WebSocketDelegate {
     static let sharedInstance = Client()
     
     var json: [String: Any]?
-    var socket = WebSocket(url: URL(string: "wss://3dd53757.ngrok.io/SanityBackend1/ws")!)
+    var socket = WebSocket(url: URL(string: "ws://2617c5e0.ngrok.io/SanityBackend1/ws")!)
     
     func websocketDidConnect(socket: WebSocketClient) {
             print("websocket is connected")

@@ -258,7 +258,7 @@ class PieChartViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             // Set the no data message
             if BudgetVariables.budgetArray.isEmpty == true
             {
-                pieChartView.noDataText = "You must have at least one budget."
+                pieChartView.noDataText = "You must have at least one category."
             }
             else if pieValues.isEmpty == true
             {

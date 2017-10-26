@@ -89,6 +89,18 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
             textField.addTarget(self, action: #selector(self.inputAmountDidChange(_:)), for: .editingChanged)
         })
         
+        alert.addTextField(configurationHandler: {(textField: UITextField) in
+            textField.placeholder = "Frequency: Daily, Weekly, etc"
+            textField.delegate = self
+            textField.autocapitalizationType = .words
+        })
+        
+        alert.addTextField(configurationHandler: {(textField: UITextField) in
+            textField.placeholder = "Reset Start Date: MM/DD/YYYY"
+            textField.delegate = self
+            textField.autocapitalizationType = .words
+        })
+        
         let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { (_) -> Void in
         })
         
@@ -122,6 +134,33 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
                     budget.barGraphColor = 0
                     budget.markerLatitude = [Double]()
                     budget.markerLongitude = [Double]()
+                    
+                    print("The frequencey is: " + String(alert.textFields![2].text!))
+                    print("The starting date is: " + String(alert.textFields![3].text!))
+                    
+                    
+                    let json:NSMutableDictionary = NSMutableDictionary()
+                    json.setValue("createBigBudget", forKey: "message")
+
+                    json.setValue(budget.name, forKey: "budgetName")
+                    json.setValue(budget.balance, forKey: "budgetAmount")
+                    json.setValue(budget.descriptionArray, forKey: "descriptionArray")
+                    json.setValue(Client.sharedInstance.json?["userID"], forKey: "userID")
+                    json.setValue(budget.historyArray, forKey: "historyArray")
+                    json.setValue(budget.totalAmountSpent, forKey: "totalAmountSpent")
+                    json.setValue(budget.totalAmountAdded, forKey: "totalAmountAdded")
+                    json.setValue(budget.barGraphColor, forKey: "barGraphColor")
+                    json.setValue(budget.markerLatitude, forKey: "markerLatitude")
+                    json.setValue(budget.markerLongitude, forKey: "markerLongitude")
+                    json.setValue(String(alert.textFields![2].text!), forKey: "resetFrequency")
+                    json.setValue(String(alert.textFields![3].text!), forKey: "resetStartDate")
+                    
+                    let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+                    var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+                    print(jsonString)
+                    print(jsonData)
+
+                    Client.sharedInstance.socket.write(data: jsonData as Data)
                     
                     // Save and get data to coredata
                     self.sharedDelegate.saveContext()

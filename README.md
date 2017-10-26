@@ -14,7 +14,7 @@ Ngrok allows for testing mobile apps against a development backend running on yo
 
 Follow the installation instructions of [Ngrok](https://ngrok.com/). 
 
-Once installed run the following command: `ngrok http 80`
+Once installed run the following command: `./ngrok http 80`
 
 When you start ngrok, it will display a UI in your terminal with the public URL of your tunnel and other status and metrics information about connections made over your tunnel.
 
@@ -31,11 +31,21 @@ Connnections                  ttl     opn     rt1     rt5     p50     p90
                               0       0       0.00    0.00    0.00    0.00
 ```
 
-## Run Swift
-Once you have the server listening, it's time to set up the clients. 
+By this point your server should be running that will be listening to a connection from your phone on a specified port. 
 
-# Screenshots
-Login Screen:
+For more documentation regarding Ngrok, please view their documentation files found here: [https://ngrok.com/docs](https://ngrok.com/docs). You can also see a list of helpful commands if you run the following command on the terminal `./ngrok help`
+
+## Install Dependencies
+Navigate to the $anity project directory using the `cd` Unix command on your terminal. From there, run the command `pod install` in the current working directory. 
+
+If the terminal responds with ‘command not found,’ be sure to install pod dependencies via: `sudo gem install cocoapods`. This will download all dependencies and packages required to properly run the application.
+
+## Run Client on XCode
+In order to run the application on XCode, you must open `Sanity.xcworkspace` and run the application with an iOS target device. However, before you do this, you must navigate to the `Client.swift` file and ensure that the WebSocket endpoint is correct which should match the endpoint specified on Ngrok. 
+
+If you have reached this point without failure you will have access to the application on your local phone or in a virtual phone that XCode provides which can be used for testing purposes.
+
+# Login Screenshots
 ![Image of Login](Screenshots/LoginScreen.jpg)
 
 

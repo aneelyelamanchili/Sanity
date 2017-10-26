@@ -81,7 +81,7 @@ public class Application {
 //				wsep.sendToSession(session, toBinary(search(message, conn)));
 			}
 			else if (message.get("message").equals("deleteBudget")) {
-//				wsep.sendToSession(session, toBinary(searchView(message, conn)));
+				wsep.sendToSession(session, toBinary(deleteBudget(message, session, conn)));
 			}
 			else if (message.get("message").equals("editUser")) {
 //				wsep.sendToSession(session, toBinary(refreshData(message, conn)));
@@ -409,7 +409,35 @@ public class Application {
 		return hash;
 	}
 	
-
+	public JSONObject deleteBudget(JSONObject message, Session session, Connection conn) {
+		JSONObject response = new JSONObject(); 
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = null;
+			int id = message.getInt("budgetID");
+			
+			String deleteBudgetcmd = "DELETE FROM Budgets WHERE budgetID=" + id + ";"; 
+			st.execute(deleteBudgetcmd);
+			
+			response.put("message", "removebudgetsuccess");
+			response.put("removebudgetsuccess", "You removed a budget. Good job.");
+			return response;
+			
+		} catch (SQLException sqle) {
+			try {
+				sqle.printStackTrace();
+				response.put("message", "removebudgetfailure");
+				response.put("removebudgetfailure", "SQLException in backend. ID not removed.");
+				return response;
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return response;
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return response;
+	}
 
 	
 //	/*

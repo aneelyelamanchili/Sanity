@@ -36,3 +36,6 @@ CREATE TABLE `Budgets` (
 );
 
 INSERT INTO `TotalUsers`(FirstName, LastName, Password, Email) VALUES ('Aneel', 'Yelamanchili', 'a', 'a');
+INSERT INTO `BigBudgets` (userID, BigBudgetName, BarGraphColor, Latitude, Longitude, BigBudgetAmount, TotalAmountSpent) VALUES (1, 'AneelLife', 2, 10, 10, 100000, 0);
+INSERT INTO `Budgets` (bigBudgetID, BudgetAmount, BudgetName) VALUES (1, 50000, 'Credit Cards');
+INSERT INTO `Budgets` (bigBudgetID, BudgetAmount, BudgetName) VALUES (1, 50000, 'Ultimate Succ');

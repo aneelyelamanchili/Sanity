@@ -53,6 +53,19 @@ class Client: NSObject, WebSocketDelegate {
                     testPassed = true
                 }
                 print(testPassed)
+                //TODO: adjust for wrong email or wrong password
+            } else if(json!["message"] as? String == "signupfailtest" || json?["message"] as? String == "signupsuccesstest") {
+                if(json!["message"] as? String == "signupfailtest") {
+                    testPassed = false
+                } else if (json!["message"] as? String == "signupsuccesstest") {
+                    testPassed = true
+                }
+            } else if(json!["message"] as? String == "passwordSuccessTest" || json!["message"] as? String == "passwordFailTest") {
+                if(json!["message"] as? String == "passwordFailTest") {
+                    testPassed = false
+                } else if (json!["message"] as? String == "passwordSuccessTest") {
+                    testPassed = true
+                }
             }
         } else {
             print("not a valid UTF-8 sequence")

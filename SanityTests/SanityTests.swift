@@ -31,17 +31,18 @@ class SanityTests: XCTestCase {
         SanityTests.client = nil
     }
     
-    func testLogin() {
+    func testLoginPassword() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        usleep(2000000)
         let expectation = XCTestExpectation(description: "Received response from backend")
         let username = "a"
-        let password = "a"
+        let password = "b"
         
         SanityTests.client.establishConnection {
             
         }
+        
+        usleep(2000000)
         
         let json:NSMutableDictionary = NSMutableDictionary()
         json.setValue("logintest", forKey: "message")
@@ -51,6 +52,90 @@ class SanityTests: XCTestCase {
         var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
         print(jsonString)
         print(jsonData)
+        
+        SanityTests.client.socket.write(data: jsonData as Data)
+        
+        usleep(5000000)
+        
+        XCTAssertEqual(true, SanityTests.client.testPassed)
+    }
+    
+    func testLoginEmail() {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let expectation = XCTestExpectation(description: "Received response from backend")
+        let username = "b"
+        let password = "a"
+        
+        SanityTests.client.establishConnection {
+            
+        }
+        
+        usleep(2000000)
+        
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("logintest", forKey: "message")
+        json.setValue(username, forKey: "email")
+        json.setValue(password, forKey: "password")
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        print(jsonString)
+        print(jsonData)
+        
+        SanityTests.client.socket.write(data: jsonData as Data)
+        
+        usleep(5000000)
+        
+        XCTAssertEqual(true, SanityTests.client.testPassed)
+    }
+    
+    func testSignup() {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let expectation = XCTestExpectation(description: "Received response from backend")
+        let firstname = "David"
+        let lastname = "Sealand"
+        let password = "Hello"
+        let email = "sealand@usc.edu"
+        
+        SanityTests.client.establishConnection {
+            
+        }
+        
+        usleep(2000000)
+        
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("signup", forKey: "message")
+        json.setValue(firstname, forKey: "firstname")
+        json.setValue(lastname, forKey: "lastname")
+        json.setValue(password, forKey: "password")
+        json.setValue(email, forKey: "email")
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        
+        SanityTests.client.socket.write(data: jsonData as Data)
+        
+        usleep(5000000)
+        
+        XCTAssertEqual(true, SanityTests.client.testPassed)
+    }
+    
+    func testForgotPassword() {
+        let inputEmail = "sealand@usc.edu"
+        let inputPassword = "hi"
+        
+        SanityTests.client.establishConnection {
+            
+        }
+        
+        usleep(2000000)
+        
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("changePassword", forKey: "message")
+        json.setValue(inputEmail, forKey: "email")
+        json.setValue(inputPassword, forKey: "newPassword")
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
         
         SanityTests.client.socket.write(data: jsonData as Data)
         

@@ -10,6 +10,7 @@
 		11A9F2091F9435A00034CC7B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A9F2081F9435A00034CC7B /* LoginViewController.swift */; };
 		11A9F20E1F9435C90034CC7B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A9F20D1F9435C90034CC7B /* SignUpViewController.swift */; };
 		11A9F2101F943F140034CC7B /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A9F20F1F943F140034CC7B /* Client.swift */; };
+		11C1B3941FA2B44E003BDAF2 /* SanityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1B3931FA2B44E003BDAF2 /* SanityTests.swift */; };
 		3109394B701A50D4B0D2B3D6 /* Pods_Sanity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9E70546F984C2E4390AFA2 /* Pods_Sanity.framework */; };
 		34AF9E341F94AFC8005DF644 /* BigBudgetVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AF9E331F94AFC8005DF644 /* BigBudgetVariables.swift */; };
 		34AF9E391F94B014005DF644 /* MyBigBudget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AF9E381F94B014005DF644 /* MyBigBudget+CoreDataClass.swift */; };
@@ -31,9 +32,17 @@
 		9AA401401E681F2B006D4D70 /* HistoryAndMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4013F1E681F2B006D4D70 /* HistoryAndMapViewController.swift */; };
 		9AA401431E683F95006D4D70 /* Pocket_Change.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9AA401411E683F95006D4D70 /* Pocket_Change.xcdatamodeld */; };
 		9AAE17801E0DD41100F98BEB /* PieChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE177F1E0DD41100F98BEB /* PieChartViewController.swift */; };
+		F6630F4830AC3FEF38ADC79A /* Pods_SanityTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41308D2EDFE7B7CA7211F898 /* Pods_SanityTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		11C1B3961FA2B44E003BDAF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A27BF1F1E0A01B100146EEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A27BF261E0A01B100146EEA;
+			remoteInfo = Sanity;
+		};
 		34F2324B1F95CFB50020E23D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 34F232451F95CFB50020E23D /* Charts.xcodeproj */;
@@ -72,15 +81,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0DDE4B4B8E5D8F42A9370F08 /* Pods-SanityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SanityTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SanityTests/Pods-SanityTests.release.xcconfig"; sourceTree = "<group>"; };
 		11A9F2081F9435A00034CC7B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		11A9F20D1F9435C90034CC7B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		11A9F20F1F943F140034CC7B /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		11C1B3911FA2B44E003BDAF2 /* SanityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SanityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		11C1B3931FA2B44E003BDAF2 /* SanityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanityTests.swift; sourceTree = "<group>"; };
+		11C1B3951FA2B44E003BDAF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C9E70546F984C2E4390AFA2 /* Pods_Sanity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sanity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34AF9E331F94AFC8005DF644 /* BigBudgetVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigBudgetVariables.swift; sourceTree = "<group>"; };
 		34AF9E381F94B014005DF644 /* MyBigBudget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyBigBudget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		34AF9E3A1F94B032005DF644 /* MyBigBudget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyBigBudget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		34AF9E3C1F94B06A005DF644 /* BigBudgetListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigBudgetListViewController.swift; sourceTree = "<group>"; };
 		34F232451F95CFB50020E23D /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
+		41308D2EDFE7B7CA7211F898 /* Pods_SanityTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SanityTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6101A0CED9029A87A76D5662 /* Pods-Sanity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sanity.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sanity/Pods-Sanity.release.xcconfig"; sourceTree = "<group>"; };
 		6987AA430220E7D9550D9609 /* Pods_Pocket_Change.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pocket_Change.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		703EF1DA9E0B13718BB778C5 /* Pods-Pocket Change.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pocket Change.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pocket Change/Pods-Pocket Change.debug.xcconfig"; sourceTree = "<group>"; };
@@ -103,9 +117,18 @@
 		9AA401421E683F95006D4D70 /* Pocket_Change.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pocket_Change.xcdatamodel; sourceTree = "<group>"; };
 		9AAE177F1E0DD41100F98BEB /* PieChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartViewController.swift; sourceTree = "<group>"; };
 		9D796A09BE3D823D2C9401FB /* Pods-Sanity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sanity.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sanity/Pods-Sanity.debug.xcconfig"; sourceTree = "<group>"; };
+		A53133B52797E6C5C293B2E2 /* Pods-SanityTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SanityTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SanityTests/Pods-SanityTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		11C1B38E1FA2B44E003BDAF2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6630F4830AC3FEF38ADC79A /* Pods_SanityTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A27BF241E0A01B100146EEA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -118,6 +141,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11C1B3921FA2B44E003BDAF2 /* SanityTests */ = {
+			isa = PBXGroup;
+			children = (
+				11C1B3931FA2B44E003BDAF2 /* SanityTests.swift */,
+				11C1B3951FA2B44E003BDAF2 /* Info.plist */,
+			);
+			path = SanityTests;
+			sourceTree = "<group>";
+		};
 		34F232461F95CFB50020E23D /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +167,8 @@
 				8F0F7F4F5510AE26864AF489 /* Pods-Pocket Change.release.xcconfig */,
 				9D796A09BE3D823D2C9401FB /* Pods-Sanity.debug.xcconfig */,
 				6101A0CED9029A87A76D5662 /* Pods-Sanity.release.xcconfig */,
+				A53133B52797E6C5C293B2E2 /* Pods-SanityTests.debug.xcconfig */,
+				0DDE4B4B8E5D8F42A9370F08 /* Pods-SanityTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -144,6 +178,7 @@
 			children = (
 				9A09B7291E0CB96A00D0F4A4 /* Charts.framework */,
 				9A27BF291E0A01B100146EEA /* Sanity */,
+				11C1B3921FA2B44E003BDAF2 /* SanityTests */,
 				9A27BF281E0A01B100146EEA /* Products */,
 				5F66FB100FF091CBE3C4C024 /* Pods */,
 				F282B2119CEA6BD34C6FD349 /* Frameworks */,
@@ -154,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				9A27BF271E0A01B100146EEA /* Sanity.app */,
+				11C1B3911FA2B44E003BDAF2 /* SanityTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -193,6 +229,7 @@
 			children = (
 				6987AA430220E7D9550D9609 /* Pods_Pocket_Change.framework */,
 				2C9E70546F984C2E4390AFA2 /* Pods_Sanity.framework */,
+				41308D2EDFE7B7CA7211F898 /* Pods_SanityTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -200,6 +237,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		11C1B3901FA2B44E003BDAF2 /* SanityTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11C1B3981FA2B44E003BDAF2 /* Build configuration list for PBXNativeTarget "SanityTests" */;
+			buildPhases = (
+				248CCAD7BB5C45EA34D212EC /* [CP] Check Pods Manifest.lock */,
+				11C1B38D1FA2B44E003BDAF2 /* Sources */,
+				11C1B38E1FA2B44E003BDAF2 /* Frameworks */,
+				11C1B38F1FA2B44E003BDAF2 /* Resources */,
+				DB75DCD8AA80DBD624E095FC /* [CP] Embed Pods Frameworks */,
+				B03BA07863C2536BBDACCB4C /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				11C1B3971FA2B44E003BDAF2 /* PBXTargetDependency */,
+			);
+			name = SanityTests;
+			productName = SanityTests;
+			productReference = 11C1B3911FA2B44E003BDAF2 /* SanityTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		9A27BF261E0A01B100146EEA /* Sanity */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A27BF521E0A01B100146EEA /* Build configuration list for PBXNativeTarget "Sanity" */;
@@ -227,10 +285,15 @@
 		9A27BF1F1E0A01B100146EEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = "Nathan Tsai";
+				ORGANIZATIONNAME = "Aneel Yelamanchili";
 				TargetAttributes = {
+					11C1B3901FA2B44E003BDAF2 = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 9A27BF261E0A01B100146EEA;
+					};
 					9A27BF261E0A01B100146EEA = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
@@ -257,6 +320,7 @@
 			projectRoot = "";
 			targets = (
 				9A27BF261E0A01B100146EEA /* Sanity */,
+				11C1B3901FA2B44E003BDAF2 /* SanityTests */,
 			);
 		};
 /* End PBXProject section */
@@ -286,6 +350,13 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		11C1B38F1FA2B44E003BDAF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A27BF251E0A01B100146EEA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -300,6 +371,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		248CCAD7BB5C45EA34D212EC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SanityTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		39C9ECA117FD938A03EE9B83 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -326,19 +415,36 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Sanity/Pods-Sanity-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftIconFont/SwiftIconFont.framework",
-				"${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream-iOS10.2/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/TextFieldEffects-iOS10.2/TextFieldEffects.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftIconFont.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldEffects.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sanity/Pods-Sanity-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B03BA07863C2536BBDACCB4C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SanityTests/Pods-SanityTests-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Versions/A/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SanityTests/Pods-SanityTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C48D1F0D2606CB4B057E4D1B /* [CP] Check Pods Manifest.lock */ = {
@@ -359,9 +465,37 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DB75DCD8AA80DBD624E095FC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SanityTests/Pods-SanityTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Starscream-iOS11.0/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/TextFieldEffects-iOS11.0/TextFieldEffects.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldEffects.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SanityTests/Pods-SanityTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		11C1B38D1FA2B44E003BDAF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11C1B3941FA2B44E003BDAF2 /* SanityTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A27BF231E0A01B100146EEA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -388,6 +522,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		11C1B3971FA2B44E003BDAF2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9A27BF261E0A01B100146EEA /* Sanity */;
+			targetProxy = 11C1B3961FA2B44E003BDAF2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		9A27BF361E0A01B100146EEA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -400,6 +542,64 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		11C1B3991FA2B44E003BDAF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A53133B52797E6C5C293B2E2 /* Pods-SanityTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MS7GBK46MH;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = SanityTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = aneel.SanityTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sanity.app/Sanity";
+			};
+			name = Debug;
+		};
+		11C1B39A1FA2B44E003BDAF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DDE4B4B8E5D8F42A9370F08 /* Pods-SanityTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MS7GBK46MH;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = SanityTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = aneel.SanityTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sanity.app/Sanity";
+			};
+			name = Release;
+		};
 		9A27BF501E0A01B100146EEA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -500,11 +700,11 @@
 			baseConfigurationReference = 9D796A09BE3D823D2C9401FB /* Pods-Sanity.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = CKF73J7D4M;
+				DEVELOPMENT_TEAM = MS7GBK46MH;
 				INFOPLIST_FILE = Sanity/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = will.sanityas;
+				PRODUCT_BUNDLE_IDENTIFIER = aneel.sanity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 3.0;
@@ -516,11 +716,11 @@
 			baseConfigurationReference = 6101A0CED9029A87A76D5662 /* Pods-Sanity.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = CKF73J7D4M;
+				DEVELOPMENT_TEAM = MS7GBK46MH;
 				INFOPLIST_FILE = Sanity/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = will.sanityas;
+				PRODUCT_BUNDLE_IDENTIFIER = aneel.sanity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
@@ -530,6 +730,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		11C1B3981FA2B44E003BDAF2 /* Build configuration list for PBXNativeTarget "SanityTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11C1B3991FA2B44E003BDAF2 /* Debug */,
+				11C1B39A1FA2B44E003BDAF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9A27BF221E0A01B100146EEA /* Build configuration list for PBXProject "Sanity" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

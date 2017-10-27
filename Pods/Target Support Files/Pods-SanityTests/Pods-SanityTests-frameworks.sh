@@ -102,12 +102,12 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/Starscream-iOS10.2/Starscream.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/TextFieldEffects-iOS10.2/TextFieldEffects.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Starscream-iOS11.0/Starscream.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/TextFieldEffects-iOS11.0/TextFieldEffects.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/Starscream-iOS10.2/Starscream.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/TextFieldEffects-iOS10.2/TextFieldEffects.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Starscream-iOS11.0/Starscream.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/TextFieldEffects-iOS11.0/TextFieldEffects.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

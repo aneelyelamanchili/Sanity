@@ -7,574 +7,612 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03A7705BF6383B61A087DC2815DFA6AF /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E309CC1D34C8D7BF6D0704259AE7D8 /* HoshiTextField.swift */; };
-		040ECE84E0BF4DC3643F2F18044E0DF8 /* SwiftIconFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2A5A4B7F3292001CB252B98690CFEA /* SwiftIconFont.swift */; };
-		077B2254BE5C9695CACCFADAD3A4B0F5 /* FontLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57C3B82912C294EBCA60920DC750A21 /* FontLoader.swift */; };
-		1C84F9C9DBC0A6A2AB03AE3EFAFCE35B /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 07B84DBEB07091AD7A0B60039B7D073A /* FontAwesome.ttf */; };
-		233E7E2A753E365754A3B42375638E28 /* ThemifyIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644CF9173751837E9A0D712273B640EC /* ThemifyIcon.swift */; };
-		26952A2D3AB8DA93B36910609BC6B2C8 /* Octicon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D473D2862A5BFAFADC05E88DB84C0A /* Octicon.swift */; };
-		2DB6F13FD7BEE378AE0AD0F4CAF5B7E2 /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F767A4D8C76A1A6DC3925D5F1C9117 /* TextFieldEffects.swift */; };
-		2DCD9220597148F84DBD51EFF97F6CDC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
-		2E62EAAB39C192943CF8A4B38FC17E69 /* MaterialIcons-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03EE76379D12D442FE101F7808A383AF /* MaterialIcons-Regular.ttf */; };
-		306FA11E7FB2056AA35CA7D18562B700 /* AkiraTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743BF05F5FB26DA92ECDB71E8AFA4488 /* AkiraTextField.swift */; };
-		319417E8AF94C384A1807684D27887E1 /* SwiftIconTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D05471236D000305A8FFDB36618E47 /* SwiftIconTextField.swift */; };
-		31CFBA7180E21A63FE320F147BB0B3A4 /* MaterialIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A21F7E81EA537D798E6B983704F3B0 /* MaterialIcon.swift */; };
-		3669AB5F08869291331494E50CE5BB60 /* SwiftIconFont-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5DA0D26600653885F46F9BDFCF1DA0 /* SwiftIconFont-dummy.m */; };
-		3DB5421E99E2CE5A54D4D937E0118E2B /* SwiftIconFontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2BBF57442D659BB35E784B2A675457 /* SwiftIconFontView.swift */; };
-		3E518DF75CDD71E6AC418B15955AA5C9 /* Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F28DC34975FC6DD8291CF88E57404B /* Compression.swift */; };
-		3F3C99596ACC0469916519A9F023ABC2 /* Starscream-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 86BC21298889D2F6712F680456E0015E /* Starscream-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4AE7B69860F4376C2AA16AD0944D1102 /* KaedeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32628CA841DCE138675F3D6EA4C30C3B /* KaedeTextField.swift */; };
-		4B99B4541F635063B26A44C0B2D9B4D1 /* MapIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63F9ABF8410E7D762E47BA0A795C6C3 /* MapIcon.swift */; };
-		5272F5860CBFDBCCBF5A6936B529A64E /* open-iconic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6336CA90118B44127E643F7059E9189 /* open-iconic.ttf */; };
-		5775E6EFF1FBAE4502CE56EAC9FF09AA /* SwiftBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6999F0ADCA2D2ECF8161D7C6281A49E /* SwiftBarButtonItem.swift */; };
-		58FE3A22188B3FFEFE1AD8779A810791 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
-		5A7A361B144BF306961AED2D886C110A /* TextFieldEffects-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D41B65D242301BB13480ABB95D2BF27 /* TextFieldEffects-dummy.m */; };
-		5A9B0BFD06BB3B03F7A937FEADC64673 /* SwiftIconTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D611335B5A7B73C5D47DCE94997C914C /* SwiftIconTabBarItem.swift */; };
-		65840F0DB4C24D7EAFF18CC949F9E57E /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB57971AB7062403CF67DB3802D6E708 /* octicons.ttf */; };
-		714470E57B1102C02D603B9871A6E989 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */; };
-		803F6D68D43CABC01E462E2E40A7550D /* SwiftIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C821FE7552094365AF51B99C0D36A6 /* SwiftIconButton.swift */; };
-		862ECC49F4E03BBB0D1653612E1896F7 /* MinoruTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0341257F0B15C890D3DE70DFD4FCAFDA /* MinoruTextField.swift */; };
-		90B13D0CE47F1B2B2C0765F6005195F5 /* Iconic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8893F9D8B351323D2533DD23088E60B5 /* Iconic.swift */; };
-		9321000DF9ED4D8DDABB46D239682610 /* JiroTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650711488BC5F8684844C2576C5AAC60 /* JiroTextField.swift */; };
-		A30AAF8EF891DF97076041C7F25DC315 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508759CF5E0743DCE84200C711A6EBE /* FontAwesome.swift */; };
-		A346D2B3EA74515BBC956980A8C01DAF /* TextFieldEffects-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 35B21D65A06A43D76C29ABF3CD0254E8 /* TextFieldEffects-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AAEF1F190ACBBC759076292C52AD74B5 /* YoshikoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE6D7F366F3CC44C59007B6CE68F9CC /* YoshikoTextField.swift */; };
-		AE39F7ACCDF8D860DF58A9433CC2E17F /* IonIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885C52519C8FD60B525704EF8E945CBE /* IonIcons.swift */; };
-		B074804462C65D4F956E53B3A591B279 /* SwiftIconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188A942ED401302DA8AC94632501C3E /* SwiftIconLabel.swift */; };
-		B33D8DAEF38D7E596DB29959DB7BFD6C /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCB2F31788723EE78814D523AC7F5E2F /* Ionicons.ttf */; };
-		BBFE917C22626AE2AF2D5DC775CDF6ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
-		BEB68CD5DDAACA3BDAE3CCDE19C06A6A /* themify.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79AB1EAC59D626790676F1482DD09D03 /* themify.ttf */; };
-		C313C3362C31F1CCAA5195FF29AB08D9 /* Starscream-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF7805C2FDD075E4ACA469C26C574 /* Starscream-dummy.m */; };
-		CF81A8EC7236A2FB89CFAFA7D7084C5C /* IsaoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CBC8DA493CF38D10298A510D164FBB /* IsaoTextField.swift */; };
-		D4E70F037784C9461B7545F6DF62242D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
-		D5CE08E365458923D96D01B4E741EDAB /* SwiftIconTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999B1E5E4627D98B038D2E17B6B46129 /* SwiftIconTextView.swift */; };
-		DD358FA68D7AC773803A942198DB5AB3 /* SwiftIconFont-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E96242903684C26A370AE56B73CD7BCC /* SwiftIconFont-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DE45E8E811EC1162AFA8D32E859D4EB2 /* MadokaTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4730A87D543DCB51E8FF3EF05070696C /* MadokaTextField.swift */; };
-		E2E327EAB6FB49D88255F57583D756A2 /* Pods-Sanity-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EEA22CE8A58AE3E7AF9877A197C0D93D /* Pods-Sanity-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E47BFA80DA1ECA341F729D436D514F83 /* Pods-Sanity-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E94556898CCBC06EBACB3EA40B4A43 /* Pods-Sanity-dummy.m */; };
-		EC11241A1180FDB6342FC7467B9764B2 /* YokoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608778EE58F4E6A0B52699203D20954E /* YokoTextField.swift */; };
-		F0C1E30B433BED8B2C0E227BDB784651 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39A2B697D07C932CD16B8C0E9CB6708 /* WebSocket.swift */; };
-		F4D76BD7ADE7A3CCCCEFE5A735DB2907 /* SSLSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC113447752A042EC947DEA9D5E9AD0 /* SSLSecurity.swift */; };
-		FA2EE90B2B4053A285EACE95209F1CDE /* map-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD478E46450C007A45D55D399E05E171 /* map-icons.ttf */; };
+		0E654767B2587F61EAB4D726C61EDFF2 /* TextFieldEffects-iOS10.2-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E6C8A554A95DFAE37541EB2A7B1C8F23 /* TextFieldEffects-iOS10.2-dummy.m */; };
+		19883A9D1A6F05F5482B9D0F4E30C2B6 /* AkiraTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B413F257D5B5A6ECD563930DA8585BBC /* AkiraTextField.swift */; };
+		245A71D668E2E9A7CE5DD9D751B058FB /* SSLSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF966DD4F2C999105CE83A5284D8F4 /* SSLSecurity.swift */; };
+		31407A03E3BD6AD12ECBDF7A1CF3D178 /* Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CC9D8574FA5E2E90C0DA7B1A79CBB4 /* Compression.swift */; };
+		3E2D5AC8A7795559AA3321A8F3F15D53 /* Pods-Sanity-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 78DFD50DE091E832C6B3B8F61EDB7505 /* Pods-Sanity-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		40AA4B278AA73EF12909EDE4D1CBEAC8 /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E809489D037C0F4E675A70F9F81950 /* TextFieldEffects.swift */; };
+		41CC3A07A5F8347916DDA57AA916169D /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E809489D037C0F4E675A70F9F81950 /* TextFieldEffects.swift */; };
+		4C94A51D42CB60AFBBC08E35C2DA7A23 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		53EA137FF23D9483F627E95A61B18A1C /* KaedeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83288278C13B2B71F8E548D9E2A8F374 /* KaedeTextField.swift */; };
+		56041D0424F9B2301227B56B90221A9E /* Pods-SanityTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E86CA9C2C6941FC8B12EB445BBE73E /* Pods-SanityTests-dummy.m */; };
+		56ACBB25C596C590254CB2D98DF77547 /* Starscream-iOS10.2-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 039D0F78EC5540B2CC77E14FCF42AD5D /* Starscream-iOS10.2-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		57365680734AF0D5BE0A3CAD80047874 /* Pods-SanityTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FC19FE756C76DF08FE071908D763754C /* Pods-SanityTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		59868379EB5A5AB20A96B04D5D92893E /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A127DF540F0403755FAC1DD5D2E7EB9 /* HoshiTextField.swift */; };
+		5D9E3F62846028FE9CD587A425A50C12 /* Starscream-iOS10.2-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BF651FB8DFB93909DBC114965877C3 /* Starscream-iOS10.2-dummy.m */; };
+		61F2DCBB4A55F2F0349D3B5DDD70F92C /* KaedeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83288278C13B2B71F8E548D9E2A8F374 /* KaedeTextField.swift */; };
+		69E775DC492F5A75F77BA5C140F636F0 /* Starscream-iOS11.0-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8167D4BC5129D7C4B9C7A41B2E1BCE0D /* Starscream-iOS11.0-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		776DCE54E9556D1F9EA0C6DB58DA47AB /* Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CC9D8574FA5E2E90C0DA7B1A79CBB4 /* Compression.swift */; };
+		78D4777E2ACF78C989976913531769B2 /* Pods-Sanity-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0993F2DC6F522D766793CBACA5AA6550 /* Pods-Sanity-dummy.m */; };
+		7BF64B195E12252ECBDC3B5E4CD17AC4 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9DC71F673818428DC13D92336969AA /* WebSocket.swift */; };
+		7EB2FF10A52BD878A9DC898419FED3BF /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A127DF540F0403755FAC1DD5D2E7EB9 /* HoshiTextField.swift */; };
+		809B218FDEBB2BBD87FAEB50D9C53695 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		82D2B8AC0A796941953CAB050BC91969 /* YoshikoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9158D9790E22DC3752AC6EBA81AEA871 /* YoshikoTextField.swift */; };
+		8315A2AA21B3D33A1F59179EA48E91C9 /* YoshikoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9158D9790E22DC3752AC6EBA81AEA871 /* YoshikoTextField.swift */; };
+		83DCF16EE275BEC75A3AB896136DA84A /* IsaoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B501F1F93CAE4C7001B01452A7275 /* IsaoTextField.swift */; };
+		846E94D9E21963B3004C8A8B34909765 /* SSLSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF966DD4F2C999105CE83A5284D8F4 /* SSLSecurity.swift */; };
+		84F467FBE6F2CDD0C78DB5558FEBA8B2 /* TextFieldEffects-iOS11.0-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 694862994CB6B466445D2815ACDCF5B9 /* TextFieldEffects-iOS11.0-dummy.m */; };
+		920D3F8CCA0CD7780B24E32C3F7482FC /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9DC71F673818428DC13D92336969AA /* WebSocket.swift */; };
+		96DDD7921A18CDF8AE76B51D3D74D41E /* MinoruTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B777F9600BC137C8D3786091CAEF8B10 /* MinoruTextField.swift */; };
+		98437AC571CA54F17E5061185B542476 /* Starscream-iOS11.0-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFA8B63B08D6EB388CF781ECCFD0ABF /* Starscream-iOS11.0-dummy.m */; };
+		9B7576FB5B4E2556ECC1C41FB3DEDC50 /* AkiraTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B413F257D5B5A6ECD563930DA8585BBC /* AkiraTextField.swift */; };
+		9FE44BC0F08089E7D1D1B3DD3F64FADD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		A741048038135E11866A068B88355F40 /* MinoruTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B777F9600BC137C8D3786091CAEF8B10 /* MinoruTextField.swift */; };
+		AC4EB80B6CBCD03422BB72A83A38EF36 /* YokoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7553F1C2B14E4C2AFC5777BA4B113059 /* YokoTextField.swift */; };
+		AEF916F145A819BECFA0573F93A14D81 /* TextFieldEffects-iOS10.2-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 578DDBFBC09B51F37E8C2A630A7821A0 /* TextFieldEffects-iOS10.2-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BA1D4FE3159AE0174A18A1B75FE0731B /* YokoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7553F1C2B14E4C2AFC5777BA4B113059 /* YokoTextField.swift */; };
+		BAABF57D6E77B5E7ED208ED9D71A1961 /* JiroTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF7FD2A589ACE19F5ECC9981DFA3AC8 /* JiroTextField.swift */; };
+		D4B3508EB3E705B0130E945622505728 /* TextFieldEffects-iOS11.0-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FA272DA257C30FDF22A8C3D28AB116B /* TextFieldEffects-iOS11.0-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D851CDDEF82B27CF2D41997D579D6579 /* JiroTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF7FD2A589ACE19F5ECC9981DFA3AC8 /* JiroTextField.swift */; };
+		D996F7D1005F35511969214A63396FEB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		DF1B03DA7A88AB08BB0B496C7DB47D63 /* MadokaTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE45781B7038BA01A1452100D86F023 /* MadokaTextField.swift */; };
+		EB14E510D4C7898FFCD9D133A899900C /* IsaoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B501F1F93CAE4C7001B01452A7275 /* IsaoTextField.swift */; };
+		F0A4BDA5EBBA7ABE3C23D0F6D0B1B8B2 /* MadokaTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE45781B7038BA01A1452100D86F023 /* MadokaTextField.swift */; };
+		FAE2091C89E61D6545F2BB0851F82622 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		FD16F87CE9D1954A2B94A9DC3A42BB7E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5E41E4A2A86C745ECF8AB3801F6CB71B /* PBXContainerItemProxy */ = {
+		55A10CD28B550884A7AA3B0958B12EFC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 5117956A949BD74030920BAADA4ECB17;
-			remoteInfo = TextFieldEffects;
+			remoteGlobalIDString = B009FB27DE87649905365D8BC122A880;
+			remoteInfo = "Starscream-iOS11.0";
 		};
-		75133758A2897DF6C7C3231E2CC0E6D0 /* PBXContainerItemProxy */ = {
+		6F1733A0851AA5EFDB14D939B12D540E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 136225BB0BEDF961FD6EB3897F6D5C60;
-			remoteInfo = SwiftIconFont;
+			remoteGlobalIDString = 9DE8249BDD4445023AFE314767A23768;
+			remoteInfo = "Starscream-iOS10.2";
 		};
-		B7FA4F50588457F0C8E99297F73A05DB /* PBXContainerItemProxy */ = {
+		DE385C18EC1EE308354E9249661C8C90 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 593718AC6F559745771FD5BDB58FF884;
-			remoteInfo = Starscream;
+			remoteGlobalIDString = 9923BE23F3A5FF115B7CBDE383DE3375;
+			remoteInfo = "TextFieldEffects-iOS11.0";
+		};
+		EA4CE9D5A98054224D6109946B62C136 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F48C3E3B65878A7F7911700C93FE1D92;
+			remoteInfo = "TextFieldEffects-iOS10.2";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0341257F0B15C890D3DE70DFD4FCAFDA /* MinoruTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MinoruTextField.swift; path = TextFieldEffects/TextFieldEffects/MinoruTextField.swift; sourceTree = "<group>"; };
-		03A21F7E81EA537D798E6B983704F3B0 /* MaterialIcon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MaterialIcon.swift; path = SwiftIconFont/Classes/MaterialIcon.swift; sourceTree = "<group>"; };
-		03EE76379D12D442FE101F7808A383AF /* MaterialIcons-Regular.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "MaterialIcons-Regular.ttf"; path = "SwiftIconFont/Resources/MaterialIcons-Regular.ttf"; sourceTree = "<group>"; };
-		07B84DBEB07091AD7A0B60039B7D073A /* FontAwesome.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = FontAwesome.ttf; path = SwiftIconFont/Resources/FontAwesome.ttf; sourceTree = "<group>"; };
-		08CBC8DA493CF38D10298A510D164FBB /* IsaoTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IsaoTextField.swift; path = TextFieldEffects/TextFieldEffects/IsaoTextField.swift; sourceTree = "<group>"; };
-		0FBA909A956F1C8A6B3CCCB9B87EBD7D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		106DC909467EAA7058FEF7018067B97A /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = Base/Frameworks/GoogleMapsBase.framework; sourceTree = "<group>"; };
-		119C93B846C4E1323C423B295F6CA638 /* Pods-Sanity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Sanity.debug.xcconfig"; sourceTree = "<group>"; };
-		18CDF7805C2FDD075E4ACA469C26C574 /* Starscream-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Starscream-dummy.m"; sourceTree = "<group>"; };
-		1CE6D7F366F3CC44C59007B6CE68F9CC /* YoshikoTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YoshikoTextField.swift; path = TextFieldEffects/TextFieldEffects/YoshikoTextField.swift; sourceTree = "<group>"; };
-		1CE93ED51A7A68A4181CE6A4D54733D4 /* TextFieldEffects.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TextFieldEffects.framework; path = TextFieldEffects.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2188A942ED401302DA8AC94632501C3E /* SwiftIconLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconLabel.swift; path = SwiftIconFont/Classes/SwiftIconLabel.swift; sourceTree = "<group>"; };
-		22F767A4D8C76A1A6DC3925D5F1C9117 /* TextFieldEffects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextFieldEffects.swift; path = TextFieldEffects/TextFieldEffects/TextFieldEffects.swift; sourceTree = "<group>"; };
-		24AA09133B04C75469A5A422E7F28DD6 /* TextFieldEffects.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TextFieldEffects.xcconfig; sourceTree = "<group>"; };
-		294F332121D98A8ED15716F190D5244B /* Starscream.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Starscream.xcconfig; sourceTree = "<group>"; };
-		2AB4A8A940538AF10959994D4176FDE2 /* SwiftIconFont.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SwiftIconFont.modulemap; sourceTree = "<group>"; };
-		2B61D02DFE181E009E37FDF260665968 /* Pods-Sanity.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Sanity.modulemap"; sourceTree = "<group>"; };
-		2C07991A0A60E6B61BFE0BA6607AF6EA /* Starscream-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Starscream-prefix.pch"; sourceTree = "<group>"; };
-		32628CA841DCE138675F3D6EA4C30C3B /* KaedeTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KaedeTextField.swift; path = TextFieldEffects/TextFieldEffects/KaedeTextField.swift; sourceTree = "<group>"; };
-		35B21D65A06A43D76C29ABF3CD0254E8 /* TextFieldEffects-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TextFieldEffects-umbrella.h"; sourceTree = "<group>"; };
-		3EA90DD239F540F0DFE0D61740F06E29 /* Pods-Sanity-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Sanity-acknowledgements.plist"; sourceTree = "<group>"; };
-		40F28DC34975FC6DD8291CF88E57404B /* Compression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Compression.swift; path = Sources/Compression.swift; sourceTree = "<group>"; };
-		4508759CF5E0743DCE84200C711A6EBE /* FontAwesome.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesome.swift; path = SwiftIconFont/Classes/FontAwesome.swift; sourceTree = "<group>"; };
-		4730A87D543DCB51E8FF3EF05070696C /* MadokaTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MadokaTextField.swift; path = TextFieldEffects/TextFieldEffects/MadokaTextField.swift; sourceTree = "<group>"; };
-		4D41B65D242301BB13480ABB95D2BF27 /* TextFieldEffects-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TextFieldEffects-dummy.m"; sourceTree = "<group>"; };
-		4DC154519EB5B253937404614BD03F3C /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlaces.framework; path = Frameworks/GooglePlaces.framework; sourceTree = "<group>"; };
-		54F9B9EB82E9AD170E014E8BFBD72600 /* GooglePlaces.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = Frameworks/GooglePlaces.framework/Versions/A/Resources/GooglePlaces.bundle; sourceTree = "<group>"; };
-		57C3B95327028A81DF9FB3C631AC70C3 /* Pods-Sanity-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Sanity-frameworks.sh"; sourceTree = "<group>"; };
-		5A403CF99F42BA5D3A0C94B06024839C /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsCore.framework; path = Maps/Frameworks/GoogleMapsCore.framework; sourceTree = "<group>"; };
-		608778EE58F4E6A0B52699203D20954E /* YokoTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YokoTextField.swift; path = TextFieldEffects/TextFieldEffects/YokoTextField.swift; sourceTree = "<group>"; };
-		644CF9173751837E9A0D712273B640EC /* ThemifyIcon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ThemifyIcon.swift; path = SwiftIconFont/Classes/ThemifyIcon.swift; sourceTree = "<group>"; };
-		650711488BC5F8684844C2576C5AAC60 /* JiroTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JiroTextField.swift; path = TextFieldEffects/TextFieldEffects/JiroTextField.swift; sourceTree = "<group>"; };
-		6DC113447752A042EC947DEA9D5E9AD0 /* SSLSecurity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SSLSecurity.swift; path = Sources/SSLSecurity.swift; sourceTree = "<group>"; };
-		7013080443E65308CCE6A673FC22F618 /* Pods-Sanity-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Sanity-resources.sh"; sourceTree = "<group>"; };
-		743BF05F5FB26DA92ECDB71E8AFA4488 /* AkiraTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AkiraTextField.swift; path = TextFieldEffects/TextFieldEffects/AkiraTextField.swift; sourceTree = "<group>"; };
-		7993112E18680F1720CC5A2CB09266C7 /* TextFieldEffects.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TextFieldEffects.modulemap; sourceTree = "<group>"; };
-		79AB1EAC59D626790676F1482DD09D03 /* themify.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = themify.ttf; path = SwiftIconFont/Resources/themify.ttf; sourceTree = "<group>"; };
-		81CA75F0819AFE7783F5AE2882D47A90 /* Pods_Sanity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Sanity.framework; path = "Pods-Sanity.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		83634C5661EBA628772A21B1FCA3AD03 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		86BC21298889D2F6712F680456E0015E /* Starscream-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Starscream-umbrella.h"; sourceTree = "<group>"; };
-		885C52519C8FD60B525704EF8E945CBE /* IonIcons.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IonIcons.swift; path = SwiftIconFont/Classes/IonIcons.swift; sourceTree = "<group>"; };
-		8893F9D8B351323D2533DD23088E60B5 /* Iconic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Iconic.swift; path = SwiftIconFont/Classes/Iconic.swift; sourceTree = "<group>"; };
-		8E2A5A4B7F3292001CB252B98690CFEA /* SwiftIconFont.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconFont.swift; path = SwiftIconFont/Classes/SwiftIconFont.swift; sourceTree = "<group>"; };
-		930D0C017AF31316457B3AE8DD184E16 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		013C3D205D991F9FB5EA8C0DA5D67DCF /* TextFieldEffects-iOS10.2.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "TextFieldEffects-iOS10.2.modulemap"; sourceTree = "<group>"; };
+		01E86CA9C2C6941FC8B12EB445BBE73E /* Pods-SanityTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SanityTests-dummy.m"; sourceTree = "<group>"; };
+		039D0F78EC5540B2CC77E14FCF42AD5D /* Starscream-iOS10.2-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Starscream-iOS10.2-umbrella.h"; sourceTree = "<group>"; };
+		0993F2DC6F522D766793CBACA5AA6550 /* Pods-Sanity-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Sanity-dummy.m"; sourceTree = "<group>"; };
+		0A2A7A32FAEC883D9D26115D19A51720 /* TextFieldEffects-iOS10.2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "TextFieldEffects-iOS10.2.xcconfig"; sourceTree = "<group>"; };
+		12478559F65D564128F90E846A6DB3F4 /* Pods-SanityTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SanityTests-resources.sh"; sourceTree = "<group>"; };
+		18358F0E042DE2B9A2C20024D5D4D006 /* Starscream-iOS10.2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Starscream-iOS10.2.xcconfig"; sourceTree = "<group>"; };
+		27EA95EFEDF912A44BD5A4DB7F1D4F1C /* Pods-Sanity.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Sanity.modulemap"; sourceTree = "<group>"; };
+		2FCC638E363552D7BB3FE112462F3DFC /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		34D21171E75104FCA1DB1DD4D2A3D0B0 /* TextFieldEffects.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TextFieldEffects.framework; path = "TextFieldEffects-iOS10.2.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		37D90D3C7B6F0A398F7BBBA9D5DEAC87 /* Pods-Sanity-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Sanity-resources.sh"; sourceTree = "<group>"; };
+		3BBB6AD3A1380F3052D9B653FED1EC1D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D07B221C0CCF5FC2BF54C859E8EE106 /* Starscream-iOS11.0.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; name = "Starscream-iOS11.0.modulemap"; path = "../Starscream-iOS11.0/Starscream-iOS11.0.modulemap"; sourceTree = "<group>"; };
+		3F71BFC92079FCA54C020A2E8540DB05 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Maps/Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
+		43CC9D8574FA5E2E90C0DA7B1A79CBB4 /* Compression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Compression.swift; path = Sources/Compression.swift; sourceTree = "<group>"; };
+		49D9161CB3D2076BD8859820A91A2638 /* Pods-SanityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SanityTests.release.xcconfig"; sourceTree = "<group>"; };
+		4FA272DA257C30FDF22A8C3D28AB116B /* TextFieldEffects-iOS11.0-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TextFieldEffects-iOS11.0-umbrella.h"; path = "../TextFieldEffects-iOS11.0/TextFieldEffects-iOS11.0-umbrella.h"; sourceTree = "<group>"; };
+		55CC9D5491A9563E3A779C89792A9FB0 /* TextFieldEffects.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TextFieldEffects.framework; path = "TextFieldEffects-iOS11.0.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5788433C2C7F492AC0D90496069782D0 /* Starscream-iOS11.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Starscream-iOS11.0-prefix.pch"; path = "../Starscream-iOS11.0/Starscream-iOS11.0-prefix.pch"; sourceTree = "<group>"; };
+		578DDBFBC09B51F37E8C2A630A7821A0 /* TextFieldEffects-iOS10.2-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TextFieldEffects-iOS10.2-umbrella.h"; sourceTree = "<group>"; };
+		583B501F1F93CAE4C7001B01452A7275 /* IsaoTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IsaoTextField.swift; path = TextFieldEffects/TextFieldEffects/IsaoTextField.swift; sourceTree = "<group>"; };
+		58E809489D037C0F4E675A70F9F81950 /* TextFieldEffects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextFieldEffects.swift; path = TextFieldEffects/TextFieldEffects/TextFieldEffects.swift; sourceTree = "<group>"; };
+		5ED6474D00B7EFD6C978AB41F59B6A9D /* Pods_SanityTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SanityTests.framework; path = "Pods-SanityTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		69333695F81D52BF236F5FCE2E7AE08C /* Starscream-iOS10.2.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Starscream-iOS10.2.modulemap"; sourceTree = "<group>"; };
+		694862994CB6B466445D2815ACDCF5B9 /* TextFieldEffects-iOS11.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "TextFieldEffects-iOS11.0-dummy.m"; path = "../TextFieldEffects-iOS11.0/TextFieldEffects-iOS11.0-dummy.m"; sourceTree = "<group>"; };
+		6C39FAE2E12591D08CDCDE277D83227E /* Starscream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Starscream.framework; path = "Starscream-iOS10.2.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DFA8B63B08D6EB388CF781ECCFD0ABF /* Starscream-iOS11.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Starscream-iOS11.0-dummy.m"; path = "../Starscream-iOS11.0/Starscream-iOS11.0-dummy.m"; sourceTree = "<group>"; };
+		6E2FA53A6E30EC8F546BF69CDD6E3CFA /* Pods-SanityTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SanityTests.debug.xcconfig"; sourceTree = "<group>"; };
+		70CF29D2C9DEE72C99F54B8BA24C733E /* Pods_Sanity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Sanity.framework; path = "Pods-Sanity.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7553F1C2B14E4C2AFC5777BA4B113059 /* YokoTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YokoTextField.swift; path = TextFieldEffects/TextFieldEffects/YokoTextField.swift; sourceTree = "<group>"; };
+		78DFD50DE091E832C6B3B8F61EDB7505 /* Pods-Sanity-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Sanity-umbrella.h"; sourceTree = "<group>"; };
+		7A127DF540F0403755FAC1DD5D2E7EB9 /* HoshiTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HoshiTextField.swift; path = TextFieldEffects/TextFieldEffects/HoshiTextField.swift; sourceTree = "<group>"; };
+		7C9B0F8B1D3DE66EF384B231AF4C00E5 /* TextFieldEffects-iOS10.2-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TextFieldEffects-iOS10.2-prefix.pch"; sourceTree = "<group>"; };
+		7CE45781B7038BA01A1452100D86F023 /* MadokaTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MadokaTextField.swift; path = TextFieldEffects/TextFieldEffects/MadokaTextField.swift; sourceTree = "<group>"; };
+		8167D4BC5129D7C4B9C7A41B2E1BCE0D /* Starscream-iOS11.0-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Starscream-iOS11.0-umbrella.h"; path = "../Starscream-iOS11.0/Starscream-iOS11.0-umbrella.h"; sourceTree = "<group>"; };
+		83288278C13B2B71F8E548D9E2A8F374 /* KaedeTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KaedeTextField.swift; path = TextFieldEffects/TextFieldEffects/KaedeTextField.swift; sourceTree = "<group>"; };
+		84F2001E658EC62D731BB2B99B6ED3A4 /* GooglePlaces.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = Frameworks/GooglePlaces.framework/Versions/A/Resources/GooglePlaces.bundle; sourceTree = "<group>"; };
+		862E96BAB5D7C0A848F4F69E0E675646 /* Pods-Sanity-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Sanity-frameworks.sh"; sourceTree = "<group>"; };
+		88037523A1427EAC0D4107051A4C0136 /* Pods-SanityTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SanityTests-frameworks.sh"; sourceTree = "<group>"; };
+		88C872CAE05678A0B98E731F7CE77ED1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B48FA2BD00B42EAA2B384308F84B784 /* Pods-SanityTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-SanityTests.modulemap"; sourceTree = "<group>"; };
+		8DC6F782ABC6B32DE7B356A02A9E3B4C /* Starscream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Starscream.framework; path = "Starscream-iOS11.0.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9158D9790E22DC3752AC6EBA81AEA871 /* YoshikoTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YoshikoTextField.swift; path = TextFieldEffects/TextFieldEffects/YoshikoTextField.swift; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9436F39DCA294D6A7A7C962F94335B48 /* SwiftIconFont.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftIconFont.framework; path = SwiftIconFont.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		954D0B16B8C5F949E96681C0BBF16C73 /* Pods-Sanity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Sanity.release.xcconfig"; sourceTree = "<group>"; };
-		999B1E5E4627D98B038D2E17B6B46129 /* SwiftIconTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconTextView.swift; path = SwiftIconFont/Classes/SwiftIconTextView.swift; sourceTree = "<group>"; };
-		A14121F5B1654960894DABB42BC5BA65 /* SwiftIconFont.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftIconFont.xcconfig; sourceTree = "<group>"; };
-		A5A83583389E082956E09C3BCBB82BE9 /* TextFieldEffects-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TextFieldEffects-prefix.pch"; sourceTree = "<group>"; };
-		A6999F0ADCA2D2ECF8161D7C6281A49E /* SwiftBarButtonItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftBarButtonItem.swift; path = SwiftIconFont/Classes/SwiftBarButtonItem.swift; sourceTree = "<group>"; };
-		A8E94556898CCBC06EBACB3EA40B4A43 /* Pods-Sanity-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Sanity-dummy.m"; sourceTree = "<group>"; };
-		B1195061E4B2C77E98D84E0167FDB054 /* Starscream.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Starscream.modulemap; sourceTree = "<group>"; };
-		B5D473D2862A5BFAFADC05E88DB84C0A /* Octicon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Octicon.swift; path = SwiftIconFont/Classes/Octicon.swift; sourceTree = "<group>"; };
-		B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		B9D05471236D000305A8FFDB36618E47 /* SwiftIconTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconTextField.swift; path = SwiftIconFont/Classes/SwiftIconTextField.swift; sourceTree = "<group>"; };
-		BB87D1A05198C980B079D6679F3E3EBD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC1BD9BF1B91320958992E176AE7D56D /* Starscream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Starscream.framework; path = Starscream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE2BBF57442D659BB35E784B2A675457 /* SwiftIconFontView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconFontView.swift; path = SwiftIconFont/Classes/SwiftIconFontView.swift; sourceTree = "<group>"; };
-		C8C821FE7552094365AF51B99C0D36A6 /* SwiftIconButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconButton.swift; path = SwiftIconFont/Classes/SwiftIconButton.swift; sourceTree = "<group>"; };
-		CF5DA0D26600653885F46F9BDFCF1DA0 /* SwiftIconFont-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftIconFont-dummy.m"; sourceTree = "<group>"; };
-		D2E309CC1D34C8D7BF6D0704259AE7D8 /* HoshiTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HoshiTextField.swift; path = TextFieldEffects/TextFieldEffects/HoshiTextField.swift; sourceTree = "<group>"; };
-		D39A2B697D07C932CD16B8C0E9CB6708 /* WebSocket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = Sources/WebSocket.swift; sourceTree = "<group>"; };
-		D611335B5A7B73C5D47DCE94997C914C /* SwiftIconTabBarItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftIconTabBarItem.swift; path = SwiftIconFont/Classes/SwiftIconTabBarItem.swift; sourceTree = "<group>"; };
-		D63F9ABF8410E7D762E47BA0A795C6C3 /* MapIcon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MapIcon.swift; path = SwiftIconFont/Classes/MapIcon.swift; sourceTree = "<group>"; };
-		D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		DB57971AB7062403CF67DB3802D6E708 /* octicons.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = octicons.ttf; path = SwiftIconFont/Resources/octicons.ttf; sourceTree = "<group>"; };
-		DCB2F31788723EE78814D523AC7F5E2F /* Ionicons.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = Ionicons.ttf; path = SwiftIconFont/Resources/Ionicons.ttf; sourceTree = "<group>"; };
-		DD478E46450C007A45D55D399E05E171 /* map-icons.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "map-icons.ttf"; path = "SwiftIconFont/Resources/map-icons.ttf"; sourceTree = "<group>"; };
-		DFCE115C0A37935C1B08B51EB3A20BAD /* SwiftIconFont-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftIconFont-prefix.pch"; sourceTree = "<group>"; };
-		E240504453571C23007B8627734B76DB /* Pods-Sanity-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Sanity-acknowledgements.markdown"; sourceTree = "<group>"; };
-		E57C3B82912C294EBCA60920DC750A21 /* FontLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontLoader.swift; path = SwiftIconFont/Classes/FontLoader.swift; sourceTree = "<group>"; };
-		E96242903684C26A370AE56B73CD7BCC /* SwiftIconFont-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftIconFont-umbrella.h"; sourceTree = "<group>"; };
-		EEA22CE8A58AE3E7AF9877A197C0D93D /* Pods-Sanity-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Sanity-umbrella.h"; sourceTree = "<group>"; };
-		F10D92EC430D69BC5EBCA23311C50CE2 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Maps/Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
-		F6336CA90118B44127E643F7059E9189 /* open-iconic.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "open-iconic.ttf"; path = "SwiftIconFont/Resources/open-iconic.ttf"; sourceTree = "<group>"; };
-		FBC2A960494F44AD314CC49506A1EBE5 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		985DCD905663D6AAD4ECDC6C083E667D /* Pods-Sanity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Sanity.release.xcconfig"; sourceTree = "<group>"; };
+		9DE17AF57349F723F122BF2A8E519905 /* TextFieldEffects-iOS11.0.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "TextFieldEffects-iOS11.0.xcconfig"; path = "../TextFieldEffects-iOS11.0/TextFieldEffects-iOS11.0.xcconfig"; sourceTree = "<group>"; };
+		A1103B6F40C56E98A0B2D50B447DBC35 /* Pods-SanityTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SanityTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		A76B68ED9276A9D281B48E77C20702BD /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = Base/Frameworks/GoogleMapsBase.framework; sourceTree = "<group>"; };
+		B047689E101A0536D7170137B920C82A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1B484297D775B1BDE70277C8A012AE0 /* Pods-Sanity-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Sanity-acknowledgements.plist"; sourceTree = "<group>"; };
+		B413F257D5B5A6ECD563930DA8585BBC /* AkiraTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AkiraTextField.swift; path = TextFieldEffects/TextFieldEffects/AkiraTextField.swift; sourceTree = "<group>"; };
+		B777F9600BC137C8D3786091CAEF8B10 /* MinoruTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MinoruTextField.swift; path = TextFieldEffects/TextFieldEffects/MinoruTextField.swift; sourceTree = "<group>"; };
+		BAF7FD2A589ACE19F5ECC9981DFA3AC8 /* JiroTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JiroTextField.swift; path = TextFieldEffects/TextFieldEffects/JiroTextField.swift; sourceTree = "<group>"; };
+		C80E473EE5BBD19899C9AAB094880CE1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../TextFieldEffects-iOS11.0/Info.plist"; sourceTree = "<group>"; };
+		CB0C8320445A62097F750B9DB1348864 /* Pods-SanityTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SanityTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		CD507CB487732C9512D3A4F081E0FE66 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAECCD0033019553172855204A7B31F2 /* Starscream-iOS11.0.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Starscream-iOS11.0.xcconfig"; path = "../Starscream-iOS11.0/Starscream-iOS11.0.xcconfig"; sourceTree = "<group>"; };
+		DD9C28CE249D20A0DE9353CBD66A5FB4 /* Pods-Sanity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Sanity.debug.xcconfig"; sourceTree = "<group>"; };
+		DD9DC71F673818428DC13D92336969AA /* WebSocket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = Sources/WebSocket.swift; sourceTree = "<group>"; };
+		E0BF651FB8DFB93909DBC114965877C3 /* Starscream-iOS10.2-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Starscream-iOS10.2-dummy.m"; sourceTree = "<group>"; };
+		E637B12A7D923E378C232EA6987A0EB9 /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsCore.framework; path = Maps/Frameworks/GoogleMapsCore.framework; sourceTree = "<group>"; };
+		E6C8A554A95DFAE37541EB2A7B1C8F23 /* TextFieldEffects-iOS10.2-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TextFieldEffects-iOS10.2-dummy.m"; sourceTree = "<group>"; };
+		E9B4F7DD3E503DBFEF3E280D99EC94DF /* Starscream-iOS10.2-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Starscream-iOS10.2-prefix.pch"; sourceTree = "<group>"; };
+		EDAF966DD4F2C999105CE83A5284D8F4 /* SSLSecurity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SSLSecurity.swift; path = Sources/SSLSecurity.swift; sourceTree = "<group>"; };
+		F4FAE3FD8DFFE72492B59A933D689A3E /* TextFieldEffects-iOS11.0.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; name = "TextFieldEffects-iOS11.0.modulemap"; path = "../TextFieldEffects-iOS11.0/TextFieldEffects-iOS11.0.modulemap"; sourceTree = "<group>"; };
+		F628CA6E6EC8317B957EC336379F2914 /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlaces.framework; path = Frameworks/GooglePlaces.framework; sourceTree = "<group>"; };
+		F74038A94D7E8B275E061EEDBDCA6366 /* Pods-Sanity-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Sanity-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F8000FC4CAF98F5DC943649A70B9E144 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Starscream-iOS11.0/Info.plist"; sourceTree = "<group>"; };
+		F9F2C9EB59818D46CD69F3C198E73E68 /* TextFieldEffects-iOS11.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TextFieldEffects-iOS11.0-prefix.pch"; path = "../TextFieldEffects-iOS11.0/TextFieldEffects-iOS11.0-prefix.pch"; sourceTree = "<group>"; };
+		FC19FE756C76DF08FE071908D763754C /* Pods-SanityTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SanityTests-umbrella.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		13280E3623A76C35632491A02DA3865C /* Frameworks */ = {
+		1D49D53A86C9326E89FF7CC65910C484 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBFE917C22626AE2AF2D5DC775CDF6ED /* Foundation.framework in Frameworks */,
-				714470E57B1102C02D603B9871A6E989 /* UIKit.framework in Frameworks */,
+				809B218FDEBB2BBD87FAEB50D9C53695 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		18C9D9454C09ABBBC280C412C98B86E1 /* Frameworks */ = {
+		226404CD9F6547C468160E130677D50B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD9220597148F84DBD51EFF97F6CDC /* Foundation.framework in Frameworks */,
+				4C94A51D42CB60AFBBC08E35C2DA7A23 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		29B6F68AA6EBFCFB163DF173235A232D /* Frameworks */ = {
+		4915AB27547A2687EA3BB1A075E757A6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58FE3A22188B3FFEFE1AD8779A810791 /* Foundation.framework in Frameworks */,
+				FD16F87CE9D1954A2B94A9DC3A42BB7E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		58942B5DF7FC2EFC40A55A9B175FBE3C /* Frameworks */ = {
+		505DE8D880E8DD0162CBB3D0C77E2B44 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4E70F037784C9461B7545F6DF62242D /* Foundation.framework in Frameworks */,
+				FAE2091C89E61D6545F2BB0851F82622 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80729D27CCAB227FC90749A81E5BA5C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FE44BC0F08089E7D1D1B3DD3F64FADD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9A1693C2AD7EA5BD7640EF838EA1E63 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D996F7D1005F35511969214A63396FEB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0EF7C58271894916A4CF5176498D6BC0 /* Resources */ = {
+		04FA933412F586FCCAC7FB2737A06D31 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
-				07B84DBEB07091AD7A0B60039B7D073A /* FontAwesome.ttf */,
-				DCB2F31788723EE78814D523AC7F5E2F /* Ionicons.ttf */,
-				DD478E46450C007A45D55D399E05E171 /* map-icons.ttf */,
-				03EE76379D12D442FE101F7808A383AF /* MaterialIcons-Regular.ttf */,
-				DB57971AB7062403CF67DB3802D6E708 /* octicons.ttf */,
-				F6336CA90118B44127E643F7059E9189 /* open-iconic.ttf */,
-				79AB1EAC59D626790676F1482DD09D03 /* themify.ttf */,
+				9EEDB11F58533D260554FFCE709E9684 /* Frameworks */,
+				8F6F0BBA7D63BCF2C1884EE5F86A8724 /* Resources */,
 			);
-			name = Resources;
+			name = Maps;
 			sourceTree = "<group>";
 		};
-		17017DE0B8E5B0701D80BF195943BE53 /* Support Files */ = {
+		164CD79F61E5BA6E10EDE7F610B4C9F3 /* GooglePlaces */ = {
 			isa = PBXGroup;
 			children = (
-				0FBA909A956F1C8A6B3CCCB9B87EBD7D /* Info.plist */,
-				2AB4A8A940538AF10959994D4176FDE2 /* SwiftIconFont.modulemap */,
-				A14121F5B1654960894DABB42BC5BA65 /* SwiftIconFont.xcconfig */,
-				CF5DA0D26600653885F46F9BDFCF1DA0 /* SwiftIconFont-dummy.m */,
-				DFCE115C0A37935C1B08B51EB3A20BAD /* SwiftIconFont-prefix.pch */,
-				E96242903684C26A370AE56B73CD7BCC /* SwiftIconFont-umbrella.h */,
+				32587391F7C05D5A64177DBECAE5D501 /* Frameworks */,
+				6911147F28F7912B737A5A2512480910 /* Resources */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/SwiftIconFont";
+			name = GooglePlaces;
+			path = GooglePlaces;
 			sourceTree = "<group>";
 		};
-		2EB76E6AF447F93EDBCF1C94172D5A3F /* SwiftIconFont */ = {
+		32587391F7C05D5A64177DBECAE5D501 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4508759CF5E0743DCE84200C711A6EBE /* FontAwesome.swift */,
-				E57C3B82912C294EBCA60920DC750A21 /* FontLoader.swift */,
-				8893F9D8B351323D2533DD23088E60B5 /* Iconic.swift */,
-				885C52519C8FD60B525704EF8E945CBE /* IonIcons.swift */,
-				D63F9ABF8410E7D762E47BA0A795C6C3 /* MapIcon.swift */,
-				03A21F7E81EA537D798E6B983704F3B0 /* MaterialIcon.swift */,
-				B5D473D2862A5BFAFADC05E88DB84C0A /* Octicon.swift */,
-				A6999F0ADCA2D2ECF8161D7C6281A49E /* SwiftBarButtonItem.swift */,
-				C8C821FE7552094365AF51B99C0D36A6 /* SwiftIconButton.swift */,
-				8E2A5A4B7F3292001CB252B98690CFEA /* SwiftIconFont.swift */,
-				BE2BBF57442D659BB35E784B2A675457 /* SwiftIconFontView.swift */,
-				2188A942ED401302DA8AC94632501C3E /* SwiftIconLabel.swift */,
-				D611335B5A7B73C5D47DCE94997C914C /* SwiftIconTabBarItem.swift */,
-				B9D05471236D000305A8FFDB36618E47 /* SwiftIconTextField.swift */,
-				999B1E5E4627D98B038D2E17B6B46129 /* SwiftIconTextView.swift */,
-				644CF9173751837E9A0D712273B640EC /* ThemifyIcon.swift */,
-				0EF7C58271894916A4CF5176498D6BC0 /* Resources */,
-				17017DE0B8E5B0701D80BF195943BE53 /* Support Files */,
-			);
-			name = SwiftIconFont;
-			path = SwiftIconFont;
-			sourceTree = "<group>";
-		};
-		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				438B396F6B4147076630CAEFE34282C1 /* iOS */,
+				F628CA6E6EC8317B957EC336379F2914 /* GooglePlaces.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		438B396F6B4147076630CAEFE34282C1 /* iOS */ = {
+		42AC1F904CF725C5E8BCB492CC223DE8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */,
-				B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */,
+				A76B68ED9276A9D281B48E77C20702BD /* GoogleMapsBase.framework */,
 			);
-			name = iOS;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		49D517F908E69EE254001F87AAE17EAF /* Resources */ = {
+		5142F256003015F3464061E94C829A85 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FBC2A960494F44AD314CC49506A1EBE5 /* GoogleMaps.bundle */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		4BBF8677436CFE6534F74E6C15A688FD /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				81CA75F0819AFE7783F5AE2882D47A90 /* Pods_Sanity.framework */,
-				BC1BD9BF1B91320958992E176AE7D56D /* Starscream.framework */,
-				9436F39DCA294D6A7A7C962F94335B48 /* SwiftIconFont.framework */,
-				1CE93ED51A7A68A4181CE6A4D54733D4 /* TextFieldEffects.framework */,
+				70CF29D2C9DEE72C99F54B8BA24C733E /* Pods_Sanity.framework */,
+				5ED6474D00B7EFD6C978AB41F59B6A9D /* Pods_SanityTests.framework */,
+				6C39FAE2E12591D08CDCDE277D83227E /* Starscream.framework */,
+				8DC6F782ABC6B32DE7B356A02A9E3B4C /* Starscream.framework */,
+				34D21171E75104FCA1DB1DD4D2A3D0B0 /* TextFieldEffects.framework */,
+				55CC9D5491A9563E3A779C89792A9FB0 /* TextFieldEffects.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5CA963093D8F337497071A031EC950B9 /* Starscream */ = {
+		6911147F28F7912B737A5A2512480910 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				40F28DC34975FC6DD8291CF88E57404B /* Compression.swift */,
-				6DC113447752A042EC947DEA9D5E9AD0 /* SSLSecurity.swift */,
-				D39A2B697D07C932CD16B8C0E9CB6708 /* WebSocket.swift */,
-				9419A574FE9775A22484D7DBA1AEE265 /* Support Files */,
+				84F2001E658EC62D731BB2B99B6ED3A4 /* GooglePlaces.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		70E383C806A6F752FA264467BFFB1C64 /* Pods-Sanity */ = {
+			isa = PBXGroup;
+			children = (
+				CD507CB487732C9512D3A4F081E0FE66 /* Info.plist */,
+				27EA95EFEDF912A44BD5A4DB7F1D4F1C /* Pods-Sanity.modulemap */,
+				F74038A94D7E8B275E061EEDBDCA6366 /* Pods-Sanity-acknowledgements.markdown */,
+				B1B484297D775B1BDE70277C8A012AE0 /* Pods-Sanity-acknowledgements.plist */,
+				0993F2DC6F522D766793CBACA5AA6550 /* Pods-Sanity-dummy.m */,
+				862E96BAB5D7C0A848F4F69E0E675646 /* Pods-Sanity-frameworks.sh */,
+				37D90D3C7B6F0A398F7BBBA9D5DEAC87 /* Pods-Sanity-resources.sh */,
+				78DFD50DE091E832C6B3B8F61EDB7505 /* Pods-Sanity-umbrella.h */,
+				DD9C28CE249D20A0DE9353CBD66A5FB4 /* Pods-Sanity.debug.xcconfig */,
+				985DCD905663D6AAD4ECDC6C083E667D /* Pods-Sanity.release.xcconfig */,
+			);
+			name = "Pods-Sanity";
+			path = "Target Support Files/Pods-Sanity";
+			sourceTree = "<group>";
+		};
+		71BA142BB921393280655B1AFB719C13 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				70E383C806A6F752FA264467BFFB1C64 /* Pods-Sanity */,
+				9DE0B613A9886C7391A342B6C1E0FF0D /* Pods-SanityTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		74FCC561F437BCFB801EB4A9545B10EB /* Starscream */ = {
+			isa = PBXGroup;
+			children = (
+				43CC9D8574FA5E2E90C0DA7B1A79CBB4 /* Compression.swift */,
+				EDAF966DD4F2C999105CE83A5284D8F4 /* SSLSecurity.swift */,
+				DD9DC71F673818428DC13D92336969AA /* WebSocket.swift */,
+				F01FE4258B9B1CCE4A823F6227D92401 /* Support Files */,
 			);
 			name = Starscream;
 			path = Starscream;
-			sourceTree = "<group>";
-		};
-		6A1B154219BA4629D354EC5B39FC6F23 /* TextFieldEffects */ = {
-			isa = PBXGroup;
-			children = (
-				743BF05F5FB26DA92ECDB71E8AFA4488 /* AkiraTextField.swift */,
-				D2E309CC1D34C8D7BF6D0704259AE7D8 /* HoshiTextField.swift */,
-				08CBC8DA493CF38D10298A510D164FBB /* IsaoTextField.swift */,
-				650711488BC5F8684844C2576C5AAC60 /* JiroTextField.swift */,
-				32628CA841DCE138675F3D6EA4C30C3B /* KaedeTextField.swift */,
-				4730A87D543DCB51E8FF3EF05070696C /* MadokaTextField.swift */,
-				0341257F0B15C890D3DE70DFD4FCAFDA /* MinoruTextField.swift */,
-				22F767A4D8C76A1A6DC3925D5F1C9117 /* TextFieldEffects.swift */,
-				608778EE58F4E6A0B52699203D20954E /* YokoTextField.swift */,
-				1CE6D7F366F3CC44C59007B6CE68F9CC /* YoshikoTextField.swift */,
-				7573E0030582B14C197BDC19F178967E /* Support Files */,
-			);
-			name = TextFieldEffects;
-			path = TextFieldEffects;
-			sourceTree = "<group>";
-		};
-		7573E0030582B14C197BDC19F178967E /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				83634C5661EBA628772A21B1FCA3AD03 /* Info.plist */,
-				7993112E18680F1720CC5A2CB09266C7 /* TextFieldEffects.modulemap */,
-				24AA09133B04C75469A5A422E7F28DD6 /* TextFieldEffects.xcconfig */,
-				4D41B65D242301BB13480ABB95D2BF27 /* TextFieldEffects-dummy.m */,
-				A5A83583389E082956E09C3BCBB82BE9 /* TextFieldEffects-prefix.pch */,
-				35B21D65A06A43D76C29ABF3CD0254E8 /* TextFieldEffects-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/TextFieldEffects";
-			sourceTree = "<group>";
-		};
-		757780D98078F7C32304A839FDB3FD28 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				4DC154519EB5B253937404614BD03F3C /* GooglePlaces.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
-				7F89333E7536B62E11960648CC72749B /* Pods */,
-				4BBF8677436CFE6534F74E6C15A688FD /* Products */,
-				B39F053088C591C3D7B8358D92073035 /* Targets Support Files */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				EAF2C8CA8F0FEE3DF60A2248E0AF0D5F /* Pods */,
+				5142F256003015F3464061E94C829A85 /* Products */,
+				71BA142BB921393280655B1AFB719C13 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		7F89333E7536B62E11960648CC72749B /* Pods */ = {
+		866F530C63083078BF256851D2A800BE /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				9F24382E74BC664787AEE09FA3E02487 /* GoogleMaps */,
-				BFF1285588ACEF9F1189F1A4A2D57FB8 /* GooglePlaces */,
-				5CA963093D8F337497071A031EC950B9 /* Starscream */,
-				2EB76E6AF447F93EDBCF1C94172D5A3F /* SwiftIconFont */,
-				6A1B154219BA4629D354EC5B39FC6F23 /* TextFieldEffects */,
+				42AC1F904CF725C5E8BCB492CC223DE8 /* Frameworks */,
 			);
-			name = Pods;
+			name = Base;
 			sourceTree = "<group>";
 		};
-		878A914341C7A56C0E6FDDA5BF8B4CD9 /* Frameworks */ = {
+		8F6F0BBA7D63BCF2C1884EE5F86A8724 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				106DC909467EAA7058FEF7018067B97A /* GoogleMapsBase.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8E951DF9105EE4A0C6EA67EE5138B477 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				54F9B9EB82E9AD170E014E8BFBD72600 /* GooglePlaces.bundle */,
+				2FCC638E363552D7BB3FE112462F3DFC /* GoogleMaps.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		9419A574FE9775A22484D7DBA1AEE265 /* Support Files */ = {
+		927887FEDCE55664A104900D714AEB7A /* TextFieldEffects */ = {
 			isa = PBXGroup;
 			children = (
-				930D0C017AF31316457B3AE8DD184E16 /* Info.plist */,
-				B1195061E4B2C77E98D84E0167FDB054 /* Starscream.modulemap */,
-				294F332121D98A8ED15716F190D5244B /* Starscream.xcconfig */,
-				18CDF7805C2FDD075E4ACA469C26C574 /* Starscream-dummy.m */,
-				2C07991A0A60E6B61BFE0BA6607AF6EA /* Starscream-prefix.pch */,
-				86BC21298889D2F6712F680456E0015E /* Starscream-umbrella.h */,
+				B413F257D5B5A6ECD563930DA8585BBC /* AkiraTextField.swift */,
+				7A127DF540F0403755FAC1DD5D2E7EB9 /* HoshiTextField.swift */,
+				583B501F1F93CAE4C7001B01452A7275 /* IsaoTextField.swift */,
+				BAF7FD2A589ACE19F5ECC9981DFA3AC8 /* JiroTextField.swift */,
+				83288278C13B2B71F8E548D9E2A8F374 /* KaedeTextField.swift */,
+				7CE45781B7038BA01A1452100D86F023 /* MadokaTextField.swift */,
+				B777F9600BC137C8D3786091CAEF8B10 /* MinoruTextField.swift */,
+				58E809489D037C0F4E675A70F9F81950 /* TextFieldEffects.swift */,
+				7553F1C2B14E4C2AFC5777BA4B113059 /* YokoTextField.swift */,
+				9158D9790E22DC3752AC6EBA81AEA871 /* YoshikoTextField.swift */,
+				D6AF2EC142C7D66EBF5C959BBEBEE786 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/Starscream";
+			name = TextFieldEffects;
+			path = TextFieldEffects;
 			sourceTree = "<group>";
 		};
-		9F24382E74BC664787AEE09FA3E02487 /* GoogleMaps */ = {
+		9DE0B613A9886C7391A342B6C1E0FF0D /* Pods-SanityTests */ = {
 			isa = PBXGroup;
 			children = (
-				AB9AD6C2B822AF6F122F4035D048CBC5 /* Base */,
-				AB8E07D69F12C33CA79547300C75DC04 /* Maps */,
+				88C872CAE05678A0B98E731F7CE77ED1 /* Info.plist */,
+				8B48FA2BD00B42EAA2B384308F84B784 /* Pods-SanityTests.modulemap */,
+				CB0C8320445A62097F750B9DB1348864 /* Pods-SanityTests-acknowledgements.markdown */,
+				A1103B6F40C56E98A0B2D50B447DBC35 /* Pods-SanityTests-acknowledgements.plist */,
+				01E86CA9C2C6941FC8B12EB445BBE73E /* Pods-SanityTests-dummy.m */,
+				88037523A1427EAC0D4107051A4C0136 /* Pods-SanityTests-frameworks.sh */,
+				12478559F65D564128F90E846A6DB3F4 /* Pods-SanityTests-resources.sh */,
+				FC19FE756C76DF08FE071908D763754C /* Pods-SanityTests-umbrella.h */,
+				6E2FA53A6E30EC8F546BF69CDD6E3CFA /* Pods-SanityTests.debug.xcconfig */,
+				49D9161CB3D2076BD8859820A91A2638 /* Pods-SanityTests.release.xcconfig */,
+			);
+			name = "Pods-SanityTests";
+			path = "Target Support Files/Pods-SanityTests";
+			sourceTree = "<group>";
+		};
+		9EEDB11F58533D260554FFCE709E9684 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F71BFC92079FCA54C020A2E8540DB05 /* GoogleMaps.framework */,
+				E637B12A7D923E378C232EA6987A0EB9 /* GoogleMapsCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE593095869811A7B51B2B9AE76ABA35 /* GoogleMaps */ = {
+			isa = PBXGroup;
+			children = (
+				866F530C63083078BF256851D2A800BE /* Base */,
+				04FA933412F586FCCAC7FB2737A06D31 /* Maps */,
 			);
 			name = GoogleMaps;
 			path = GoogleMaps;
 			sourceTree = "<group>";
 		};
-		AB8E07D69F12C33CA79547300C75DC04 /* Maps */ = {
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				E01BD323B4D0471BD259CD233611E8A1 /* Frameworks */,
-				49D517F908E69EE254001F87AAE17EAF /* Resources */,
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
 			);
-			name = Maps;
+			name = iOS;
 			sourceTree = "<group>";
 		};
-		AB9AD6C2B822AF6F122F4035D048CBC5 /* Base */ = {
+		D6AF2EC142C7D66EBF5C959BBEBEE786 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				878A914341C7A56C0E6FDDA5BF8B4CD9 /* Frameworks */,
+				3BBB6AD3A1380F3052D9B653FED1EC1D /* Info.plist */,
+				C80E473EE5BBD19899C9AAB094880CE1 /* Info.plist */,
+				013C3D205D991F9FB5EA8C0DA5D67DCF /* TextFieldEffects-iOS10.2.modulemap */,
+				0A2A7A32FAEC883D9D26115D19A51720 /* TextFieldEffects-iOS10.2.xcconfig */,
+				E6C8A554A95DFAE37541EB2A7B1C8F23 /* TextFieldEffects-iOS10.2-dummy.m */,
+				7C9B0F8B1D3DE66EF384B231AF4C00E5 /* TextFieldEffects-iOS10.2-prefix.pch */,
+				578DDBFBC09B51F37E8C2A630A7821A0 /* TextFieldEffects-iOS10.2-umbrella.h */,
+				F4FAE3FD8DFFE72492B59A933D689A3E /* TextFieldEffects-iOS11.0.modulemap */,
+				9DE17AF57349F723F122BF2A8E519905 /* TextFieldEffects-iOS11.0.xcconfig */,
+				694862994CB6B466445D2815ACDCF5B9 /* TextFieldEffects-iOS11.0-dummy.m */,
+				F9F2C9EB59818D46CD69F3C198E73E68 /* TextFieldEffects-iOS11.0-prefix.pch */,
+				4FA272DA257C30FDF22A8C3D28AB116B /* TextFieldEffects-iOS11.0-umbrella.h */,
 			);
-			name = Base;
+			name = "Support Files";
+			path = "../Target Support Files/TextFieldEffects-iOS10.2";
 			sourceTree = "<group>";
 		};
-		B39F053088C591C3D7B8358D92073035 /* Targets Support Files */ = {
+		EAF2C8CA8F0FEE3DF60A2248E0AF0D5F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B7E1FA46444AD36CB886490B0B80F06B /* Pods-Sanity */,
+				CE593095869811A7B51B2B9AE76ABA35 /* GoogleMaps */,
+				164CD79F61E5BA6E10EDE7F610B4C9F3 /* GooglePlaces */,
+				74FCC561F437BCFB801EB4A9545B10EB /* Starscream */,
+				927887FEDCE55664A104900D714AEB7A /* TextFieldEffects */,
 			);
-			name = "Targets Support Files";
+			name = Pods;
 			sourceTree = "<group>";
 		};
-		B7E1FA46444AD36CB886490B0B80F06B /* Pods-Sanity */ = {
+		F01FE4258B9B1CCE4A823F6227D92401 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				BB87D1A05198C980B079D6679F3E3EBD /* Info.plist */,
-				2B61D02DFE181E009E37FDF260665968 /* Pods-Sanity.modulemap */,
-				E240504453571C23007B8627734B76DB /* Pods-Sanity-acknowledgements.markdown */,
-				3EA90DD239F540F0DFE0D61740F06E29 /* Pods-Sanity-acknowledgements.plist */,
-				A8E94556898CCBC06EBACB3EA40B4A43 /* Pods-Sanity-dummy.m */,
-				57C3B95327028A81DF9FB3C631AC70C3 /* Pods-Sanity-frameworks.sh */,
-				7013080443E65308CCE6A673FC22F618 /* Pods-Sanity-resources.sh */,
-				EEA22CE8A58AE3E7AF9877A197C0D93D /* Pods-Sanity-umbrella.h */,
-				119C93B846C4E1323C423B295F6CA638 /* Pods-Sanity.debug.xcconfig */,
-				954D0B16B8C5F949E96681C0BBF16C73 /* Pods-Sanity.release.xcconfig */,
+				B047689E101A0536D7170137B920C82A /* Info.plist */,
+				F8000FC4CAF98F5DC943649A70B9E144 /* Info.plist */,
+				69333695F81D52BF236F5FCE2E7AE08C /* Starscream-iOS10.2.modulemap */,
+				18358F0E042DE2B9A2C20024D5D4D006 /* Starscream-iOS10.2.xcconfig */,
+				E0BF651FB8DFB93909DBC114965877C3 /* Starscream-iOS10.2-dummy.m */,
+				E9B4F7DD3E503DBFEF3E280D99EC94DF /* Starscream-iOS10.2-prefix.pch */,
+				039D0F78EC5540B2CC77E14FCF42AD5D /* Starscream-iOS10.2-umbrella.h */,
+				3D07B221C0CCF5FC2BF54C859E8EE106 /* Starscream-iOS11.0.modulemap */,
+				DAECCD0033019553172855204A7B31F2 /* Starscream-iOS11.0.xcconfig */,
+				6DFA8B63B08D6EB388CF781ECCFD0ABF /* Starscream-iOS11.0-dummy.m */,
+				5788433C2C7F492AC0D90496069782D0 /* Starscream-iOS11.0-prefix.pch */,
+				8167D4BC5129D7C4B9C7A41B2E1BCE0D /* Starscream-iOS11.0-umbrella.h */,
 			);
-			name = "Pods-Sanity";
-			path = "Target Support Files/Pods-Sanity";
-			sourceTree = "<group>";
-		};
-		BFF1285588ACEF9F1189F1A4A2D57FB8 /* GooglePlaces */ = {
-			isa = PBXGroup;
-			children = (
-				757780D98078F7C32304A839FDB3FD28 /* Frameworks */,
-				8E951DF9105EE4A0C6EA67EE5138B477 /* Resources */,
-			);
-			name = GooglePlaces;
-			path = GooglePlaces;
-			sourceTree = "<group>";
-		};
-		E01BD323B4D0471BD259CD233611E8A1 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F10D92EC430D69BC5EBCA23311C50CE2 /* GoogleMaps.framework */,
-				5A403CF99F42BA5D3A0C94B06024839C /* GoogleMapsCore.framework */,
-			);
-			name = Frameworks;
+			name = "Support Files";
+			path = "../Target Support Files/Starscream-iOS10.2";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		1D31A1A3EC5B98659E1D77CEA775CADC /* Headers */ = {
+		41FD69154E4E6DD36BD33A7E116F58F1 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2E327EAB6FB49D88255F57583D756A2 /* Pods-Sanity-umbrella.h in Headers */,
+				3E2D5AC8A7795559AA3321A8F3F15D53 /* Pods-Sanity-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		33FCE75013F22FFE9D1C438C34F4F9D7 /* Headers */ = {
+		775FB7E09622CE9BB4558A8F96D2C389 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A346D2B3EA74515BBC956980A8C01DAF /* TextFieldEffects-umbrella.h in Headers */,
+				AEF916F145A819BECFA0573F93A14D81 /* TextFieldEffects-iOS10.2-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		388D7E7D54AA7C7DB833424BFB72BDC3 /* Headers */ = {
+		8502C635BFFB4A0CF3FB9EBE4FD03EE0 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F3C99596ACC0469916519A9F023ABC2 /* Starscream-umbrella.h in Headers */,
+				56ACBB25C596C590254CB2D98DF77547 /* Starscream-iOS10.2-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C200FD9E5B92207CB6C0F6115BE6A981 /* Headers */ = {
+		8A8CFE17CAB067E2782958EC13BB7061 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD358FA68D7AC773803A942198DB5AB3 /* SwiftIconFont-umbrella.h in Headers */,
+				57365680734AF0D5BE0A3CAD80047874 /* Pods-SanityTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB2D75D54530C09D334F41479D34F8F6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4B3508EB3E705B0130E945622505728 /* TextFieldEffects-iOS11.0-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C87C86D0BDEE3AEF7FCC0F2AE416BBDD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69E775DC492F5A75F77BA5C140F636F0 /* Starscream-iOS11.0-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		136225BB0BEDF961FD6EB3897F6D5C60 /* SwiftIconFont */ = {
+		5A5C00A460945FC5E0797FFFBC02ED6C /* Pods-SanityTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 884619B95638052085E5B4EB4CF05751 /* Build configuration list for PBXNativeTarget "SwiftIconFont" */;
+			buildConfigurationList = ECE1AB08187D6ECB481527681714EAAA /* Build configuration list for PBXNativeTarget "Pods-SanityTests" */;
 			buildPhases = (
-				2A966913E30DBE05C4C595B5F128F7C6 /* Sources */,
-				13280E3623A76C35632491A02DA3865C /* Frameworks */,
-				E41DC0BE80EFBC3D5900D745FC3CA6CF /* Resources */,
-				C200FD9E5B92207CB6C0F6115BE6A981 /* Headers */,
+				819BC5AA2D9D62D4D0BAC56507BB40C7 /* Sources */,
+				226404CD9F6547C468160E130677D50B /* Frameworks */,
+				8A8CFE17CAB067E2782958EC13BB7061 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CCA776D2600B2E7AF0EB18311DAE2A93 /* PBXTargetDependency */,
+				6078A3BC7408D60DF8392F05F340470B /* PBXTargetDependency */,
 			);
-			name = SwiftIconFont;
-			productName = SwiftIconFont;
-			productReference = 9436F39DCA294D6A7A7C962F94335B48 /* SwiftIconFont.framework */;
+			name = "Pods-SanityTests";
+			productName = "Pods-SanityTests";
+			productReference = 5ED6474D00B7EFD6C978AB41F59B6A9D /* Pods_SanityTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		5117956A949BD74030920BAADA4ECB17 /* TextFieldEffects */ = {
+		9923BE23F3A5FF115B7CBDE383DE3375 /* TextFieldEffects-iOS11.0 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 60A180EB0C1E38D7FC4346574383E03D /* Build configuration list for PBXNativeTarget "TextFieldEffects" */;
+			buildConfigurationList = 42909CDFC6433FE9BEA255212E2A5101 /* Build configuration list for PBXNativeTarget "TextFieldEffects-iOS11.0" */;
 			buildPhases = (
-				FA802417D5CD968F947B5514DCC15F44 /* Sources */,
-				58942B5DF7FC2EFC40A55A9B175FBE3C /* Frameworks */,
-				33FCE75013F22FFE9D1C438C34F4F9D7 /* Headers */,
+				A0BDC00C99C5875F6A4344EB739A4545 /* Sources */,
+				4915AB27547A2687EA3BB1A075E757A6 /* Frameworks */,
+				AB2D75D54530C09D334F41479D34F8F6 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = TextFieldEffects;
-			productName = TextFieldEffects;
-			productReference = 1CE93ED51A7A68A4181CE6A4D54733D4 /* TextFieldEffects.framework */;
+			name = "TextFieldEffects-iOS11.0";
+			productName = "TextFieldEffects-iOS11.0";
+			productReference = 55CC9D5491A9563E3A779C89792A9FB0 /* TextFieldEffects.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		593718AC6F559745771FD5BDB58FF884 /* Starscream */ = {
+		9DE8249BDD4445023AFE314767A23768 /* Starscream-iOS10.2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5CD1B66A03657A7076347B118E7594DE /* Build configuration list for PBXNativeTarget "Starscream" */;
+			buildConfigurationList = 7AC1B997BCE5A8EA4C54D21827B1AC81 /* Build configuration list for PBXNativeTarget "Starscream-iOS10.2" */;
 			buildPhases = (
-				C1BECEF2F44449A3A2D503827C618DBE /* Sources */,
-				18C9D9454C09ABBBC280C412C98B86E1 /* Frameworks */,
-				388D7E7D54AA7C7DB833424BFB72BDC3 /* Headers */,
+				A26437611EE74596412D0710240C3A09 /* Sources */,
+				1D49D53A86C9326E89FF7CC65910C484 /* Frameworks */,
+				8502C635BFFB4A0CF3FB9EBE4FD03EE0 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Starscream;
-			productName = Starscream;
-			productReference = BC1BD9BF1B91320958992E176AE7D56D /* Starscream.framework */;
+			name = "Starscream-iOS10.2";
+			productName = "Starscream-iOS10.2";
+			productReference = 6C39FAE2E12591D08CDCDE277D83227E /* Starscream.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		9842F50A0A5DB57D020BB61F9CE2BD43 /* Pods-Sanity */ = {
+		B009FB27DE87649905365D8BC122A880 /* Starscream-iOS11.0 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ED8A6CD2D7D9F7DE60AF5676D15BB9F7 /* Build configuration list for PBXNativeTarget "Pods-Sanity" */;
+			buildConfigurationList = E8CD87015AEE7FC217222F86AEE109F8 /* Build configuration list for PBXNativeTarget "Starscream-iOS11.0" */;
 			buildPhases = (
-				A71F026BE0D281040E10907A222096D3 /* Sources */,
-				29B6F68AA6EBFCFB163DF173235A232D /* Frameworks */,
-				1D31A1A3EC5B98659E1D77CEA775CADC /* Headers */,
+				3D53EA704F60EE52526756A7E4C63EDE /* Sources */,
+				80729D27CCAB227FC90749A81E5BA5C1 /* Frameworks */,
+				C87C86D0BDEE3AEF7FCC0F2AE416BBDD /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B5C1F34AC84EB5DC9E74E5E25710D038 /* PBXTargetDependency */,
-				C09D228E785CFF629CB9B379AE4AFACA /* PBXTargetDependency */,
-				211C23F38834A9E55BC7EC63893FAFC1 /* PBXTargetDependency */,
+			);
+			name = "Starscream-iOS11.0";
+			productName = "Starscream-iOS11.0";
+			productReference = 8DC6F782ABC6B32DE7B356A02A9E3B4C /* Starscream.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F48C3E3B65878A7F7911700C93FE1D92 /* TextFieldEffects-iOS10.2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC5ABFDD6465D6B6C7F6131EE96D21B0 /* Build configuration list for PBXNativeTarget "TextFieldEffects-iOS10.2" */;
+			buildPhases = (
+				2BD45BBDBBE519674D414ED79561A688 /* Sources */,
+				A9A1693C2AD7EA5BD7640EF838EA1E63 /* Frameworks */,
+				775FB7E09622CE9BB4558A8F96D2C389 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TextFieldEffects-iOS10.2";
+			productName = "TextFieldEffects-iOS10.2";
+			productReference = 34D21171E75104FCA1DB1DD4D2A3D0B0 /* TextFieldEffects.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FD491B11AED0D83932A1D4399E4CD3A3 /* Pods-Sanity */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E2E1800C3C7E290225082B04066DDC3 /* Build configuration list for PBXNativeTarget "Pods-Sanity" */;
+			buildPhases = (
+				F1882D8C85C5F6782467589C5262D175 /* Sources */,
+				505DE8D880E8DD0162CBB3D0C77E2B44 /* Frameworks */,
+				41FD69154E4E6DD36BD33A7E116F58F1 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				60B62488EFBDAAEC11FDE1683C11AA75 /* PBXTargetDependency */,
+				4161AE8BB8FF6AC8C32DCBCEF6AC39D1 /* PBXTargetDependency */,
 			);
 			name = "Pods-Sanity";
 			productName = "Pods-Sanity";
-			productReference = 81CA75F0819AFE7783F5AE2882D47A90 /* Pods_Sanity.framework */;
+			productReference = 70CF29D2C9DEE72C99F54B8BA24C733E /* Pods_Sanity.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -594,124 +632,128 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 4BBF8677436CFE6534F74E6C15A688FD /* Products */;
+			productRefGroup = 5142F256003015F3464061E94C829A85 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9842F50A0A5DB57D020BB61F9CE2BD43 /* Pods-Sanity */,
-				593718AC6F559745771FD5BDB58FF884 /* Starscream */,
-				136225BB0BEDF961FD6EB3897F6D5C60 /* SwiftIconFont */,
-				5117956A949BD74030920BAADA4ECB17 /* TextFieldEffects */,
+				FD491B11AED0D83932A1D4399E4CD3A3 /* Pods-Sanity */,
+				5A5C00A460945FC5E0797FFFBC02ED6C /* Pods-SanityTests */,
+				9DE8249BDD4445023AFE314767A23768 /* Starscream-iOS10.2 */,
+				B009FB27DE87649905365D8BC122A880 /* Starscream-iOS11.0 */,
+				F48C3E3B65878A7F7911700C93FE1D92 /* TextFieldEffects-iOS10.2 */,
+				9923BE23F3A5FF115B7CBDE383DE3375 /* TextFieldEffects-iOS11.0 */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		E41DC0BE80EFBC3D5900D745FC3CA6CF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1C84F9C9DBC0A6A2AB03AE3EFAFCE35B /* FontAwesome.ttf in Resources */,
-				B33D8DAEF38D7E596DB29959DB7BFD6C /* Ionicons.ttf in Resources */,
-				FA2EE90B2B4053A285EACE95209F1CDE /* map-icons.ttf in Resources */,
-				2E62EAAB39C192943CF8A4B38FC17E69 /* MaterialIcons-Regular.ttf in Resources */,
-				65840F0DB4C24D7EAFF18CC949F9E57E /* octicons.ttf in Resources */,
-				5272F5860CBFDBCCBF5A6936B529A64E /* open-iconic.ttf in Resources */,
-				BEB68CD5DDAACA3BDAE3CCDE19C06A6A /* themify.ttf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		2A966913E30DBE05C4C595B5F128F7C6 /* Sources */ = {
+		2BD45BBDBBE519674D414ED79561A688 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A30AAF8EF891DF97076041C7F25DC315 /* FontAwesome.swift in Sources */,
-				077B2254BE5C9695CACCFADAD3A4B0F5 /* FontLoader.swift in Sources */,
-				90B13D0CE47F1B2B2C0765F6005195F5 /* Iconic.swift in Sources */,
-				AE39F7ACCDF8D860DF58A9433CC2E17F /* IonIcons.swift in Sources */,
-				4B99B4541F635063B26A44C0B2D9B4D1 /* MapIcon.swift in Sources */,
-				31CFBA7180E21A63FE320F147BB0B3A4 /* MaterialIcon.swift in Sources */,
-				26952A2D3AB8DA93B36910609BC6B2C8 /* Octicon.swift in Sources */,
-				5775E6EFF1FBAE4502CE56EAC9FF09AA /* SwiftBarButtonItem.swift in Sources */,
-				803F6D68D43CABC01E462E2E40A7550D /* SwiftIconButton.swift in Sources */,
-				3669AB5F08869291331494E50CE5BB60 /* SwiftIconFont-dummy.m in Sources */,
-				040ECE84E0BF4DC3643F2F18044E0DF8 /* SwiftIconFont.swift in Sources */,
-				3DB5421E99E2CE5A54D4D937E0118E2B /* SwiftIconFontView.swift in Sources */,
-				B074804462C65D4F956E53B3A591B279 /* SwiftIconLabel.swift in Sources */,
-				5A9B0BFD06BB3B03F7A937FEADC64673 /* SwiftIconTabBarItem.swift in Sources */,
-				319417E8AF94C384A1807684D27887E1 /* SwiftIconTextField.swift in Sources */,
-				D5CE08E365458923D96D01B4E741EDAB /* SwiftIconTextView.swift in Sources */,
-				233E7E2A753E365754A3B42375638E28 /* ThemifyIcon.swift in Sources */,
+				19883A9D1A6F05F5482B9D0F4E30C2B6 /* AkiraTextField.swift in Sources */,
+				59868379EB5A5AB20A96B04D5D92893E /* HoshiTextField.swift in Sources */,
+				EB14E510D4C7898FFCD9D133A899900C /* IsaoTextField.swift in Sources */,
+				BAABF57D6E77B5E7ED208ED9D71A1961 /* JiroTextField.swift in Sources */,
+				53EA137FF23D9483F627E95A61B18A1C /* KaedeTextField.swift in Sources */,
+				F0A4BDA5EBBA7ABE3C23D0F6D0B1B8B2 /* MadokaTextField.swift in Sources */,
+				A741048038135E11866A068B88355F40 /* MinoruTextField.swift in Sources */,
+				0E654767B2587F61EAB4D726C61EDFF2 /* TextFieldEffects-iOS10.2-dummy.m in Sources */,
+				41CC3A07A5F8347916DDA57AA916169D /* TextFieldEffects.swift in Sources */,
+				AC4EB80B6CBCD03422BB72A83A38EF36 /* YokoTextField.swift in Sources */,
+				8315A2AA21B3D33A1F59179EA48E91C9 /* YoshikoTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A71F026BE0D281040E10907A222096D3 /* Sources */ = {
+		3D53EA704F60EE52526756A7E4C63EDE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E47BFA80DA1ECA341F729D436D514F83 /* Pods-Sanity-dummy.m in Sources */,
+				776DCE54E9556D1F9EA0C6DB58DA47AB /* Compression.swift in Sources */,
+				846E94D9E21963B3004C8A8B34909765 /* SSLSecurity.swift in Sources */,
+				98437AC571CA54F17E5061185B542476 /* Starscream-iOS11.0-dummy.m in Sources */,
+				7BF64B195E12252ECBDC3B5E4CD17AC4 /* WebSocket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C1BECEF2F44449A3A2D503827C618DBE /* Sources */ = {
+		819BC5AA2D9D62D4D0BAC56507BB40C7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E518DF75CDD71E6AC418B15955AA5C9 /* Compression.swift in Sources */,
-				F4D76BD7ADE7A3CCCCEFE5A735DB2907 /* SSLSecurity.swift in Sources */,
-				C313C3362C31F1CCAA5195FF29AB08D9 /* Starscream-dummy.m in Sources */,
-				F0C1E30B433BED8B2C0E227BDB784651 /* WebSocket.swift in Sources */,
+				56041D0424F9B2301227B56B90221A9E /* Pods-SanityTests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FA802417D5CD968F947B5514DCC15F44 /* Sources */ = {
+		A0BDC00C99C5875F6A4344EB739A4545 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				306FA11E7FB2056AA35CA7D18562B700 /* AkiraTextField.swift in Sources */,
-				03A7705BF6383B61A087DC2815DFA6AF /* HoshiTextField.swift in Sources */,
-				CF81A8EC7236A2FB89CFAFA7D7084C5C /* IsaoTextField.swift in Sources */,
-				9321000DF9ED4D8DDABB46D239682610 /* JiroTextField.swift in Sources */,
-				4AE7B69860F4376C2AA16AD0944D1102 /* KaedeTextField.swift in Sources */,
-				DE45E8E811EC1162AFA8D32E859D4EB2 /* MadokaTextField.swift in Sources */,
-				862ECC49F4E03BBB0D1653612E1896F7 /* MinoruTextField.swift in Sources */,
-				5A7A361B144BF306961AED2D886C110A /* TextFieldEffects-dummy.m in Sources */,
-				2DB6F13FD7BEE378AE0AD0F4CAF5B7E2 /* TextFieldEffects.swift in Sources */,
-				EC11241A1180FDB6342FC7467B9764B2 /* YokoTextField.swift in Sources */,
-				AAEF1F190ACBBC759076292C52AD74B5 /* YoshikoTextField.swift in Sources */,
+				9B7576FB5B4E2556ECC1C41FB3DEDC50 /* AkiraTextField.swift in Sources */,
+				7EB2FF10A52BD878A9DC898419FED3BF /* HoshiTextField.swift in Sources */,
+				83DCF16EE275BEC75A3AB896136DA84A /* IsaoTextField.swift in Sources */,
+				D851CDDEF82B27CF2D41997D579D6579 /* JiroTextField.swift in Sources */,
+				61F2DCBB4A55F2F0349D3B5DDD70F92C /* KaedeTextField.swift in Sources */,
+				DF1B03DA7A88AB08BB0B496C7DB47D63 /* MadokaTextField.swift in Sources */,
+				96DDD7921A18CDF8AE76B51D3D74D41E /* MinoruTextField.swift in Sources */,
+				84F467FBE6F2CDD0C78DB5558FEBA8B2 /* TextFieldEffects-iOS11.0-dummy.m in Sources */,
+				40AA4B278AA73EF12909EDE4D1CBEAC8 /* TextFieldEffects.swift in Sources */,
+				BA1D4FE3159AE0174A18A1B75FE0731B /* YokoTextField.swift in Sources */,
+				82D2B8AC0A796941953CAB050BC91969 /* YoshikoTextField.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A26437611EE74596412D0710240C3A09 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31407A03E3BD6AD12ECBDF7A1CF3D178 /* Compression.swift in Sources */,
+				245A71D668E2E9A7CE5DD9D751B058FB /* SSLSecurity.swift in Sources */,
+				5D9E3F62846028FE9CD587A425A50C12 /* Starscream-iOS10.2-dummy.m in Sources */,
+				920D3F8CCA0CD7780B24E32C3F7482FC /* WebSocket.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1882D8C85C5F6782467589C5262D175 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78D4777E2ACF78C989976913531769B2 /* Pods-Sanity-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		211C23F38834A9E55BC7EC63893FAFC1 /* PBXTargetDependency */ = {
+		4161AE8BB8FF6AC8C32DCBCEF6AC39D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = TextFieldEffects;
-			target = 5117956A949BD74030920BAADA4ECB17 /* TextFieldEffects */;
-			targetProxy = 5E41E4A2A86C745ECF8AB3801F6CB71B /* PBXContainerItemProxy */;
+			name = "TextFieldEffects-iOS10.2";
+			target = F48C3E3B65878A7F7911700C93FE1D92 /* TextFieldEffects-iOS10.2 */;
+			targetProxy = EA4CE9D5A98054224D6109946B62C136 /* PBXContainerItemProxy */;
 		};
-		B5C1F34AC84EB5DC9E74E5E25710D038 /* PBXTargetDependency */ = {
+		6078A3BC7408D60DF8392F05F340470B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Starscream;
-			target = 593718AC6F559745771FD5BDB58FF884 /* Starscream */;
-			targetProxy = B7FA4F50588457F0C8E99297F73A05DB /* PBXContainerItemProxy */;
+			name = "TextFieldEffects-iOS11.0";
+			target = 9923BE23F3A5FF115B7CBDE383DE3375 /* TextFieldEffects-iOS11.0 */;
+			targetProxy = DE385C18EC1EE308354E9249661C8C90 /* PBXContainerItemProxy */;
 		};
-		C09D228E785CFF629CB9B379AE4AFACA /* PBXTargetDependency */ = {
+		60B62488EFBDAAEC11FDE1683C11AA75 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = SwiftIconFont;
-			target = 136225BB0BEDF961FD6EB3897F6D5C60 /* SwiftIconFont */;
-			targetProxy = 75133758A2897DF6C7C3231E2CC0E6D0 /* PBXContainerItemProxy */;
+			name = "Starscream-iOS10.2";
+			target = 9DE8249BDD4445023AFE314767A23768 /* Starscream-iOS10.2 */;
+			targetProxy = 6F1733A0851AA5EFDB14D939B12D540E /* PBXContainerItemProxy */;
+		};
+		CCA776D2600B2E7AF0EB18311DAE2A93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Starscream-iOS11.0";
+			target = B009FB27DE87649905365D8BC122A880 /* Starscream-iOS11.0 */;
+			targetProxy = 55A10CD28B550884A7AA3B0958B12EFC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		060085F08276748897B1F03180351656 /* Debug */ = {
+		1013FA71FC9211C1DBBC51F44E966300 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24AA09133B04C75469A5A422E7F28DD6 /* TextFieldEffects.xcconfig */;
+			baseConfigurationReference = DAECCD0033019553172855204A7B31F2 /* Starscream-iOS11.0.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -722,23 +764,24 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/TextFieldEffects/TextFieldEffects-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TextFieldEffects/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Starscream-iOS11.0/Starscream-iOS11.0-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Starscream-iOS11.0/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TextFieldEffects/TextFieldEffects.modulemap";
-				PRODUCT_NAME = TextFieldEffects;
+				MODULEMAP_FILE = "Target Support Files/Starscream-iOS11.0/Starscream-iOS11.0.modulemap";
+				PRODUCT_NAME = Starscream;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		1574DFBE46C3A95056829BC718547A7A /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -795,9 +838,9 @@
 			};
 			name = Release;
 		};
-		2787B71C5286A3D98BA5B552A757C1E2 /* Release */ = {
+		226DB05B4F0F7C98EB9178E880365778 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A14121F5B1654960894DABB42BC5BA65 /* SwiftIconFont.xcconfig */;
+			baseConfigurationReference = 18358F0E042DE2B9A2C20024D5D4D006 /* Starscream-iOS10.2.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -808,24 +851,88 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SwiftIconFont/SwiftIconFont-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwiftIconFont/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Starscream-iOS10.2/Starscream-iOS10.2-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Starscream-iOS10.2/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwiftIconFont/SwiftIconFont.modulemap";
-				PRODUCT_NAME = SwiftIconFont;
+				MODULEMAP_FILE = "Target Support Files/Starscream-iOS10.2/Starscream-iOS10.2.modulemap";
+				PRODUCT_NAME = Starscream;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		268BDD027F8BA4DF346C5977E00FCDAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49D9161CB3D2076BD8859820A91A2638 /* Pods-SanityTests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SanityTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SanityTests/Pods-SanityTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SanityTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		3871986CF235BF828E21F8DB5E0A1C6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DE17AF57349F723F122BF2A8E519905 /* TextFieldEffects-iOS11.0.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TextFieldEffects-iOS11.0/TextFieldEffects-iOS11.0-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TextFieldEffects-iOS11.0/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TextFieldEffects-iOS11.0/TextFieldEffects-iOS11.0.modulemap";
+				PRODUCT_NAME = TextFieldEffects;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		5B5A1446720EEC8CE963B9BD750713E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -887,41 +994,9 @@
 			};
 			name = Debug;
 		};
-		86B04BACD0470BD0D07AAB1AE5F248BD /* Release */ = {
+		62E4210AB55457727F7EA1BB8FEAE19A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24AA09133B04C75469A5A422E7F28DD6 /* TextFieldEffects.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/TextFieldEffects/TextFieldEffects-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TextFieldEffects/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TextFieldEffects/TextFieldEffects.modulemap";
-				PRODUCT_NAME = TextFieldEffects;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		9B2D7F61994327C54AC36DC51DF4A8E6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 119C93B846C4E1323C423B295F6CA638 /* Pods-Sanity.debug.xcconfig */;
+			baseConfigurationReference = DD9C28CE249D20A0DE9353CBD66A5FB4 /* Pods-Sanity.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -953,9 +1028,9 @@
 			};
 			name = Debug;
 		};
-		B33BBE21FDB7427036AD7EE51CBF2878 /* Release */ = {
+		68155B8071B5909CFC49E12F6821F8FD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 954D0B16B8C5F949E96681C0BBF16C73 /* Pods-Sanity.release.xcconfig */;
+			baseConfigurationReference = 985DCD905663D6AAD4ECDC6C083E667D /* Pods-Sanity.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -987,9 +1062,9 @@
 			};
 			name = Release;
 		};
-		CC9CFC4E80C124C5D961BE9976DCC38E /* Release */ = {
+		8BA37259DBC136E470A537648C8E31D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 294F332121D98A8ED15716F190D5244B /* Starscream.xcconfig */;
+			baseConfigurationReference = 0A2A7A32FAEC883D9D26115D19A51720 /* TextFieldEffects-iOS10.2.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1000,12 +1075,138 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Starscream/Starscream-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Starscream/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/TextFieldEffects-iOS10.2/TextFieldEffects-iOS10.2-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TextFieldEffects-iOS10.2/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Starscream/Starscream.modulemap";
+				MODULEMAP_FILE = "Target Support Files/TextFieldEffects-iOS10.2/TextFieldEffects-iOS10.2.modulemap";
+				PRODUCT_NAME = TextFieldEffects;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8FE2BC7ACCF0AC12370770808C2DF675 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A2A7A32FAEC883D9D26115D19A51720 /* TextFieldEffects-iOS10.2.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TextFieldEffects-iOS10.2/TextFieldEffects-iOS10.2-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TextFieldEffects-iOS10.2/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TextFieldEffects-iOS10.2/TextFieldEffects-iOS10.2.modulemap";
+				PRODUCT_NAME = TextFieldEffects;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9D8C09F2FC16812FC497F95BA1BDB3C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DAECCD0033019553172855204A7B31F2 /* Starscream-iOS11.0.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Starscream-iOS11.0/Starscream-iOS11.0-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Starscream-iOS11.0/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Starscream-iOS11.0/Starscream-iOS11.0.modulemap";
+				PRODUCT_NAME = Starscream;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B4F94BF570CF4566A156D2CDEDE20413 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DE17AF57349F723F122BF2A8E519905 /* TextFieldEffects-iOS11.0.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TextFieldEffects-iOS11.0/TextFieldEffects-iOS11.0-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TextFieldEffects-iOS11.0/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TextFieldEffects-iOS11.0/TextFieldEffects-iOS11.0.modulemap";
+				PRODUCT_NAME = TextFieldEffects;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BD5DF6A76D04B1F058CFE5535D9F331C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18358F0E042DE2B9A2C20024D5D4D006 /* Starscream-iOS10.2.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Starscream-iOS10.2/Starscream-iOS10.2-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Starscream-iOS10.2/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Starscream-iOS10.2/Starscream-iOS10.2.modulemap";
 				PRODUCT_NAME = Starscream;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1019,9 +1220,9 @@
 			};
 			name = Release;
 		};
-		D3FE2B5815809EAE829AA0F4E6033919 /* Debug */ = {
+		E87D618173171864B4AF3A2CBD864E28 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A14121F5B1654960894DABB42BC5BA65 /* SwiftIconFont.xcconfig */;
+			baseConfigurationReference = 6E2FA53A6E30EC8F546BF69CDD6E3CFA /* Pods-SanityTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1032,49 +1233,21 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SwiftIconFont/SwiftIconFont-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwiftIconFont/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-SanityTests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwiftIconFont/SwiftIconFont.modulemap";
-				PRODUCT_NAME = SwiftIconFont;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SanityTests/Pods-SanityTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SanityTests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		FA2C2B1ABE30CD9A14972B8807770116 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 294F332121D98A8ED15716F190D5244B /* Starscream.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Starscream/Starscream-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Starscream/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Starscream/Starscream.modulemap";
-				PRODUCT_NAME = Starscream;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1093,38 +1266,56 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5CD1B66A03657A7076347B118E7594DE /* Build configuration list for PBXNativeTarget "Starscream" */ = {
+		42909CDFC6433FE9BEA255212E2A5101 /* Build configuration list for PBXNativeTarget "TextFieldEffects-iOS11.0" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FA2C2B1ABE30CD9A14972B8807770116 /* Debug */,
-				CC9CFC4E80C124C5D961BE9976DCC38E /* Release */,
+				3871986CF235BF828E21F8DB5E0A1C6E /* Debug */,
+				B4F94BF570CF4566A156D2CDEDE20413 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		60A180EB0C1E38D7FC4346574383E03D /* Build configuration list for PBXNativeTarget "TextFieldEffects" */ = {
+		5E2E1800C3C7E290225082B04066DDC3 /* Build configuration list for PBXNativeTarget "Pods-Sanity" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				060085F08276748897B1F03180351656 /* Debug */,
-				86B04BACD0470BD0D07AAB1AE5F248BD /* Release */,
+				62E4210AB55457727F7EA1BB8FEAE19A /* Debug */,
+				68155B8071B5909CFC49E12F6821F8FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		884619B95638052085E5B4EB4CF05751 /* Build configuration list for PBXNativeTarget "SwiftIconFont" */ = {
+		7AC1B997BCE5A8EA4C54D21827B1AC81 /* Build configuration list for PBXNativeTarget "Starscream-iOS10.2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D3FE2B5815809EAE829AA0F4E6033919 /* Debug */,
-				2787B71C5286A3D98BA5B552A757C1E2 /* Release */,
+				226DB05B4F0F7C98EB9178E880365778 /* Debug */,
+				BD5DF6A76D04B1F058CFE5535D9F331C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ED8A6CD2D7D9F7DE60AF5676D15BB9F7 /* Build configuration list for PBXNativeTarget "Pods-Sanity" */ = {
+		CC5ABFDD6465D6B6C7F6131EE96D21B0 /* Build configuration list for PBXNativeTarget "TextFieldEffects-iOS10.2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9B2D7F61994327C54AC36DC51DF4A8E6 /* Debug */,
-				B33BBE21FDB7427036AD7EE51CBF2878 /* Release */,
+				8BA37259DBC136E470A537648C8E31D7 /* Debug */,
+				8FE2BC7ACCF0AC12370770808C2DF675 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8CD87015AEE7FC217222F86AEE109F8 /* Build configuration list for PBXNativeTarget "Starscream-iOS11.0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D8C09F2FC16812FC497F95BA1BDB3C5 /* Debug */,
+				1013FA71FC9211C1DBBC51F44E966300 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECE1AB08187D6ECB481527681714EAAA /* Build configuration list for PBXNativeTarget "Pods-SanityTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E87D618173171864B4AF3A2CBD864E28 /* Debug */,
+				268BDD027F8BA4DF346C5977E00FCDAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

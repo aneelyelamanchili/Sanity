@@ -4,33 +4,47 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-Pocket Change.xcscheme</key>
+		<key>Pods-Sanity.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
-		<key>Starscream.xcscheme</key>
+		<key>Pods-SanityTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
-		<key>SwiftIconFont.xcscheme</key>
+		<key>Starscream-iOS10.2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
-		<key>TextFieldEffects.xcscheme</key>
+		<key>Starscream-iOS11.0.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>6</integer>
+		</dict>
+		<key>TextFieldEffects-iOS10.2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>TextFieldEffects-iOS11.0.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

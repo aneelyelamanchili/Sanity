@@ -49,7 +49,7 @@ public class WebSocketEndpoint {
 		String printMe="";
 		try {
 			printMe = new String(b, "US-ASCII");
-			System.out.println(printMe);
+			System.out.println("received" + printMe);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
@@ -91,8 +91,9 @@ public class WebSocketEndpoint {
 
 	public void sendToSession(Session session, byte[] message) {
 		lock.lock();
-		
 		try {
+			String printMe = new String(message, "US-ASCII");
+			System.out.println("sending" + printMe);
 			ByteBuffer b = ByteBuffer.wrap(message);
 			session.getBasicRemote().sendBinary(b);
 		} catch (IOException ex) {

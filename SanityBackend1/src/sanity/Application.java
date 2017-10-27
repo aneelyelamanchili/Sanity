@@ -65,6 +65,9 @@ public class Application {
 			else if (message.get("message").equals("login")) {
 				wsep.sendToSession(session, toBinary(signIn(message, session, conn)));
 			}
+			else if (message.get("message").equals("logintest")) {
+				wsep.sendToSession(session, toBinary(signInTest(message, session, conn)));
+			}
 			else if (message.get("message").equals("createBigBudget")) {
 				wsep.sendToSession(session, toBinary(createBigBudget(message, session, conn)));
 			}
@@ -236,12 +239,17 @@ public class Application {
 				rs = st.executeQuery("SELECT * from TotalUsers WHERE Email='" + signinemail + "';");
 				if (rs.next()) {
 					if (rs.getString("Password").equals(signinpassword)) {
+						
+						response = getData(conn, session, rs.getInt("userID"));
+						System.out.println(response.toString());
 						response.put("message", "loginsuccess");
 						response.put("loginsuccess", "Logged in.");
 						response.put("email", rs.getString("Email"));
 						response.put("firstName", rs.getString("FirstName"));
 						response.put("lastName", rs.getString("LastName"));
 //						int userID = rs.getInt("userID");
+						
+						
 						
 						return response;
 					}
@@ -266,6 +274,57 @@ public class Application {
 			try {
 				response.put("message", "loginfail");
 				response.put("loginfailed", "Login failed.");
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return response;
+	    } catch (JSONException e) {
+			e.printStackTrace();
+		} return response;
+	}
+	public JSONObject signInTest(JSONObject message, Session session, Connection conn) {
+		JSONObject response = new JSONObject();
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = null;
+			String signinemail = (String) message.get("email");
+			String signinpassword = (String) message.get("password");
+			signinpassword.replaceAll("\\s+","");
+//			System.out.println();
+			if (signinemail.length() > 0 && signinpassword.length() > 0) {
+				rs = st.executeQuery("SELECT * from TotalUsers WHERE Email='" + signinemail + "';");
+				if (rs.next()) {
+					if (rs.getString("Password").equals(signinpassword)) {
+						response.put("message", "loginsuccesstest");
+						response.put("loginsuccesstest", "Logged in.");
+						response.put("email", rs.getString("Email"));
+						response.put("firstName", rs.getString("FirstName"));
+						response.put("lastName", rs.getString("LastName"));
+//						int userID = rs.getInt("userID");
+						
+						return response;
+					}
+					else {
+						response.put("message", "loginfailtest");
+						response.put("loginfailtest", "Incorrect password.");
+						return response;
+					}
+				}
+				else {
+					response.put("message", "loginfailtest");
+					response.put("loginfailtest", "Email doesn't exist.");
+					return response;
+				}
+			}
+			else {
+				response.put("message", "loginfailtest");
+				response.put("loginfailtest", "Please fill in all of the fields.");
+				return response;
+			}
+		} catch (SQLException sqle) {
+			try {
+				response.put("message", "loginfailtest");
+				response.put("loginfailtest", "Login failed.");
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -408,21 +467,16 @@ public class Application {
 		}
 		return hash;
 	}
-	
 	public JSONObject deleteBudget(JSONObject message, Session session, Connection conn) {
-		JSONObject response = new JSONObject(); 
+		JSONObject response = new JSONObject();
 		try {
 			Statement st = conn.createStatement();
-			ResultSet rs = null;
 			int id = message.getInt("budgetID");
 			
-			String deleteBudgetcmd = "DELETE FROM Budgets WHERE budgetID=" + id + ";"; 
-			st.execute(deleteBudgetcmd);
-			
+			String deleteBudget = "DELETE FROM Budgets WHERE budgetID=" + id + ";";
+			st.execute(deleteBudget);
 			response.put("message", "removebudgetsuccess");
-			response.put("removebudgetsuccess", "You removed a budget. Good job.");
-			return response;
-			
+			response.put("removebudgetsuccess", "You removed a category.");
 		} catch (SQLException sqle) {
 			try {
 				sqle.printStackTrace();
@@ -435,6 +489,83 @@ public class Application {
 			return response;
 		} catch (JSONException e) {
 			e.printStackTrace();
+		}
+		return response;
+	}
+	
+	public JSONObject deleteBigBudget(JSONObject message, Session session, Connection conn) {
+		JSONObject response = new JSONObject(); 
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = null;
+			int id = message.getInt("bigBudgetID");
+			
+			String deleteBudgetcmd = "DELETE FROM Budgets WHERE bigBudgetID=" + id + ";"; 
+			st.execute(deleteBudgetcmd);
+			
+			String deleteBigBudget = "DELETE FROM BigBudgets WHERE bigBudgetID=" + id + ";";
+			st.execute(deleteBigBudget);
+			
+			response.put("message", "removebigbudgetsuccess");
+			response.put("removebigbudgetsuccess", "You removed a budget and its categories.");
+			return response;
+			
+		} catch (SQLException sqle) {
+			try {
+				sqle.printStackTrace();
+				response.put("message", "removebigbudgetfailure");
+				response.put("removebigbudgetfailure", "SQLException in backend. ID not removed.");
+				return response;
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return response;
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return response;
+	}
+	
+	
+	
+	
+	public JSONObject getData(Connection conn, Session session, int userID) {
+		JSONObject response = new JSONObject();
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery("SELECT * FROM BigBudgets WHERE userID = " + userID + ";");
+			response.put("userID", userID);
+			int budcounter = 0;
+			while (rs.next()) {
+//				System.out.println(rs.getString("BigBudgetName"));
+				budcounter++;
+				JSONObject currBudget = new JSONObject();
+				int bbID = rs.getInt("bigBudgetID");
+				
+				currBudget.put("budgetName", rs.getString("BigBudgetName"));
+				currBudget.put("budgetAmount", rs.getDouble("BigBudgetAmount"));
+				
+				Statement st1 = conn.createStatement();
+				ResultSet rs1 = st1.executeQuery("SELECT * FROM Budgets WHERE bigBudgetID = " + bbID + ";");
+				int catcounter = 0;
+				while (rs1.next()) {
+//					System.out.println("add category");
+					catcounter++;
+					JSONObject currCat = new JSONObject();
+					
+					currCat.put("categoryName", rs1.getString("BudgetName"));
+					currCat.put("categoryAmount", rs1.getDouble("BudgetAmount"));
+					
+					currBudget.put("category" + catcounter, currCat);
+				}
+				currBudget.put("size", catcounter);
+//				System.out.println(currBudget.toString());
+				response.put("budget" + budcounter, currBudget);
+				
+			}
+			response.put("numBudgets", budcounter);
+		} catch (JSONException | SQLException e) {
+			System.out.println("Exception caught in getData." + e.getMessage());
 		}
 		return response;
 	}

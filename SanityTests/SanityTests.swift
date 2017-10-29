@@ -144,6 +144,272 @@ class SanityTests: XCTestCase {
         XCTAssertEqual(true, SanityTests.client.testPassed)
     }
     
+    
+    func testBudgetAmountNegative() {
+        let budgetAmount = -1.0
+        var descriptionArray = [String]()
+        var historyArray = [String]()
+        var markerLatitude = [Double]()
+        var markerLongitude = [Double]()
+
+        SanityTests.client.establishConnection {
+            
+        }
+        
+        usleep(2000000)
+        
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("createBigBudget", forKey: "message")
+        
+        json.setValue("testname", forKey: "budgetName")
+        json.setValue(budgetAmount, forKey: "budgetAmount")
+        json.setValue(descriptionArray, forKey: "descriptionArray")
+        json.setValue("0", forKey: "userID")
+        json.setValue(historyArray, forKey: "historyArray")
+        json.setValue(0.0, forKey: "totalAmountSpent")
+        json.setValue(0.0, forKey: "totalAmountAdded")
+        json.setValue(0, forKey: "barGraphColor")
+        json.setValue(markerLatitude, forKey: "markerLatitude")
+        json.setValue(markerLongitude, forKey: "markerLongitude")
+        json.setValue("testResetFrequency", forKey: "resetFrequency")
+        json.setValue("testResetStartDate", forKey: "resetStartDate")
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        print(jsonString)
+        print(jsonData)
+        
+        SanityTests.client.socket.write(data: jsonData as Data)
+        
+        usleep(5000000)
+        
+        XCTAssertEqual(true, SanityTests.client.testPassed)
+    }
+    
+    func testBudgetAmountString() {
+        let budgetAmount = "testAmount"
+        var descriptionArray = [String]()
+        var historyArray = [String]()
+        var markerLatitude = [Double]()
+        var markerLongitude = [Double]()
+        
+        SanityTests.client.establishConnection {
+            
+        }
+        
+        usleep(2000000)
+        
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("createBigBudget", forKey: "message")
+        
+        json.setValue("testname", forKey: "budgetName")
+        json.setValue(budgetAmount, forKey: "budgetAmount")
+        json.setValue(descriptionArray, forKey: "descriptionArray")
+        json.setValue("0", forKey: "userID")
+        json.setValue(historyArray, forKey: "historyArray")
+        json.setValue(0.0, forKey: "totalAmountSpent")
+        json.setValue(0.0, forKey: "totalAmountAdded")
+        json.setValue(0, forKey: "barGraphColor")
+        json.setValue(markerLatitude, forKey: "markerLatitude")
+        json.setValue(markerLongitude, forKey: "markerLongitude")
+        json.setValue("testResetFrequency", forKey: "resetFrequency")
+        json.setValue("testResetStartDate", forKey: "resetStartDate")
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        print(jsonString)
+        print(jsonData)
+        
+        SanityTests.client.socket.write(data: jsonData as Data)
+        
+        usleep(5000000)
+        
+        XCTAssertEqual(true, SanityTests.client.testPassed)
+    }
+    
+    func testLargePositiveBudget() {
+        let budgetAmount = "999999999999999"
+        var descriptionArray = [String]()
+        var historyArray = [String]()
+        var markerLatitude = [Double]()
+        var markerLongitude = [Double]()
+        
+        SanityTests.client.establishConnection {
+            
+        }
+        
+        usleep(2000000)
+        
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("createBigBudget", forKey: "message")
+        
+        json.setValue("testname", forKey: "budgetName")
+        json.setValue(budgetAmount, forKey: "budgetAmount")
+        json.setValue(descriptionArray, forKey: "descriptionArray")
+        json.setValue("0", forKey: "userID")
+        json.setValue(historyArray, forKey: "historyArray")
+        json.setValue(0.0, forKey: "totalAmountSpent")
+        json.setValue(0.0, forKey: "totalAmountAdded")
+        json.setValue(0, forKey: "barGraphColor")
+        json.setValue(markerLatitude, forKey: "markerLatitude")
+        json.setValue(markerLongitude, forKey: "markerLongitude")
+        json.setValue("testResetFrequency", forKey: "resetFrequency")
+        json.setValue("testResetStartDate", forKey: "resetStartDate")
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        print(jsonString)
+        print(jsonData)
+        
+        SanityTests.client.socket.write(data: jsonData as Data)
+        
+        usleep(5000000)
+        
+        XCTAssertEqual(true, SanityTests.client.testPassed)
+    }
+    
+    
+    func testDeleteBudget() {
+        
+        SanityTests.client.establishConnection {
+            
+        }
+        
+        usleep(2000000)
+        
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("deleteBigBudget", forKey: "message")
+        
+        json.setValue(0, forKey: "budgetID")
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        print(jsonString)
+        print(jsonData)
+        
+        SanityTests.client.socket.write(data: jsonData as Data)
+        
+        usleep(5000000)
+        
+        XCTAssertEqual(true, SanityTests.client.testPassed)
+    }
+    
+    func testAddToBudget() {
+        let budgetAmount = 5000
+        var descriptionArray = [String]()
+        var historyArray = [String]()
+        var markerLatitude = [Double]()
+        var markerLongitude = [Double]()
+        
+        // Create budget with amount of $5000
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("createBigBudget", forKey: "message")
+        
+        json.setValue("testname", forKey: "budgetName")
+        json.setValue(budgetAmount, forKey: "budgetAmount")
+        json.setValue(descriptionArray, forKey: "descriptionArray")
+        json.setValue("0", forKey: "userID")
+        json.setValue(historyArray, forKey: "historyArray")
+        json.setValue(0.0, forKey: "totalAmountSpent")
+        json.setValue(0.0, forKey: "totalAmountAdded")
+        json.setValue(0, forKey: "barGraphColor")
+        json.setValue(markerLatitude, forKey: "markerLatitude")
+        json.setValue(markerLongitude, forKey: "markerLongitude")
+        json.setValue("testResetFrequency", forKey: "resetFrequency")
+        json.setValue("testResetStartDate", forKey: "resetStartDate")
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        print(jsonString)
+        print(jsonData)
+        
+        SanityTests.client.socket.write(data: jsonData as Data)
+        
+        // Add to $100 to budget that was just created
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("createBigBudget", forKey: "message")
+        
+        json.setValue("testname", forKey: "budgetName")
+        json.setValue(budgetAmount, forKey: "budgetAmount")
+        json.setValue(descriptionArray, forKey: "descriptionArray")
+        json.setValue("0", forKey: "userID")
+        json.setValue(historyArray, forKey: "historyArray")
+        json.setValue(0.0, forKey: "totalAmountSpent")
+        json.setValue(0.0, forKey: "totalAmountAdded")
+        json.setValue(0, forKey: "barGraphColor")
+        json.setValue(markerLatitude, forKey: "markerLatitude")
+        json.setValue(markerLongitude, forKey: "markerLongitude")
+        json.setValue("testResetFrequency", forKey: "resetFrequency")
+        json.setValue("testResetStartDate", forKey: "resetStartDate")
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        print(jsonString)
+        print(jsonData)
+        
+        SanityTests.client.socket.write(data: jsonData as Data)
+        
+    }
+    
+    func testBarChart() {
+        //
+        let budgetAmount = 5000
+        var descriptionArray = [String]()
+        var historyArray = [String]()
+        var markerLatitude = [Double]()
+        var markerLongitude = [Double]()
+        
+        // Create budget with amount of $5000
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("createBigBudget", forKey: "message")
+        
+        json.setValue("testname", forKey: "budgetName")
+        json.setValue(budgetAmount, forKey: "budgetAmount")
+        json.setValue(descriptionArray, forKey: "descriptionArray")
+        json.setValue("0", forKey: "userID")
+        json.setValue(historyArray, forKey: "historyArray")
+        json.setValue(0.0, forKey: "totalAmountSpent")
+        json.setValue(0.0, forKey: "totalAmountAdded")
+        json.setValue(0, forKey: "barGraphColor")
+        json.setValue(markerLatitude, forKey: "markerLatitude")
+        json.setValue(markerLongitude, forKey: "markerLongitude")
+        json.setValue("testResetFrequency", forKey: "resetFrequency")
+        json.setValue("testResetStartDate", forKey: "resetStartDate")
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        print(jsonString)
+        print(jsonData)
+        
+        SanityTests.client.socket.write(data: jsonData as Data)
+        
+        // Add to $100 to budget that was just created
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("createBigBudget", forKey: "message")
+        
+        json.setValue("testname", forKey: "budgetName")
+        json.setValue(budgetAmount, forKey: "budgetAmount")
+        json.setValue(descriptionArray, forKey: "descriptionArray")
+        json.setValue("0", forKey: "userID")
+        json.setValue(historyArray, forKey: "historyArray")
+        json.setValue(0.0, forKey: "totalAmountSpent")
+        json.setValue(0.0, forKey: "totalAmountAdded")
+        json.setValue(0, forKey: "barGraphColor")
+        json.setValue(markerLatitude, forKey: "markerLatitude")
+        json.setValue(markerLongitude, forKey: "markerLongitude")
+        json.setValue("testResetFrequency", forKey: "resetFrequency")
+        json.setValue("testResetStartDate", forKey: "resetStartDate")
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        print(jsonString)
+        print(jsonData)
+        
+        SanityTests.client.socket.write(data: jsonData as Data)
+        
+    }
+    
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {

@@ -11,10 +11,10 @@ import Starscream
 
 class Client: NSObject, WebSocketDelegate {
     static let sharedInstance = Client()
-    var testPassed:Bool!
+    static var testPassed:Bool!
     
     var json: [String: Any]?
-    var socket = WebSocket(url: URL(string: "ws://a7edb630.ngrok.io/SanityBackend1/ws")!)
+    var socket = WebSocket(url: URL(string: "ws://de34c71f.ngrok.io/SanityBackend1/ws")!)
     
     func websocketDidConnect(socket: WebSocketClient) {
             print("websocket is connected")
@@ -33,6 +33,7 @@ class Client: NSObject, WebSocketDelegate {
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        print("DID RECEIVE DATA")
         print("Received data: \(data)")
         
         if let str = String(data: data, encoding: String.Encoding.utf8) {
@@ -47,24 +48,25 @@ class Client: NSObject, WebSocketDelegate {
             } else if(json!["message"] as? String == "loginfailtest" || json?["message"] as? String == "loginsuccesstest") {
                 print("GOT HERE TO TEST")
                 if(json!["message"] as? String == "loginfailtest") {
-                    testPassed = false
+                    Client.testPassed = false
                 } else if (json!["message"] as? String == "loginsuccesstest") {
                     print("GOT IN TRUE")
-                    testPassed = true
+                    Client.testPassed = true
                 }
-                print(testPassed)
+                print(Client.testPassed)
                 //TODO: adjust for wrong email or wrong password
             } else if(json!["message"] as? String == "signupfailtest" || json?["message"] as? String == "signupsuccesstest") {
+                print("GOT INTO SIGNUP TEST")
                 if(json!["message"] as? String == "signupfailtest") {
-                    testPassed = false
+                    Client.testPassed = false
                 } else if (json!["message"] as? String == "signupsuccesstest") {
-                    testPassed = true
+                    Client.testPassed = true
                 }
             } else if(json!["message"] as? String == "passwordSuccessTest" || json!["message"] as? String == "passwordFailTest") {
                 if(json!["message"] as? String == "passwordFailTest") {
-                    testPassed = false
+                    Client.testPassed = false
                 } else if (json!["message"] as? String == "passwordSuccessTest") {
-                    testPassed = true
+                    Client.testPassed = true
                 }
             }
         } else {

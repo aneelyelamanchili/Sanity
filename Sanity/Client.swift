@@ -68,7 +68,56 @@ class Client: NSObject, WebSocketDelegate {
                 } else if (json!["message"] as? String == "passwordSuccessTest") {
                     Client.testPassed = true
                 }
+            } else if(json!["message"] as? String == "deleteBigBudgetSuccessTest" || json!["message"] as? String == "deleteBigBudgetFailTest") {
+                if(json!["message"] as? String == "deleteBigBudgetFailTest") {
+                    Client.testPassed = false
+                } else if (json!["message"] as? String == "deleteBigBudgetSuccessTest") {
+                    Client.testPassed = true
+                }
+            } else if(json!["message"] as? String == "createBigBudgetSuccessTest" || json!["message"] as? String == "createBigBudgetFailTest") {
+                if(json!["message"] as? String == "createBigBudgetFailTest") {
+                    Client.testPassed = false
+                } else if (json!["message"] as? String == "createBigBudgetSuccessTest") {
+                    Client.testPassed = true
+                }
+            } else if(json!["message"] as? String == "createBudgetSuccessTest" || json!["message"] as? String == "createBudgetFailTest") {
+                if(json!["message"] as? String == "createBudgetFailTest") {
+                    Client.testPassed = false
+                } else if (json!["message"] as? String == "createBudgetSuccessTest") {
+                    Client.testPassed = true
+                }
+            } else if(json!["message"] as? String == "limitNotificationSuccessTest" || json!["message"] as? String == "limitNotificationFailTest") {
+                if(json!["message"] as? String == "limitNotificationFailTest") {
+                    Client.testPassed = false
+                } else if (json!["message"] as? String == "limitNotificationSuccessTest") {
+                    Client.testPassed = true
+                }
+            } else if(json!["message"] as? String == "locationSuccessTest" || json!["message"] as? String == "locationFailTest") {
+                if(json!["message"] as? String == "locationFailTest") {
+                    Client.testPassed = false
+                } else if (json!["message"] as? String == "locationSuccessTest") {
+                    Client.testPassed = true
+                }
+            } else if(json!["message"] as? String == "transactionHistorySuccessTest" || json!["message"] as? String == "transactionHistoryFailTest") {
+                if(json!["message"] as? String == "transactionHistoryFailTest") {
+                    Client.testPassed = false
+                } else if (json!["message"] as? String == "transactionHistorySuccessTest") {
+                    Client.testPassed = true
+                }
+            } else if(json!["message"] as? String == "addToBudgetSuccessTest" || json!["message"] as? String == "addToBudgetFailTest") {
+                if(json!["message"] as? String == "addToBudgetFailTest") {
+                    Client.testPassed = false
+                } else if (json!["message"] as? String == "addToBudgetSuccessTest") {
+                    Client.testPassed = true
+                }
+            } else if(json!["message"] as? String == "subtractFromBudgetSuccessTest" || json!["message"] as? String == "subtractFromBudgetFailTest") {
+                if(json!["message"] as? String == "subtractFromBudgetFailTest") {
+                    Client.testPassed = false
+                } else if (json!["message"] as? String == "subtractFromBudgetSuccessTest") {
+                    Client.testPassed = true
+                }
             }
+            
         } else {
             print("not a valid UTF-8 sequence")
         }

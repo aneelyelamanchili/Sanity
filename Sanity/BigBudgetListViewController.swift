@@ -142,8 +142,8 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
                     let json:NSMutableDictionary = NSMutableDictionary()
                     json.setValue("createBigBudget", forKey: "message")
 
-                    json.setValue(budget.name, forKey: "budgetName")
-                    json.setValue(budget.balance, forKey: "budgetAmount")
+                    json.setValue(budget.name, forKey: "bigBudgetName")
+                    json.setValue(budget.balance, forKey: "bigBudgetAmount")
                     json.setValue(budget.descriptionArray, forKey: "descriptionArray")
                     json.setValue(Client.sharedInstance.json?["userID"], forKey: "userID")
                     json.setValue(budget.historyArray, forKey: "historyArray")

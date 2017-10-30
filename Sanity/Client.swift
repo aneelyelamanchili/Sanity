@@ -93,6 +93,8 @@ class Client: NSObject, WebSocketDelegate {
                     Client.testPassed = true
                 }
             } else if(json!["message"] as? String == "locationSuccessTest" || json!["message"] as? String == "locationFailTest") {
+                print("MESSAGE IS: ")
+                print(json!["message"] as? String)
                 if(json!["message"] as? String == "locationFailTest") {
                     Client.testPassed = false
                 } else if (json!["message"] as? String == "locationSuccessTest") {

@@ -211,7 +211,6 @@
 				9AA401411E683F95006D4D70 /* Pocket_Change.xcdatamodeld */,
 				9A27BF341E0A01B100146EEA /* Assets.xcassets */,
 				9A27BF361E0A01B100146EEA /* LaunchScreen.storyboard */,
-				9A27BF391E0A01B100146EEA /* Info.plist */,
 				9A213F0F1E6A7D2D0037C182 /* Google_Maps_Night_Theme.json */,
 				11A9F2081F9435A00034CC7B /* LoginViewController.swift */,
 				11A9F20D1F9435C90034CC7B /* SignUpViewController.swift */,
@@ -220,6 +219,7 @@
 				34AF9E381F94B014005DF644 /* MyBigBudget+CoreDataClass.swift */,
 				34AF9E3A1F94B032005DF644 /* MyBigBudget+CoreDataProperties.swift */,
 				34AF9E3C1F94B06A005DF644 /* BigBudgetListViewController.swift */,
+				9A27BF391E0A01B100146EEA /* Info.plist */,
 			);
 			path = Sanity;
 			sourceTree = "<group>";

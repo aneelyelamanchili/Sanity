@@ -99,7 +99,7 @@ class SanityTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Received response from backend")
         let firstname = "David"
         let lastname = "Sealand"
-        let password = "Hello"
+        let password = "sealand"
         let email = "sealand@usc.edu"
 
         usleep(2000000)
@@ -114,18 +114,17 @@ class SanityTests: XCTestCase {
         let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
         print(jsonString)
         print(jsonData)
-        
+
         client.socket.write(data: jsonData as Data)
-        
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
             let testPassed = Client.testPassed
             print(testPassed)
-            print("GOT INTO DISPATCH")
-            
-            XCTAssertEqual(true, testPassed)
+            print("GOT INTO SIGNUP DISPATCH")
+
+            XCTAssertEqual(false, testPassed)
         })
-        
+
         usleep(5000000)
     }
 
@@ -143,7 +142,6 @@ class SanityTests: XCTestCase {
         var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
 
         client.socket.write(data: jsonData as Data)
-
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
             let testPassed = Client.testPassed
@@ -169,10 +167,10 @@ class SanityTests: XCTestCase {
         let json:NSMutableDictionary = NSMutableDictionary()
         json.setValue("createBigBudget", forKey: "message")
         
-        json.setValue("testname", forKey: "budgetName")
-        json.setValue(budgetAmount, forKey: "budgetAmount")
+        json.setValue("testname", forKey: "budgetName") // need
+        json.setValue(budgetAmount, forKey: "budgetAmount") // need
         json.setValue(descriptionArray, forKey: "descriptionArray")
-        json.setValue("0", forKey: "userID")
+        json.setValue(1, forKey: "userID") // need
         json.setValue(historyArray, forKey: "historyArray")
         json.setValue(0.0, forKey: "totalAmountSpent")
         json.setValue(0.0, forKey: "totalAmountAdded")
@@ -195,7 +193,7 @@ class SanityTests: XCTestCase {
         json2.setValue("createBudget", forKey: "message")
         
         json2.setValue("testname", forKey: "budgetName")
-        json2.setValue(0, forKey: "bigBudgetID")
+        json2.setValue(1, forKey: "bigBudgetID")
         json2.setValue(categoryAmount, forKey: "budgetAmount")
         
         let jsonData2 = try! JSONSerialization.data(withJSONObject: json2, options: JSONSerialization.WritingOptions())
@@ -207,12 +205,12 @@ class SanityTests: XCTestCase {
         
         // Add to $100 to category that was just created
         let json3:NSMutableDictionary = NSMutableDictionary()
-        json3.setValue("addToBudget", forKey: "message")
+        json3.setValue("addToBudgetTest", forKey: "message")
         
         json3.setValue("testname", forKey: "budgetName")
-        json3.setValue(0, forKey: "budgetID")
+        json3.setValue(1, forKey: "budgetID")
         json3.setValue(100, forKey: "amountToAdd")
-        json3.setValue("0", forKey: "userID") // do we need this? maybe for later?
+        json3.setValue(1, forKey: "userID") // do we need this? maybe for later?
         
         let jsonData3 = try! JSONSerialization.data(withJSONObject: json3, options: JSONSerialization.WritingOptions())
         var jsonString3 = NSString(data: jsonData3, encoding: String.Encoding.utf8.rawValue)! as String
@@ -230,7 +228,7 @@ class SanityTests: XCTestCase {
         })
         
         usleep(5000000)
-        
+        //addToBudgetSuccessTest
     }
     
     // Create bigbudget, category in budget of 5k, then subtract 100
@@ -249,7 +247,7 @@ class SanityTests: XCTestCase {
         json.setValue("testname", forKey: "budgetName")
         json.setValue(budgetAmount, forKey: "budgetAmount")
         json.setValue(descriptionArray, forKey: "descriptionArray")
-        json.setValue("0", forKey: "userID")
+        json.setValue(1, forKey: "userID")
         json.setValue(historyArray, forKey: "historyArray")
         json.setValue(0.0, forKey: "totalAmountSpent")
         json.setValue(0.0, forKey: "totalAmountAdded")
@@ -272,7 +270,7 @@ class SanityTests: XCTestCase {
         json2.setValue("createBudget", forKey: "message")
         
         json2.setValue("testname", forKey: "budgetName")
-        json2.setValue(0, forKey: "bigBudgetID")
+        json2.setValue(1, forKey: "bigBudgetID")
         json2.setValue(categoryAmount, forKey: "budgetAmount")
         
         let jsonData2 = try! JSONSerialization.data(withJSONObject: json2, options: JSONSerialization.WritingOptions())
@@ -284,12 +282,12 @@ class SanityTests: XCTestCase {
         
         // Subtract to $100 to category that was just created
         let json3:NSMutableDictionary = NSMutableDictionary()
-        json3.setValue("subtractFromBudget", forKey: "message")
+        json3.setValue("subtractFromBudgetTest", forKey: "message")
         
         json3.setValue("testname", forKey: "budgetName")
-        json3.setValue(0, forKey: "budgetID")
-        json3.setValue(100, forKey: "amountToAdd")
-        json3.setValue("0", forKey: "userID") // do we need this? maybe for later?
+        json3.setValue(1, forKey: "budgetID")
+        json3.setValue(-100, forKey: "amountToAdd")
+        json3.setValue(1, forKey: "userID") // do we need this? maybe for later?
         
         let jsonData3 = try! JSONSerialization.data(withJSONObject: json3, options: JSONSerialization.WritingOptions())
         var jsonString3 = NSString(data: jsonData3, encoding: String.Encoding.utf8.rawValue)! as String
@@ -307,7 +305,7 @@ class SanityTests: XCTestCase {
         })
         
         usleep(5000000)
-        
+        // subtractFromBudgetSuccessTest
     }
     
     func testBarChart() {
@@ -331,7 +329,7 @@ class SanityTests: XCTestCase {
         json.setValue("testname", forKey: "budgetName")
         json.setValue(budgetAmount, forKey: "budgetAmount")
         json.setValue(descriptionArray, forKey: "descriptionArray")
-        json.setValue("0", forKey: "userID")
+        json.setValue(1, forKey: "userID")
         json.setValue(historyArray, forKey: "historyArray")
         json.setValue(0.0, forKey: "totalAmountSpent")
         json.setValue(0.0, forKey: "totalAmountAdded")
@@ -354,7 +352,7 @@ class SanityTests: XCTestCase {
         json2.setValue("createBudget", forKey: "message")
         
         json2.setValue("testname", forKey: "budgetName")
-        json2.setValue(0, forKey: "bigBudgetID")
+        json2.setValue(1, forKey: "bigBudgetID")
         json2.setValue(categoryAmount, forKey: "budgetAmount")
         
         let jsonData2 = try! JSONSerialization.data(withJSONObject: json2, options: JSONSerialization.WritingOptions())
@@ -366,12 +364,12 @@ class SanityTests: XCTestCase {
         
         // Add to $100 to category that was just created
         let json3:NSMutableDictionary = NSMutableDictionary()
-        json3.setValue("subtractFromBudget", forKey: "message")
+        json3.setValue("addToBudgetTest", forKey: "message")
         
         json3.setValue("testname", forKey: "budgetName")
-        json3.setValue(0, forKey: "budgetID")
+        json3.setValue(1, forKey: "budgetID")
         json3.setValue(100, forKey: "amountToAdd")
-        json3.setValue("0", forKey: "userID") // do we need this? maybe for later?
+        json3.setValue(1, forKey: "userID") // do we need this? maybe for later?
         
         let jsonData3 = try! JSONSerialization.data(withJSONObject: json3, options: JSONSerialization.WritingOptions())
         var jsonString3 = NSString(data: jsonData3, encoding: String.Encoding.utf8.rawValue)! as String
@@ -390,6 +388,7 @@ class SanityTests: XCTestCase {
         })
         
         usleep(5000000)
+        //addToBudgetSuccessTest
     }
     
     func testHistoryOfTransactions() {
@@ -407,7 +406,7 @@ class SanityTests: XCTestCase {
         json.setValue("testname", forKey: "budgetName")
         json.setValue(budgetAmount, forKey: "budgetAmount")
         json.setValue(descriptionArray, forKey: "descriptionArray")
-        json.setValue("0", forKey: "userID")
+        json.setValue(1, forKey: "userID")
         json.setValue(historyArray, forKey: "historyArray")
         json.setValue(0.0, forKey: "totalAmountSpent")
         json.setValue(0.0, forKey: "totalAmountAdded")
@@ -430,7 +429,7 @@ class SanityTests: XCTestCase {
         json2.setValue("createBudget", forKey: "message")
         
         json2.setValue("testname", forKey: "budgetName")
-        json2.setValue(0, forKey: "bigBudgetID")
+        json2.setValue(1, forKey: "bigBudgetID")
         json2.setValue(categoryAmount, forKey: "budgetAmount")
         
         let jsonData2 = try! JSONSerialization.data(withJSONObject: json2, options: JSONSerialization.WritingOptions())
@@ -442,11 +441,10 @@ class SanityTests: XCTestCase {
         
         // Add to $100 to category that was just created
         let json3:NSMutableDictionary = NSMutableDictionary()
-        json3.setValue("addToBudget", forKey: "message")
-        json3.setValue("testname", forKey: "budgetName")
-        json3.setValue(0, forKey: "budgetID")
+        json3.setValue("transactionHistoryTest", forKey: "message")
+        json3.setValue(1, forKey: "budgetID")
         json3.setValue(100, forKey: "amountToAdd")
-        json3.setValue("0", forKey: "userID") // do we need this? maybe for later?
+        json3.setValue(1, forKey: "userID") // do we need this? maybe for later?
         
         let jsonData3 = try! JSONSerialization.data(withJSONObject: json3, options: JSONSerialization.WritingOptions())
         var jsonString3 = NSString(data: jsonData3, encoding: String.Encoding.utf8.rawValue)! as String
@@ -465,6 +463,7 @@ class SanityTests: XCTestCase {
         })
         
         usleep(5000000)
+        //transactionHistorySuccessTest
     }
     
     func testHistoryLocations() {
@@ -479,10 +478,10 @@ class SanityTests: XCTestCase {
         let json:NSMutableDictionary = NSMutableDictionary()
         json.setValue("createBigBudget", forKey: "message")
         
-        json.setValue("testname", forKey: "budgetName")
-        json.setValue(budgetAmount, forKey: "budgetAmount")
+        json.setValue("testname", forKey: "bigBudgetName")
+        json.setValue(budgetAmount, forKey: "bigBudgetAmount")
         json.setValue(descriptionArray, forKey: "descriptionArray")
-        json.setValue("0", forKey: "userID")
+        json.setValue(1, forKey: "userID")
         json.setValue(historyArray, forKey: "historyArray")
         json.setValue(0.0, forKey: "totalAmountSpent")
         json.setValue(0.0, forKey: "totalAmountAdded")
@@ -505,7 +504,7 @@ class SanityTests: XCTestCase {
         json2.setValue("createBudget", forKey: "message")
         
         json2.setValue("testname", forKey: "budgetName")
-        json2.setValue(0, forKey: "bigBudgetID")
+        json2.setValue(1, forKey: "bigBudgetID")
         json2.setValue(categoryAmount, forKey: "budgetAmount")
         
         let jsonData2 = try! JSONSerialization.data(withJSONObject: json2, options: JSONSerialization.WritingOptions())
@@ -517,12 +516,12 @@ class SanityTests: XCTestCase {
         
         // Add to $100 to category that was just created
         let json3:NSMutableDictionary = NSMutableDictionary()
-        json3.setValue("addToBudget", forKey: "message")
+        json3.setValue("locationTest", forKey: "message")
         
         json3.setValue("testname", forKey: "budgetName")
-        json3.setValue(0, forKey: "budgetID")
+        json3.setValue(1, forKey: "budgetID")
         json3.setValue(100, forKey: "amountToAdd")
-        json3.setValue("0", forKey: "userID") // do we need this? maybe for later?
+        json3.setValue(1, forKey: "userID") // do we need this? maybe for later?
         json3.setValue(100, forKey: "markerLatitude")
         json3.setValue(100, forKey: "markerLongitude")
         
@@ -543,6 +542,7 @@ class SanityTests: XCTestCase {
         })
         
         usleep(5000000)
+        // locationSuccessTest
     }
     
     func testTransactionLimitNotification() {
@@ -560,7 +560,7 @@ class SanityTests: XCTestCase {
         json.setValue("testname", forKey: "budgetName")
         json.setValue(budgetAmount, forKey: "budgetAmount")
         json.setValue(descriptionArray, forKey: "descriptionArray")
-        json.setValue("0", forKey: "userID")
+        json.setValue(1, forKey: "userID")
         json.setValue(historyArray, forKey: "historyArray")
         json.setValue(0.0, forKey: "totalAmountSpent")
         json.setValue(0.0, forKey: "totalAmountAdded")
@@ -582,7 +582,7 @@ class SanityTests: XCTestCase {
         json2.setValue("createBudget", forKey: "message")
         
         json2.setValue("testname", forKey: "budgetName")
-        json2.setValue(0, forKey: "bigBudgetID")
+        json2.setValue(1, forKey: "bigBudgetID")
         json2.setValue(categoryAmount, forKey: "budgetAmount")
         
         let jsonData2 = try! JSONSerialization.data(withJSONObject: json2, options: JSONSerialization.WritingOptions())
@@ -592,14 +592,14 @@ class SanityTests: XCTestCase {
         
         client.socket.write(data: jsonData2 as Data)
         
-        // Add to $100 to category that was just created
+        // subtract 99 from category that was just created
         let json3:NSMutableDictionary = NSMutableDictionary()
-        json3.setValue("subtractFromBudget", forKey: "message")
+        json3.setValue("limitNotificationTest", forKey: "message")
         
         json3.setValue("testname", forKey: "budgetName")
-        json3.setValue(0, forKey: "budgetID")
+        json3.setValue(1, forKey: "budgetID")
         json3.setValue(99, forKey: "amountToSubtract")
-        json3.setValue("0", forKey: "userID") // do we need this? maybe for later?
+        json3.setValue(1, forKey: "userID") // do we need this? maybe for later?
         json3.setValue(100, forKey: "markerLatitude")
         json3.setValue(100, forKey: "markerLongitude")
         
@@ -620,9 +620,11 @@ class SanityTests: XCTestCase {
         })
         
         usleep(5000000)
+        
+        //limitNotificationSuccessTest
     }
     
-    func createBudgetSuccessful() {
+    func testCreateBudgetSuccessful() {
         let budgetAmount = 10000
         let categoryAmount = 100
         var descriptionArray = [String]()
@@ -632,12 +634,12 @@ class SanityTests: XCTestCase {
         
         // Create budget
         let json:NSMutableDictionary = NSMutableDictionary()
-        json.setValue("createBigBudget", forKey: "message")
+        json.setValue("createBigBudgetTest", forKey: "message")
         
         json.setValue("testname", forKey: "budgetName")
         json.setValue(budgetAmount, forKey: "budgetAmount")
         json.setValue(descriptionArray, forKey: "descriptionArray")
-        json.setValue("0", forKey: "userID")
+        json.setValue(1, forKey: "userID")
         json.setValue(historyArray, forKey: "historyArray")
         json.setValue(0.0, forKey: "totalAmountSpent")
         json.setValue(0.0, forKey: "totalAmountAdded")
@@ -664,6 +666,70 @@ class SanityTests: XCTestCase {
         })
         
         usleep(5000000)
+        
+        //createBigBudgetSuccessTest
+    }
+    
+    func testCreateCategorySuccessful() {
+        let budgetAmount = 10000
+        let categoryAmount = 100
+        var descriptionArray = [String]()
+        var historyArray = [String]()
+        var markerLatitude = [Double]()
+        var markerLongitude = [Double]()
+        
+        // Create budget
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("createBigBudget", forKey: "message")
+        
+        json.setValue("testname", forKey: "budgetName")
+        json.setValue(budgetAmount, forKey: "budgetAmount")
+        json.setValue(descriptionArray, forKey: "descriptionArray")
+        json.setValue(1, forKey: "userID")
+        json.setValue(historyArray, forKey: "historyArray")
+        json.setValue(0.0, forKey: "totalAmountSpent")
+        json.setValue(0.0, forKey: "totalAmountAdded")
+        json.setValue(0, forKey: "barGraphColor")
+        json.setValue(markerLatitude, forKey: "markerLatitude")
+        json.setValue(markerLongitude, forKey: "markerLongitude")
+        json.setValue("testResetFrequency", forKey: "resetFrequency")
+        json.setValue("testResetStartDate", forKey: "resetStartDate")
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        print(jsonString)
+        print(jsonData)
+        
+        client.socket.write(data: jsonData as Data)
+        
+        
+        // Create category with amount of $100
+        let json2:NSMutableDictionary = NSMutableDictionary()
+        json2.setValue("createBudgetTest", forKey: "message")
+        
+        json2.setValue("testname", forKey: "budgetName")
+        json2.setValue(1, forKey: "bigBudgetID")
+        json2.setValue(categoryAmount, forKey: "budgetAmount")
+        
+        let jsonData2 = try! JSONSerialization.data(withJSONObject: json2, options: JSONSerialization.WritingOptions())
+        var jsonString2 = NSString(data: jsonData2, encoding: String.Encoding.utf8.rawValue)! as String
+        print(jsonString2)
+        print(jsonData2)
+        
+        client.socket.write(data: jsonData2 as Data)
+        
+        // Adds to budget, and then sealand checks if the history of transactions is not 0
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+            let testPassed = Client.testPassed
+            print(testPassed)
+            print("GOT INTO DISPATCH")
+            
+            XCTAssertEqual(true, testPassed)
+        })
+        
+        usleep(5000000)
+        
+        //createBudgetSuccessTest
     }
     
     func testBudgetAmountNegative() {
@@ -676,12 +742,12 @@ class SanityTests: XCTestCase {
         usleep(2000000)
 
         let json:NSMutableDictionary = NSMutableDictionary()
-        json.setValue("createBigBudget", forKey: "message")
+        json.setValue("createBigBudgetTest", forKey: "message")
 
         json.setValue("testname", forKey: "budgetName")
         json.setValue(budgetAmount, forKey: "budgetAmount")
         json.setValue(descriptionArray, forKey: "descriptionArray")
-        json.setValue("0", forKey: "userID")
+        json.setValue(1, forKey: "userID")
         json.setValue(historyArray, forKey: "historyArray")
         json.setValue(0.0, forKey: "totalAmountSpent")
         json.setValue(0.0, forKey: "totalAmountAdded")
@@ -707,8 +773,10 @@ class SanityTests: XCTestCase {
         })
         
         usleep(5000000)
+        
+        //createBigBudgetSuccessTest
     }
-
+    
     func testBudgetAmountString() {
         let budgetAmount = "testAmount"
         var descriptionArray = [String]()
@@ -719,12 +787,12 @@ class SanityTests: XCTestCase {
         usleep(2000000)
 
         let json:NSMutableDictionary = NSMutableDictionary()
-        json.setValue("createBigBudget", forKey: "message")
+        json.setValue("createBigBudgetTest", forKey: "message")
 
         json.setValue("testname", forKey: "budgetName")
         json.setValue(budgetAmount, forKey: "budgetAmount")
         json.setValue(descriptionArray, forKey: "descriptionArray")
-        json.setValue("0", forKey: "userID")
+        json.setValue(1, forKey: "userID")
         json.setValue(historyArray, forKey: "historyArray")
         json.setValue(0.0, forKey: "totalAmountSpent")
         json.setValue(0.0, forKey: "totalAmountAdded")
@@ -750,6 +818,8 @@ class SanityTests: XCTestCase {
         })
         
         usleep(5000000)
+        
+        //createBigBudgetSuccessTest
     }
 
     func testLargePositiveBudget() {
@@ -762,12 +832,12 @@ class SanityTests: XCTestCase {
         usleep(2000000)
 
         let json:NSMutableDictionary = NSMutableDictionary()
-        json.setValue("createBigBudget", forKey: "message")
+        json.setValue("createBigBudgetTest", forKey: "message")
 
         json.setValue("testname", forKey: "budgetName")
         json.setValue(budgetAmount, forKey: "budgetAmount")
         json.setValue(descriptionArray, forKey: "descriptionArray")
-        json.setValue("0", forKey: "userID")
+        json.setValue(1, forKey: "userID")
         json.setValue(historyArray, forKey: "historyArray")
         json.setValue(0.0, forKey: "totalAmountSpent")
         json.setValue(0.0, forKey: "totalAmountAdded")
@@ -776,14 +846,14 @@ class SanityTests: XCTestCase {
         json.setValue(markerLongitude, forKey: "markerLongitude")
         json.setValue("testResetFrequency", forKey: "resetFrequency")
         json.setValue("testResetStartDate", forKey: "resetStartDate")
-
+            
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
         var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
         print(jsonString)
         print(jsonData)
-
+        
         client.socket.write(data: jsonData as Data)
-
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
             let testPassed = Client.testPassed
             print(testPassed)
@@ -793,16 +863,17 @@ class SanityTests: XCTestCase {
         })
         
         usleep(5000000)
+        
+        //createBigBudgetSuccessTest
     }
-
 
     func testDeleteBudget() {
         usleep(2000000)
 
         let json:NSMutableDictionary = NSMutableDictionary()
-        json.setValue("deleteBigBudget", forKey: "message")
+        json.setValue("deleteBigBudgetTest", forKey: "message")
 
-        json.setValue(0, forKey: "budgetID")
+        json.setValue(0, forKey: "bigBudgetID")
 
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
         var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
@@ -820,8 +891,8 @@ class SanityTests: XCTestCase {
         })
         
         usleep(5000000)
+        //deleteBigBudgetSuccessTest
     }
-    
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.
 //        self.measure {

@@ -99,7 +99,7 @@ class SanityTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Received response from backend")
         let firstname = "David"
         let lastname = "Sealand"
-        let password = "Hello"
+        let password = "sealand"
         let email = "sealand@usc.edu"
 
         usleep(2000000)
@@ -114,18 +114,17 @@ class SanityTests: XCTestCase {
         let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
         print(jsonString)
         print(jsonData)
-        
+
         client.socket.write(data: jsonData as Data)
-        
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
             let testPassed = Client.testPassed
             print(testPassed)
-            print("GOT INTO DISPATCH")
-            
-            XCTAssertEqual(true, testPassed)
+            print("GOT INTO SIGNUP DISPATCH")
+
+            XCTAssertEqual(false, testPassed)
         })
-        
+
         usleep(5000000)
     }
 
@@ -143,7 +142,6 @@ class SanityTests: XCTestCase {
         var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
 
         client.socket.write(data: jsonData as Data)
-
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
             let testPassed = Client.testPassed
@@ -626,7 +624,7 @@ class SanityTests: XCTestCase {
         //limitNotificationSuccessTest
     }
     
-    func createBudgetSuccessful() {
+    func testCreateBudgetSuccessful() {
         let budgetAmount = 10000
         let categoryAmount = 100
         var descriptionArray = [String]()
@@ -672,7 +670,7 @@ class SanityTests: XCTestCase {
         //createBigBudgetSuccessTest
     }
     
-    func createCategorySuccessful() {
+    func testCreateCategorySuccessful() {
         let budgetAmount = 10000
         let categoryAmount = 100
         var descriptionArray = [String]()
@@ -848,14 +846,14 @@ class SanityTests: XCTestCase {
         json.setValue(markerLongitude, forKey: "markerLongitude")
         json.setValue("testResetFrequency", forKey: "resetFrequency")
         json.setValue("testResetStartDate", forKey: "resetStartDate")
-
+            
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
         var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
         print(jsonString)
         print(jsonData)
-
+        
         client.socket.write(data: jsonData as Data)
-
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
             let testPassed = Client.testPassed
             print(testPassed)
@@ -868,7 +866,6 @@ class SanityTests: XCTestCase {
         
         //createBigBudgetSuccessTest
     }
-
 
     func testDeleteBudget() {
         usleep(2000000)
@@ -896,7 +893,6 @@ class SanityTests: XCTestCase {
         usleep(5000000)
         //deleteBigBudgetSuccessTest
     }
-    
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.
 //        self.measure {

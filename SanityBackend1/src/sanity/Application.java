@@ -62,7 +62,7 @@ public class Application {
 			st = conn.createStatement();
 //			System.out.println(message.toString());
 	        if (message.get("message").equals("signup")) {
-				wsep.sendToSession(session, toBinary(signUp(message, session, conn)));
+				wsep.sendToSession(session, toBinary(signUp(message, conn)));
 			}
 			else if (message.get("message").equals("login")) {
 				wsep.sendToSession(session, toBinary(signIn(message, session, conn)));
@@ -106,60 +106,60 @@ public class Application {
 				wsep.sendToSession(session, toBinary(signInTest(message, session, conn)));
 			}
 			else if (message.get("message").equals("signuptest")) { //return signupsuccesstest, signupfailtest
-//				deleteAll(conn, session);
+//				deleteAll(conn);
 				createUser(conn, session);
 				wsep.sendToSession(session, toBinary(signUpTest(message, session, conn)));
 			}
 			else if (message.get("message").equals("changePasswordTest")) { //return passwordSuccessTest, passwordFailTest
-//				deleteAll(conn, session);
+//				deleteAll(conn);
 				createUser(conn, session);
 				wsep.sendToSession(session, toBinary(changePasswordTest(message, session, conn)));
 			}
 			else if (message.get("message").equals("addToBudgetTest")) { //return addToBudgetSuccessTest/fail
 				//creates budget, category and adds transaction
-//				deleteAll(conn, session);
+//				deleteAll(conn);
 				createUser(conn, session);
 				wsep.sendToSession(session, toBinary(addToBudgetTest(message, session, conn)));
 			}
 			else if (message.get("message").equals("subtractFromBudgetTest")) { //return subtractFromBudgetSuccessTest, success when category/budget amount has decreased
 				//same as addToBudgetTest, sends -100 in amountToAdd
-//				deleteAll(conn, session);
+//				deleteAll(conn);
 				createUser(conn, session);
 				wsep.sendToSession(session, toBinary(subtractFromBudgetTest(message, session, conn)));
 			}
 			else if (message.get("message").equals("transactionHistoryTest")) { //return transactionHistorySuccessTest if pull from transaction table is not 0
 				//create budget, create category, add transaction, check that it is not empty
-//				deleteAll(conn, session);
+//				deleteAll(conn);
 				createUser(conn, session);
 				wsep.sendToSession(session, toBinary(transactionHistoryTest(message, session, conn)));
 			}
 			else if (message.get("message").equals("locationTest")) { //return locationSuccessTest if pull from transaction table is not 0
 				//create budget, create category, add transaction with location    markerLatitude, markerLongitude
-//				deleteAll(conn, session);
+//				deleteAll(conn);
 				createUser(conn, session);
 				wsep.sendToSession(session, toBinary(locationTest(message, session, conn)));
 			}
 			else if (message.get("message").equals("limitNotificationTest")) { //return limitNotificationSuccessTest if pull from transaction table is not 0
 				//create budget, category, and transaction (if under 20% left, send successs notification message)
 				//
-//				deleteAll(conn, session);
+//				deleteAll(conn);
 				createUser(conn, session);
 				wsep.sendToSession(session, toBinary(limitNotificationTest(message, session, conn)));
 			}
 			else if (message.get("message").equals("createBigBudgetTest")) { //return createBigBudgetSuccessTest, passwordFailTest
 				//return success if budget amount is negative, is over 1000000 and not created in database
 				//success if exception caught
-//				deleteAll(conn, session);
+//				deleteAll(conn);
 				createUser(conn, session);
 				wsep.sendToSession(session, toBinary(createBigBudgetTest(message, session, conn)));
 			}
 			else if (message.get("message").equals("createBudgetTest")) { //return createBudgetSuccessTest, passwordFailTest
-//				deleteAll(conn, session);
+//				deleteAll(conn);
 				createUser(conn, session);
 				wsep.sendToSession(session, toBinary(createBudgetTest(message, session, conn)));
 			}
 			else if (message.get("message").equals("deleteBigBudgetTest")) { //return deleteBigBudgetSuccessTest, passwordFailTest
-//				deleteAll(conn, session);
+//				deleteAll(conn);
 				createUser(conn, session);
 				wsep.sendToSession(session, toBinary(deleteBigBudgetTest(message, session, conn)));
 			}
@@ -210,7 +210,7 @@ public class Application {
 	 * 			if signupfail --> "signupfail",reason
 	 * 			User data returned along with feed data in JSON
 	 */
-	public JSONObject signUp(JSONObject message, Session session, Connection conn) {
+	public JSONObject signUp(JSONObject message, Connection conn) {
 		JSONObject response = new JSONObject();
 		try {
 			Statement st = conn.createStatement();
@@ -220,7 +220,7 @@ public class Application {
 				rs = st.executeQuery("SELECT * from TotalUsers");
 				while (rs.next()) {
 					if (rs.getString("Email").equals(signupemail)) {
-						response = getData(conn, session, rs.getInt("userID"));
+						response = getData(conn, rs.getInt("userID"));
 						response.put("message", "signupfail");
 						response.put("signupfail", "Account already exists.");
 						return response;
@@ -323,7 +323,7 @@ public class Application {
 				if (rs.next()) {
 					if (rs.getInt("Password")==p) {
 						
-						response = getData(conn, session, rs.getInt("userID"));
+						response = getData(conn, rs.getInt("userID"));
 						System.out.println(response.toString());
 						response.put("message", "loginsuccess");
 						response.put("loginsuccess", "Logged in.");
@@ -416,7 +416,7 @@ public class Application {
 	    } catch (JSONException e) {
 			e.printStackTrace();
 		}
-		deleteAll(conn, session);
+		deleteAll(conn);
 		return response;
 	}
 	public JSONObject editProfile(JSONObject message, Session session, Connection conn) {
@@ -492,7 +492,7 @@ public class Application {
 			int id = message.getInt("budgetID");
 			String name = message.getString("budgetName");
 			double amount = message.getDouble("budgetAmount");
-			String editBigBudget = "BigBudgetName='" + name + "', BigBudgetAmount=" + amount + " WHERE bigBudgetID=" + id + ";";
+			String editBigBudget = "UPDATE BigBudgets SET BigBudgetName='" + name + "', BigBudgetAmount=" + amount + " WHERE bigBudgetID=" + id + ";";
 			st.execute(editBigBudget);
 			response.put("message", "editbudgetsuccess");
 			response.put("editbudgetsuccess", "Edit budget success.");
@@ -547,20 +547,20 @@ public class Application {
 		try {
 			Statement st = conn.createStatement();
 			ResultSet rs = null;
-			int id = message.getInt("categoryID");
-			String name = message.getString("categoryName");
-			double amount = message.getDouble("categoryAmount");
-			String editBudget = "BudgetName='" + name + "', BudgetAmount=" + amount + " WHERE budgetID=" + id + ";";
+			int id = message.getInt("budgetID");
+			String name = message.getString("budgetName");
+			double amount = message.getDouble("budgetAmount");
+			String editBudget = "UPDATE Budgets SET BudgetName='" + name + "', BudgetAmount=" + amount + " WHERE budgetID=" + id + ";";
 			st.execute(editBudget);
-			response = notify(conn, session, message);
-			JSONObject data = getData(conn, session, message.getInt("userID"));
-			for (String key : JSONObject.getNames(data)) {
-				response.put(key, data.get(key));
-			}
-			if (!response.getString("message").equals("notification")) {
+//			response = notify(conn, null, message);
+//			JSONObject data = getData(conn, message.getInt("userID"));
+//			for (String key : JSONObject.getNames(data)) {
+//				response.put(key, data.get(key));
+//			}
+//			if (!response.getString("message").equals("notification")) {
 				response.put("message", "editcategorysuccess");
 				response.put("editcategorysuccess", "Edit category success.");
-			}
+//			}
 			return response;
 			
 		} catch (SQLException sqle) {
@@ -649,7 +649,7 @@ public class Application {
 	
 	
 	
-	public JSONObject getData(Connection conn, Session session, int userID) {
+	public JSONObject getData(Connection conn, int userID) {
 		JSONObject response = new JSONObject();
 		try {
 			Statement st = conn.createStatement();
@@ -692,11 +692,55 @@ public class Application {
 	
 	public JSONObject addTransaction(JSONObject message, Session session, Connection conn) {
 		JSONObject response = new JSONObject();
-//		try {
-//			Statement st = conn.createStatement();
-//			
-//		}
-		return null;
+		try {
+			Statement st = conn.createStatement();
+			double amount = message.getDouble("amountToAdd");
+			int budgetID = message.getInt("budgetID");
+			st.execute(Constants.SQL_INSERT_TRANSACTION + "(" + budgetID + ", " + amount + ", '', 0, 0);");
+			ResultSet rs = st.executeQuery("SELECT * FROM Budgets WHERE budgetID = " + budgetID + ";");
+//			System.out.println("rs");
+			int bigBudgetID=0;
+			double budgetSpent=0;
+			if(rs.next()) {
+				bigBudgetID = rs.getInt("bigBudgetID");
+				budgetSpent = rs.getDouble("TotalAmountSpent") + amount;
+				System.out.println(bigBudgetID);
+			}
+//			System.out.println("rs");
+			ResultSet rs1 = st.executeQuery("SELECT * FROM BigBudgets WHERE bigBudgetID = " + bigBudgetID + ";");
+//			System.out.println("rs1");
+			double bigBudgetSpent = 0; double bigbudgetAmount = 0;
+			String bigbudgetName = "";
+			if (rs1.next()) {
+				bigBudgetSpent = rs1.getDouble("TotalAmountSpent")+amount;
+				bigbudgetAmount = rs1.getDouble("BigBudgetAmount");
+				bigbudgetName = rs1.getString("BigBudgetName");
+			}
+			st.executeUpdate("UPDATE Budgets SET TotalAmountSpent = " + budgetSpent + " WHERE budgetID = " + budgetID + ";");
+			System.out.println("update");
+			
+			st.executeUpdate("UPDATE BigBudgets SET TotalAmountSpent = " + bigBudgetSpent + " WHERE bigBudgetID = " + bigBudgetID + ";");
+			if (bigBudgetSpent > (0.8*(bigbudgetAmount))) {
+				response.put("notification", "yes");
+				response.put("notify", "You now have less than 20% left in budget" + bigbudgetName);
+			}
+			else {
+				response.put("notification", "no");
+			}
+			response.put("message", "addTransactionSuccess");
+		}
+		catch (SQLException | JSONException e) {
+			e.printStackTrace();
+			try {
+				response.put("message", "addTransactionFail");
+			} catch (JSONException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		
+		}
+//		deleteAll(conn);
+		return response;
 	}
 	
 	
@@ -715,7 +759,7 @@ public class Application {
 				rs = st.executeQuery("SELECT * from TotalUsers");
 				while (rs.next()) {
 					if (rs.getString("Email").equals(signupemail)) {
-						response = getData(conn, session, rs.getInt("userID"));
+						response = getData(conn, rs.getInt("userID"));
 						response.put("message", "signupfailtest");
 						response.put("signupfailtest", "Account already exists.");
 						return response;
@@ -786,7 +830,7 @@ public class Application {
 			e1.printStackTrace();
 			
 		}
-		deleteAll(conn, session);
+		deleteAll(conn);
 		return response;
 	}
 	public JSONObject changePasswordTest(JSONObject message, Session session, Connection conn) {
@@ -814,7 +858,7 @@ public class Application {
 			e.printStackTrace();
 			
 		}
-		deleteAll(conn, session);
+		deleteAll(conn);
 		return response;
 	}
 
@@ -869,7 +913,7 @@ public class Application {
 	    	
 			e.printStackTrace();
 		}
-		deleteAll(conn, session);
+		deleteAll(conn);
 		return response;
 	}
 	public JSONObject createBudgetTest(JSONObject message, Session session, Connection conn) {
@@ -898,7 +942,7 @@ public class Application {
 	    } catch (JSONException e) {
 			e.printStackTrace();
 		}
-		deleteAll(conn, session);
+		deleteAll(conn);
 		return response;
 	}
 	public JSONObject deleteBigBudgetTest(JSONObject message, Session session, Connection conn) {
@@ -931,7 +975,7 @@ public class Application {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		deleteAll(conn, session);
+		deleteAll(conn);
 		return response;
 	}
 	public JSONObject addToBudgetTest(JSONObject message, Session session, Connection conn) {
@@ -979,7 +1023,7 @@ public class Application {
 			}
 		
 		}
-		deleteAll(conn, session);
+		deleteAll(conn);
 		return response;
 	}
 	public JSONObject subtractFromBudgetTest(JSONObject message, Session session, Connection conn) {
@@ -1024,7 +1068,7 @@ public class Application {
 			}
 		
 		}
-		deleteAll(conn, session);
+		deleteAll(conn);
 		return response;
 	}
 	public JSONObject transactionHistoryTest(JSONObject message, Session session, Connection conn) {
@@ -1075,7 +1119,7 @@ public class Application {
 			}
 		
 		}
-		deleteAll(conn, session);
+		deleteAll(conn);
 		return response;
 	}
 	
@@ -1133,7 +1177,7 @@ public class Application {
 			}
 		
 		}
-		deleteAll(conn, session);
+		deleteAll(conn);
 		return response;
 	}
 	
@@ -1180,7 +1224,7 @@ public class Application {
 			}
 		
 		}
-		deleteAll(conn, session);
+		deleteAll(conn);
 		return response;
 	}
 	
@@ -1211,7 +1255,7 @@ public class Application {
 			sqle.printStackTrace();
 		}
 	}
-	public void deleteAll(Connection conn, Session session) {
+	public void deleteAll(Connection conn) {
 		try {
 			Statement st = conn.createStatement();
 			PreparedStatement psmt = null;

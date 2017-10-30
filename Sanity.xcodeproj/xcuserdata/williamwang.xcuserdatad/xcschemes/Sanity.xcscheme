@@ -29,6 +29,16 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "11C1B3901FA2B44E003BDAF2"
+               BuildableName = "SanityTests.xctest"
+               BlueprintName = "SanityTests"
+               ReferencedContainer = "container:Sanity.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

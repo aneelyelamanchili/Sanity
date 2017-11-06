@@ -416,26 +416,76 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
     // Generates an array of custom buttons that appear after the swipe to the left
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
     {
+//        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//
+//        // Title is the text of the button
+//        let delete = UITableViewRowAction(style: .normal, title: " Delete  ")
+//        { (action, indexPath) in
+//            let budget = self.budgetArray[indexPath.row]
+//            context.delete(budget)
+//            self.sharedDelegate.saveContext()
+//
+//            do
+//            {
+//                self.budgetArray = try context.fetch(MyBudget.fetchRequest())
+//            }
+//            catch
+//            {
+//                print("Fetching Failed")
+//            }
+//
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//            self.currentIndex = self.budgetArray.count - 1
+//
+//        }
+//
+//        // Title is the text of the button
+//        let rename = UITableViewRowAction(style: .normal, title: " Rename")
+//        { (action, indexPath) in
+//            self.showEditNameAlert(indexPath: indexPath)
+//        }
+//
+//        // Change the color of the buttons
+//        rename.backgroundColor = BudgetVariables.hexStringToUIColor(hex: "BBB7B0")
+//        delete.backgroundColor = BudgetVariables.hexStringToUIColor(hex: "E74C3C")
+//
+//        return [delete, rename]
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         // Title is the text of the button
         let delete = UITableViewRowAction(style: .normal, title: " Delete  ")
         { (action, indexPath) in
-            let budget = self.budgetArray[indexPath.row]
-            context.delete(budget)
+            //            let budget = BigBudgetVariables.budgetArray[indexPath.row]
+            //            context.delete(budget)
+            var queryBudget: String = "category" + String(indexPath.row + 1)
+            var populate:[String: Any]
+            populate = (self.toPopulate?[queryBudget] as? [String: Any])!
+            
+            let json:NSMutableDictionary = NSMutableDictionary()
+            json.setValue("deleteCategory", forKey: "message")
+            
+            json.setValue(Client.sharedInstance.json?["userID"], forKey: "userID")
+            json.setValue(populate["categoryID"], forKey: "categoryID")
+            
+            let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+            var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+            print(jsonString)
+            print(jsonData)
+            
+            Client.sharedInstance.socket.write(data: jsonData as Data)
             self.sharedDelegate.saveContext()
             
-            do
-            {
-                self.budgetArray = try context.fetch(MyBudget.fetchRequest())
-            }
-            catch
-            {
-                print("Fetching Failed")
-            }
-            
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            self.currentIndex = self.budgetArray.count - 1
+            //            do
+            //            {
+            //                BigBudgetVariables.budgetArray = try context.fetch(MyBigBudget.fetchRequest())
+            //            }
+            //            catch
+            //            {
+            //                print("Fetching Failed")
+            //            }
+            //            tableView.deleteRows(at: [indexPath], with: .fade)
+            self.sendRefreshQuery();
+            BudgetVariables.currentIndex = BudgetVariables.budgetArray.count - 1
             
         }
         
@@ -458,13 +508,14 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
     // Show Edit Name Pop-up
     func showEditNameAlert(indexPath: IndexPath)
     {
-        let editAlert = UIAlertController(title: "Rename Budget", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let editAlert = UIAlertController(title: "Rename Category", message: "", preferredStyle: UIAlertControllerStyle.alert)
         
         editAlert.addTextField(configurationHandler: {(textField: UITextField) in
             textField.placeholder = "New Name"
             
             // Set the initial text to be the budget name of the row selected
-            textField.text = self.budgetArray[indexPath.row].name
+            var queryCategory: String = "category" + String(indexPath.row + 1)
+            textField.text = self.toPopulate?[queryCategory] as? String
             
             textField.delegate = self
             textField.autocapitalizationType = .words
@@ -476,17 +527,34 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         
         let save = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: { (_) -> Void in
             var inputName = editAlert.textFields![0].text
+            var queryCategory: String = "category" + String(indexPath.row + 1)
+            var populate:[String: Any]
+            populate = (self.toPopulate?[queryCategory] as? [String: Any])!
             
             // If the input name isn't empty and it isn't the old name
-            if inputName != "" && inputName != self.budgetArray[self.currentIndex].name
+            if inputName != "" && inputName != self.toPopulate?[queryCategory] as? String
             {
                 // Trim all extra white space and new lines
                 inputName = inputName?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
                 
                 // Create the name with the newly trimmed String
                 inputName = BudgetVariables.createName(myName: inputName!, myNum: 0)
-                self.budgetArray[indexPath.row].name = inputName!
-                self.budgetTable.reloadRows(at: [indexPath], with: .right)
+                
+                let json:NSMutableDictionary = NSMutableDictionary()
+                json.setValue("editCategory", forKey: "message")
+                
+                json.setValue(Client.sharedInstance.json?["userID"], forKey: "userID")
+                json.setValue(populate["categoryID"], forKey: "categoryID")
+                json.setValue(inputName, forKey: "categoryName")
+                
+                let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+                var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+                print(jsonString)
+                print(jsonData)
+                
+                Client.sharedInstance.socket.write(data: jsonData as Data)
+                self.budgetTable.reloadData()
+                self.sendRefreshQuery()
             }
             
             // Save data to coredata

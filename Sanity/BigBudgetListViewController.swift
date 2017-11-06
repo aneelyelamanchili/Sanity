@@ -426,7 +426,7 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
 //            BigBudgetVariables.currentIndex = indexPath.row
             var queryBudget: String = "budget" + String(indexPath.row + 1)
             let destination = storyboard?.instantiateViewController(withIdentifier: "BudgetListViewController") as! BudgetListViewController
-            destination.toPopulate = toPopulate[queryBudget] as! [String: Any]
+            destination.toPopulate = toPopulate![queryBudget] as! [String: Any]
 //            destination.budgetName = BigBudgetVariables.budgetArray[BigBudgetVariables.currentIndex].name
 //            destination.budgetArray = BigBudgetVariables.budgetArray[BigBudgetVariables.currentIndex].categories
 //            destination.currBigBudget = BigBudgetVariables.budgetArray[BigBudgetVariables.currentIndex]

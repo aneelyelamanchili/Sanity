@@ -14,6 +14,8 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
     // sharedDelegate
     var sharedDelegate: AppDelegate!
     
+    var toPopulate = Client.sharedInstance.json
+    
     // IBOutlets
     @IBOutlet weak var composeButton: UIBarButtonItem!
     @IBOutlet var budgetTable: UITableView!

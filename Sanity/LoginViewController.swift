@@ -103,21 +103,19 @@ class LoginViewController : UIViewController, UITextFieldDelegate {
             
             print("SUCCESS")
             // Convert dictionary to string
-            //            do {
-            //                sendMessage = try JSONSerialization.jsonObject(with: Client.sharedInstance.json?["message"] as! Data, options: .allowFragments) as! Dictionary<String, Any>
-            //            } catch {
-            //                print("parse error")
-            //            }
+//            do {
+//                sendMessage = try JSONSerialization.jsonObject(with: Client.sharedInstance.json?["message"] as! Data, options: .allowFragments) as! Dictionary<String, Any>
+//            } catch {
+//                print("parse error")
+//            }
             
             sendMessage = Client.sharedInstance.json
             
-            print(sendMessage?["message"])
+            print(sendMessage)
             
             let mainViewController = storyboard.instantiateViewController(withIdentifier: "BigBudgetListViewController") as! BigBudgetListViewController
             
-            //mainViewController.toPopulate = sendMessage
-            
-            print(self.navigationController)
+            mainViewController.toPopulate = sendMessage
             
             //self.navigationController?.pushViewController(mainViewController, animated: true)
             let targetNavigationController = UINavigationController(rootViewController: mainViewController)

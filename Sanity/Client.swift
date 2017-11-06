@@ -14,7 +14,7 @@ class Client: NSObject, WebSocketDelegate {
     static var testPassed:Bool!
     
     var json: [String: Any]?
-    var socket = WebSocket(url: URL(string: "ws://a7edb630.ngrok.io/SanityBackend1/ws")!)
+    var socket = WebSocket(url: URL(string: "ws://5e31e6b4.ngrok.io/SanityBackend1/ws")!)
     
     func websocketDidConnect(socket: WebSocketClient) {
             print("websocket is connected")

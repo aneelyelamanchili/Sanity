@@ -111,7 +111,7 @@ class LoginViewController : UIViewController, UITextFieldDelegate {
             
             sendMessage = Client.sharedInstance.json
             
-            print(sendMessage)
+            //print(sendMessage)
             
             let mainViewController = storyboard.instantiateViewController(withIdentifier: "BigBudgetListViewController") as! BigBudgetListViewController
             

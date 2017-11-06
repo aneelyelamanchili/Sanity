@@ -179,6 +179,7 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
                     // Set the new current index and reload the table
                     BigBudgetVariables.currentIndex = BigBudgetVariables.budgetArray.count - 1
                     self.budgetTable.reloadData()
+                    self.sendRefreshQuery()
                 }
             }
         })
@@ -425,7 +426,7 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
 //            BigBudgetVariables.currentIndex = indexPath.row
             var queryBudget: String = "budget" + String(indexPath.row + 1)
             let destination = storyboard?.instantiateViewController(withIdentifier: "BudgetListViewController") as! BudgetListViewController
-            destination.toPopulate = toPopulate[queryBudget] as! [String: Any]
+//            destination.toPopulate = toPopulate[queryBudget] as! [String: Any]
 //            destination.budgetName = BigBudgetVariables.budgetArray[BigBudgetVariables.currentIndex].name
 //            destination.budgetArray = BigBudgetVariables.budgetArray[BigBudgetVariables.currentIndex].categories
 //            destination.currBigBudget = BigBudgetVariables.budgetArray[BigBudgetVariables.currentIndex]
@@ -470,7 +471,8 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
 //            {
 //                print("Fetching Failed")
 //            }
-            tableView.deleteRows(at: [indexPath], with: .fade)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+            self.sendRefreshQuery();
             BigBudgetVariables.currentIndex = BigBudgetVariables.budgetArray.count - 1
             
         }

@@ -13,6 +13,7 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
 {
     // sharedDelegate
     var sharedDelegate: AppDelegate!
+    var toPopulate: [String:Any]!
     
     var budgetName: String!
     
@@ -305,7 +306,7 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let myCell:UITableViewCell = self.budgetTable.dequeueReusableCell(withIdentifier: "clickableCell", for: indexPath)
-        let count = budgetArray.count
+        let count = self.toPopulate?["numCategories"] as! Int
         
         // If it's the last cell, customize the message, make it unselectable, and remove the last separator
         if indexPath.row == count
@@ -323,12 +324,15 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
             myCell.textLabel?.textColor = UIColor.black
             myCell.detailTextLabel?.textColor = UIColor.black
             myCell.textLabel?.text = budgetArray[indexPath.row].name
-            let currentBalance = (budgetArray[indexPath.row].balance).roundTo(places: 2)
-            let currentBalanceString = BudgetVariables.numFormat(myNum: currentBalance)
+            if let category = self.toPopulate!["cateogry \(indexPath.row + 1)"] as? [String: Any] {
+                myCell.textLabel?.text = category["categoryName"] as? String
+                let currentBalance = (category["categoryAmount"]) as! Double
+                let currentBalanceString = BudgetVariables.numFormat(myNum: currentBalance)
+                myCell.detailTextLabel?.text = currentBalanceString
+            }
             // let totalBudgetAmt = lround((budgetArray[indexPath.row].totalBudgetAmount))
             // let totalBudgetAmtString = String(totalBudgetAmt)
             // myCell.detailTextLabel?.text = currentBalanceString + " / $" + totalBudgetAmtString
-            myCell.detailTextLabel?.text = currentBalanceString
             myCell.selectionStyle = UITableViewCellSelectionStyle.default
             myCell.separatorInset = UIEdgeInsetsMake(0.0, 15.0, 0.0, 15.0)
         }
@@ -351,8 +355,9 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
     // When a cell is selected segue to corresponding view controller
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        let count = self.toPopulate?["numCategories"] as! Int
         // If it is not the last row, set current index to row # of cell pressed, then segue
-        if indexPath.row != budgetArray.count
+        if indexPath.row != count
         {
             currentIndex = indexPath.row
             let destination = storyboard?.instantiateViewController(withIdentifier: "SpendViewController") as! SpendViewController

@@ -25,6 +25,7 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
     {
         super.viewDidLoad()
         
+        print(toPopulate)
         // Set the logo for the app through an image created with Adobe Illustrator
         //        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 157.11974, height: 35))
         //        imageView.contentMode = .scaleAspectFit

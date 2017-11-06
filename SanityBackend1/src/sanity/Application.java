@@ -64,6 +64,12 @@ public class Application {
 	        if (message.get("message").equals("signup")) {
 				wsep.sendToSession(session, toBinary(signUp(message, conn)));
 			}
+	        else if (message.get("message").equals("refreshdata")) {
+	        	wsep.sendToSession(session, toBinary(refreshData(message, session, conn)));
+	        }
+	        else if (message.get("message").equals("refreshdatacategory")) {
+	        	wsep.sendToSession(session, toBinary(refreshDataCategory(message, session, conn)));
+	        }
 			else if (message.get("message").equals("login")) {
 				wsep.sendToSession(session, toBinary(signIn(message, session, conn)));
 			}
@@ -74,15 +80,15 @@ public class Application {
 				wsep.sendToSession(session, toBinary(createBudget(message, session, conn)));
 			}
 			else if (message.get("message").equals("editBigBudget")) {
-//				wsep.sendToSession(session, toBinary(deleteRide(message, conn)));
+				wsep.sendToSession(session, toBinary(editBigBudget(message, session, conn)));
 			}
-			else if (message.get("message").equals("editBudget")) {
-//				wsep.sendToSession(session, toBinary(guestView(message, conn)));
+			else if (message.get("message").equals("editCategory")) {
+				wsep.sendToSession(session, toBinary(editBudget(message, session, conn)));
 			}
 			else if (message.get("message").equals("deleteBigBudget")) {
-//				wsep.sendToSession(session, toBinary(search(message, conn)));
+				wsep.sendToSession(session, toBinary(deleteBigBudget(message, session, conn)));
 			}
-			else if (message.get("message").equals("deleteBudget")) {
+			else if (message.get("message").equals("deleteCategory")) {
 				wsep.sendToSession(session, toBinary(deleteBudget(message, session, conn)));
 			}
 			else if (message.get("message").equals("editUser")) {
@@ -93,7 +99,7 @@ public class Application {
 //				wsep.sendToSession(session, toBinary(editProfile(message, conn)));
 			}
 			else if (message.get("message").equals("addTransaction")) {
-				
+				wsep.sendToSession(session, toBinary(addTransaction(message, session, conn)));
 			}
 			else if (message.get("message").equals("getAnalytics")) {
 				
@@ -252,16 +258,19 @@ public class Application {
 				st.execute(Constants.SQL_INSERT_USER + addUser + ";");
 				ResultSet rs3 = st.executeQuery("SELECT * FROM TotalUsers WHERE Email='" + signupemail + "';");
 				
-				
+
+				if (rs3.next()) {
+					int id = rs3.getInt("userID");
+					response = getData(conn, id);
+					response.put("userID", id);
+				}
 //				emailSessions.put(signupemail, session);
 				response.put("message", "signupsuccess");
 				response.put("signupsuccess", "Account was made.");
 				response.put("email", signupemail);
 				response.put("firstName", signupfirstname);
 				response.put("lastName", signuplastname);
-				if (rs3.next()) {
-					response.put("userID", rs3.getInt("userID"));
-				}
+				
 				
 //				previousSearches.put(signupemail, new ArrayList<String>());
 				
@@ -323,7 +332,10 @@ public class Application {
 				if (rs.next()) {
 					if (rs.getInt("Password")==p) {
 						
-						response = getData(conn, rs.getInt("userID"));
+						JSONObject r = getData(conn, rs.getInt("userID"));
+						for (String key : JSONObject.getNames(r)) {
+							response.put(key, r.get(key));
+						}
 						System.out.println(response.toString());
 						response.put("message", "loginsuccess");
 						response.put("loginsuccess", "Logged in.");
@@ -455,10 +467,11 @@ public class Application {
 			String name = message.getString("bigBudgetName");
 			double amount = message.getDouble("bigBudgetAmount");
 			int user = message.getInt("userID");
-			String addBigBudget = "(" + user + ", '"+ name + "', 1, 34.0222, -118.282, " + amount + ", 0);";
+			String addBigBudget = "(" + user + ", '"+ name + "', 1, 34.0222, -118.282, " + amount + ", 0, 3, '4/20', 1);";
 			st.execute(Constants.SQL_INSERT_BIGBUDGET + addBigBudget);
 //			if (success) {
-				response.put("message", "createbudgetsuccess");
+			response = getData(conn, user);
+			response.put("message", "createbudgetsuccess");
 //			}
 //			else {
 //				response.put("message", "createbudgetfail");
@@ -489,11 +502,12 @@ public class Application {
 		try {
 			Statement st = conn.createStatement();
 			ResultSet rs = null;
-			int id = message.getInt("budgetID");
-			String name = message.getString("budgetName");
-			double amount = message.getDouble("budgetAmount");
-			String editBigBudget = "UPDATE BigBudgets SET BigBudgetName='" + name + "', BigBudgetAmount=" + amount + " WHERE bigBudgetID=" + id + ";";
+			int id = message.getInt("bigBudgetID");
+			String name = message.getString("bigBudgetName");
+//			double amount = message.getDouble("bigBudgetAmount");
+			String editBigBudget = "UPDATE BigBudgets SET BigBudgetName='" + name + /*"', BigBudgetAmount=" + amount +*/ "' WHERE bigBudgetID=" + id + ";";
 			st.execute(editBigBudget);
+			response = getData(conn, message.getInt("userID"));
 			response.put("message", "editbudgetsuccess");
 			response.put("editbudgetsuccess", "Edit budget success.");
 			return response;
@@ -525,6 +539,7 @@ public class Application {
 			double amount = message.getDouble("budgetAmount");
 			String result = "(" + budgetID + ", " + amount + ", '" + name + "', 0);";
 			st.execute(Constants.SQL_INSERT_BUDGET + result);
+			response = getData(conn, user);
 			response.put("message", "createcategorysuccess");
 			return response;
 		} catch (SQLException sqle) {
@@ -547,10 +562,10 @@ public class Application {
 		try {
 			Statement st = conn.createStatement();
 			ResultSet rs = null;
-			int id = message.getInt("budgetID");
-			String name = message.getString("budgetName");
-			double amount = message.getDouble("budgetAmount");
-			String editBudget = "UPDATE Budgets SET BudgetName='" + name + "', BudgetAmount=" + amount + " WHERE budgetID=" + id + ";";
+			int id = message.getInt("categoryID");
+			String name = message.getString("categoryName");
+//			double amount = message.getDouble("budgetAmount");
+			String editBudget = "UPDATE Budgets SET BudgetName='" + name + /*"', BudgetAmount=" + amount + */"' WHERE budgetID=" + id + ";";
 			st.execute(editBudget);
 //			response = notify(conn, null, message);
 //			JSONObject data = getData(conn, message.getInt("userID"));
@@ -558,6 +573,7 @@ public class Application {
 //				response.put(key, data.get(key));
 //			}
 //			if (!response.getString("message").equals("notification")) {
+			response = getData(conn, message.getInt("userID"));
 				response.put("message", "editcategorysuccess");
 				response.put("editcategorysuccess", "Edit category success.");
 //			}
@@ -566,7 +582,7 @@ public class Application {
 		} catch (SQLException sqle) {
 			try {
 				sqle.printStackTrace();
-				response.put("message", "editbudgetfail");
+				response.put("message", "editcategoryfail");
 				response.put("editbudgetfail", "Edit budget failed.");
 				return response;
 			} catch (JSONException e) {
@@ -585,16 +601,18 @@ public class Application {
 		for (int i = 0; i < p.length(); i++) {
 		    hash = hash*31 + p.charAt(i);
 		}
+		System.out.println(hash);
 		return hash;
 	}
 	public JSONObject deleteBudget(JSONObject message, Session session, Connection conn) {
 		JSONObject response = new JSONObject();
 		try {
 			Statement st = conn.createStatement();
-			int id = message.getInt("budgetID");
+			int id = message.getInt("categoryID");
 			
 			String deleteBudget = "DELETE FROM Budgets WHERE budgetID=" + id + ";";
 			st.execute(deleteBudget);
+			response = getData(conn, message.getInt("userID"));
 			response.put("message", "removebudgetsuccess");
 			response.put("removebudgetsuccess", "You removed a category.");
 		} catch (SQLException sqle) {
@@ -608,6 +626,44 @@ public class Application {
 			}
 			return response;
 		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return response;
+	}
+	
+	//send getdatasuccess
+	public JSONObject refreshData(JSONObject message, Session session, Connection conn) {
+		JSONObject response = new JSONObject();
+		try {
+			response = getData(conn, message.getInt("userID"));
+			response.put("message", "getdatasuccess");
+			return response;
+		} catch (JSONException e) {
+			try {
+				response.put("message", "getdatafail");
+			} catch (JSONException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return response;
+	}
+	public JSONObject refreshDataCategory(JSONObject message, Session session, Connection conn) {
+		JSONObject response = new JSONObject();
+		try {
+			response = getData(conn, message.getInt("userID"));
+			response.put("message", "getdatacategorysuccess");
+			return response;
+		} catch (JSONException e) {
+			try {
+				response.put("message", "getdatacategoryfail");
+			} catch (JSONException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return response;
@@ -664,6 +720,8 @@ public class Application {
 				
 				currBudget.put("budgetName", rs.getString("BigBudgetName"));
 				currBudget.put("budgetAmount", rs.getDouble("BigBudgetAmount"));
+				currBudget.put("daysLeft", rs.getInt("BigBudgetDaysLeft"));
+				currBudget.put("budgetID", bbID);
 				
 				Statement st1 = conn.createStatement();
 				ResultSet rs1 = st1.executeQuery("SELECT * FROM Budgets WHERE bigBudgetID = " + bbID + ";");
@@ -675,10 +733,11 @@ public class Application {
 					
 					currCat.put("categoryName", rs1.getString("BudgetName"));
 					currCat.put("categoryAmount", rs1.getDouble("BudgetAmount"));
+					currCat.put("categoryID", rs1.getInt("budgetID"));
 					
 					currBudget.put("category" + catcounter, currCat);
 				}
-				currBudget.put("size", catcounter);
+				currBudget.put("numCategories", catcounter);
 //				System.out.println(currBudget.toString());
 				response.put("budget" + budcounter, currBudget);
 				
@@ -696,6 +755,7 @@ public class Application {
 			Statement st = conn.createStatement();
 			double amount = message.getDouble("amountToAdd");
 			int budgetID = message.getInt("budgetID");
+			//latitude, longitude, details
 			st.execute(Constants.SQL_INSERT_TRANSACTION + "(" + budgetID + ", " + amount + ", '', 0, 0);");
 			ResultSet rs = st.executeQuery("SELECT * FROM Budgets WHERE budgetID = " + budgetID + ";");
 //			System.out.println("rs");

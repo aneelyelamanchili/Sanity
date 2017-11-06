@@ -180,6 +180,7 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
                     // Set the new current index and reload the table
                     BigBudgetVariables.currentIndex = BigBudgetVariables.budgetArray.count - 1
                     self.budgetTable.reloadData()
+                    self.sendRefreshQuery()
                 }
             }
         })
@@ -471,7 +472,8 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
 //            {
 //                print("Fetching Failed")
 //            }
-            tableView.deleteRows(at: [indexPath], with: .fade)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+            self.sendRefreshQuery();
             BigBudgetVariables.currentIndex = BigBudgetVariables.budgetArray.count - 1
             
         }

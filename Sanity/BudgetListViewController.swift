@@ -299,7 +299,8 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         // Represents the number of rows the UITableView should have
-        return budgetArray.count + 1
+        let count = self.toPopulate?["numCategories"] as! Int
+        return count + 1
     }
     
     // Set the title and description of each corresponding cell
@@ -323,8 +324,7 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         {
             myCell.textLabel?.textColor = UIColor.black
             myCell.detailTextLabel?.textColor = UIColor.black
-            myCell.textLabel?.text = budgetArray[indexPath.row].name
-            if let category = self.toPopulate!["cateogry \(indexPath.row + 1)"] as? [String: Any] {
+            if let category = self.toPopulate?["category" + String(indexPath.row + 1)] as? [String: Any] {
                 myCell.textLabel?.text = category["categoryName"] as? String
                 let currentBalance = (category["categoryAmount"]) as! Double
                 let currentBalanceString = BudgetVariables.numFormat(myNum: currentBalance)
@@ -344,7 +344,8 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         // If it is the last cell which contains information, user cannot delete this cell
-        if indexPath.row == budgetArray.count
+        let count = self.toPopulate?["numCategories"] as! Int
+        if indexPath.row == count
         {
             return false
         }

@@ -73,11 +73,7 @@ class SignUpViewController: UIViewController {
             
             let mainViewController = storyboard.instantiateViewController(withIdentifier: "BigBudgetListViewController") as! BigBudgetListViewController
             
-            //UIApplication.shared.delegate?.window??.rootViewController = mainViewController
-            
             self.dismissKeyboard()
-            
-//            self.navigationController?.pushViewController(mainViewController, animated: true)
             
             let targetNavigationController = UINavigationController(rootViewController: mainViewController)
             

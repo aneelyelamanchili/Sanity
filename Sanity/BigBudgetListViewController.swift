@@ -48,6 +48,13 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
         
+        // Add the refresh control
+        let rc = UIRefreshControl()
+        rc.addTarget(self, action: #selector(self.refresh(refreshControl:)), for: UIControlEvents.valueChanged)
+        budgetTable.refreshControl = rc
+        budgetTable.reloadData();
+        budgetTable.addSubview(rc)
+        
         // Gets rid of the empty cells
         budgetTable.tableFooterView = UIView(frame: CGRect.zero)
     }
@@ -143,7 +150,8 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
                     
                     let json:NSMutableDictionary = NSMutableDictionary()
                     json.setValue("createBigBudget", forKey: "message")
-
+                    
+                    json.setValue(self.toPopulate?["userID"], forKey: "userID")
                     json.setValue(budget.name, forKey: "bigBudgetName")
                     json.setValue(budget.balance, forKey: "bigBudgetAmount")
                     json.setValue(budget.descriptionArray, forKey: "descriptionArray")
@@ -181,6 +189,44 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
         self.confirmButton = create
         create.isEnabled = false
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func refresh(refreshControl: UIRefreshControl) {
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("refreshdata", forKey: "message")
+        json.setValue(Client.sharedInstance.json?["userID"], forKey: "userID")
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        
+        Client.sharedInstance.socket.write(data: jsonData)
+        
+        //self.tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
+    func sendRefreshQuery() {
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("refreshdata", forKey: "message")
+        json.setValue(Client.sharedInstance.json?["userID"], forKey: "userID")
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        
+        Client.sharedInstance.socket.write(data: jsonData)
+    }
+    
+    func refreshData() {
+        toPopulate = Client.sharedInstance.json
+        print("REFRESH DATA")
+        do {
+            let data1 =  try JSONSerialization.data(withJSONObject: toPopulate!, options: JSONSerialization.WritingOptions.prettyPrinted)
+            let convertedString = String(data: data1, encoding: String.Encoding.utf8) // the data will be converted to the string
+            print(convertedString! + "\n\n\n\n\n") // <-- here is ur string
+            DispatchQueue.main.async{
+                self.budgetTable.reloadData()
+            }
+        } catch let myJSONError {
+            print(myJSONError)
+        }
     }
     
     // This function limits the maximum character count for each textField and limits the decimal places input to 2
@@ -316,14 +362,18 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         // Represents the number of rows the UITableView should have
-        return BigBudgetVariables.budgetArray.count + 1
+        return (toPopulate!["numBudgets"] as! Int) + 1
     }
     
     // Set the title and description of each corresponding cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let myCell:UITableViewCell = self.budgetTable.dequeueReusableCell(withIdentifier: "clickableCell", for: indexPath)
-        let count = BigBudgetVariables.budgetArray.count
+//        let count = BigBudgetVariables.budgetArray.count
+        let count = toPopulate?["numBudgets"] as! Int
+        print("Number of budgets: ")
+        print(count)
+        
         
         // If it's the last cell, customize the message, make it unselectable, and remove the last separator
         if indexPath.row == count
@@ -338,14 +388,14 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
         }
         else
         {
+            var queryBudget: String = "budget" + String(indexPath.row + 1)
+            let populate: [String: Any]
+            populate = toPopulate![queryBudget] as! [String : Any]
             myCell.textLabel?.textColor = UIColor.black
             myCell.detailTextLabel?.textColor = UIColor.black
-            myCell.textLabel?.text = BigBudgetVariables.budgetArray[indexPath.row].name
-            let currentBalance = (BigBudgetVariables.budgetArray[indexPath.row].balance).roundTo(places: 2)
-            let currentBalanceString = BigBudgetVariables.numFormat(myNum: currentBalance)
-            // let totalBudgetAmt = lround((BigBudgetVariables.budgetArray[indexPath.row].totalBudgetAmount))
-            // let totalBudgetAmtString = String(totalBudgetAmt)
-            // myCell.detailTextLabel?.text = currentBalanceString + " / $" + totalBudgetAmtString
+            myCell.textLabel?.text = populate["budgetName"] as? String
+            let currentBalance = (populate["budgetAmount"] as? Double)?.roundTo(places: 2)
+            let currentBalanceString = BigBudgetVariables.numFormat(myNum: currentBalance!)
             myCell.detailTextLabel?.text = currentBalanceString
             myCell.selectionStyle = UITableViewCellSelectionStyle.default
             myCell.separatorInset = UIEdgeInsetsMake(0.0, 15.0, 0.0, 15.0)
@@ -358,7 +408,7 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         // If it is the last cell which contains information, user cannot delete this cell
-        if indexPath.row == BigBudgetVariables.budgetArray.count
+        if indexPath.row == toPopulate!["numBudgets"] as! Int
         {
             return false
         }
@@ -370,14 +420,16 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         // If it is not the last row, set current index to row # of cell pressed, then segue
-        if indexPath.row != BigBudgetVariables.budgetArray.count
+        if indexPath.row != toPopulate?["numBudgets"] as! Int
         {
-            BigBudgetVariables.currentIndex = indexPath.row
+//            BigBudgetVariables.currentIndex = indexPath.row
+            var queryBudget: String = "budget" + String(indexPath.row + 1)
             let destination = storyboard?.instantiateViewController(withIdentifier: "BudgetListViewController") as! BudgetListViewController
-            destination.budgetName = BigBudgetVariables.budgetArray[BigBudgetVariables.currentIndex].name
-            destination.budgetArray = BigBudgetVariables.budgetArray[BigBudgetVariables.currentIndex].categories
-            destination.currBigBudget = BigBudgetVariables.budgetArray[BigBudgetVariables.currentIndex]
-            destination.currentIndex = BigBudgetVariables.currentIndex
+            destination.toPopulate = toPopulate[queryBudget] as! [String: Any]
+//            destination.budgetName = BigBudgetVariables.budgetArray[BigBudgetVariables.currentIndex].name
+//            destination.budgetArray = BigBudgetVariables.budgetArray[BigBudgetVariables.currentIndex].categories
+//            destination.currBigBudget = BigBudgetVariables.budgetArray[BigBudgetVariables.currentIndex]
+//            destination.currentIndex = BigBudgetVariables.currentIndex
             navigationController?.pushViewController(destination, animated: true)
         }
     }
@@ -390,19 +442,34 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
         // Title is the text of the button
         let delete = UITableViewRowAction(style: .normal, title: " Delete  ")
         { (action, indexPath) in
-            let budget = BigBudgetVariables.budgetArray[indexPath.row]
-            context.delete(budget)
+//            let budget = BigBudgetVariables.budgetArray[indexPath.row]
+//            context.delete(budget)
+            var queryBudget: String = "budget" + String(indexPath.row + 1)
+            var populate:[String: Any]
+            populate = (self.toPopulate?[queryBudget] as? [String: Any])!
+            
+            let json:NSMutableDictionary = NSMutableDictionary()
+            json.setValue("deleteBigBudget", forKey: "message")
+            
+            json.setValue(self.toPopulate?["userID"], forKey: "userID")
+            json.setValue(populate["budgetID"], forKey: "bigBudgetID")
+            
+            let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+            var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+            print(jsonString)
+            print(jsonData)
+            
+            Client.sharedInstance.socket.write(data: jsonData as Data)
             self.sharedDelegate.saveContext()
             
-            do
-            {
-                BigBudgetVariables.budgetArray = try context.fetch(MyBigBudget.fetchRequest())
-            }
-            catch
-            {
-                print("Fetching Failed")
-            }
-            
+//            do
+//            {
+//                BigBudgetVariables.budgetArray = try context.fetch(MyBigBudget.fetchRequest())
+//            }
+//            catch
+//            {
+//                print("Fetching Failed")
+//            }
             tableView.deleteRows(at: [indexPath], with: .fade)
             BigBudgetVariables.currentIndex = BigBudgetVariables.budgetArray.count - 1
             
@@ -433,7 +500,8 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
             textField.placeholder = "New Name"
             
             // Set the initial text to be the budget name of the row selected
-            textField.text = BigBudgetVariables.budgetArray[indexPath.row].name
+            var queryBudget: String = "budget" + String(indexPath.row + 1)
+            textField.text = self.toPopulate?[queryBudget] as? String
             
             textField.delegate = self
             textField.autocapitalizationType = .words
@@ -445,17 +513,36 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
         
         let save = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: { (_) -> Void in
             var inputName = editAlert.textFields![0].text
+            var queryBudget: String = "budget" + String(indexPath.row + 1)
+            var populate:[String: Any]
+            populate = (self.toPopulate?[queryBudget] as? [String: Any])!
             
             // If the input name isn't empty and it isn't the old name
-            if inputName != "" && inputName != BigBudgetVariables.budgetArray[BigBudgetVariables.currentIndex].name
+            if inputName != "" && inputName != self.toPopulate?[queryBudget] as? String
             {
                 // Trim all extra white space and new lines
                 inputName = inputName?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
                 
                 // Create the name with the newly trimmed String
-                inputName = BigBudgetVariables.createName(myName: inputName!, myNum: 0)
-                BigBudgetVariables.budgetArray[indexPath.row].name = inputName!
-                self.budgetTable.reloadRows(at: [indexPath], with: .right)
+//                inputName = BigBudgetVariables.createName(myName: inputName!, myNum: 0)
+//                BigBudgetVariables.budgetArray[indexPath.row].name = inputName!
+                
+                let json:NSMutableDictionary = NSMutableDictionary()
+                json.setValue("editBigBudget", forKey: "message")
+                
+                json.setValue(self.toPopulate?["userID"], forKey: "userID")
+                json.setValue(populate["budgetID"], forKey: "bigBudgetID")
+                json.setValue(inputName, forKey: "bigBudgetName")
+                
+                let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+                var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+                print(jsonString)
+                print(jsonData)
+                
+                Client.sharedInstance.socket.write(data: jsonData as Data)
+//                self.budgetTable.reloadRows(at: [indexPath], with: .right)
+                self.budgetTable.reloadData()
+                self.sendRefreshQuery()
             }
             
             // Save data to coredata

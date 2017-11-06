@@ -118,6 +118,10 @@ class Client: NSObject, WebSocketDelegate {
                 } else if (json!["message"] as? String == "subtractFromBudgetSuccessTest") {
                     Client.testPassed = true
                 }
+            } else if(json!["message"] as? String == "getdatasuccess") {
+                print("GOT HERE")
+                let vc = UIApplication.topViewController() as? BigBudgetListViewController
+                vc?.refreshData()
             }
             
         } else {

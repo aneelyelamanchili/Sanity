@@ -122,6 +122,10 @@ class Client: NSObject, WebSocketDelegate {
                 print("GOT HERE")
                 let vc = UIApplication.topViewController() as? BigBudgetListViewController
                 vc?.refreshData()
+            } else if(json!["message"] as? String == "getdatacategorysuccess") {
+                print("GOT HERE")
+                let vc = UIApplication.topViewController() as? BudgetListViewController
+                vc?.refreshData()
             }
             
         } else {

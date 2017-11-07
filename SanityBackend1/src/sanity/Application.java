@@ -14,6 +14,7 @@ import java.util.TreeSet;
 
 import javax.websocket.Session;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -735,6 +736,23 @@ public class Application {
 					currCat.put("categoryAmount", rs1.getDouble("BudgetAmount"));
 					currCat.put("categoryID", rs1.getInt("budgetID"));
 					
+					//Nest transactions into categories 
+					Statement st2 = conn.createStatement();
+					ResultSet rs2 = st2.executeQuery("SELECT * FROM Transactions WHERE budgetID = " + rs1.getInt("budgetID") + ";");
+					JSONArray transJSONArr = new JSONArray();
+					while(rs2.next()) {
+						JSONObject transJSON = new JSONObject();
+						
+						transJSON.put("transactionAmount", rs2.getString("Amount"));
+						transJSON.put("transactionDetails", rs2.getString("Details"));
+						transJSON.put("Longitude", rs2.getFloat("Longitude"));
+						transJSON.put("Latitude", rs2.getFloat("Latitude"));
+						transJSON.put("Date", rs2.getString("DateValue"));
+						
+						transJSONArr.put(transJSON);
+					}
+					
+					currCat.put("transactions", transJSONArr);
 					currBudget.put("category" + catcounter, currCat);
 				}
 				currBudget.put("numCategories", catcounter);

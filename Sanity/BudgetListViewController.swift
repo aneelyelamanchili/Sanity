@@ -33,7 +33,7 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        UIApplication.shared.statusBarStyle = .lightContent
         // Set the logo for the app through an image created with Adobe Illustrator
 //        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 157.11974, height: 35))
 //        imageView.contentMode = .scaleAspectFit
@@ -404,10 +404,14 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         // If it is not the last row, set current index to row # of cell pressed, then segue
         if indexPath.row != count
         {
-            currentIndex = indexPath.row
+//            currentIndex = indexPath.row
+//            let destination = storyboard?.instantiateViewController(withIdentifier: "SpendViewController") as! SpendViewController
+//            destination.budgetArray = budgetArray
+//            destination.currentIndex = currentIndex
+            var queryCategory: String = "category" + String(indexPath.row + 1)
             let destination = storyboard?.instantiateViewController(withIdentifier: "SpendViewController") as! SpendViewController
-            destination.budgetArray = budgetArray
-            destination.currentIndex = currentIndex
+            destination.toPopulate = toPopulate![queryCategory] as! [String: Any]
+            destination.currCategory = queryCategory
             navigationController?.pushViewController(destination, animated: true)
 //            performSegue(withIdentifier: "viewBudget", sender: nil)
         }

@@ -19,6 +19,10 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     var budgetArray: [MyBudget]!
     
+    var toPopulate: [String: Any]!
+    
+    var currCategory: String!
+    
     // Location manager for finding the current location
     let locationManager = CLLocationManager()
     
@@ -33,7 +37,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        UIApplication.shared.statusBarStyle = .lightContent
         // So we don't need to type this out again
         let shDelegate = UIApplication.shared.delegate as! AppDelegate
         sharedDelegate = shDelegate
@@ -47,7 +51,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         // Set Navbar Color
         let color = UIColor.white
         self.navigationController?.navigationBar.tintColor = color
-        self.navigationItem.title = budgetArray[currentIndex].name
+        self.navigationItem.title = toPopulate?["categoryName"] as! String
         
         // Set textField delegates to themselves
         inputAmount.delegate = self
@@ -73,7 +77,8 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         BudgetVariables.getData()
         
         // Refresh the total balance label, in the case that another view modified the balance vaariable
-        totalBalance.text = BudgetVariables.numFormat(myNum: budgetArray[currentIndex].balance)
+        //totalBalance.text = BudgetVariables.numFormat(myNum: budgetArray[currentIndex].balance)
+        totalBalance.text = BudgetVariables.numFormat(myNum: toPopulate?["categoryAmount"] as! Double)
         
         // Reset the text fields and disable the buttons
         inputAmount.text = ""
@@ -277,7 +282,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         // If the input is empty or a period, show current balance and disable buttons
         if trimmedInput == "" || trimmedInput == "."
         {
-            totalBalance.text = BudgetVariables.numFormat(myNum: budgetArray[currentIndex].balance)
+            totalBalance.text = BudgetVariables.numFormat(myNum: toPopulate?["categoryAmount"] as! Double)
             spendButton.isEnabled = false
             addButton.isEnabled = false
         }
@@ -294,7 +299,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }
             else
             {
-                totalBalance.text = BudgetVariables.numFormat(myNum: budgetArray[currentIndex].balance)
+                totalBalance.text = BudgetVariables.numFormat(myNum: toPopulate?["categoryAmount"] as! Double)
                 
                 // If the input is $0, disable both buttons
                 if input == 0
@@ -305,7 +310,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 else
                 {
                     // If the input can be spent and still result in a valid balance, enable the spend button
-                    if budgetArray[currentIndex].balance - input < 0
+                    if (toPopulate?["categoryAmount"] as! Double) - input < 0
                     {
                         spendButton.isEnabled = false
                     }
@@ -315,7 +320,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     }
                     
                     // If the input can be added and still result in a valid balance, enable the add button
-                    if budgetArray[currentIndex].balance + input > 1000000
+                    if (toPopulate?["categoryAmount"] as! Double) + input > 1000000
                     {
                         addButton.isEnabled = false
                     }
@@ -336,8 +341,9 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         BudgetVariables.getData()
         
         let destination = storyboard?.instantiateViewController(withIdentifier: "HistoryAndMapViewController") as! HistoryAndMapViewController
-        destination.budgetArray = budgetArray
-        destination.currentIndex = currentIndex
+//        destination.budgetArray = budgetArray
+//        destination.currentIndex = currentIndex
+        destination.toPopulate = toPopulate
         navigationController?.pushViewController(destination, animated: true)
         
         // Show the view controller with history and the map

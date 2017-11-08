@@ -64,7 +64,7 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         // Gets rid of the empty cells
         budgetTable.tableFooterView = UIView(frame: CGRect.zero)
         
-        sendRefreshQuery()
+        self.sendRefreshQuery()
     }
     
     // Reload table data everytime the view is about to appear
@@ -77,7 +77,8 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         BigBudgetVariables.getData()
         
         // Reload the budget table
-        self.budgetTable.reloadData()
+        self.sendRefreshQuery()
+        //self.budgetTable.reloadData()
     }
     
     //Calls this function when the tap is recognized.
@@ -406,7 +407,7 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
             myCell.detailTextLabel?.textColor = UIColor.black
             if let category = self.toPopulate?["category" + String(indexPath.row + 1)] as? [String: Any] {
                 myCell.textLabel?.text = category["categoryName"] as? String
-                let currentBalance = (category["categoryAmount"]) as! Double
+                let currentBalance = ((category["categoryAmount"]) as! Double) - ((category["totalAmountSpent"]) as! Double)
                 let currentBalanceString = BudgetVariables.numFormat(myNum: currentBalance)
                 myCell.detailTextLabel?.text = currentBalanceString
             }
@@ -448,6 +449,7 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
             let destination = storyboard?.instantiateViewController(withIdentifier: "SpendViewController") as! SpendViewController
             destination.toPopulate = toPopulate![queryCategory] as! [String: Any]
             destination.currCategory = queryCategory
+            destination.currBudget = currBudget
             navigationController?.pushViewController(destination, animated: true)
 //            performSegue(withIdentifier: "viewBudget", sender: nil)
         }

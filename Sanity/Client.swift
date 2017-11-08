@@ -128,8 +128,14 @@ class Client: NSObject, WebSocketDelegate {
                 print("GOT HERE")
                 let vc = UIApplication.topViewController() as? BudgetListViewController
                 vc?.refreshData()
+            } else if(json!["message"] as? String == "addTransactionSuccess") {
+                let vc = UIApplication.topViewController() as? SpendViewController
+                vc?.sendRefreshQuery()
+            } else if(json!["message"] as? String == "getdatatransactionsuccess") {
+                let vc = UIApplication.topViewController() as? SpendViewController
+                vc?.refreshData()
             }
-            
+        
         } else {
             print("not a valid UTF-8 sequence")
         }

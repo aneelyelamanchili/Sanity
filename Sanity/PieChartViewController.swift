@@ -14,6 +14,8 @@ class PieChartViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
 {
     // Clean code
     var sharedDelegate: AppDelegate!
+    
+    var toPopulate: [String : Any]!
 
     // IB Outlets
     @IBOutlet var pieChartView: PieChartView!
@@ -221,11 +223,48 @@ class PieChartViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         // The segmented controller determines what data gets passed to the pie chart
         if segmentedControl.selectedSegmentIndex == 0
         {
-            map = BudgetVariables.nameToNetAmtSpentMap()
+            var categoryStart: Int = 1
+            while(toPopulate["category\(categoryStart)"] != nil) {
+                print("category\(categoryStart) exists")
+                print("Category Amount is: ")
+                
+                var populate:[String: Any]
+                populate = (self.toPopulate?["category\(categoryStart)"] as? [String: Any])!
+                var name:String = populate["categoryName"] as! String
+                print(populate["categoryAmount"] as! Double)
+                map[name] = populate["totalAmountSpent"] as! Double
+//                print("The total sum so far is: ")
+//                print(sum)
+                categoryStart += 1
+            }
+            print("THE FINISHED MAP OF NAME TO TOTAL AMOUNT SPENT IS: ")
+            print(map)
+            
+//            map = BudgetVariables.nameToNetAmtSpentMap()
         }
         else
         {
-            map = BudgetVariables.nameToTransactionCount()
+            var categoryStart: Int = 1
+            while(toPopulate["category\(categoryStart)"] != nil) {
+                print("category\(categoryStart) exists")
+                print("Category Amount is: ")
+                
+                var populate:[String: Any]
+                populate = (self.toPopulate?["category\(categoryStart)"] as? [String: Any])!
+                var name:String = populate["categoryName"] as! String
+                var transactions = populate["transactions"] as! NSArray
+                
+//                print(populate["categoryAmount"] as! Double)
+                print("number of transactions in category\(categoryStart) is: ")
+                print(transactions.count)
+                map[name] = Double(transactions.count)
+                //                print("The total sum so far is: ")
+                //                print(sum)
+                categoryStart += 1
+            }
+            print("THE FINISHED MAP OF NAME TO NUMBER OF TRANSACTIONS IS: ")
+            print(map)
+//            map = BudgetVariables.nameToTransactionCount()
         }
         
         // Grab correct values to populate the Pie Chart
@@ -256,7 +295,8 @@ class PieChartViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         else
         {
             // Set the no data message
-            if BudgetVariables.budgetArray.isEmpty == true
+            //BudgetVariables.budgetArray.isEmpty
+            if map.isEmpty == true
             {
                 pieChartView.noDataText = "You must have at least one category."
             }
@@ -351,7 +391,7 @@ class PieChartViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         pieChartDataSet.entryLabelFont = UIFont.systemFont(ofSize: 12)
         pieChartData.setValueTextColor(UIColor.black)
         
-        // Calculate average
+        // Calculate average (NEED TO HAVE VALUES OF ALL TRANSACTIONS IN CATEGORY)
         let average = BudgetVariables.calculateAverage(nums: values).roundTo(places: 2)
         var averageString = String(average)
         if segmentedControl.selectedSegmentIndex == 0

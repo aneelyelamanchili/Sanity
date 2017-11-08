@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -22,7 +21,7 @@
         <!--Spend View Controller-->
         <scene sceneID="1VC-f8-jap">
             <objects>
-                <viewController storyboardIdentifier="SpendViewController" id="sds-LB-aBh" customClass="SpendViewController" customModule="Pocket_Change" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SpendViewController" id="sds-LB-aBh" customClass="SpendViewController" customModule="Sanity" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M3A-vS-Q4U"/>
                         <viewControllerLayoutGuide type="bottom" id="Jcm-fI-l1A"/>
@@ -181,7 +180,7 @@
         <!--History and Map View Controller-->
         <scene sceneID="STd-v6-pbN">
             <objects>
-                <viewController storyboardIdentifier="HistoryAndMapViewController" automaticallyAdjustsScrollViewInsets="NO" id="4en-47-sPL" userLabel="History and Map View Controller" customClass="HistoryAndMapViewController" customModule="Pocket_Change" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HistoryAndMapViewController" automaticallyAdjustsScrollViewInsets="NO" id="4en-47-sPL" userLabel="History and Map View Controller" customClass="HistoryAndMapViewController" customModule="Sanity" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fjv-8B-5bL"/>
                         <viewControllerLayoutGuide type="bottom" id="3T3-TZ-EwR"/>
@@ -264,7 +263,7 @@
         <!--Budget List View Controller-->
         <scene sceneID="Ibv-9A-dme">
             <objects>
-                <viewController storyboardIdentifier="BudgetListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9o8-Ar-hfP" customClass="BudgetListViewController" customModule="Pocket_Change" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BudgetListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9o8-Ar-hfP" customClass="BudgetListViewController" customModule="Sanity" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bav-lg-KxE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -331,7 +330,7 @@
         <!--Login View Controller-->
         <scene sceneID="TW7-Ma-2nt">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="8Yw-kf-cov" customClass="LoginViewController" customModule="Pocket_Change" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="8Yw-kf-cov" customClass="LoginViewController" customModule="Sanity" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Uh9-4k-r4f"/>
                         <viewControllerLayoutGuide type="bottom" id="7F1-To-Xkz"/>
@@ -458,7 +457,7 @@
         <!--Bar Graph View Controller-->
         <scene sceneID="iAB-AN-GUb">
             <objects>
-                <viewController id="GDo-YR-dDG" userLabel="Bar Graph View Controller" customClass="BarGraphViewController" customModule="Pocket_Change" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GDo-YR-dDG" userLabel="Bar Graph View Controller" customClass="BarGraphViewController" customModule="Sanity" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9oa-Q2-pg3"/>
                         <viewControllerLayoutGuide type="bottom" id="QQU-ol-lMv"/>
@@ -508,7 +507,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="kWw-Fe-mXz">
             <objects>
-                <viewController storyboardIdentifier="SignUpViewController" id="Elx-QG-Fp2" customClass="SignUpViewController" customModule="Pocket_Change" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" id="Elx-QG-Fp2" customClass="SignUpViewController" customModule="Sanity" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UQy-wB-UFQ"/>
                         <viewControllerLayoutGuide type="bottom" id="vtp-Ss-LtO"/>
@@ -630,7 +629,7 @@
         <!--Pie Chart View Controller-->
         <scene sceneID="aeD-Nb-p0U">
             <objects>
-                <viewController id="MoQ-Ps-lSU" userLabel="Pie Chart View Controller" customClass="PieChartViewController" customModule="Pocket_Change" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PieChartViewController" id="MoQ-Ps-lSU" userLabel="Pie Chart View Controller" customClass="PieChartViewController" customModule="Sanity" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DVM-Os-6Bc"/>
                         <viewControllerLayoutGuide type="bottom" id="dm0-0V-W8p"/>
@@ -698,7 +697,7 @@
         <!--Big Budget List View Controller-->
         <scene sceneID="IA0-wN-eW2">
             <objects>
-                <viewController storyboardIdentifier="BigBudgetListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YqQ-H7-APW" customClass="BigBudgetListViewController" customModule="Pocket_Change" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BigBudgetListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YqQ-H7-APW" customClass="BigBudgetListViewController" customModule="Sanity" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6bm-Py-shA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -780,7 +779,7 @@
         <!--Example Table View Controller-->
         <scene sceneID="qKD-F5-Jmy">
             <objects>
-                <tableViewController id="iun-WR-xLN" customClass="ExampleTableViewController" customModule="TextFieldsDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="iun-WR-xLN" customClass="ExampleTableViewController" customModule="Sanity" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="none" rowHeight="66" sectionHeaderHeight="10" sectionFooterHeight="20" id="kRK-sE-d3n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

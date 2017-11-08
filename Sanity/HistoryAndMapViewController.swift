@@ -20,6 +20,8 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
     var currentIndex: Int!
     
     var toPopulate: [String: Any]!
+    var currCategory: String!
+    var currBudget: String!
     
     // IBOutlet for components
     @IBOutlet var historyTable: UITableView!
@@ -232,28 +234,25 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
     // When the clear history button gets pressed, clear the history and disable button
     @IBAction func clearHistoryButtonWasPressed(_ sender: Any)
     {
-        // Empty out arrays
-        self.budgetArray[self.currentIndex].historyArray.removeAll()
-        self.budgetArray[self.currentIndex].descriptionArray.removeAll()
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("deleteAllTransactions", forKey: "message")
         
-        // Revert the balance to its original value, and reset the variables
-        let totalAmtAdded = self.budgetArray[self.currentIndex].totalAmountAdded
-        let totalAmtSpent = self.budgetArray[self.currentIndex].totalAmountSpent
-        let myBalance = self.budgetArray[self.currentIndex].balance
-        let newBalanceAndBudgetAmount = myBalance - totalAmtAdded + totalAmtSpent
-        self.budgetArray[self.currentIndex].balance = newBalanceAndBudgetAmount
-        self.budgetArray[self.currentIndex].totalBudgetAmount = newBalanceAndBudgetAmount
-        self.budgetArray[self.currentIndex].totalAmountAdded = 0.0
-        self.budgetArray[self.currentIndex].totalAmountSpent = 0.0
-        self.budgetArray[self.currentIndex].markerLatitude.removeAll()
-        self.budgetArray[self.currentIndex].markerLongitude.removeAll()
-        self.budgetArray[self.currentIndex].amountSpentOnDate.removeAll()
+        json.setValue(Client.sharedInstance.json?["userID"], forKey: "userID")
+        json.setValue(self.toPopulate?["categoryID"], forKey: "categoryID")
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        print(jsonString)
+        print(jsonData)
+        
+        Client.sharedInstance.socket.write(data: jsonData as Data)
         
         // Save context and get data
         self.sharedDelegate.saveContext()
         BudgetVariables.getData()
         
         // Reload the table, refresh the markers, and disable the clear history button
+        self.sendRefreshQuery()
         self.historyTable.reloadData()
         self.removeMarkers()
         clearHistoryButton.isEnabled = false
@@ -287,7 +286,7 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
             myCell.detailTextLabel?.textColor = UIColor.black
             
             let transactions = toPopulate?["transactions"] as! NSArray
-            let currTransaction = transactions[indexPath.row] as? [String: Any]
+            let currTransaction = transactions[count - 1 - indexPath.row] as? [String: Any]
             let str = currTransaction!["transactionAmount"] as? String
             let index = str?.index((str?.startIndex)!, offsetBy: 0)
             
@@ -336,7 +335,7 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
         
         // Extract the amount spent for this specific transaction into the variable amountSpent
         let transactions = toPopulate?["transactions"] as! NSArray
-        let currTransaction = transactions[indexPath.row] as? [String: Any]
+        let currTransaction = transactions[count - 1 - indexPath.row] as? [String: Any]
         
         let historyStr = currTransaction!["transactionAmount"] as? String
         print("Printing1...")
@@ -344,8 +343,6 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
         
         let index1 = historyStr?.index((historyStr?.startIndex)!, offsetBy: 0) // Index spans the first character in the string
         let index2 = historyStr?.index((historyStr?.startIndex)!, offsetBy: 1) // Index spans the amount spent in that transaction
-        print("Printing...")
-        print(historyStr!.substring(from: index2!))
         let amountSpent = Double(historyStr!.substring(from: index2!))
         
         // If after the deletion of a spend action the new balance is over 1M, user cannot delete this cell
@@ -353,18 +350,10 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
         {
             print(amountSpent)
             let newBalance = (toPopulate["categoryAmount"] as? Double)! + amountSpent!
-            if newBalance > 1000000
-            {
-                return false
-            }
         }
         else if historyStr![index1!] == "+"
         {
             let newBalance = (toPopulate["categoryAmount"] as? Double)! - amountSpent!
-            if newBalance < 0
-            {
-                return false
-            }
         }
         
         return true
@@ -374,69 +363,28 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
     {
         // Title is the text of the button
-        let undo = UITableViewRowAction(style: .normal, title: " Undo")
+        let transactionArray = toPopulate?["transactions"] as! NSArray
+        let currTransaction = transactionArray[indexPath.row] as? [String:Any]
+        
+        let delete = UITableViewRowAction(style: .normal, title: " Delete")
         { (action, indexPath) in
             
-            // Extract the key to the map in the format "MM/dd/YYYY" into the variable date
-            let descripStr = self.budgetArray[self.currentIndex].descriptionArray[indexPath.row]
-            let dateIndex = descripStr.index(descripStr.endIndex, offsetBy: -10)
-            let date = descripStr.substring(from: dateIndex)
+            let json:NSMutableDictionary = NSMutableDictionary()
+            json.setValue("deleteTransaction", forKey: "message")
             
-            // Extract the month and year from description so we can undo how much we spend a month
-            let monthBegin = descripStr.index(descripStr.endIndex, offsetBy: -10)
-            let monthEnd = descripStr.index(descripStr.endIndex, offsetBy: -9)
-            let monthString = descripStr[monthBegin...monthEnd]
-            let yearBegin = descripStr.index(descripStr.endIndex, offsetBy: -4)
-            let yearString = descripStr.substring(from: yearBegin)
-            let monthKey = monthString + "/" + yearString
+            json.setValue(Client.sharedInstance.json?["userID"], forKey: "userID")
+            json.setValue(self.toPopulate?["categoryID"], forKey: "categoryID")
+            json.setValue(currTransaction?["transactionID"], forKey: "transactionID")
             
-            // Extract the amount spent for this specific transaction into the variable amountSpent
-            let historyStr = self.budgetArray[self.currentIndex].historyArray[indexPath.row]
-            let index1 = historyStr.index(historyStr.startIndex, offsetBy: 0) // Index spans the first character in the string
-            let index2 = historyStr.index(historyStr.startIndex, offsetBy: 3) // Index spans the amount spent in that transaction
-            let historyValue = Double(historyStr.substring(from: index2))
+            let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+            var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+            print(jsonString)
+            print(jsonData)
             
-            // If this specific piece of history logged a "Spend" action, the total amount spent should decrease after deletion
-            if historyStr[index1] == "-"
-            {
-                let newAmtSpentOnDate = self.budgetArray[self.currentIndex].amountSpentOnDate[date]! - historyValue!
-                self.budgetArray[self.currentIndex].amountSpentOnDate[date] = newAmtSpentOnDate
-                let newAmtSpentInMonth = self.budgetArray[self.currentIndex].amountSpentOnDate[monthKey]! - historyValue!
-                self.budgetArray[self.currentIndex].amountSpentOnDate[monthKey] = newAmtSpentInMonth
-                let newTotalAmountSpent = self.budgetArray[self.currentIndex].totalAmountSpent - historyValue!
-                self.budgetArray[self.currentIndex].totalAmountSpent = newTotalAmountSpent
-                let newBalance = self.budgetArray[self.currentIndex].balance + historyValue!
-                self.budgetArray[self.currentIndex].balance = newBalance
-            }
-                
-            // If this action was an "Added to Budget" action
-            else if historyStr[index1] == "+"
-            {
-                let newTotalAmountAdded = self.budgetArray[self.currentIndex].totalAmountAdded - historyValue!
-                self.budgetArray[self.currentIndex].totalAmountAdded = newTotalAmountAdded
-                let newBalance = self.budgetArray[self.currentIndex].balance - historyValue!
-                self.budgetArray[self.currentIndex].balance = newBalance
-                let newBudgetAmount = self.budgetArray[self.currentIndex].totalBudgetAmount - historyValue!
-                self.budgetArray[self.currentIndex].totalBudgetAmount = newBudgetAmount
-            }
-            
-            // Remove the latitude and longitude for the current row
-            self.budgetArray[self.currentIndex].markerLatitude.remove(at: indexPath.row)
-            self.budgetArray[self.currentIndex].markerLongitude.remove(at: indexPath.row)
-            
-            // Delete just the marker associated with this cell
-            self.markerArray[indexPath.row].map = nil
-            self.markerArray.remove(at: indexPath.row)
-            
-            // Delete the row
-            self.budgetArray[self.currentIndex].historyArray.remove(at: indexPath.row)
-            self.budgetArray[self.currentIndex].descriptionArray.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            self.sharedDelegate.saveContext()
-            BudgetVariables.getData()
+            Client.sharedInstance.socket.write(data: jsonData as Data)
             
             // Disable the clear history button if the cell deleted was the last item
-            if self.budgetArray[self.currentIndex].historyArray.isEmpty == true
+            if transactionArray.count == 0
             {
                 self.clearHistoryButton.isEnabled = false
             }
@@ -444,21 +392,21 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
             {
                 self.clearHistoryButton.isEnabled = true
             }
+            
+            self.sendRefreshQuery()
         }
         
         // Change the color of the undo button
-        undo.backgroundColor = BudgetVariables.hexStringToUIColor(hex: "E74C3C")
+        delete.backgroundColor = BudgetVariables.hexStringToUIColor(hex: "E74C3C")
         
+        let count = (toPopulate?["transactions"] as! NSArray).count
         // Edit item at indexPath
         let edit = UITableViewRowAction(style: .normal, title: "Edit   ")
         { (action, indexPath) in
             
             // If it is not the last row
-            if indexPath.row != self.budgetArray[self.currentIndex].historyArray.count
+            if indexPath.row != count
             {
-                let descripStr = self.budgetArray[self.currentIndex].descriptionArray[indexPath.row]
-                let index = descripStr.index(descripStr.endIndex, offsetBy: -14)
-                self.oldDescription = descripStr.substring(to: index)
                 self.showEditDescriptionAlert(indexPath: indexPath)
             }
         }
@@ -466,7 +414,7 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
         // Change the color of the edit button
         edit.backgroundColor = BudgetVariables.hexStringToUIColor(hex: "BBB7B0")
         
-        return [undo, edit]
+        return [delete, edit]
     }
     
     // When a cell is selected, focus the camera on the associated marker
@@ -477,7 +425,7 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
         if indexPath.row != count
         {
             let transactionArray = toPopulate?["transactions"] as! NSArray
-            let currTransaction = transactionArray[indexPath.row] as? [String:Any]
+            let currTransaction = transactionArray[count - 1 - indexPath.row] as? [String:Any]
             let latitude = currTransaction!["Latitude"] as! Double
             let longitude = currTransaction!["Longitude"] as! Double
             
@@ -496,15 +444,19 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
     // Shows the alert pop-up
     func showEditDescriptionAlert(indexPath: IndexPath)
     {
+        let transactionArray = toPopulate?["transactions"] as! NSArray
+        let count = transactionArray.count
+        let currTransaction = transactionArray[count - 1 - indexPath.row] as? [String:Any]
+        
         let alert = UIAlertController(title: "Edit Description", message: "", preferredStyle: UIAlertControllerStyle.alert)
         alert.addTextField(configurationHandler: {(textField: UITextField) in
             textField.placeholder = "New Description"
             
             // Grab old description and put it into the initial textfield
-            let oldDescription = self.budgetArray[self.currentIndex].descriptionArray[indexPath.row]
-            textField.text = BudgetVariables.getDetailFromDescription(descripStr: oldDescription)
+            let oldDescription = currTransaction!["transactionDetails"]
+            textField.text = oldDescription as! String
             
-            textField.delegate = self
+            //textField.delegate = self
             textField.autocapitalizationType = .sentences
             textField.addTarget(self, action: #selector(self.inputDescriptionDidChange(_:)), for: .editingChanged)
         })
@@ -518,12 +470,23 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
             // Trim the inputName first
             inputDescription = inputDescription?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             
-            // Get old description
-            let oldDescription = self.budgetArray[self.currentIndex].descriptionArray[indexPath.row]
+            let json:NSMutableDictionary = NSMutableDictionary()
+            json.setValue("editTransactionDescription", forKey: "message")
             
-            // Change the current description
-            let date = BudgetVariables.getDateFromDescription(descripStr: oldDescription)
-            self.budgetArray[self.currentIndex].descriptionArray[indexPath.row] = inputDescription! + "    " + date
+            json.setValue(Client.sharedInstance.json?["userID"], forKey: "userID")
+            json.setValue(self.toPopulate?["categoryID"], forKey: "categoryID")
+            json.setValue(currTransaction?["transactionID"], forKey: "transactionID")
+            json.setValue(inputDescription, forKey: "newDescription")
+            
+            let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+            var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+            print(jsonString)
+            print(jsonData)
+            
+            Client.sharedInstance.socket.write(data: jsonData as Data)
+            
+            //COOL
+            self.sendRefreshQuery()
             self.historyTable.reloadRows(at: [indexPath], with: .fade)
             
             // Save and get data to coredata
@@ -534,7 +497,7 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
             self.historyTable.reloadData()
             
             // Update the snippet for this marker
-            self.markerArray[indexPath.row].snippet = inputDescription!
+            self.markerArray[count - 1 - indexPath.row].snippet = inputDescription!
         })
         
         alert.addAction(save)
@@ -575,5 +538,32 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
         let currentString = textField.text as NSString?
         let newString = currentString?.replacingCharacters(in: range, with: string)
         return newString!.characters.count <= maxLength
+    }
+    
+    func sendRefreshQuery() {
+        print("REFRESH QUERY")
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("refreshdatahistory", forKey: "message")
+        json.setValue(Client.sharedInstance.json?["userID"], forKey: "userID")
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        
+        Client.sharedInstance.socket.write(data: jsonData)
+    }
+    
+    func refreshData() {
+        var budget = Client.sharedInstance.json?[currBudget] as? [String: Any]
+        toPopulate = budget?[currCategory] as? [String: Any]
+        print("REFRESH DATA")
+        do {
+            //            let data1 =  try JSONSerialization.data(withJSONObject: toPopulate!, options: JSONSerialization.WritingOptions.prettyPrinted)
+            //            let convertedString = String(data: data1, encoding: String.Encoding.utf8) // the data will be converted to the string
+            //            print(convertedString! + "\n\n\n\n\n") // <-- here is ur string
+            DispatchQueue.main.async{
+                self.historyTable.reloadData()
+            }
+        } catch let myJSONError {
+            print(myJSONError)
+        }
     }
 }

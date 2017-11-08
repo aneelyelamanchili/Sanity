@@ -25,6 +25,8 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
     
     var currentIndex: Int!
     
+    var maxAmount: Double!
+    
     // IBOutlets
     @IBOutlet weak var composeButton: UIBarButtonItem!
     @IBOutlet var budgetTable: UITableView!
@@ -61,6 +63,8 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         
         // Gets rid of the empty cells
         budgetTable.tableFooterView = UIView(frame: CGRect.zero)
+        
+        self.sendRefreshQuery()
     }
     
     // Reload table data everytime the view is about to appear
@@ -73,7 +77,8 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         BigBudgetVariables.getData()
         
         // Reload the budget table
-        self.budgetTable.reloadData()
+        self.sendRefreshQuery()
+        //self.budgetTable.reloadData()
     }
     
     //Calls this function when the tap is recognized.
@@ -89,17 +94,22 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
     // Function that shows the alert pop-up
     func showAlert()
     {
+        maxAmount = calcMaxCategoryAmount()
+        print("In Show Alert: Max amount is ")
+        print(maxAmount)
+        
         let alert = UIAlertController(title: "Create a Category", message: "", preferredStyle: UIAlertControllerStyle.alert)
         alert.addTextField(configurationHandler: {(textField: UITextField) in
             textField.placeholder = "Category Name"
-            textField.delegate = self
+//            textField.delegate = self
             textField.autocapitalizationType = .words
         })
         
         alert.addTextField(configurationHandler: {(textField: UITextField) in
-            textField.placeholder = "From $0 to $1,000,000"
+            let max: String = BudgetVariables.numFormat(myNum: self.maxAmount)
+            textField.placeholder = "From $0 to " + max
             textField.keyboardType = .decimalPad
-            textField.delegate = self
+//            textField.delegate = self
             textField.addTarget(self, action: #selector(self.inputAmountDidChange(_:)), for: .editingChanged)
         })
         
@@ -184,6 +194,33 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         self.confirmButton = create
         create.isEnabled = false
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func calcMaxCategoryAmount() -> Double {
+        print(toPopulate)
+        print("The max budgetAmount is: ")
+        print(toPopulate["budgetAmount"] as! Double)
+        
+        var sum: Double = 0.0
+        var categoryStart: Int = 1
+        
+        while(toPopulate["category\(categoryStart)"] != nil) {
+            print("category\(categoryStart) exists")
+            print("Category Amount is: ")
+            
+            var populate:[String: Any]
+            populate = (self.toPopulate?["category\(categoryStart)"] as? [String: Any])!
+            
+            print(populate["categoryAmount"] as! Double)
+            sum += populate["categoryAmount"] as! Double
+            print("The total sum so far is: ")
+            print(sum)
+            categoryStart += 1
+        }
+        
+        print("The max amount for this category is: ")
+        print(toPopulate["budgetAmount"] as! Double - sum)
+        return (toPopulate["budgetAmount"] as! Double - sum)
     }
     
     func sendRefreshQuery() {
@@ -293,7 +330,7 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         if let inputAmount = Double(trimmedInput!)
         {
             // If the input is also between 0 and 1 million
-            if inputAmount >= 0 && inputAmount <= 1000000
+            if inputAmount >= 0 && inputAmount <= maxAmount
             {
                 // Confirm button gets enabled
                 self.confirmButton?.isEnabled = true
@@ -319,7 +356,14 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
     // When the pie chart button is pressed, segue to the pie chart view
     @IBAction func pieChartButtonPressed(_ sender: AnyObject)
     {
-        performSegue(withIdentifier: "showPieChart", sender: nil)
+//        var queryCategory: String = "category" + String(indexPath.row + 1)
+        let destination = storyboard?.instantiateViewController(withIdentifier: "PieChartViewController") as! PieChartViewController
+        print(toPopulate);
+        destination.toPopulate = toPopulate
+//        destination.currCategory = queryCategory
+//        destination.currBudget = currBudget
+        navigationController?.pushViewController(destination, animated: true)
+//        performSegue(withIdentifier: "showPieChart", sender: nil)
     }
     
     // If a cell is pressed, go to the corresponding budget
@@ -370,7 +414,7 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
             myCell.detailTextLabel?.textColor = UIColor.black
             if let category = self.toPopulate?["category" + String(indexPath.row + 1)] as? [String: Any] {
                 myCell.textLabel?.text = category["categoryName"] as? String
-                let currentBalance = (category["categoryAmount"]) as! Double
+                let currentBalance = ((category["categoryAmount"]) as! Double) - ((category["totalAmountSpent"]) as! Double)
                 let currentBalanceString = BudgetVariables.numFormat(myNum: currentBalance)
                 myCell.detailTextLabel?.text = currentBalanceString
             }
@@ -412,6 +456,7 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
             let destination = storyboard?.instantiateViewController(withIdentifier: "SpendViewController") as! SpendViewController
             destination.toPopulate = toPopulate![queryCategory] as! [String: Any]
             destination.currCategory = queryCategory
+            destination.currBudget = currBudget
             navigationController?.pushViewController(destination, animated: true)
 //            performSegue(withIdentifier: "viewBudget", sender: nil)
         }

@@ -45,12 +45,6 @@ In order to run the application on XCode, you must open `Sanity.xcworkspace` and
 
 If you have reached this point without failure you will have access to the application on your local phone or in a virtual phone that XCode provides which can be used for testing purposes.
 
-## Video Walkthrough 
-
-Here's a walkthrough of implemented user stories:
-
-![](https://github.com/aneelyelamanchili/Sanity/blob/master/SanityDemo.gif "Video Walkthrough")
-
 ## License
 
     Copyright [2017] [Aneel Yelamanchili]

@@ -109,24 +109,25 @@ class LoginViewController : UIViewController, UITextFieldDelegate {
             
             if (context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error))
             {
+//                good = true
                 context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: { (success, error) -> Void in
                     if (success) {
                         print("Auth was OK");
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        
+
                         print("SUCCESS")
-                        
+
                         self.sendMessage = Client.sharedInstance.json
-                        
+
                         //print(sendMessage)
-                        
+
                         let mainViewController = storyboard.instantiateViewController(withIdentifier: "BigBudgetListViewController") as! BigBudgetListViewController
-                        
+
                         mainViewController.toPopulate = self.sendMessage
-                        
+
                         //self.navigationController?.pushViewController(mainViewController, animated: true)
                         let targetNavigationController = UINavigationController(rootViewController: mainViewController)
-                        
+
                         UIApplication.topViewController()?.present(targetNavigationController, animated: true, completion: nil)
 
                     }

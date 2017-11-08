@@ -14,7 +14,7 @@ class Client: NSObject, WebSocketDelegate {
     static var testPassed:Bool!
     
     var json: [String: Any]?
-    var socket = WebSocket(url: URL(string: "ws://77766393.ngrok.io/SanityBackend1/ws")!)
+    var socket = WebSocket(url: URL(string: "ws://27973148.ngrok.io/SanityBackend1/ws")!)
     
     func websocketDidConnect(socket: WebSocketClient) {
             print("websocket is connected")
@@ -45,8 +45,6 @@ class Client: NSObject, WebSocketDelegate {
                 SignUpViewController().didReceiveData()
             } else if(json!["message"] as? String == "passwordSuccess" || json!["message"] as? String == "passwordFail") {
                 LoginViewController().didReceiveData()
-            } else if(json!["notification"] as? String == "yes") {
-                SpendViewController().didReceiveData()
             } else if(json!["message"] as? String == "loginfailtest" || json?["message"] as? String == "loginsuccesstest") {
                 print("GOT HERE TO TEST")
                 if(json!["message"] as? String == "loginfailtest") {
@@ -129,14 +127,28 @@ class Client: NSObject, WebSocketDelegate {
                 let vc = UIApplication.topViewController() as? BudgetListViewController
                 vc?.refreshData()
             } else if(json!["message"] as? String == "addTransactionSuccess") {
+                print("INSIDE ADDTRANSACTIONSUCCESSMESSAGE CLIENT")
+                print(json)
                 let vc = UIApplication.topViewController() as? SpendViewController
+//                vc?.didReceiveData()
                 vc?.sendRefreshQuery()
+//                vc?.didReceiveData()
             } else if(json!["message"] as? String == "getdatatransactionsuccess") {
+                print("INSIDE GETDATATRANSACTIONSUCCESSMESSAGE CLIENT")
+                print(json)
                 let vc = UIApplication.topViewController() as? SpendViewController
                 vc?.refreshData()
             } else if(json!["message"] as? String == "getdatahistorysuccess") {
                 let vc = UIApplication.topViewController() as? HistoryAndMapViewController
                 vc?.refreshData()
+            } else if(json!["message"] as? String == "periodNotification") {
+                let vc = UIApplication.topViewController()
+                
+                let alertController = UIAlertController(title: "Period Notification!", message: json!["notify"] as? String, preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default) { (action) in}
+                alertController.addAction(action)
+                
+                vc?.present(alertController, animated: true, completion: nil)
             }
         
         } else {

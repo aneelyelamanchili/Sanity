@@ -99,12 +99,16 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     public func didReceiveData() {
-        let myAlert = UIAlertView()
-        myAlert.title = "Category Notification!"
-        myAlert.message = Client.sharedInstance.json?["notify"] as! String?
-        myAlert.addButton(withTitle: "Dismiss")
-        myAlert.delegate = self
-        myAlert.show()
+        print("IN DID RECEIVE DATA SPENDVIEWCONTROLLER")
+        print(Client.sharedInstance.json)
+        if(Client.sharedInstance.json?["notification"] != nil && Client.sharedInstance.json?["notification"] as! String == "yes") {
+            let myAlert = UIAlertView()
+            myAlert.title = "Category Notification!"
+            myAlert.message = Client.sharedInstance.json?["notify"] as! String?
+            myAlert.addButton(withTitle: "Dismiss")
+            myAlert.delegate = self
+            myAlert.show()
+        }
     }
     
     // This function limits the maximum character count for each textField and limits the decimal places input to 2
@@ -452,6 +456,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //            print(convertedString! + "\n\n\n\n\n") // <-- here is ur string
             DispatchQueue.main.async{
                 self.totalBalance.text = BudgetVariables.numFormat(myNum: (self.toPopulate?["categoryAmount"] as! Double) - (self.toPopulate?["totalAmountSpent"] as! Double))
+                self.didReceiveData()
             }
         } catch let myJSONError {
             print(myJSONError)

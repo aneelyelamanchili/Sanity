@@ -287,7 +287,7 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
             myCell.detailTextLabel?.textColor = UIColor.black
             
             let transactions = toPopulate?["transactions"] as! NSArray
-            let currTransaction = transactions[indexPath.row] as? [String: Any]
+            let currTransaction = transactions[count - 1 - indexPath.row] as? [String: Any]
             let str = currTransaction!["transactionAmount"] as? String
             let index = str?.index((str?.startIndex)!, offsetBy: 0)
             

@@ -14,7 +14,7 @@ class Client: NSObject, WebSocketDelegate {
     static var testPassed:Bool!
     
     var json: [String: Any]?
-    var socket = WebSocket(url: URL(string: "ws://00fa9dbd.ngrok.io/SanityBackend1/ws")!)
+    var socket = WebSocket(url: URL(string: "ws://77766393.ngrok.io/SanityBackend1/ws")!)
     
     func websocketDidConnect(socket: WebSocketClient) {
             print("websocket is connected")
@@ -126,8 +126,14 @@ class Client: NSObject, WebSocketDelegate {
                 print("GOT HERE")
                 let vc = UIApplication.topViewController() as? BudgetListViewController
                 vc?.refreshData()
+            } else if(json!["message"] as? String == "addTransactionSuccess") {
+                let vc = UIApplication.topViewController() as? SpendViewController
+                vc?.sendRefreshQuery()
+            } else if(json!["message"] as? String == "getdatatransactionsuccess") {
+                let vc = UIApplication.topViewController() as? SpendViewController
+                vc?.refreshData()
             }
-            
+        
         } else {
             print("not a valid UTF-8 sequence")
         }

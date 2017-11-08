@@ -22,6 +22,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var toPopulate: [String: Any]!
     
     var currCategory: String!
+    var currBudget: String!
     
     // Location manager for finding the current location
     let locationManager = CLLocationManager()
@@ -37,6 +38,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         UIApplication.shared.statusBarStyle = .lightContent
         // So we don't need to type this out again
         let shDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -78,7 +80,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         // Refresh the total balance label, in the case that another view modified the balance vaariable
         //totalBalance.text = BudgetVariables.numFormat(myNum: budgetArray[currentIndex].balance)
-        totalBalance.text = BudgetVariables.numFormat(myNum: toPopulate?["categoryAmount"] as! Double)
+        totalBalance.text = BudgetVariables.numFormat(myNum: (toPopulate?["categoryAmount"] as! Double) - (toPopulate?["totalAmountSpent"] as! Double))
         
         // Reset the text fields and disable the buttons
         inputAmount.text = ""
@@ -178,39 +180,54 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         // If the input amount is a number, round the input to two decimal places before doing further calculations
         if let input = (Double(trimmedInput!))?.roundTo(places: 2)
         {
-            budgetArray[currentIndex].balance -= input
-            totalBalance.text = BudgetVariables.numFormat(myNum: budgetArray[currentIndex].balance)
-            budgetArray[currentIndex].historyArray.append("– $" + String(format: "%.2f", input))
-            
             // Trim description text before appending
             let description = (descriptionText.text)?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            budgetArray[currentIndex].descriptionArray.append(description! + "    " + date)
-            
-            // Log the amount withdrawn for today's spendings for this specific budget
-            BudgetVariables.logTodaysSpendings(num: input)
-            
-            // Log the total amount spent for this budget
-            budgetArray[currentIndex].totalAmountSpent += input
             
             // Log the latitude and longitude of the current transaction if the current location is available
             let currentPosition = self.locationManager.location?.coordinate
+            let latitude:Double!
+            let longitude:Double!
+            
             if currentPosition != nil
             {
-                budgetArray[currentIndex].markerLatitude.append((currentPosition?.latitude)!)
-                budgetArray[currentIndex].markerLongitude.append((currentPosition?.longitude)!)
+                latitude = (currentPosition?.latitude)!
+                longitude = (currentPosition?.longitude)!
             }
                 
             // If the current position is nil, set the arrays with placeholders of (360,360)
             else
             {
-                budgetArray[currentIndex].markerLatitude.append(360)
-                budgetArray[currentIndex].markerLongitude.append(360)
+                latitude = 360
+                longitude = 360
             }
-                        
-            if budgetArray[currentIndex].balance - input < 0
-            {
-                spendButton.isEnabled = false
-            }
+            
+            let json:NSMutableDictionary = NSMutableDictionary()
+            json.setValue("addTransaction", forKey: "message")
+            
+            json.setValue(Client.sharedInstance.json?["userID"], forKey: "userID")
+            json.setValue(self.toPopulate?["categoryID"], forKey: "categoryID")
+            json.setValue(description, forKey: "details")
+            json.setValue(latitude, forKey: "latitude")
+            json.setValue(longitude, forKey: "longitude")
+            json.setValue(input, forKey: "amountToAdd")
+            json.setValue(String(date), forKey: "date")
+            
+            let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+            var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+            print(jsonString)
+            print(jsonData)
+            
+            Client.sharedInstance.socket.write(data: jsonData as Data)
+            
+            // Save and get data to coredata
+            self.sharedDelegate.saveContext()
+            BudgetVariables.getData()
+            
+            // Set the new current index and reload the table
+            BudgetVariables.currentIndex = BudgetVariables.budgetArray.count - 1
+            //                    self.budgetTable.reloadData()
+            //self.sendRefreshQuery()
+            
         }
         else
         {
@@ -227,49 +244,69 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     {
         // Get current date, append to history Array
         let date = BudgetVariables.todaysDate(format: "MM/dd/YYYY")
-    
-        // Trim the input Amount
+        
+        // Trim input first
         let trimmedInput = (inputAmount.text)?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-    
+        
+        // If the input amount is a number, round the input to two decimal places before doing further calculations
         if let input = (Double(trimmedInput!))?.roundTo(places: 2)
         {
-            budgetArray[currentIndex].balance += input
-            totalBalance.text = BudgetVariables.numFormat(myNum: budgetArray[currentIndex].balance)
-            budgetArray[currentIndex].historyArray.append("+ $" + String(format: "%.2f", input))
-            
             // Trim description text before appending
             let description = (descriptionText.text)?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            budgetArray[currentIndex].descriptionArray.append(description! + "    " + date)
-            
-            // Log this into the history and description arrays, and then update the totalAmountAdded and totalBudgetAmount
-            budgetArray[currentIndex].totalAmountAdded += input
-            budgetArray[currentIndex].totalBudgetAmount += input
             
             // Log the latitude and longitude of the current transaction if the current location is available
             let currentPosition = self.locationManager.location?.coordinate
+            let latitude:Double!
+            let longitude:Double!
+            
             if currentPosition != nil
             {
-                budgetArray[currentIndex].markerLatitude.append((currentPosition?.latitude)!)
-                budgetArray[currentIndex].markerLongitude.append((currentPosition?.longitude)!)
+                latitude = (currentPosition?.latitude)!
+                longitude = (currentPosition?.longitude)!
             }
                 
-            // If the current position is nil, set the arrays with placeholders of (360,360)
+                // If the current position is nil, set the arrays with placeholders of (360,360)
             else
             {
-                budgetArray[currentIndex].markerLatitude.append(360)
-                budgetArray[currentIndex].markerLongitude.append(360)
+                latitude = 360
+                longitude = 360
             }
             
-            if budgetArray[currentIndex].balance + input > 1000000
-            {
-                addButton.isEnabled = false
-            }
+            let json:NSMutableDictionary = NSMutableDictionary()
+            json.setValue("addTransaction", forKey: "message")
+            
+            json.setValue(Client.sharedInstance.json?["userID"], forKey: "userID")
+            json.setValue(self.toPopulate?["categoryID"], forKey: "categoryID")
+            json.setValue(description, forKey: "details")
+            json.setValue(latitude, forKey: "latitude")
+            json.setValue(longitude, forKey: "longitude")
+            json.setValue((input * -1.0), forKey: "amountToAdd")
+            json.setValue(String(date), forKey: "date")
+            
+            let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+            var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+            print(jsonString)
+            print(jsonData)
+            
+            Client.sharedInstance.socket.write(data: jsonData as Data)
+            
+            // Save and get data to coredata
+            self.sharedDelegate.saveContext()
+            BudgetVariables.getData()
+            
+            // Set the new current index and reload the table
+            BudgetVariables.currentIndex = BudgetVariables.budgetArray.count - 1
+            //                    self.budgetTable.reloadData()
+            //self.sendRefreshQuery()
+            
         }
-    
-        // Save data to coredata
+        else
+        {
+            // Our amountEnteredChanged should take into account all non-Number cases and
+            totalBalance.text = "If this message is seen check func amountEnteredChanged"
+        }
+        
         self.sharedDelegate.saveContext()
-    
-        // Get data
         BudgetVariables.getData()
     }
     
@@ -282,7 +319,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         // If the input is empty or a period, show current balance and disable buttons
         if trimmedInput == "" || trimmedInput == "."
         {
-            totalBalance.text = BudgetVariables.numFormat(myNum: toPopulate?["categoryAmount"] as! Double)
+            totalBalance.text = BudgetVariables.numFormat(myNum: (toPopulate?["categoryAmount"] as! Double) - (toPopulate?["totalAmountSpent"] as! Double))
             spendButton.isEnabled = false
             addButton.isEnabled = false
         }
@@ -299,7 +336,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }
             else
             {
-                totalBalance.text = BudgetVariables.numFormat(myNum: toPopulate?["categoryAmount"] as! Double)
+                totalBalance.text = BudgetVariables.numFormat(myNum: (toPopulate?["categoryAmount"] as! Double) - (toPopulate?["totalAmountSpent"] as! Double))
                 
                 // If the input is $0, disable both buttons
                 if input == 0
@@ -378,5 +415,33 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let backItem = UIBarButtonItem()
         backItem.title = ""
         navigationItem.backBarButtonItem = backItem
+    }
+    
+    func sendRefreshQuery() {
+        print("REFRESH QUERY")
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("refreshdatatransaction", forKey: "message")
+        json.setValue(Client.sharedInstance.json?["userID"], forKey: "userID")
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        
+        Client.sharedInstance.socket.write(data: jsonData)
+    }
+    
+    func refreshData() {
+        print(currCategory)
+        var budget = Client.sharedInstance.json?[currBudget] as? [String: Any]
+        toPopulate = budget?[currCategory] as? [String: Any]
+        print("REFRESH DATA")
+        do {
+//            let data1 =  try JSONSerialization.data(withJSONObject: toPopulate!, options: JSONSerialization.WritingOptions.prettyPrinted)
+//            let convertedString = String(data: data1, encoding: String.Encoding.utf8) // the data will be converted to the string
+//            print(convertedString! + "\n\n\n\n\n") // <-- here is ur string
+            DispatchQueue.main.async{
+                self.totalBalance.text = BudgetVariables.numFormat(myNum: (self.toPopulate?["categoryAmount"] as! Double) - (self.toPopulate?["totalAmountSpent"] as! Double))
+            }
+        } catch let myJSONError {
+            print(myJSONError)
+        }
     }
 }

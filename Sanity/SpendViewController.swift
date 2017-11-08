@@ -94,6 +94,15 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         view.endEditing(true)
     }
     
+    public func didReceiveData() {
+        let myAlert = UIAlertView()
+        myAlert.title = "Category Notification!"
+        myAlert.message = Client.sharedInstance.json?["notify"] as! String?
+        myAlert.addButton(withTitle: "Dismiss")
+        myAlert.delegate = self
+        myAlert.show()
+    }
+    
     // This function limits the maximum character count for each textField and limits the decimal places input to 2
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {

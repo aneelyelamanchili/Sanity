@@ -14,7 +14,7 @@ class Client: NSObject, WebSocketDelegate {
     static var testPassed:Bool!
     
     var json: [String: Any]?
-    var socket = WebSocket(url: URL(string: "ws://00fa9dbd.ngrok.io/SanityBackend1/ws")!)
+    var socket = WebSocket(url: URL(string: "ws://77766393.ngrok.io/SanityBackend1/ws")!)
     
     func websocketDidConnect(socket: WebSocketClient) {
             print("websocket is connected")
@@ -45,6 +45,8 @@ class Client: NSObject, WebSocketDelegate {
                 SignUpViewController().didReceiveData()
             } else if(json!["message"] as? String == "passwordSuccess" || json!["message"] as? String == "passwordFail") {
                 LoginViewController().didReceiveData()
+            } else if(json!["notification"] as? String == "yes") {
+                SpendViewController().didReceiveData()
             } else if(json!["message"] as? String == "loginfailtest" || json?["message"] as? String == "loginsuccesstest") {
                 print("GOT HERE TO TEST")
                 if(json!["message"] as? String == "loginfailtest") {

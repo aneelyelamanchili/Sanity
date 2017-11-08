@@ -57,6 +57,8 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
         budgetTable.reloadData();
         budgetTable.addSubview(rc)
         
+        sendRefreshQuery()
+        
         // Gets rid of the empty cells
         budgetTable.tableFooterView = UIView(frame: CGRect.zero)
     }
@@ -102,13 +104,13 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
         
         alert.addTextField(configurationHandler: {(textField: UITextField) in
             textField.placeholder = "Frequency: Daily, Weekly, etc"
-            textField.delegate = self
+//            textField.delegate = self
             textField.autocapitalizationType = .words
         })
         
         alert.addTextField(configurationHandler: {(textField: UITextField) in
             textField.placeholder = "Reset Start Date: MM/DD/YYYY"
-            textField.delegate = self
+//            textField.delegate = self
             textField.autocapitalizationType = .words
         })
         

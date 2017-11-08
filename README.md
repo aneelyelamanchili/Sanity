@@ -49,10 +49,7 @@ If you have reached this point without failure you will have access to the appli
 
 Here's a walkthrough of implemented user stories:
 
-![](https://github.com/aneelyelamanchili/Sanity/blob/master/SanityDemo.mp4 "Video Walkthrough")
-
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
-
+![](https://github.com/aneelyelamanchili/Sanity/blob/master/SanityDemo.gif "Video Walkthrough")
 
 ## License
 

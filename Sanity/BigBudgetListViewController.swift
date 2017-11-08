@@ -24,7 +24,8 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        UIApplication.shared.statusBarStyle = .lightContent
+        print("Printing in big budget...")
         print(toPopulate)
         // Set the logo for the app through an image created with Adobe Illustrator
         //        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 157.11974, height: 35))

@@ -19,6 +19,8 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
     
     var currentIndex: Int!
     
+    var toPopulate: [String: Any]!
+    
     // IBOutlet for components
     @IBOutlet var historyTable: UITableView!
     @IBOutlet weak var clearHistoryButton: UIBarButtonItem!
@@ -38,6 +40,9 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        UIApplication.shared.statusBarStyle = .lightContent
+        print("Printing in history view...")
+        print(toPopulate)
         
         // Set up the map
         mapView.delegate = self
@@ -56,7 +61,7 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
         historyTable.delegate = self
         
         // If there is no history, disable the clear history button
-        if self.budgetArray[self.currentIndex].historyArray.isEmpty == true
+        if (toPopulate?["transactions"] as! NSArray).count == 0
         {
             clearHistoryButton.isEnabled = false
         }
@@ -126,10 +131,15 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
         self.markerArray.removeAll()
         
         // Append markers for all the locations in the array
-        for i in 0..<self.budgetArray[self.currentIndex].markerLatitude.count
+        let transactionArray = toPopulate?["transactions"] as! NSArray
+        for i in 0..<transactionArray.count
         {
-            let latitude = self.budgetArray[self.currentIndex].markerLatitude[i]
-            let longitude = self.budgetArray[self.currentIndex].markerLongitude[i]
+            let currTransaction = transactionArray[i] as? [String:Any]
+            let latitude = currTransaction!["Latitude"] as! Double
+            let longitude = currTransaction!["Longitude"] as! Double
+            
+            print(latitude)
+            print(longitude)
             
             // If the latitude and longitude are valid, add a corresponding marker to the map
             if latitude != 360 && longitude != 360
@@ -137,10 +147,12 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
                 let marker = GMSMarker()
                 marker.position.latitude = latitude
                 marker.position.longitude = longitude
-                marker.snippet = BudgetVariables.getDetailFromDescription(descripStr: self.budgetArray[self.currentIndex].descriptionArray[i])
+                print(currTransaction!["transactionDetails"] as! String)
+//                marker.snippet = BudgetVariables.getDetailFromDescription(descripStr: "Test")
+                marker.snippet = currTransaction!["transactionDetails"] as! String
                 
                 // If the action is a "+", add a green marker instead
-                let str = self.budgetArray[self.currentIndex].historyArray[i]
+                let str = currTransaction!["transactionAmount"] as! String
                 let index = str.index(str.startIndex, offsetBy: 0)
                 if str[index] == "+"
                 {
@@ -251,14 +263,14 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         // Represents the number of rows the UITableView should have
-        return self.budgetArray[self.currentIndex].historyArray.count + 1
+        return (toPopulate?["transactions"] as! NSArray).count + 1
     }
     
     // Determines what data goes in what cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let myCell:UITableViewCell = historyTable.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath)
-        let count = self.budgetArray[self.currentIndex].historyArray.count
+        let count = (toPopulate?["transactions"] as! NSArray).count
         
         // If it's the last cell, customize the message
         if indexPath.row == count
@@ -274,32 +286,34 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
             myCell.textLabel?.textColor = UIColor.black
             myCell.detailTextLabel?.textColor = UIColor.black
             
-            let str = self.budgetArray[self.currentIndex].historyArray[indexPath.row]
-            let index = str.index(str.startIndex, offsetBy: 0)
+            let transactions = toPopulate?["transactions"] as! NSArray
+            let currTransaction = transactions[indexPath.row] as? [String: Any]
+            let str = currTransaction!["transactionAmount"] as? String
+            let index = str?.index((str?.startIndex)!, offsetBy: 0)
             
-            if str[index] == "+"
+            if str![index!] == "+"
             {
                 myCell.textLabel?.textColor = BudgetVariables.hexStringToUIColor(hex: "00B22C")
             }
             
-            if str[index] == "–"
+            if str![index!] == "-"
             {
                 myCell.textLabel?.textColor = BudgetVariables.hexStringToUIColor(hex: "FF0212")
             }
             
-            myCell.textLabel?.text = self.budgetArray[self.currentIndex].historyArray[indexPath.row]
+            myCell.textLabel?.text = str
             
             // String of the description
-            let descripStr = self.budgetArray[self.currentIndex].descriptionArray[indexPath.row]
+            let descripStr = currTransaction!["transactionDetails"] as? String
             
             // Create Detail Text
-            let detailText = BudgetVariables.getDetailFromDescription(descripStr: descripStr)
+            let detailText = currTransaction!["transactionDetails"] as? String
             
-            // Create Date Text
-            let dateText = BudgetVariables.createDateText(descripStr: descripStr)
+            
+            let dateText = BudgetVariables.createDateText(descripStr: (currTransaction!["Date"] as? String)!)
             
             // Display text
-            let displayText = detailText + dateText
+            let displayText = detailText! + dateText
             myCell.detailTextLabel?.text = displayText
             myCell.selectionStyle = UITableViewCellSelectionStyle.default
         }
@@ -314,29 +328,39 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         // If it is the last cell which contains information, user cannot delete this cell
-        if indexPath.row == self.budgetArray[self.currentIndex].historyArray.count
+        let count = (toPopulate?["transactions"] as! NSArray).count
+        if indexPath.row == count
         {
             return false
         }
         
         // Extract the amount spent for this specific transaction into the variable amountSpent
-        let historyStr = self.budgetArray[self.currentIndex].historyArray[indexPath.row]
-        let index1 = historyStr.index(historyStr.startIndex, offsetBy: 0) // Index spans the first character in the string
-        let index2 = historyStr.index(historyStr.startIndex, offsetBy: 3) // Index spans the amount spent in that transaction
-        let amountSpent = Double(historyStr.substring(from: index2))
+        let transactions = toPopulate?["transactions"] as! NSArray
+        let currTransaction = transactions[indexPath.row] as? [String: Any]
+        
+        let historyStr = currTransaction!["transactionAmount"] as? String
+        print("Printing1...")
+        print(historyStr)
+        
+        let index1 = historyStr?.index((historyStr?.startIndex)!, offsetBy: 0) // Index spans the first character in the string
+        let index2 = historyStr?.index((historyStr?.startIndex)!, offsetBy: 1) // Index spans the amount spent in that transaction
+        print("Printing...")
+        print(historyStr!.substring(from: index2!))
+        let amountSpent = Double(historyStr!.substring(from: index2!))
         
         // If after the deletion of a spend action the new balance is over 1M, user cannot delete this cell
-        if historyStr[index1] == "–"
+        if historyStr![index1!] == "-"
         {
-            let newBalance = self.budgetArray[self.currentIndex].balance + amountSpent!
+            print(amountSpent)
+            let newBalance = (toPopulate["categoryAmount"] as? Double)! + amountSpent!
             if newBalance > 1000000
             {
                 return false
             }
         }
-        else if historyStr[index1] == "+"
+        else if historyStr![index1!] == "+"
         {
-            let newBalance = self.budgetArray[self.currentIndex].balance - amountSpent!
+            let newBalance = (toPopulate["categoryAmount"] as? Double)! - amountSpent!
             if newBalance < 0
             {
                 return false
@@ -373,7 +397,7 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
             let historyValue = Double(historyStr.substring(from: index2))
             
             // If this specific piece of history logged a "Spend" action, the total amount spent should decrease after deletion
-            if historyStr[index1] == "–"
+            if historyStr[index1] == "-"
             {
                 let newAmtSpentOnDate = self.budgetArray[self.currentIndex].amountSpentOnDate[date]! - historyValue!
                 self.budgetArray[self.currentIndex].amountSpentOnDate[date] = newAmtSpentOnDate
@@ -449,10 +473,13 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         // If it is not the last row
-        if indexPath.row != self.budgetArray[self.currentIndex].historyArray.count
+        let count = (toPopulate?["transactions"] as! NSArray).count
+        if indexPath.row != count
         {
-            let latitude = self.budgetArray[self.currentIndex].markerLatitude[indexPath.row]
-            let longitude = self.budgetArray[self.currentIndex].markerLongitude[indexPath.row]
+            let transactionArray = toPopulate?["transactions"] as! NSArray
+            let currTransaction = transactionArray[indexPath.row] as? [String:Any]
+            let latitude = currTransaction!["Latitude"] as! Double
+            let longitude = currTransaction!["Longitude"] as! Double
             
             // If the latitude and longitude are valid, animate the camera to that location and select that marker, otherwise do nothing
             if latitude != 360 && longitude != 360

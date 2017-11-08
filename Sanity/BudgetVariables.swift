@@ -495,7 +495,8 @@ class BudgetVariables: UIViewController
     class func createDateText(descripStr: String) -> String
     {
         // Get date with format: MM/dd/YYYY
-        var dateText = getDateFromDescription(descripStr: descripStr)
+//        var dateText = getDateFromDescription(descripStr: descripStr)
+        var dateText = descripStr
         
         // Date text becomes MM/dd (get rid of the year)
         let ddMMIndex = dateText.index(dateText.endIndex, offsetBy: -5)

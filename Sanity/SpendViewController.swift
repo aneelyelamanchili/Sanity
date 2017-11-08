@@ -87,6 +87,8 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         descriptionText.text = ""
         spendButton.isEnabled = false
         addButton.isEnabled = false
+        
+        self.sendRefreshQuery()
     }
     
     //Calls this function when the tap is recognized.
@@ -390,6 +392,8 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        destination.budgetArray = budgetArray
 //        destination.currentIndex = currentIndex
         destination.toPopulate = toPopulate
+        destination.currCategory = currCategory
+        destination.currBudget = currBudget
         navigationController?.pushViewController(destination, animated: true)
         
         // Show the view controller with history and the map

@@ -134,6 +134,9 @@ class Client: NSObject, WebSocketDelegate {
             } else if(json!["message"] as? String == "getdatatransactionsuccess") {
                 let vc = UIApplication.topViewController() as? SpendViewController
                 vc?.refreshData()
+            } else if(json!["message"] as? String == "getdatahistorysuccess") {
+                let vc = UIApplication.topViewController() as? HistoryAndMapViewController
+                vc?.refreshData()
             }
         
         } else {

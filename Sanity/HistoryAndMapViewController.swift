@@ -425,7 +425,7 @@ class HistoryAndMapViewController: UIViewController, CLLocationManagerDelegate, 
         if indexPath.row != count
         {
             let transactionArray = toPopulate?["transactions"] as! NSArray
-            let currTransaction = transactionArray[indexPath.row] as? [String:Any]
+            let currTransaction = transactionArray[count - 1 - indexPath.row] as? [String:Any]
             let latitude = currTransaction!["Latitude"] as! Double
             let longitude = currTransaction!["Longitude"] as! Double
             

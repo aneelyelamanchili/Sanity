@@ -356,7 +356,14 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
     // When the pie chart button is pressed, segue to the pie chart view
     @IBAction func pieChartButtonPressed(_ sender: AnyObject)
     {
-        performSegue(withIdentifier: "showPieChart", sender: nil)
+//        var queryCategory: String = "category" + String(indexPath.row + 1)
+        let destination = storyboard?.instantiateViewController(withIdentifier: "PieChartViewController") as! PieChartViewController
+        print(toPopulate);
+        destination.toPopulate = toPopulate
+//        destination.currCategory = queryCategory
+//        destination.currBudget = currBudget
+        navigationController?.pushViewController(destination, animated: true)
+//        performSegue(withIdentifier: "showPieChart", sender: nil)
     }
     
     // If a cell is pressed, go to the corresponding budget

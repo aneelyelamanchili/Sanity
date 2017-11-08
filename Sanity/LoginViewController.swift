@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import TextFieldEffects
+import LocalAuthentication
 
 class LoginViewController : UIViewController, UITextFieldDelegate {
     let sharedModel = Client.sharedInstance
@@ -100,29 +101,43 @@ class LoginViewController : UIViewController, UITextFieldDelegate {
             myAlert.delegate = self
             myAlert.show()
         } else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            print("SUCCESS")
-            // Convert dictionary to string
-//            do {
-//                sendMessage = try JSONSerialization.jsonObject(with: Client.sharedInstance.json?["message"] as! Data, options: .allowFragments) as! Dictionary<String, Any>
-//            } catch {
-//                print("parse error")
-//            }
+            var context:LAContext = LAContext();
+            var error:NSError?
+            var success:Bool;
+            var reason:String = "Please authenticate using TouchID.";
             
-            sendMessage = Client.sharedInstance.json
-            
-            //print(sendMessage)
-            
-            let mainViewController = storyboard.instantiateViewController(withIdentifier: "BigBudgetListViewController") as! BigBudgetListViewController
-            
-            mainViewController.toPopulate = sendMessage
-            
-            //self.navigationController?.pushViewController(mainViewController, animated: true)
-            let targetNavigationController = UINavigationController(rootViewController: mainViewController)
-            
-            UIApplication.topViewController()?.present(targetNavigationController, animated: true, completion: nil)
-            
+            if (context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error))
+            {
+//                good = true
+                context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: { (success, error) -> Void in
+                    if (success) {
+                        print("Auth was OK");
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+                        print("SUCCESS")
+
+                        self.sendMessage = Client.sharedInstance.json
+
+                        //print(sendMessage)
+
+                        let mainViewController = storyboard.instantiateViewController(withIdentifier: "BigBudgetListViewController") as! BigBudgetListViewController
+
+                        mainViewController.toPopulate = self.sendMessage
+
+                        //self.navigationController?.pushViewController(mainViewController, animated: true)
+                        let targetNavigationController = UINavigationController(rootViewController: mainViewController)
+
+                        UIApplication.topViewController()?.present(targetNavigationController, animated: true, completion: nil)
+
+                    }
+                    else
+                    {
+                        //You should do better handling of error here but I'm being lazy
+                        print("Error received: %d", error!);
+                    }
+                });
+            }
         }
     }
     

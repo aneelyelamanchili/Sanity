@@ -582,6 +582,9 @@ public class Application {
 			else if (frequency.equals("Yearly")) {
 				freq = 365;
 			}
+			else if (frequency.equals("")) {
+				freq = 30; //default is monthly
+			}
 			else {
 				response = getData(conn, user);
 				response.put("message", "createBigBudgetFail");
@@ -686,9 +689,18 @@ public class Application {
 			ResultSet rs = null;
 			int id = message.getInt("categoryID");
 			String name = message.getString("categoryName");
-//			double amount = message.getDouble("budgetAmount");
-			String editBudget = "UPDATE Budgets SET BudgetName='" + name + /*"', BudgetAmount=" + amount + */"' WHERE budgetID=" + id + ";";
-			st.execute(editBudget);
+			String amount = message.getString("categoryAmount");
+			String editBudget = "";
+			if (amount.equals("") && !name.equals("")) {
+				editBudget = "UPDATE Budgets SET BudgetName='" + name + /*"', BudgetAmount=" + amount + */"' WHERE budgetID=" + id + ";";
+				st.execute(editBudget);
+			}
+			else if (name.equals("") && !amount.equals("")) {
+				double a = message.getDouble("categoryAmount");
+				editBudget = "UPDATE Budgets SET BudgetAmount=" + amount + " WHERE budgetID=" + id + ";";
+				st.execute(editBudget);
+			}
+			
 //			response = notify(conn, null, message);
 //			JSONObject data = getData(conn, message.getInt("userID"));
 //			for (String key : JSONObject.getNames(data)) {

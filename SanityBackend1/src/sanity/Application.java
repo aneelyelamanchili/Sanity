@@ -83,6 +83,9 @@ public class Application {
 	        if (message.get("message").equals("signup")) {
 				wsep.sendToSession(session, toBinary(signUp(message, conn)));
 			}
+	        else if (message.get("message").equals("editBigBudgetAttributes")) {
+	        	wsep.sendToSession(session, toBinary(editBigBudgetAttributes(message, session, conn)));
+	        }
 	        else if (message.get("message").equals("refreshdata")) {
 	        	wsep.sendToSession(session, toBinary(refreshData(message, session, conn)));
 	        }
@@ -622,6 +625,10 @@ public class Application {
 		return response;
 		
 	}
+	public JSONObject editBigBudgetAttributes(JSONObject message, Session session, Connection conn) {
+		//frequency, bigbudgetID, frequency will be string but parsable to int for custom
+		return null; //add to editBigBudget
+	}
 	public JSONObject editBigBudget(JSONObject message, Session session, Connection conn) {
 		//JSONObject response = new JSONObject();
 		try {
@@ -629,9 +636,63 @@ public class Application {
 			ResultSet rs = null;
 			int id = message.getInt("bigBudgetID");
 			String name = message.getString("bigBudgetName");
+			String newAmount = message.getString("budgetAmount");
+			String frequency = message.getString("frequency");
+			
+			if (!name.equals("")) {
+				String editBigBudget = "UPDATE BigBudgets SET BigBudgetName='" + name + /*"', BigBudgetAmount=" + amount +*/ "' WHERE bigBudgetID=" + id + ";";
+				st.execute(editBigBudget);
+			}
+			if (!newAmount.equals("")) {
+				double amount = message.getDouble("budgetAmount");
+				rs = st.executeQuery("SELECT * FROM Budgets WHERE bigBudgetID=" + id + ";");
+				double sum = 0;
+				while (rs.next()) {
+					sum += rs.getDouble("BudgetAmount");
+				}
+				if (sum >= amount) {
+					response = getData(conn, message.getInt("userID"));
+					response.put("message", "editbudgetfail");
+					response.put("editbudgetfail", "You can't make the budget amount less than the sum of the categories.");
+					return response;
+				}
+				else {
+					String editBigBudget = "UPDATE BigBudgets SET BigBudgetAmount=" + amount + "' WHERE bigBudgetID=" + id + ";";
+					st.execute(editBigBudget);
+				}
+			}
+			if (!frequency.equals("")) {
+				int freq = 0;
+				if (frequency.equals("Daily")) {
+					freq = 1;
+				}
+				else if (frequency.equals("Weekly")) {
+					freq = 7;
+				}
+				else if (frequency.equals("Monthly")) {
+					freq = 30;
+				}
+				else if (frequency.equals("Yearly")) {
+					freq = 365;
+				}
+				else {
+					try {
+						freq = Integer.parseInt(frequency);
+					} catch (NumberFormatException e) {
+						response = getData(conn, message.getInt("userID"));
+						response.put("message", "editbudgetfail");
+						response.put("editbudgetfail", "Invalid frequency added.");
+						return response;
+					}
+				}
+				st.execute("UPDATE BigBudgets SET Frequency=" + freq + ", BigBudgetDaysLeft=" + freq + " WHERE bigBudgetID=" + id + ";");
+			}
+			
+			
+			
 //			double amount = message.getDouble("bigBudgetAmount");
-			String editBigBudget = "UPDATE BigBudgets SET BigBudgetName='" + name + /*"', BigBudgetAmount=" + amount +*/ "' WHERE bigBudgetID=" + id + ";";
-			st.execute(editBigBudget);
+			
+//			st.execute(editBigBudget);
 			response = getData(conn, message.getInt("userID"));
 			response.put("message", "editbudgetsuccess");
 			response.put("editbudgetsuccess", "Edit budget success.");
@@ -691,15 +752,47 @@ public class Application {
 			String name = message.getString("categoryName");
 			String amount = message.getString("categoryAmount");
 			String editBudget = "";
-			if (amount.equals("") && !name.equals("")) {
+			if (!name.equals("")) {
 				editBudget = "UPDATE Budgets SET BudgetName='" + name + /*"', BudgetAmount=" + amount + */"' WHERE budgetID=" + id + ";";
 				st.execute(editBudget);
 			}
-			else if (name.equals("") && !amount.equals("")) {
+			if (!amount.equals("")) {
 				double a = message.getDouble("categoryAmount");
-				editBudget = "UPDATE Budgets SET BudgetAmount=" + amount + " WHERE budgetID=" + id + ";";
-				st.execute(editBudget);
+				rs = st.executeQuery("SELECT * FROM Budgets WHERE budgetID=" + id + ";");
+				int bbID = 0;
+				if (rs.next()) {
+					bbID = rs.getInt("bigBudgetID");
+				}
+				Statement st1 = conn.createStatement();
+				ResultSet rs1 = st1.executeQuery("SELECT * FROM Budgets WHERE bigBudgetID=" + bbID + ";");
+				double sum = 0;
+				if (rs1.next()) {
+					if (rs1.getInt("budgetID") != id) {
+						sum += rs1.getDouble("BudgetAmount");
+					}
+				}
+				Statement st2 = conn.createStatement();
+				ResultSet rs2 = st2.executeQuery("SELECT * FROM BigBudgets WHERE bigBudgetID=" + bbID + ";");
+				double bigBudgetAmount = 0;
+				if (rs2.next()) {
+					bigBudgetAmount = rs2.getDouble("BigBudgetAmount");
+				}
+				if ((sum+a)<=bigBudgetAmount) {
+					editBudget = "UPDATE Budgets SET BudgetAmount=" + amount + " WHERE budgetID=" + id + ";";
+					st.execute(editBudget);
+				}
+				else {
+					response = getData(conn, message.getInt("userID"));
+					response.put("message", "editcategoryfail");
+					response.put("editcategoryfail", "You can't make the category amounts sum to more than the budget limit.");
+					return response;
+				}
+				//TODO make sure it doesn't go over BigBUDGETAMOUTN
 			}
+//			else {
+//				editBudget = "UPDATE Budgets SET BudgetName='" + name + "', BudgetAmount=" + amount + " WHERE budgetID=" + id + ";";
+//				st.execute(editBudget);
+//			}
 			
 //			response = notify(conn, null, message);
 //			JSONObject data = getData(conn, message.getInt("userID"));
@@ -708,8 +801,8 @@ public class Application {
 //			}
 //			if (!response.getString("message").equals("notification")) {
 			response = getData(conn, message.getInt("userID"));
-				response.put("message", "editcategorysuccess");
-				response.put("editcategorysuccess", "Edit category success.");
+			response.put("message", "editcategorysuccess");
+			response.put("editcategorysuccess", "Edit category success.");
 //			}
 			return response;
 			

@@ -83,6 +83,9 @@ public class Application {
 	        if (message.get("message").equals("signup")) {
 				wsep.sendToSession(session, toBinary(signUp(message, conn)));
 			}
+	        else if (message.get("message").equals("editBigBudgetAttributes")) {
+	        	wsep.sendToSession(session, toBinary(editBigBudgetAttributes(message, session, conn)));
+	        }
 	        else if (message.get("message").equals("refreshdata")) {
 	        	wsep.sendToSession(session, toBinary(refreshData(message, session, conn)));
 	        }
@@ -275,16 +278,46 @@ public class Application {
 						double spent = rs.getFloat("TotalAmountSpent");
 						double amount = rs.getFloat("BigBudgetAmount");
 						Statement st2 = conn.createStatement();
-						st2.executeUpdate("UPDATE BigBudgets SET BigBudgetDaysLeft=" + frequency + ", Date='" + newDate + "' WHERE BigBudgetID=" + bbID + ";");
-						response.put("message", "periodNotification");
-						response.put("notify", bbName + " was reset. You spent " + String.format("%.2f",(spent/amount*100)) + "% of your budget this period, $" + spent + " out of $" + amount + ".");
-						Statement st1 = conn.createStatement();
-						ResultSet rs1 = st1.executeQuery("SELECT * FROM Budgets WHERE bigBudgetID=" + bbID + ";");
-
-						while (rs1.next()) {
-							Statement st3 = conn.createStatement();
-							st3.execute("UPDATE Budgets SET TotalAmountSpent=0 WHERE bigBudgetID=" + bbID + ";");
-							st3.execute("DELETE FROM Transactions WHERE budgetID=" + rs1.getInt("budgetID"));
+//						if (spent>amount) {
+						st2.executeUpdate("UPDATE BigBudgets SET BigBudgetDaysLeft=" + frequency + ", Date='" + newDate + "', TotalAmountSpent=0 WHERE BigBudgetID=" + bbID + ";");
+//						}
+//						else {
+//							st2.executeUpdate("UPDATE BigBudgets SET BigBudgetDaysLeft=" + frequency + ", Date='" + newDate + "', TotalAmountSpent=" + (-(amount-spent)) + " WHERE BigBudgetID=" + bbID + ";");
+//						}
+						if (rs.getString("BigBudgetName").equals("Annual Savings")) {
+							response.put("message", "periodNotification");
+							response.put("notify", "You saved " + amount + " over the last year.");
+							Statement st5 = conn.createStatement();
+							ResultSet rs5 = st5.executeQuery("SELECT * FROM Budgets WHERE bigBudgetID=" + bbID + ";");
+							while (rs5.next()) {
+								Statement st6 = conn.createStatement();
+								st6.execute("UPDATE Budgets SET TotalAmountSpent=0 WHERE bigBudgetID=" + bbID + ";");
+								st6.execute("DELETE FROM Transactions WHERE budgetID=" + rs5.getInt("budgetID"));
+							}
+							
+						}
+						else {
+							response.put("message", "periodNotification");
+							response.put("notify", bbName + " was reset. You spent " + String.format("%.2f",(spent/amount*100)) + "% of your budget this period, $" + spent + " out of $" + amount + ".");
+							Statement st1 = conn.createStatement();
+							ResultSet rs1 = st1.executeQuery("SELECT * FROM Budgets WHERE bigBudgetID=" + bbID + ";");
+							double saved = amount-spent;
+							Statement st7 = conn.createStatement();
+							ResultSet rs9 = st7.executeQuery("SELECT * FROM BigBudgets WHERE BigBudgetName='Annual Savings';");
+							if (rs9.next()) {
+								Statement st8 = conn.createStatement();
+								st8.execute("UPDATE BigBudgets SET BigBudgetAmount=" + (rs9.getDouble("BigBudgetAmount")+saved) + " WHERE bigBudgetID=" + rs9.getInt("bigBudgetID") + ";");
+							}
+							
+	
+							while (rs1.next()) {
+								Statement st3 = conn.createStatement();
+								double aSpent = rs1.getDouble("TotalAmountSpent");
+								double aAmount = rs1.getDouble("BudgetAmount");
+								
+								st3.execute("UPDATE Budgets SET TotalAmountSpent=0 WHERE bigBudgetID=" + bbID + ";");
+								st3.execute("DELETE FROM Transactions WHERE budgetID=" + rs1.getInt("budgetID"));
+							}
 						}
 					}
 					else {
@@ -359,6 +392,15 @@ public class Application {
 
 				if (rs3.next()) {
 					int id = rs3.getInt("userID");
+					Statement st1 = conn.createStatement();
+					
+					DateFormat df = new SimpleDateFormat("MM/dd/yyyy");			
+					Date date = new Date();
+					String newDate = df.format(date);
+					System.out.println(newDate);
+					
+					String addBigBudget = "(" + id + ", 'Annual Savings', 1, 0, 0, 0, 0, 365, '" + newDate + "', 365);";
+					st1.execute(Constants.SQL_INSERT_BIGBUDGET + addBigBudget);
 					response = getData(conn, id);
 					response.put("userID", id);
 				}
@@ -582,6 +624,9 @@ public class Application {
 			else if (frequency.equals("Yearly")) {
 				freq = 365;
 			}
+			else if (frequency.equals("")) {
+				freq = 30; //default is monthly
+			}
 			else {
 				response = getData(conn, user);
 				response.put("message", "createBigBudgetFail");
@@ -619,6 +664,10 @@ public class Application {
 		return response;
 		
 	}
+	public JSONObject editBigBudgetAttributes(JSONObject message, Session session, Connection conn) {
+		//frequency, bigbudgetID, frequency will be string but parsable to int for custom
+		return null; //add to editBigBudget
+	}
 	public JSONObject editBigBudget(JSONObject message, Session session, Connection conn) {
 		//JSONObject response = new JSONObject();
 		try {
@@ -626,9 +675,63 @@ public class Application {
 			ResultSet rs = null;
 			int id = message.getInt("bigBudgetID");
 			String name = message.getString("bigBudgetName");
+			String newAmount = message.getString("budgetAmount");
+			String frequency = message.getString("frequency");
+			
+			if (!name.equals("")) {
+				String editBigBudget = "UPDATE BigBudgets SET BigBudgetName='" + name + /*"', BigBudgetAmount=" + amount +*/ "' WHERE bigBudgetID=" + id + ";";
+				st.execute(editBigBudget);
+			}
+			if (!newAmount.equals("")) {
+				double amount = message.getDouble("budgetAmount");
+				rs = st.executeQuery("SELECT * FROM Budgets WHERE bigBudgetID=" + id + ";");
+				double sum = 0;
+				while (rs.next()) {
+					sum += rs.getDouble("BudgetAmount");
+				}
+				if (sum >= amount) {
+					response = getData(conn, message.getInt("userID"));
+					response.put("message", "editbudgetfail");
+					response.put("editbudgetfail", "You can't make the budget amount less than the sum of the categories.");
+					return response;
+				}
+				else {
+					String editBigBudget = "UPDATE BigBudgets SET BigBudgetAmount=" + amount + " WHERE bigBudgetID=" + id + ";";
+					st.execute(editBigBudget);
+				}
+			}
+			if (!frequency.equals("")) {
+				int freq = 0;
+				if (frequency.equalsIgnoreCase("Daily")) {
+					freq = 1;
+				}
+				else if (frequency.equalsIgnoreCase("Weekly")) {
+					freq = 7;
+				}
+				else if (frequency.equalsIgnoreCase("Monthly")) {
+					freq = 30;
+				}
+				else if (frequency.equalsIgnoreCase("Yearly")) {
+					freq = 365;
+				}
+				else {
+					try {
+						freq = Integer.parseInt(frequency);
+					} catch (NumberFormatException e) {
+						response = getData(conn, message.getInt("userID"));
+						response.put("message", "editbudgetfail");
+						response.put("editbudgetfail", "Invalid frequency added.");
+						return response;
+					}
+				}
+				st.execute("UPDATE BigBudgets SET Frequency=" + freq + ", BigBudgetDaysLeft=" + freq + " WHERE bigBudgetID=" + id + ";");
+			}
+			
+			
+			
 //			double amount = message.getDouble("bigBudgetAmount");
-			String editBigBudget = "UPDATE BigBudgets SET BigBudgetName='" + name + /*"', BigBudgetAmount=" + amount +*/ "' WHERE bigBudgetID=" + id + ";";
-			st.execute(editBigBudget);
+			
+//			st.execute(editBigBudget);
 			response = getData(conn, message.getInt("userID"));
 			response.put("message", "editbudgetsuccess");
 			response.put("editbudgetsuccess", "Edit budget success.");
@@ -686,9 +789,50 @@ public class Application {
 			ResultSet rs = null;
 			int id = message.getInt("categoryID");
 			String name = message.getString("categoryName");
-//			double amount = message.getDouble("budgetAmount");
-			String editBudget = "UPDATE Budgets SET BudgetName='" + name + /*"', BudgetAmount=" + amount + */"' WHERE budgetID=" + id + ";";
-			st.execute(editBudget);
+			String amount = message.getString("categoryAmount");
+			String editBudget = "";
+			if (!name.equals("")) {
+				editBudget = "UPDATE Budgets SET BudgetName='" + name + /*"', BudgetAmount=" + amount + */"' WHERE budgetID=" + id + ";";
+				st.execute(editBudget);
+			}
+			if (!amount.equals("")) {
+				double a = message.getDouble("categoryAmount");
+				rs = st.executeQuery("SELECT * FROM Budgets WHERE budgetID=" + id + ";");
+				int bbID = 0;
+				if (rs.next()) {
+					bbID = rs.getInt("bigBudgetID");
+				}
+				Statement st1 = conn.createStatement();
+				ResultSet rs1 = st1.executeQuery("SELECT * FROM Budgets WHERE bigBudgetID=" + bbID + ";");
+				double sum = 0;
+				if (rs1.next()) {
+					if (rs1.getInt("budgetID") != id) {
+						sum += rs1.getDouble("BudgetAmount");
+					}
+				}
+				Statement st2 = conn.createStatement();
+				ResultSet rs2 = st2.executeQuery("SELECT * FROM BigBudgets WHERE bigBudgetID=" + bbID + ";");
+				double bigBudgetAmount = 0;
+				if (rs2.next()) {
+					bigBudgetAmount = rs2.getDouble("BigBudgetAmount");
+				}
+				if ((sum+a)<=bigBudgetAmount) {
+					editBudget = "UPDATE Budgets SET BudgetAmount=" + amount + " WHERE budgetID=" + id + ";";
+					st.execute(editBudget);
+				}
+				else {
+					response = getData(conn, message.getInt("userID"));
+					response.put("message", "editcategoryfail");
+					response.put("editcategoryfail", "You can't make the category amounts sum to more than the budget limit.");
+					return response;
+				}
+				//TODO make sure it doesn't go over BigBUDGETAMOUTN
+			}
+//			else {
+//				editBudget = "UPDATE Budgets SET BudgetName='" + name + "', BudgetAmount=" + amount + " WHERE budgetID=" + id + ";";
+//				st.execute(editBudget);
+//			}
+			
 //			response = notify(conn, null, message);
 //			JSONObject data = getData(conn, message.getInt("userID"));
 //			for (String key : JSONObject.getNames(data)) {
@@ -696,8 +840,8 @@ public class Application {
 //			}
 //			if (!response.getString("message").equals("notification")) {
 			response = getData(conn, message.getInt("userID"));
-				response.put("message", "editcategorysuccess");
-				response.put("editcategorysuccess", "Edit category success.");
+			response.put("message", "editcategorysuccess");
+			response.put("editcategorysuccess", "Edit category success.");
 //			}
 			return response;
 			
@@ -898,7 +1042,7 @@ public class Application {
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery("SELECT * FROM BigBudgets WHERE userID = " + userID + ";");
 			response.put("userID", userID);
-			int budcounter = 0;
+			int budcounter = 1;
 			while (rs.next()) {
 //				System.out.println(rs.getString("BigBudgetName"));
 				budcounter++;
@@ -910,6 +1054,23 @@ public class Application {
 				currBudget.put("totalAmountSpent", rs.getDouble("TotalAmountSpent"));
 				currBudget.put("daysLeft", rs.getInt("BigBudgetDaysLeft"));
 				currBudget.put("budgetID", bbID);
+				int f = rs.getInt("Frequency");
+				if (f==1) {
+					currBudget.put("frequency", "Daily");
+				}
+				else if (f==7) {
+					currBudget.put("frequency", "Weekly");
+				}
+				else if (f==30) {
+					currBudget.put("frequency", "Monthly");
+				}
+				else if (f==365) {
+					currBudget.put("frequency", "Yearly");
+				}
+				else {
+					currBudget.put("frequency", f + " days");
+				}
+				
 				
 				Statement st1 = conn.createStatement();
 				ResultSet rs1 = st1.executeQuery("SELECT * FROM Budgets WHERE bigBudgetID = " + bbID + ";");
@@ -955,7 +1116,14 @@ public class Application {
 				}
 				currBudget.put("numCategories", catcounter);
 //				System.out.println(currBudget.toString());
-				response.put("budget" + budcounter, currBudget);
+				if (rs.getString("BigBudgetName").equals("Annual Savings")) {
+					response.put("budget1", currBudget);
+					budcounter--;
+				}
+				else {
+					response.put("budget" + budcounter, currBudget);
+				}
+				
 				
 			}
 			response.put("numBudgets", budcounter);
@@ -1205,20 +1373,9 @@ public class Application {
 				response.put("firstName", signupfirstname);
 				response.put("lastName", signuplastname);
 				
-//				previousSearches.put(signupemail, new ArrayList<String>());
+
 				
-				//User details for front-end.
-//				JSONObject userDetails = addUserToJSON(signupemail, conn);
-//				for (String key : JSONObject.getNames(userDetails)) {
-//					response.put(key, userDetails.get(key));
-//				}
-//				JSONObject feedDetails = addFeedToJSON(conn);
-//				for (String key : JSONObject.getNames(feedDetails)) {
-//					response.put(key, feedDetails.get(key));
-//				}
-				
-				//return all of the details of user and whatever is needed on frontend
-//				return response;
+
 			}
 			else {
 				response.put("message", "signupfailtest");

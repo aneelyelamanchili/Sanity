@@ -16,6 +16,7 @@
 		34AF9E391F94B014005DF644 /* MyBigBudget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AF9E381F94B014005DF644 /* MyBigBudget+CoreDataClass.swift */; };
 		34AF9E3B1F94B032005DF644 /* MyBigBudget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AF9E3A1F94B032005DF644 /* MyBigBudget+CoreDataProperties.swift */; };
 		34AF9E3D1F94B06A005DF644 /* BigBudgetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AF9E3C1F94B06A005DF644 /* BigBudgetListViewController.swift */; };
+		34BCE2101FBBE424001F7F20 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BCE20F1FBBE424001F7F20 /* SettingsViewController.swift */; };
 		34D26AF51FB3105A004B9AC6 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D26AF11FB3105A004B9AC6 /* LocalAuthentication.framework */; };
 		9A0010CE1E0A0887008E7092 /* BudgetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0010CD1E0A0887008E7092 /* BudgetListViewController.swift */; };
 		9A0010D01E0A097D008E7092 /* BudgetVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0010CF1E0A097D008E7092 /* BudgetVariables.swift */; };
@@ -94,6 +95,7 @@
 		34AF9E381F94B014005DF644 /* MyBigBudget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyBigBudget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		34AF9E3A1F94B032005DF644 /* MyBigBudget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyBigBudget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		34AF9E3C1F94B06A005DF644 /* BigBudgetListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigBudgetListViewController.swift; sourceTree = "<group>"; };
+		34BCE20F1FBBE424001F7F20 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		34D26AF11FB3105A004B9AC6 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		34F232451F95CFB50020E23D /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
 		41308D2EDFE7B7CA7211F898 /* Pods_SanityTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SanityTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,6 +225,7 @@
 				34AF9E3A1F94B032005DF644 /* MyBigBudget+CoreDataProperties.swift */,
 				34AF9E3C1F94B06A005DF644 /* BigBudgetListViewController.swift */,
 				9A27BF391E0A01B100146EEA /* Info.plist */,
+				34BCE20F1FBBE424001F7F20 /* SettingsViewController.swift */,
 			);
 			path = Sanity;
 			sourceTree = "<group>";
@@ -521,6 +524,7 @@
 				34AF9E3D1F94B06A005DF644 /* BigBudgetListViewController.swift in Sources */,
 				34AF9E391F94B014005DF644 /* MyBigBudget+CoreDataClass.swift in Sources */,
 				11A9F2091F9435A00034CC7B /* LoginViewController.swift in Sources */,
+				34BCE2101FBBE424001F7F20 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,7 +712,7 @@
 				INFOPLIST_FILE = Sanity/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = breh.sanity;
+				PRODUCT_BUNDLE_IDENTIFIER = mnyas.sanity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 3.0;
@@ -724,7 +728,7 @@
 				INFOPLIST_FILE = Sanity/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = breh.sanity;
+				PRODUCT_BUNDLE_IDENTIFIER = mnyas.sanity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;

@@ -345,7 +345,6 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
             self.confirmButton?.isEnabled = false
         }
     }
-    
     // When the compose button is pressed, show an alert pop-up
     @IBAction func composeButtonWasPressed(_ sender: AnyObject)
     {
@@ -539,7 +538,7 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         }
         
         // Title is the text of the button
-        let rename = UITableViewRowAction(style: .normal, title: " Rename")
+        let rename = UITableViewRowAction(style: .normal, title: "Edit")
         { (action, indexPath) in
             self.showEditNameAlert(indexPath: indexPath)
         }
@@ -557,16 +556,28 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
     // Show Edit Name Pop-up
     func showEditNameAlert(indexPath: IndexPath)
     {
-        let editAlert = UIAlertController(title: "Rename Category", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let editAlert = UIAlertController(title: "Edit Category", message: "", preferredStyle: UIAlertControllerStyle.alert)
         
         editAlert.addTextField(configurationHandler: {(textField: UITextField) in
             textField.placeholder = "New Name"
             
             // Set the initial text to be the budget name of the row selected
-            var queryCategory: String = "category" + String(indexPath.row + 1)
-            textField.text = self.toPopulate?[queryCategory] as? String
+//            var queryCategory: String = "category" + String(indexPath.row + 1)
+//            textField.text = self.toPopulate?[queryCategory] as? String
             
             textField.delegate = self
+            textField.autocapitalizationType = .words
+            textField.addTarget(self, action: #selector(self.newNameTextFieldDidChange(_:)), for: .editingChanged)
+        })
+        
+        editAlert.addTextField(configurationHandler: {(textField: UITextField) in
+            textField.placeholder = "New Amount"
+            
+            // Set the initial text to be the budget name of the row selected
+//            var queryCategory: String = "category" + String(indexPath.row + 1)
+//            textField.text = self.toPopulate?[queryCategory] as? String
+            
+//            textField.delegate = self
             textField.autocapitalizationType = .words
             textField.addTarget(self, action: #selector(self.newNameTextFieldDidChange(_:)), for: .editingChanged)
         })
@@ -595,15 +606,16 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
                 json.setValue(Client.sharedInstance.json?["userID"], forKey: "userID")
                 json.setValue(populate["categoryID"], forKey: "categoryID")
                 json.setValue(inputName, forKey: "categoryName")
-                
+                json.setValue(editAlert.textFields![1].text, forKey: "categoryAmount")
                 let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
                 var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
                 print(jsonString)
                 print(jsonData)
                 
                 Client.sharedInstance.socket.write(data: jsonData as Data)
-                self.budgetTable.reloadData()
-                self.sendRefreshQuery()
+                self.dismiss(animated: true, completion: {
+                    self.sendRefreshQuery()
+                })
             }
             
             // Save data to coredata
@@ -619,6 +631,31 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
         self.nameSaveButton = save
         save.isEnabled = false
         self.present(editAlert, animated: true, completion: nil)
+    }
+    
+    func didReceiveData() {
+        
+        if (Client.sharedInstance.json?["message"] as! String == "editcategorysuccess") {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let myAlert = UIAlertView()
+            myAlert.title = "Edit Category Success!"
+            myAlert.addButton(withTitle: "Dismiss")
+            myAlert.delegate = self
+            myAlert.show()
+        }
+        
+        else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let myAlert = UIAlertView()
+            myAlert.title = "Edit Category Failure"
+            myAlert.message = Client.sharedInstance.json?["editcategoryfail"] as! String?
+            myAlert.addButton(withTitle: "Dismiss")
+            myAlert.delegate = self
+            myAlert.show()
+        }
+        
+//        self.sendRefreshQuery()
+//        self.budgetTable.reloadData()
     }
     
     // This function disables the save button if the input name is not valid

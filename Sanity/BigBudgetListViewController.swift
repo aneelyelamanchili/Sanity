@@ -486,16 +486,30 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
         }
         
         // Title is the text of the button
-        let rename = UITableViewRowAction(style: .normal, title: " Rename")
+        let edit = UITableViewRowAction(style: .normal, title: "Edit")
         { (action, indexPath) in
-            self.showEditNameAlert(indexPath: indexPath)
+//            self.showEditNameAlert(indexPath: indexPath)
+            let destination = self.storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+            var queryBudget: String = "budget" + String(indexPath.row + 1)
+            var populate = (self.toPopulate?[queryBudget] as? [String: Any])!
+            destination.currBudget = queryBudget
+            destination.bigBudgetID = populate["budgetID"] as! Int
+            destination.bigBudgetName = (populate["budgetName"] as! String) + " : "
+            destination.bigBudgetAmount = BigBudgetVariables.numFormat(myNum: populate["budgetAmount"] as! Double)
+            destination.bigBudgetResetPeriod = (populate["budgetName"] as! String) + " resets every " + (populate["frequency"] as! String) + "."
+            destination.daysLeft = "You have " + BigBudgetVariables.formatPeriods(myNum: populate["daysLeft"] as! Int) + " days left."
+            print("The current budget id is: ")
+            print(populate["budgetID"] as! Int)
+            //        destination.currCategory = queryCategory
+            //        destination.currBudget = currBudget
+            self.navigationController?.pushViewController(destination, animated: true)
         }
         
         // Change the color of the buttons
-        rename.backgroundColor = BigBudgetVariables.hexStringToUIColor(hex: "BBB7B0")
+        edit.backgroundColor = BigBudgetVariables.hexStringToUIColor(hex: "BBB7B0")
         delete.backgroundColor = BigBudgetVariables.hexStringToUIColor(hex: "E74C3C")
         
-        return [delete, rename]
+        return [delete, edit]
     }
     
     // Use this variable to enable or disable the Save button
@@ -504,7 +518,7 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
     // Show Edit Name Pop-up
     func showEditNameAlert(indexPath: IndexPath)
     {
-        let editAlert = UIAlertController(title: "Rename Budget", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let editAlert = UIAlertController(title: "Edit Budget", message: "", preferredStyle: UIAlertControllerStyle.alert)
         
         editAlert.addTextField(configurationHandler: {(textField: UITextField) in
             textField.placeholder = "New Name"

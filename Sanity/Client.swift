@@ -14,7 +14,7 @@ class Client: NSObject, WebSocketDelegate {
     static var testPassed:Bool!
     
     var json: [String: Any]?
-    var socket = WebSocket(url: URL(string: "ws://27973148.ngrok.io/SanityBackend1/ws")!)
+    var socket = WebSocket(url: URL(string: "ws://a4586838.ngrok.io/SanityBackend1/ws")!)
     
     func websocketDidConnect(socket: WebSocketClient) {
             print("websocket is connected")
@@ -149,6 +149,13 @@ class Client: NSObject, WebSocketDelegate {
                 alertController.addAction(action)
                 
                 vc?.present(alertController, animated: true, completion: nil)
+            } else if(json!["message"] as? String == "editbudgetsuccess" || json!["message"] as? String == "editbudgetfail") {
+                let vc = UIApplication.topViewController() as? SettingsViewController
+                vc?.didReceiveData()
+            }
+            else if(json!["message"] as? String == "editcategorysuccess" || json!["message"] as? String == "editcategoryfail") {
+                let vc = UIApplication.topViewController() as? BudgetListViewController
+                vc?.didReceiveData()
             }
         
         } else {

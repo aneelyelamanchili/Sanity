@@ -48,6 +48,19 @@ class SettingsViewController: UIViewController {
         resetPeriodLabel.text = bigBudgetResetPeriod
         daysLeftLabel.text = daysLeft
         
+        bigBudgetNameLabel.adjustsFontSizeToFitWidth = true;
+        
+        bigBudgetAmountLabel.adjustsFontSizeToFitWidth = true;
+        
+        resetPeriodLabel.adjustsFontSizeToFitWidth = true;
+        
+        daysLeftLabel.adjustsFontSizeToFitWidth = true;
+        
+//        bigBudgetNameLabel.sizeToFit()
+//        bigBudgetAmountLabel.sizeToFit()
+//        resetPeriodLabel.sizeToFit()
+//        daysLeftLabel.sizeToFit()
+        
         self.navigationController?.navigationBar.tintColor = UIColor.white
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
@@ -108,9 +121,10 @@ class SettingsViewController: UIViewController {
         var toPopulate = Client.sharedInstance.json
         print("REFRESH DATA")
         let populate = toPopulate![currBudget] as! [String : Any]
-        resetPeriodLabel.text = (populate["budgetName"] as! String) + " resets every " + (populate["frequency"] as! String) + "."
+        resetPeriodLabel.text = (populate["budgetName"] as! String) + " resets " + (populate["frequency"] as! String) + "."
         daysLeftLabel.text = "You have " + BigBudgetVariables.formatPeriods(myNum: populate["daysLeft"] as! Int) + " days left."
         bigBudgetAmountLabel.text = BigBudgetVariables.numFormat(myNum: populate["budgetAmount"] as! Double)
+        bigBudgetNameLabel.text = populate["budgetName"] as! String + " : "
     }
     
     /*

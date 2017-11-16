@@ -592,8 +592,8 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
             populate = (self.toPopulate?[queryCategory] as? [String: Any])!
             
             // If the input name isn't empty and it isn't the old name
-            if inputName != "" && inputName != self.toPopulate?[queryCategory] as? String
-            {
+//            if inputName != "" && inputName != self.toPopulate?[queryCategory] as? String
+//            {
                 // Trim all extra white space and new lines
                 inputName = inputName?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
                 
@@ -613,10 +613,7 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
                 print(jsonData)
                 
                 Client.sharedInstance.socket.write(data: jsonData as Data)
-                self.dismiss(animated: true, completion: {
-                    self.sendRefreshQuery()
-                })
-            }
+//            }
             
             // Save data to coredata
             self.sharedDelegate.saveContext()
@@ -653,9 +650,12 @@ class BudgetListViewController: UIViewController, UITableViewDataSource, UITable
             myAlert.delegate = self
             myAlert.show()
         }
-        
-//        self.sendRefreshQuery()
-//        self.budgetTable.reloadData()
+        DispatchQueue.main.async{
+            self.sendRefreshQuery()
+        }
+//        DispatchQueue.main.async{
+            self.budgetTable.reloadData()
+//        }
     }
     
     // This function disables the save button if the input name is not valid

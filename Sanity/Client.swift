@@ -125,6 +125,8 @@ class Client: NSObject, WebSocketDelegate {
             } else if(json!["message"] as? String == "getdatacategorysuccess") {
                 print("GOT HERE")
                 let vc = UIApplication.topViewController() as? BudgetListViewController
+//                print(type(of: vc))
+//                vc.budgetTable.reloadData()
                 vc?.refreshData()
             } else if(json!["message"] as? String == "addTransactionSuccess") {
                 print("INSIDE ADDTRANSACTIONSUCCESSMESSAGE CLIENT")
@@ -155,7 +157,7 @@ class Client: NSObject, WebSocketDelegate {
             }
             else if(json!["message"] as? String == "editcategorysuccess" || json!["message"] as? String == "editcategoryfail") {
                 let vc = UIApplication.topViewController() as? BudgetListViewController
-                vc?.didReceiveData()
+                vc?.sendRefreshQuery()
             }
         
         } else {

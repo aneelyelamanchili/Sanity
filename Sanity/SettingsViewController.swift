@@ -13,6 +13,8 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var renameTextField: UITextField!
     @IBOutlet weak var changePeriodTextField: UITextField!
     @IBOutlet weak var changeBudgetAmountTextField: UITextField!
+    @IBOutlet weak var changeNotificationThresholdTextField: UITextField!
+    @IBOutlet weak var changePeriodUpdateTextField: UITextField!
     @IBOutlet weak var bigBudgetNameLabel: UILabel!
     @IBOutlet weak var bigBudgetAmountLabel: UILabel!
     @IBOutlet weak var resetPeriodLabel: UILabel!
@@ -81,6 +83,8 @@ class SettingsViewController: UIViewController {
         json.setValue(renameTextField.text, forKey: "bigBudgetName")
         json.setValue(changePeriodTextField.text, forKey: "frequency")
         json.setValue(changeBudgetAmountTextField.text, forKey: "budgetAmount")
+        json.setValue(changeNotificationThresholdTextField.text, forKey: "limitNotification")
+        json.setValue(changePeriodTextField.text, forKey: "periodUpdateNotification")
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
         var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
         print(jsonString)

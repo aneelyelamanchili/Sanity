@@ -708,11 +708,11 @@
 			baseConfigurationReference = 9D796A09BE3D823D2C9401FB /* Pods-Sanity.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = CKF73J7D4M;
+				DEVELOPMENT_TEAM = MS7GBK46MH;
 				INFOPLIST_FILE = Sanity/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = mnyas.sanity;
+				PRODUCT_BUNDLE_IDENTIFIER = brehh.sanity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 3.0;
@@ -724,11 +724,11 @@
 			baseConfigurationReference = 6101A0CED9029A87A76D5662 /* Pods-Sanity.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = CKF73J7D4M;
+				DEVELOPMENT_TEAM = MS7GBK46MH;
 				INFOPLIST_FILE = Sanity/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = mnyas.sanity;
+				PRODUCT_BUNDLE_IDENTIFIER = brehh.sanity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;

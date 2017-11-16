@@ -2,7 +2,7 @@ package sanity;
 
 public class Constants {
 	public static final String SQL_INSERT_USER = "INSERT INTO TotalUsers(FirstName, Lastname, Password, Email) VALUES ";
-	public static final String SQL_INSERT_BIGBUDGET = "INSERT INTO BigBudgets(userID, BigBudgetName, BarGraphColor, Latitude, Longitude, BigBudgetAmount, TotalAmountSpent, Frequency, Date, BigBudgetDaysLeft) VALUES ";
+	public static final String SQL_INSERT_BIGBUDGET = "INSERT INTO BigBudgets(userID, BigBudgetName, BarGraphColor, Latitude, Longitude, BigBudgetAmount, TotalAmountSpent, Frequency, Date, BigBudgetDaysLeft, PeriodNotification, PeriodNotificationChecked, LimitNotification) VALUES ";
 	public static final String SQL_INSERT_BUDGET = "INSERT INTO Budgets(bigBudgetID, BudgetAmount, BudgetName, TotalAmountSpent) VALUES ";
 	public static final String SQL_EDIT_BIGBUDGET = "UPDATE BigBudgets SET ";
 	public static final String SQL_INSERT_TRANSACTION = "INSERT INTO Transactions(budgetID, Amount, Details, Latitude, Longitude, DateValue) VALUES ";

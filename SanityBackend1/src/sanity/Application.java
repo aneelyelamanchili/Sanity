@@ -10,6 +10,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -243,97 +245,150 @@ public class Application {
 		}
 	}
 
-	public JSONObject notifyPeriod(JSONObject message, Session session, Connection conn) {
-		try {
-			Statement st = conn.createStatement();
-			int userID = message.getInt("userID");
-			ResultSet rs = st.executeQuery("SELECT * FROM BigBudgets WHERE userID = " + userID + ";");
-			while (rs.next()) {
-				int bbID = rs.getInt("bigBudgetID");
-				String bbName = rs.getString("BigBudgetName");
-				int daysLeft = rs.getInt("BigBudgetDaysLeft");
-				int frequency = rs.getInt("Frequency");
-				String startDateString = rs.getString("Date");
-				DateFormat df = new SimpleDateFormat("MM/dd/yyyy"); 
-				Date startDate = null;
-				try {
-				    startDate = df.parse(startDateString);
-				    String newDateString = df.format(startDate);
-				    System.out.println(newDateString);
-				} catch (ParseException e) {
-				    e.printStackTrace();
-				}
-				
-				Date date = new Date();
-				if (startDate.before(date)) {
-					return null;
-				}
-				else if (startDate.after(date)) {
-					String newDate = df.format(date);
-					long difference = startDate.getTime() - date.getTime();
-				    int daysBetween = (int)(difference / (1000*60*60*24));
-					daysLeft-=daysBetween;
-					System.out.println("number of days between: " + daysBetween + " and days left: " + daysLeft);
-					if (daysLeft <= 0) {
-						double spent = rs.getFloat("TotalAmountSpent");
-						double amount = rs.getFloat("BigBudgetAmount");
-						Statement st2 = conn.createStatement();
-//						if (spent>amount) {
-						st2.executeUpdate("UPDATE BigBudgets SET BigBudgetDaysLeft=" + frequency + ", Date='" + newDate + "', TotalAmountSpent=0 WHERE BigBudgetID=" + bbID + ";");
-//						}
-//						else {
-//							st2.executeUpdate("UPDATE BigBudgets SET BigBudgetDaysLeft=" + frequency + ", Date='" + newDate + "', TotalAmountSpent=" + (-(amount-spent)) + " WHERE BigBudgetID=" + bbID + ";");
-//						}
-						if (rs.getString("BigBudgetName").equals("Annual Savings")) {
-							response.put("message", "periodNotification");
-							response.put("notify", "You saved " + amount + " over the last year.");
-							Statement st5 = conn.createStatement();
-							ResultSet rs5 = st5.executeQuery("SELECT * FROM Budgets WHERE bigBudgetID=" + bbID + ";");
-							while (rs5.next()) {
-								Statement st6 = conn.createStatement();
-								st6.execute("UPDATE Budgets SET TotalAmountSpent=0 WHERE bigBudgetID=" + bbID + ";");
-								st6.execute("DELETE FROM Transactions WHERE budgetID=" + rs5.getInt("budgetID"));
-							}
-							
-						}
-						else {
-							response.put("message", "periodNotification");
-							response.put("notify", bbName + " was reset. You spent " + String.format("%.2f",(spent/amount*100)) + "% of your budget this period, $" + spent + " out of $" + amount + ".");
-							Statement st1 = conn.createStatement();
-							ResultSet rs1 = st1.executeQuery("SELECT * FROM Budgets WHERE bigBudgetID=" + bbID + ";");
-							double saved = amount-spent;
-							Statement st7 = conn.createStatement();
-							ResultSet rs9 = st7.executeQuery("SELECT * FROM BigBudgets WHERE BigBudgetName='Annual Savings';");
-							if (rs9.next()) {
-								Statement st8 = conn.createStatement();
-								st8.execute("UPDATE BigBudgets SET BigBudgetAmount=" + (rs9.getDouble("BigBudgetAmount")+saved) + " WHERE bigBudgetID=" + rs9.getInt("bigBudgetID") + ";");
-							}
-							
 	
-							while (rs1.next()) {
-								Statement st3 = conn.createStatement();
-								double aSpent = rs1.getDouble("TotalAmountSpent");
-								double aAmount = rs1.getDouble("BudgetAmount");
-								
-								st3.execute("UPDATE Budgets SET TotalAmountSpent=0 WHERE bigBudgetID=" + bbID + ";");
-								st3.execute("DELETE FROM Transactions WHERE budgetID=" + rs1.getInt("budgetID"));
-							}
-						}
+	public JSONObject notifyPeriod(JSONObject message, Session session, Connection conn) {
+			try {
+				Statement st = conn.createStatement();
+				int userID = message.getInt("userID");
+				ResultSet rs = st.executeQuery("SELECT * FROM BigBudgets WHERE userID = " + userID + ";");
+				while (rs.next()) {
+					int bbID = rs.getInt("bigBudgetID");
+					String bbName = rs.getString("BigBudgetName");
+					int daysLeft = rs.getInt("BigBudgetDaysLeft");
+					int frequency = rs.getInt("Frequency");
+					String periodNotification = rs.getString("PeriodNotification");
+					String periodNotificationChecked = rs.getString("PeriodNotificationChecked");
+					String startDateString = rs.getString("Date");
+					DateFormat df = new SimpleDateFormat("MM/dd/yyyy"); 
+					Date startDate = null;
+					try {
+					    startDate = df.parse(startDateString);
+					    String newDateString = df.format(startDate);
+					    System.out.println(newDateString);
+					} catch (ParseException e) {
+					    e.printStackTrace();
 					}
-					else {
-						Statement st4 = conn.createStatement();
-						st4.executeUpdate("UPDATE BigBudgets SET BigBudgetDaysLeft=" + daysLeft + ", Date='" + newDate + "' WHERE BigBudgetID=" + bbID + ";");
+					
+					Date date = new Date();
+					if (startDate.after(date)) {
+						System.out.println("help");
 						return null;
 					}
+					else if (startDate.before(date)) {
+						String newDate = df.format(date);
+						long difference = date.getTime() - startDate.getTime();
+					    int daysBetween = (int)(difference / (1000*60*60*24));
+						daysLeft-=daysBetween;
+						System.out.println("number of days between: " + daysBetween + " and days left: " + daysLeft);
+						if (daysLeft <= 0) {
+							double spent = rs.getFloat("TotalAmountSpent");
+							double amount = rs.getFloat("BigBudgetAmount");
+							Statement st2 = conn.createStatement();
+	//						if (spent>amount) {
+							st2.executeUpdate("UPDATE BigBudgets SET BigBudgetDaysLeft=" + frequency + ", Date='" + newDate + "', TotalAmountSpent=0, PeriodNotificationChecked='' WHERE BigBudgetID=" + bbID + ";");
+	//						}
+	//						else {
+	//							st2.executeUpdate("UPDATE BigBudgets SET BigBudgetDaysLeft=" + frequency + ", Date='" + newDate + "', TotalAmountSpent=" + (-(amount-spent)) + " WHERE BigBudgetID=" + bbID + ";");
+	//						}
+							if (rs.getString("BigBudgetName").equals("Annual Savings")) {
+								response.put("message", "periodNotification");
+								response.put("notify", "You saved " + amount + " over the last year.");
+								Statement st5 = conn.createStatement();
+								ResultSet rs5 = st5.executeQuery("SELECT * FROM Budgets WHERE bigBudgetID=" + bbID + ";");
+								while (rs5.next()) {
+									Statement st6 = conn.createStatement();
+									st6.execute("UPDATE Budgets SET TotalAmountSpent=0 WHERE bigBudgetID=" + bbID + ";");
+									st6.execute("DELETE FROM Transactions WHERE budgetID=" + rs5.getInt("budgetID"));
+								}
+								
+							}
+							else {
+								response.put("message", "periodNotification");
+								response.put("notify", bbName + " was reset. You spent " + String.format("%.2f",(spent/amount*100)) + "% of your budget this period, $" + spent + " out of $" + amount + ".");
+								Statement st1 = conn.createStatement();
+								ResultSet rs1 = st1.executeQuery("SELECT * FROM Budgets WHERE bigBudgetID=" + bbID + ";");
+								double saved = amount-spent;
+								Statement st7 = conn.createStatement();
+								ResultSet rs9 = st7.executeQuery("SELECT * FROM BigBudgets WHERE BigBudgetName='Annual Savings';");
+								if (rs9.next()) {
+									Statement st8 = conn.createStatement();
+									st8.execute("UPDATE BigBudgets SET BigBudgetAmount=" + (rs9.getDouble("BigBudgetAmount")+saved) + " WHERE bigBudgetID=" + rs9.getInt("bigBudgetID") + ";");
+								}
+								
+		
+								while (rs1.next()) {
+									Statement st3 = conn.createStatement();
+									double aSpent = rs1.getDouble("TotalAmountSpent");
+									double aAmount = rs1.getDouble("BudgetAmount");
+									
+									st3.execute("UPDATE Budgets SET TotalAmountSpent=0 WHERE bigBudgetID=" + bbID + ";");
+									st3.execute("DELETE FROM Transactions WHERE budgetID=" + rs1.getInt("budgetID"));
+								}
+							}
+						}
+						else {
+							boolean sent = false;
+							System.out.println("midway period check");
+							double spent = rs.getFloat("TotalAmountSpent");
+							double amount = rs.getFloat("BigBudgetAmount");
+							Statement st4 = conn.createStatement();
+							st4.executeUpdate("UPDATE BigBudgets SET BigBudgetDaysLeft=" + daysLeft + ", Date='" + newDate + "' WHERE BigBudgetID=" + bbID + ";");
+							String[] pNotifyList = periodNotification.split(" ");
+							String[] pCheckedList = periodNotificationChecked.split(" ");
+							System.out.println(Arrays.toString(pNotifyList) + "     " + Arrays.toString(pCheckedList));
+							ArrayList<Integer> nList = new ArrayList<Integer>();
+							for (int i=0; i<pNotifyList.length; i++) {
+								nList.add(Integer.parseInt(pNotifyList[i]));
+							}
+							ArrayList<Integer> pList = new ArrayList<Integer>();
+							for (int i=0; i<pCheckedList.length; i++) {
+								try {
+									pList.add(Integer.parseInt(pCheckedList[i]));
+								} catch(NumberFormatException e) {
+									e.printStackTrace();
+								}
+								
+							}
+							Collections.sort(nList);
+							System.out.println(Arrays.toString(nList.toArray()));
+							Collections.sort(pList);
+							for (int i=nList.size()-1; i>=0; i--) {
+								System.out.println(i + " "  + nList.get(i));
+								if ((double)(frequency-daysLeft)/frequency >= (double)nList.get(i)/100 && pList.indexOf(nList.get(i))==-1) {
+									sent = true;
+									response.put("message", "periodNotification");
+									response.put("notify", "The period is " + nList.get(i) + "% over. You have spent " + String.format("%.2f",(spent/amount*100)) + "% of your budget this period, $" + spent + " out of $" + amount + ".");
+									pList.add(nList.get(i));
+									String edit = "";
+									for (int j=0; j<pList.size(); j++) {
+										edit += (pList.get(j) + " ");
+									}
+									for (int j=0; j<i; j++) {
+										if (pList.indexOf(nList.get(j))==-1) {
+											edit+=((nList.get(j)) + " ");
+										}
+									}
+									st4.execute("UPDATE BigBudgets SET PeriodNotificationChecked='" + edit + "' WHERE bigBudgetID=" + bbID + ";");
+									i = -1;
+								}
+							}
+							if (!sent) {
+								return null;
+							}
+							else {
+								return response;
+							}
+						}
+					}
 				}
+				
+				
+				
+			} catch(JSONException | SQLException e) {
+				e.printStackTrace();
 			}
-			
-			
-		} catch(JSONException | SQLException e) {
-			e.printStackTrace();
+			return response;
 		}
-		return response;
-	}
 	/*
 	 * When a user enters all of their information and clicks sign up, the data is then sent here.
 	 * Input - "message","signup"
@@ -634,7 +689,7 @@ public class Application {
 				return response;
 			}
 			System.out.println(date);
-			String addBigBudget = "(" + user + ", '"+ name + "', 1, 34.0222, -118.282, " + amount + ", 0, " + freq + ", '" + date + "', " + freq + ");";
+			String addBigBudget = "(" + user + ", '"+ name + "', 1, 34.0222, -118.282, " + amount + ", 0, " + freq + ", '" + date + "', " + freq + ", '50','','80 90 95');";
 			st.execute(Constants.SQL_INSERT_BIGBUDGET + addBigBudget);
 //			if (success) {
 			response = getData(conn, user);
@@ -677,7 +732,46 @@ public class Application {
 			String name = message.getString("bigBudgetName");
 			String newAmount = message.getString("budgetAmount");
 			String frequency = message.getString("frequency");
+			String lNotification = message.getString("limitNotification");
+			String pNotification = message.getString("periodUpdateNotification");
 			
+			
+			
+			if (!lNotification.equals("")) {
+				String[] lnotifications = lNotification.split(", ");
+				String lnupdate = "";
+				for (int i=0; i<lnotifications.length; i++) {
+					lnupdate += (lnotifications[i] + " ");
+				}
+				st.execute("UPDATE BigBudgets SET LimitNotification='" + lnupdate + "' WHERE bigBudgetID=" + id + ";");
+			}
+			if (!pNotification.equals("")) {
+				String[] pnotifications = pNotification.split(", ");
+				String pnupdate = "";
+				for (int i=0; i<pnotifications.length; i++) {
+					pnupdate += (pnotifications[i] + " ");
+				}
+				Statement sthelp = conn.createStatement();
+				ResultSet rshelp = sthelp.executeQuery("SELECT * FROM BigBudgets WHERE bigBudgetID = " + id + ";");
+				String p = "";
+				if (rshelp.next()) {
+					p = rshelp.getString("PeriodNotificationChecked");
+				}
+				String[] plist = p.split(" ");
+				int pmax = 0;
+				for (int i=0; i<plist.length; i++) {
+					if (Integer.parseInt(plist[i])>=pmax) {
+						pmax = Integer.parseInt(plist[i]);
+					}
+				}
+				String newchecked = "";
+				for (int i=0; i<pnotifications.length; i++) {
+					if (Integer.parseInt(pnotifications[i])<=pmax) {
+						newchecked += (Integer.parseInt(pnotifications[i]) + " ");
+					}
+				}
+				st.execute("UPDATE BigBudgets SET PeriodNotification='" + pnupdate + "', PeriodNotificationChecked='" + newchecked + "' WHERE bigBudgetID=" + id+";");
+			}
 			if (!name.equals("")) {
 				String editBigBudget = "UPDATE BigBudgets SET BigBudgetName='" + name + /*"', BigBudgetAmount=" + amount +*/ "' WHERE bigBudgetID=" + id + ";";
 				st.execute(editBigBudget);
@@ -958,6 +1052,7 @@ public class Application {
 			if (transNotif != null) {
 				response.put("notification", "yes");
 				response.put("notify", transNotif.get("notify"));
+				transNotif = null;
 			}
 			else {
 				response.put("notification", "no");
@@ -1056,19 +1151,19 @@ public class Application {
 				currBudget.put("budgetID", bbID);
 				int f = rs.getInt("Frequency");
 				if (f==1) {
-					currBudget.put("frequency", "Daily");
+					currBudget.put("frequency", "daily");
 				}
 				else if (f==7) {
-					currBudget.put("frequency", "Weekly");
+					currBudget.put("frequency", "weekly");
 				}
 				else if (f==30) {
-					currBudget.put("frequency", "Monthly");
+					currBudget.put("frequency", "monthly");
 				}
 				else if (f==365) {
-					currBudget.put("frequency", "Yearly");
+					currBudget.put("frequency", "yearly");
 				}
 				else {
-					currBudget.put("frequency", f + " days");
+					currBudget.put("frequency", "every " + f + " days");
 				}
 				
 				
@@ -1168,36 +1263,63 @@ public class Application {
 			double bigBudgetSpent = 0; double bigbudgetAmount = 0; double newBigBudgetSpent = 0;
 			String bigbudgetName = "";
 			int daysLeft = 0;
+			String lnotification="";
 			if (rs1.next()) {
 				bigBudgetSpent = rs1.getDouble("TotalAmountSpent");
 				newBigBudgetSpent = bigBudgetSpent+amount;
 				bigbudgetAmount = rs1.getDouble("BigBudgetAmount");
 				bigbudgetName = rs1.getString("BigBudgetName");
 				daysLeft = rs1.getInt("BigBudgetDaysLeft");
+				lnotification = rs1.getString("LimitNotification");
+			}
+			String[] lnList = lnotification.split(" ");
+			ArrayList<Integer> list = new ArrayList<Integer>();
+			for (int i=0; i<lnList.length; i++) {
+				try {
+					list.add(Integer.parseInt(lnList[i]));
+				} catch(NumberFormatException e) {
+					e.printStackTrace();
+				}
 			}
 			st.executeUpdate("UPDATE Budgets SET TotalAmountSpent = " + newBudgetSpent + " WHERE budgetID = " + budgetID + ";");
 			System.out.println("update");
 			response = getData(conn, userID);
 			st.executeUpdate("UPDATE BigBudgets SET TotalAmountSpent = " + newBigBudgetSpent + " WHERE bigBudgetID = " + bigBudgetID + ";");
-			if (newBudgetSpent >= ((budgetAmount)) && budgetSpent <= (budgetAmount)) {
-				response.put("notification", "yes");
-				response.put("notify", "You have used all of your allotted amount in category " + budgetName + " which is in budget " + bigbudgetName + ". You have " + daysLeft + " more days.");
+			
+			Arrays.sort(list.toArray());
+			boolean added = false;
+			for (int i=list.size()-1; i>=0; i--) {
+				System.out.println(list.get(i));
+				System.out.println(newBudgetSpent + ", " + ((double)list.get(i)/100)*(budgetAmount) + ", " + budgetSpent + ", " + budgetAmount + ", " + (newBudgetSpent > ((list.get(i)/100)*(budgetAmount))));
+				if ((newBudgetSpent >= (((double)list.get(i)/100)*(budgetAmount))) && (budgetSpent < (((double)list.get(i)/100)*budgetAmount))) {
+					response.put("notification", "yes");
+					response.put("notify", "You have now spent " + list.get(i) + "% of category " + budgetName + " which is in budget " + bigbudgetName + ". You have " + daysLeft + " more days.");
+					i = -1;
+					added = true;
+				}
 			}
-			else if (newBudgetSpent > (0.95*(budgetAmount)) && budgetSpent <= (0.95*budgetAmount)) {
-				response.put("notification", "yes");
-				response.put("notify", "You now have less than 5% left in category " + budgetName + " which is in budget " + bigbudgetName + ". You have " + daysLeft + " more days.");
-			}
-			else if (newBudgetSpent > (0.9*(budgetAmount)) && budgetSpent <= (0.9*budgetAmount)) {
-				response.put("notification", "yes");
-				response.put("notify", "You now have less than 10% left in category " + budgetName + " which is in budget " + bigbudgetName + ". You have " + daysLeft + " more days.");
-			}
-			else if (newBudgetSpent > (0.8*(budgetAmount)) && budgetSpent <= (0.8*budgetAmount)) {
-				response.put("notification", "yes");
-				response.put("notify", "You now have less than 20% left in category " + budgetName + " which is in budget " + bigbudgetName + ". You have " + daysLeft + " more days.");
-			}
-			else {
+			if (!added) {
 				response.put("notification", "no");
 			}
+//			if (newBudgetSpent >= ((budgetAmount)) && budgetSpent <= (budgetAmount)) {
+//				response.put("notification", "yes");
+//				response.put("notify", "You have used all of your allotted amount in category " + budgetName + " which is in budget " + bigbudgetName + ". You have " + daysLeft + " more days.");
+//			}
+//			else if (newBudgetSpent > (0.95*(budgetAmount)) && budgetSpent <= (0.95*budgetAmount)) {
+//				response.put("notification", "yes");
+//				response.put("notify", "You now have less than 5% left in category " + budgetName + " which is in budget " + bigbudgetName + ". You have " + daysLeft + " more days.");
+//			}
+//			else if (newBudgetSpent > (0.9*(budgetAmount)) && budgetSpent <= (0.9*budgetAmount)) {
+//				response.put("notification", "yes");
+//				response.put("notify", "You now have less than 10% left in category " + budgetName + " which is in budget " + bigbudgetName + ". You have " + daysLeft + " more days.");
+//			}
+//			else if (newBudgetSpent > (0.8*(budgetAmount)) && budgetSpent <= (0.8*budgetAmount)) {
+//				response.put("notification", "yes");
+//				response.put("notify", "You now have less than 20% left in category " + budgetName + " which is in budget " + bigbudgetName + ". You have " + daysLeft + " more days.");
+//			}
+//			else {
+//				response.put("notification", "no");
+//			}
 			if (response.getString("notification").equals("no")) {
 				transNotif = null;
 			}

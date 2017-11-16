@@ -446,56 +446,73 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
     // Generates an array of custom buttons that appear after the swipe to the left
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
     {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        // Title is the text of the button
-        let delete = UITableViewRowAction(style: .normal, title: " Delete  ")
-        { (action, indexPath) in
-//            let budget = BigBudgetVariables.budgetArray[indexPath.row]
-//            context.delete(budget)
-            var queryBudget: String = "budget" + String(indexPath.row + 1)
-            var populate:[String: Any]
-            populate = (self.toPopulate?[queryBudget] as? [String: Any])!
+        if(indexPath.row != 0) {
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
             
-            let json:NSMutableDictionary = NSMutableDictionary()
-            json.setValue("deleteBigBudget", forKey: "message")
+            // Title is the text of the button
+            let delete = UITableViewRowAction(style: .normal, title: " Delete  ")
+            { (action, indexPath) in
+    //            let budget = BigBudgetVariables.budgetArray[indexPath.row]
+    //            context.delete(budget)
+                var queryBudget: String = "budget" + String(indexPath.row + 1)
+                var populate:[String: Any]
+                populate = (self.toPopulate?[queryBudget] as? [String: Any])!
+                
+                let json:NSMutableDictionary = NSMutableDictionary()
+                json.setValue("deleteBigBudget", forKey: "message")
+                
+                json.setValue(self.toPopulate?["userID"], forKey: "userID")
+                json.setValue(populate["budgetID"], forKey: "bigBudgetID")
+                
+                let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+                var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+                print(jsonString)
+                print(jsonData)
+                
+                Client.sharedInstance.socket.write(data: jsonData as Data)
+                self.sharedDelegate.saveContext()
+                
+    //            do
+    //            {
+    //                BigBudgetVariables.budgetArray = try context.fetch(MyBigBudget.fetchRequest())
+    //            }
+    //            catch
+    //            {
+    //                print("Fetching Failed")
+    //            }
+    //            tableView.deleteRows(at: [indexPath], with: .fade)
+                self.sendRefreshQuery();
+                BigBudgetVariables.currentIndex = BigBudgetVariables.budgetArray.count - 1
+                
+            }
             
-            json.setValue(self.toPopulate?["userID"], forKey: "userID")
-            json.setValue(populate["budgetID"], forKey: "bigBudgetID")
+            // Title is the text of the button
+            let edit = UITableViewRowAction(style: .normal, title: "Edit")
+            { (action, indexPath) in
+    //            self.showEditNameAlert(indexPath: indexPath)
+                let destination = self.storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+                var queryBudget: String = "budget" + String(indexPath.row + 1)
+                var populate = (self.toPopulate?[queryBudget] as? [String: Any])!
+                destination.currBudget = queryBudget
+                destination.bigBudgetID = populate["budgetID"] as! Int
+                destination.bigBudgetName = (populate["budgetName"] as! String) + " : "
+                destination.bigBudgetAmount = BigBudgetVariables.numFormat(myNum: populate["budgetAmount"] as! Double)
+                destination.bigBudgetResetPeriod = (populate["budgetName"] as! String) + " resets " + (populate["frequency"] as! String) + "."
+                destination.daysLeft = "You have " + BigBudgetVariables.formatPeriods(myNum: populate["daysLeft"] as! Int) + " days left."
+                print("The current budget id is: ")
+                print(populate["budgetID"] as! Int)
+                //        destination.currCategory = queryCategory
+                //        destination.currBudget = currBudget
+                self.navigationController?.pushViewController(destination, animated: true)
+            }
             
-            let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
-            var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
-            print(jsonString)
-            print(jsonData)
+            // Change the color of the buttons
+            edit.backgroundColor = BigBudgetVariables.hexStringToUIColor(hex: "BBB7B0")
+            delete.backgroundColor = BigBudgetVariables.hexStringToUIColor(hex: "E74C3C")
             
-            Client.sharedInstance.socket.write(data: jsonData as Data)
-            self.sharedDelegate.saveContext()
-            
-//            do
-//            {
-//                BigBudgetVariables.budgetArray = try context.fetch(MyBigBudget.fetchRequest())
-//            }
-//            catch
-//            {
-//                print("Fetching Failed")
-//            }
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-            self.sendRefreshQuery();
-            BigBudgetVariables.currentIndex = BigBudgetVariables.budgetArray.count - 1
-            
+            return [delete, edit]
         }
-        
-        // Title is the text of the button
-        let rename = UITableViewRowAction(style: .normal, title: " Rename")
-        { (action, indexPath) in
-            self.showEditNameAlert(indexPath: indexPath)
-        }
-        
-        // Change the color of the buttons
-        rename.backgroundColor = BigBudgetVariables.hexStringToUIColor(hex: "BBB7B0")
-        delete.backgroundColor = BigBudgetVariables.hexStringToUIColor(hex: "E74C3C")
-        
-        return [delete, rename]
+        return []
     }
     
     // Use this variable to enable or disable the Save button
@@ -504,7 +521,7 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
     // Show Edit Name Pop-up
     func showEditNameAlert(indexPath: IndexPath)
     {
-        let editAlert = UIAlertController(title: "Rename Budget", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let editAlert = UIAlertController(title: "Edit Budget", message: "", preferredStyle: UIAlertControllerStyle.alert)
         
         editAlert.addTextField(configurationHandler: {(textField: UITextField) in
             textField.placeholder = "New Name"

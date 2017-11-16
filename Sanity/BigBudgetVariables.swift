@@ -53,6 +53,13 @@ class BigBudgetVariables: UIViewController
         return numberFormatter.string(from: NSNumber(value: largeNumber))!
     }
     
+    class func formatPeriods(myNum: Int) -> String
+    {
+        let largeNumber = Int(myNum)
+        let numberFormatter = NumberFormatter()
+        return numberFormatter.string(from: NSNumber(value: largeNumber))!
+    }
+    
     // If name does not exist already, return argument
     // If name exists, try adding (num++) until the name does not exist
     class func createName(myName: String, myNum: Int) -> String

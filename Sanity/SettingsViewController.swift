@@ -84,7 +84,7 @@ class SettingsViewController: UIViewController {
         json.setValue(changePeriodTextField.text, forKey: "frequency")
         json.setValue(changeBudgetAmountTextField.text, forKey: "budgetAmount")
         json.setValue(changeNotificationThresholdTextField.text, forKey: "limitNotification")
-        json.setValue(changePeriodTextField.text, forKey: "periodUpdateNotification")
+        json.setValue(changePeriodUpdateTextField.text, forKey: "periodUpdateNotification")
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
         var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
         print(jsonString)

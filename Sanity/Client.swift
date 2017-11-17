@@ -145,12 +145,16 @@ class Client: NSObject, WebSocketDelegate {
                 vc?.refreshData()
             } else if(json!["message"] as? String == "periodNotification") {
                 let vc = UIApplication.topViewController()
-                
-                let alertController = UIAlertController(title: "Period Notification!", message: json!["notify"] as? String, preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default) { (action) in}
-                alertController.addAction(action)
-                
-                vc?.present(alertController, animated: true, completion: nil)
+                for i in 0 ..< (json!["notificationSize"] as! Int) {
+                    let arrayString = "notification" + String(i + 1);
+                    let messageArray = json![arrayString] as? [String:Any]
+                    
+                    let alertController = UIAlertController(title: "Period Notification!", message: messageArray!["notify"] as? String, preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .default) { (action) in}
+                    alertController.addAction(action)
+                    
+                    vc?.present(alertController, animated: true, completion: nil)
+                }
             } else if(json!["message"] as? String == "editbudgetsuccess" || json!["message"] as? String == "editbudgetfail") {
                 let vc = UIApplication.topViewController() as? SettingsViewController
                 vc?.didReceiveData()

@@ -85,6 +85,9 @@ public class Application {
 	        if (message.get("message").equals("signup")) {
 				wsep.sendToSession(session, toBinary(signUp(message, conn)));
 			}
+	        else if (message.get("message").equals("getHistory")) {
+	        	wsep.sendToSession(session, toBinary(getHistory(message, session, conn)));
+	        }
 	        else if (message.get("message").equals("editBigBudgetAttributes")) {
 	        	wsep.sendToSession(session, toBinary(editBigBudgetAttributes(message, session, conn)));
 	        }
@@ -320,7 +323,36 @@ public class Application {
 									Statement st3 = conn.createStatement();
 									double aSpent = rs1.getDouble("TotalAmountSpent");
 									double aAmount = rs1.getDouble("BudgetAmount");
-									
+
+									Statement sth = conn.createStatement();
+									ResultSet rsh = sth.executeQuery("SELECT * FROM History WHERE budgetID=" + rs1.getInt("budgetID"));
+									int counter = 0;
+									int lowestHistory = 7;
+									int highestHistory = 0;
+									while (rsh.next()) {
+//										if (rsh.getInt("budgetID")>highestID) {
+//											highestID = rs1.getInt("budgetID");
+//										}
+										if (rsh.getInt("HistoryNum")>highestHistory) {
+											highestHistory = rsh.getInt("HistoryNum");
+										}
+										if (rsh.getInt("HistoryNum")<lowestHistory) {
+											lowestHistory = rsh.getInt("HistoryNum");
+										}
+										counter++;
+									}
+									if (counter == 6) {
+										st3.execute("DELETE FROM History WHERE budgetID=" + rs1.getInt("budgetID") + " AND HistoryNum=" + lowestHistory + ";");
+										Statement stupdate = conn.createStatement();
+										ResultSet rsupdate = stupdate.executeQuery("SELECT * FROM History WHERE budgetID=" + rs1.getInt("budgetID"));
+										while (rsupdate.next()) {
+											st3.executeUpdate("UPDATE History SET HistoryNum=" + (rsupdate.getInt("HistoryNum")-1) + " WHERE budgetID=" + rs1.getInt("budgetID"));
+										}
+										st3.execute(Constants.SQL_INSERT_HISTORY + rs1.getInt("budgetID") + ", " + aAmount + ", " + aSpent + ", 6);");
+									}
+									else {
+										st3.execute(Constants.SQL_INSERT_HISTORY + rs1.getInt("budgetID") + ", " + aAmount + ", " + aSpent + ", " + (highestHistory + 1) + ");");
+									}
 									st3.execute("UPDATE Budgets SET TotalAmountSpent=0 WHERE bigBudgetID=" + bbID + ";");
 									st3.execute("DELETE FROM Transactions WHERE budgetID=" + rs1.getInt("budgetID"));
 								}
@@ -389,6 +421,35 @@ public class Application {
 			}
 			return response;
 		}
+	public JSONObject getHistory(JSONObject message, Session session, Connection conn) {
+		try {
+			Statement st = conn.createStatement();
+			int categoryID = message.getInt("categoryID");
+			ResultSet rs = st.executeQuery("SELECT * FROM History WHERE budgetID=" + categoryID + ";");
+			int counter = 0;
+			JSONObject history = new JSONObject();
+			while (rs.next()) {
+				counter++;
+				history.put("totalAmountSpent", rs.getDouble("TotalAmountSpent"));
+				history.put("categoryAmount", rs.getDouble("CategoryAmount"));
+				history.put("historyNum", rs.getInt("HistoryNum"));
+				history.put("categoryID", rs.getInt("CategoryID"));
+				response.put("history" + counter, history);
+			}
+			response.put("historySize", counter);
+			response.put("userID", message.getInt("userID"));
+			response.put("message", "getHistorySuccess");
+		} catch(SQLException | JSONException e) {
+			try {
+				response.put("message", "getHistoryFail");
+				response.put("userID", message.getInt("userID"));
+			} catch (JSONException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		return response;
+	}
 	/*
 	 * When a user enters all of their information and clicks sign up, the data is then sent here.
 	 * Input - "message","signup"

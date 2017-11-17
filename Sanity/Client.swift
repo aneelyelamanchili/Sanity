@@ -146,9 +146,11 @@ class Client: NSObject, WebSocketDelegate {
                 vc?.refreshData()
             } else if(json!["message"] as? String == "periodNotification") {
                 let vc = UIApplication.topViewController()
+                print(json)
                 for i in 0 ..< (json!["notificationSize"] as! Int) {
                     let arrayString = "notification" + String(i + 1);
                     let messageArray = json![arrayString] as? [String:Any]
+                    print(arrayString)
                     notifications.append(messageArray!)
                 }
                 

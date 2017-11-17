@@ -457,7 +457,7 @@
         <!--Bar Graph View Controller-->
         <scene sceneID="iAB-AN-GUb">
             <objects>
-                <viewController id="GDo-YR-dDG" userLabel="Bar Graph View Controller" customClass="BarGraphViewController" customModule="Sanity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BarGraphViewController" id="GDo-YR-dDG" userLabel="Bar Graph View Controller" customClass="BarGraphViewController" customModule="Sanity" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9oa-Q2-pg3"/>
                         <viewControllerLayoutGuide type="bottom" id="QQU-ol-lMv"/>

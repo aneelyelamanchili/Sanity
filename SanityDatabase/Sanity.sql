@@ -54,6 +54,16 @@ CREATE TABLE `Transactions` (
     PRIMARY KEY(`transactionID`)
 );
 
+CREATE TABLE `History` (
+	`historyID` INT(11) auto_increment NOT NULL,
+    `budgetID` INT(11) NOT NULL,
+    `CategoryAmount` FLOAT NOT NULL,
+    `TotalAmountSpent` FLOAT NOT NULL,
+    `HistoryNum` INT(11) NOT NULL,
+    FOREIGN KEY(`BudgetID`) REFERENCES `Budgets`(`budgetID`),
+    PRIMARY KEY(`historyID`)
+);
+
   INSERT INTO `TotalUsers`(FirstName, LastName, Password, Email) VALUES ('Aneel', 'Yelamanchili', 314, 'a');
   INSERT INTO `BigBudgets` (userID, BigBudgetName, BarGraphColor, Latitude, Longitude, BigBudgetAmount, TotalAmountSpent, Frequency, Date, BigBudgetDaysLeft, PeriodNotification, PeriodNotificationChecked, LimitNotification) VALUES (1, 'AneelLife', 2, 10, 10, 100, 0, 10, '11/13/2017', 9, '50 25','','80 90 95');
   

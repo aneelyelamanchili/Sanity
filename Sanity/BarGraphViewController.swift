@@ -19,6 +19,7 @@ public class BarChartFormatterWeek: NSObject, IAxisValueFormatter
     
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String
     {
+        print("IN STRINGFORVALUE")
         var intervals: [String] = []
         
         var historyStart = 1
@@ -197,7 +198,7 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var ColorArrayLabels = ["Blue", "Purple", "Grey", "Teal", "Fire", "Water", "Earth", "Air", "Mist", "Orange", "Grape"]
 
     // Days Array
-    var days: [String]!
+//    var days: [String]!
 
     // Initially load delegate
     override func viewDidLoad()
@@ -239,33 +240,33 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         BudgetVariables.getData()
         
         // Grab amount spent for each day in the past week into a double array
-        var amountSpentPerWeek = BudgetVariables.amountSpentInThePast(interval: "Week")
-        var amountSpentPerMonth = BudgetVariables.amountSpentInThePast(interval: "Month")
-        var amountSpentOverAYear = BudgetVariables.amountSpentInThePast12Months()
-        
-        // Index 0 is our test case with random sample data
-        if (BudgetVariables.currentIndex == 0)
-        {
-            amountSpentPerWeek = [20, 4.2, 6.89, 9.99, 60.80, 58.10, 35]
-            var max = 25.0
-            var min = 5.0
-            for i in 0...30
-            {
-                let randomNum = (Double(arc4random()) / 0xFFFFFFFF) * (max - min) + min
-                amountSpentPerMonth[i] = Double(randomNum)
-                if (i < 16)
-                {
-                    max += 5.0
-                    min += 1.0
-                }
-                else
-                {
-                    max -= 2.0
-                    min -= 1.0
-                }
-            }
-            amountSpentOverAYear = [65.20, 134.50, 120.65, 168.8, 186.58, 295.69, 275.67, 256.87, 186.42, 240.23, 200.67, 140.98]
-        }
+//        var amountSpentPerWeek = BudgetVariables.amountSpentInThePast(interval: "Week")
+//        var amountSpentPerMonth = BudgetVariables.amountSpentInThePast(interval: "Month")
+//        var amountSpentOverAYear = BudgetVariables.amountSpentInThePast12Months()
+//
+//        // Index 0 is our test case with random sample data
+//        if (BudgetVariables.currentIndex == 0)
+//        {
+//            amountSpentPerWeek = [20, 4.2, 6.89, 9.99, 60.80, 58.10, 35]
+//            var max = 25.0
+//            var min = 5.0
+//            for i in 0...30
+//            {
+//                let randomNum = (Double(arc4random()) / 0xFFFFFFFF) * (max - min) + min
+//                amountSpentPerMonth[i] = Double(randomNum)
+//                if (i < 16)
+//                {
+//                    max += 5.0
+//                    min += 1.0
+//                }
+//                else
+//                {
+//                    max -= 2.0
+//                    min -= 1.0
+//                }
+//            }
+//            amountSpentOverAYear = [65.20, 134.50, 120.65, 168.8, 186.58, 295.69, 275.67, 256.87, 186.42, 240.23, 200.67, 140.98]
+//        }
         
 //        // If there are actually values to display, display the graph
 //        if (segmentedController.selectedSegmentIndex == 0)
@@ -364,7 +365,8 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         xAxis.valueFormatter = barChartFormatter
         barGraphView.xAxis.valueFormatter = xAxis.valueFormatter
-        
+        barGraphView.xAxis.granularity = 1
+
         // Set a limit line to be the average amount spent in that week
         let average = BudgetVariables.calculateAverage(nums: values)
         
@@ -397,7 +399,7 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         // Legend font size
         barGraphView.legend.font = UIFont.systemFont(ofSize: 13)
-        barGraphView.legend.formSize = 8
+//        barGraphView.legend.formSize = 8
         
         // Defaults
         chartData.setDrawValues(true)
@@ -665,6 +667,7 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     // Refresh the graph depending on the color or time interval chosen
     func updateGraph()
     {
+        print("UPDATE GRAPH IS CALLED")
         // If the "Week" segment is selected
         if (segmentedController.selectedSegmentIndex == 0)
         {
@@ -736,6 +739,7 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     // This functions runs when the user selects a new tab
     @IBAction func indexChanged(_ sender: UISegmentedControl)
     {
+        print("IN INDEX CHANGED")
         updateGraph()
     }
     
@@ -761,6 +765,7 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         BudgetVariables.getData()
         
         // Update the graph once a new color is chosen
+        print("IN PICKER VIEW ROW SELECT")
         updateGraph()
     }
     

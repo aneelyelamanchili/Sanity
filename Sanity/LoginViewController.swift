@@ -101,7 +101,7 @@ class LoginViewController : UIViewController, UITextFieldDelegate {
             myAlert.delegate = self
             myAlert.show()
         } else {
-            
+
 //            var context:LAContext = LAContext();
 //            var error:NSError?
 //            var success:Bool;
@@ -153,6 +153,10 @@ class LoginViewController : UIViewController, UITextFieldDelegate {
             textField.delegate = self
         })
         alert.addTextField(configurationHandler: {(textField: UITextField) in
+            textField.placeholder = "Old Password"
+            textField.delegate = self as! UITextFieldDelegate
+        })
+        alert.addTextField(configurationHandler: {(textField: UITextField) in
             textField.placeholder = "New Password"
             textField.delegate = self as! UITextFieldDelegate
         })
@@ -162,12 +166,14 @@ class LoginViewController : UIViewController, UITextFieldDelegate {
         
         let change = UIAlertAction(title: "Change", style: UIAlertActionStyle.default, handler: { (_) -> Void in
             var inputEmail = alert.textFields![0].text
-            var inputPassword = alert.textFields![1].text
+            var oldPassword = alert.textFields![1].text
+            var inputPassword = alert.textFields![2].text
             
             let json:NSMutableDictionary = NSMutableDictionary()
             json.setValue("changePassword", forKey: "message")
             json.setValue(inputEmail, forKey: "email")
             json.setValue(inputPassword, forKey: "newPassword")
+            json.setValue(oldPassword, forKey: "oldPassword")
             let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
             var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
             

@@ -12,6 +12,7 @@ import Starscream
 class Client: NSObject, WebSocketDelegate {
     static let sharedInstance = Client()
     static var testPassed:Bool!
+    var notifications : [[String:Any]]!
     
     var json: [String: Any]?
     var socket = WebSocket(url: URL(string: "ws://991f3dc4.ngrok.io/SanityBackend1/ws")!)
@@ -148,13 +149,11 @@ class Client: NSObject, WebSocketDelegate {
                 for i in 0 ..< (json!["notificationSize"] as! Int) {
                     let arrayString = "notification" + String(i + 1);
                     let messageArray = json![arrayString] as? [String:Any]
-                    
-                    let alertController = UIAlertController(title: "Period Notification!", message: messageArray!["notify"] as? String, preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default) { (action) in}
-                    alertController.addAction(action)
-                    
-                    vc?.present(alertController, animated: true, completion: nil)
+                    notifications.append(messageArray!)
                 }
+                
+                showAlert(vc: vc!)
+                
             } else if(json!["message"] as? String == "editbudgetsuccess" || json!["message"] as? String == "editbudgetfail") {
                 let vc = UIApplication.topViewController() as? SettingsViewController
                 vc?.didReceiveData()
@@ -192,6 +191,22 @@ class Client: NSObject, WebSocketDelegate {
             }
         }
         return nil
+    }
+    
+    func showAlert(vc: UIViewController) {
+        if let notification = notifications.first {
+            let alertController = UIAlertController(title: "Period Notification!", message: notification["notify"] as? String, preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default) { action in
+                self.notifications.remove(at: 0) // remove the message of the alert we have just dismissed
+                
+                self.showAlert(vc: vc)
+                
+            }
+            alertController.addAction(action)
+            
+            vc.present(alertController, animated: true, completion: nil)
+        }
+        
     }
     
     

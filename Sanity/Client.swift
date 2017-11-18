@@ -12,9 +12,10 @@ import Starscream
 class Client: NSObject, WebSocketDelegate {
     static let sharedInstance = Client()
     static var testPassed:Bool!
+    var notifications = [String]()
     
     var json: [String: Any]?
-    var socket = WebSocket(url: URL(string: "ws://a4586838.ngrok.io/SanityBackend1/ws")!)
+    var socket = WebSocket(url: URL(string: "ws://991f3dc4.ngrok.io/SanityBackend1/ws")!)
     
     func websocketDidConnect(socket: WebSocketClient) {
             print("websocket is connected")
@@ -145,19 +146,25 @@ class Client: NSObject, WebSocketDelegate {
                 vc?.refreshData()
             } else if(json!["message"] as? String == "periodNotification") {
                 let vc = UIApplication.topViewController()
+                print(json)
+                for i in 0 ..< (json!["notificationSize"] as! Int) {
+                    let arrayString = "notification" + String(i + 1);
+                    let messageArray = json![arrayString] as? String
+                    print(arrayString)
+                    notifications.append(messageArray!)
+                }
                 
-                let alertController = UIAlertController(title: "Period Notification!", message: json!["notify"] as? String, preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default) { (action) in}
-                alertController.addAction(action)
+                showAlert(vc: vc!)
                 
-                vc?.present(alertController, animated: true, completion: nil)
             } else if(json!["message"] as? String == "editbudgetsuccess" || json!["message"] as? String == "editbudgetfail") {
                 let vc = UIApplication.topViewController() as? SettingsViewController
                 vc?.didReceiveData()
-            }
-            else if(json!["message"] as? String == "editcategorysuccess" || json!["message"] as? String == "editcategoryfail") {
+            } else if(json!["message"] as? String == "editcategorysuccess" || json!["message"] as? String == "editcategoryfail") {
                 let vc = UIApplication.topViewController() as? BudgetListViewController
                 vc?.sendRefreshQuery()
+            } else if(json!["message"] as? String == "getHistorySuccess" || json!["message"] as? String == "getHistoryFail") {
+                let vc = UIApplication.topViewController() as? BarGraphViewController
+                vc?.didReceiveData()
             }
         
         } else {
@@ -186,6 +193,22 @@ class Client: NSObject, WebSocketDelegate {
             }
         }
         return nil
+    }
+    
+    func showAlert(vc: UIViewController) {
+        if let notification = notifications.first {
+            let alertController = UIAlertController(title: "Period Notification!", message: notification, preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default) { action in
+                self.notifications.remove(at: 0) // remove the message of the alert we have just dismissed
+                
+                self.showAlert(vc: vc)
+                
+            }
+            alertController.addAction(action)
+            
+            vc.present(alertController, animated: true, completion: nil)
+        }
+        
     }
     
     

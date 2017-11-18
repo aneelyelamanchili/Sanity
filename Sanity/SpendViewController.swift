@@ -101,7 +101,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     public func didReceiveData() {
         print("IN DID RECEIVE DATA SPENDVIEWCONTROLLER")
         print(Client.sharedInstance.json)
-        if(Client.sharedInstance.json?["notification"] != nil && Client.sharedInstance.json?["notification"] as! String == "yes") {
+        if(Client.sharedInstance.json?["message"] != nil && Client.sharedInstance.json?["notification"] as! String == "yes") {
             let myAlert = UIAlertView()
             myAlert.title = "Category Notification!"
             myAlert.message = Client.sharedInstance.json?["notify"] as! String?
@@ -410,7 +410,17 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         // Save context and get data
         self.sharedDelegate.saveContext()
         BudgetVariables.getData()
-        performSegue(withIdentifier: "showGraphs", sender: nil)
+//        performSegue(withIdentifier: "showGraphs", sender: nil)
+        
+        let destination = storyboard?.instantiateViewController(withIdentifier: "BarGraphViewController") as! BarGraphViewController
+        //        destination.budgetArray = budgetArray
+        //        destination.currentIndex = currentIndex
+//        destination.toPopulate = toPopulate
+        destination.categoryID = toPopulate["categoryID"] as! Int
+        destination.userID = Client.sharedInstance.json!["userID"] as! Int
+//        destination.currBudget = currBudget
+        navigationController?.pushViewController(destination, animated: true)
+        
     }
     
     // Prepare for segue

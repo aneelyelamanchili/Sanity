@@ -15,50 +15,80 @@ import CoreData
 public class BarChartFormatterWeek: NSObject, IAxisValueFormatter
 {
     // Grab past 7 days into an array
-    var daysInWeek = BudgetVariables.pastInterval(interval: "Week")
+//    var daysInWeek = BudgetVariables.pastInterval(interval: "Week")
     
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String
     {
-        return daysInWeek[Int(value)]
+        print("IN STRINGFORVALUE")
+        var intervals: [String] = []
+        
+        var historyStart = 1
+        var count = 0
+        let historySize = Client.sharedInstance.json!["historySize"] as! Int
+        while(count < historySize) {
+            print("history\(historyStart) exists")
+            //                print("Category Amount is: ")
+            
+            var populate:[String: Any]
+            populate = (Client.sharedInstance.json?["history\(historyStart)"] as? [String: Any])!
+            print(populate["startDate"] as! String)
+            //        print(BigBudgetVariables.formatPeriods(myNum: populate["totalAmountSpent"] as! Int))
+//            let amount = numberFormatter.string(from: NSNumber(value: populate["totalAmountSpent"] as! Double))!
+//            print(type(of: amount))
+            intervals.append(populate["startDate"] as! String)
+            //                print(populate["totalAmountSpent"] as! String)
+            historyStart += 1
+            count += 1
+        }
+        print(intervals)
+        print(value)
+        print(intervals[Int(value)])
+        return intervals[Int(value)]
     }
 }
 
 // The point of this is to add X axis labels of the past 31 days to the graph
-@objc(BarChartFormatterMonth)
-public class BarChartFormatterMonth: NSObject, IAxisValueFormatter
-{
-    // Grab past 31 days into an array
-    var daysInMonth = BudgetVariables.pastInterval(interval: "Month")
-    
-    public func stringForValue(_ value: Double, axis: AxisBase?) -> String
-    {
-        return daysInMonth[Int(value)]
-    }
-}
-
-// The point of this is to add X axis labels of the past 12 months to the graph
-@objc(BarChartFormatterYear)
-public class BarChartFormatterYear: NSObject, IAxisValueFormatter
-{
-    // Grab the past 12 months into an array
-    var monthsInYear = BudgetVariables.pastXMonths(X: 12)
-    
-    public func stringForValue(_ value: Double, axis: AxisBase?) -> String
-    {
-        return monthsInYear[Int(value)]
-    }
-}
+//@objc(BarChartFormatterMonth)
+//public class BarChartFormatterMonth: NSObject, IAxisValueFormatter
+//{
+//    // Grab past 31 days into an array
+//    var daysInMonth = BudgetVariables.pastInterval(interval: "Month")
+//
+//    public func stringForValue(_ value: Double, axis: AxisBase?) -> String
+//    {
+//        return daysInMonth[Int(value)]
+//    }
+//}
+//
+//// The point of this is to add X axis labels of the past 12 months to the graph
+//@objc(BarChartFormatterYear)
+//public class BarChartFormatterYear: NSObject, IAxisValueFormatter
+//{
+//    // Grab the past 12 months into an array
+//    var monthsInYear = BudgetVariables.pastXMonths(X: 12)
+//
+//    public func stringForValue(_ value: Double, axis: AxisBase?) -> String
+//    {
+//        return monthsInYear[Int(value)]
+//    }
+//}
 
 // View Controller Class
 class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate
 {
     // Clean code
     var sharedDelegate: AppDelegate!
+    var currColor:Int! = 0
 
     // IB Outlets
     @IBOutlet var barGraphView: BarChartView!
     @IBOutlet weak var segmentedController: UISegmentedControl!
     @IBOutlet weak var pickerTextField: UITextField!
+    
+    var periodSpendings: [Double]! = []
+    
+    var categoryID: Int!
+    var userID: Int!
     
     // ColorPicker
     var ColorPicker = UIPickerView()
@@ -171,7 +201,7 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var ColorArrayLabels = ["Blue", "Purple", "Grey", "Teal", "Fire", "Water", "Earth", "Air", "Mist", "Orange", "Grape"]
 
     // Days Array
-    var days: [String]!
+//    var days: [String]!
 
     // Initially load delegate
     override func viewDidLoad()
@@ -206,57 +236,59 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     {
         super.viewWillAppear(animated)
         
+        sendRefreshQuery()
+        
         // Sync data
         self.sharedDelegate.saveContext()
         BudgetVariables.getData()
         
         // Grab amount spent for each day in the past week into a double array
-        var amountSpentPerWeek = BudgetVariables.amountSpentInThePast(interval: "Week")
-        var amountSpentPerMonth = BudgetVariables.amountSpentInThePast(interval: "Month")
-        var amountSpentOverAYear = BudgetVariables.amountSpentInThePast12Months()
+//        var amountSpentPerWeek = BudgetVariables.amountSpentInThePast(interval: "Week")
+//        var amountSpentPerMonth = BudgetVariables.amountSpentInThePast(interval: "Month")
+//        var amountSpentOverAYear = BudgetVariables.amountSpentInThePast12Months()
+//
+//        // Index 0 is our test case with random sample data
+//        if (BudgetVariables.currentIndex == 0)
+//        {
+//            amountSpentPerWeek = [20, 4.2, 6.89, 9.99, 60.80, 58.10, 35]
+//            var max = 25.0
+//            var min = 5.0
+//            for i in 0...30
+//            {
+//                let randomNum = (Double(arc4random()) / 0xFFFFFFFF) * (max - min) + min
+//                amountSpentPerMonth[i] = Double(randomNum)
+//                if (i < 16)
+//                {
+//                    max += 5.0
+//                    min += 1.0
+//                }
+//                else
+//                {
+//                    max -= 2.0
+//                    min -= 1.0
+//                }
+//            }
+//            amountSpentOverAYear = [65.20, 134.50, 120.65, 168.8, 186.58, 295.69, 275.67, 256.87, 186.42, 240.23, 200.67, 140.98]
+//        }
         
-        // Index 0 is our test case with random sample data
-        if (BudgetVariables.currentIndex == 0)
-        {
-            amountSpentPerWeek = [20, 4.2, 6.89, 9.99, 60.80, 58.10, 35]
-            var max = 25.0
-            var min = 5.0
-            for i in 0...30
-            {
-                let randomNum = (Double(arc4random()) / 0xFFFFFFFF) * (max - min) + min
-                amountSpentPerMonth[i] = Double(randomNum)
-                if (i < 16)
-                {
-                    max += 5.0
-                    min += 1.0
-                }
-                else
-                {
-                    max -= 2.0
-                    min -= 1.0
-                }
-            }
-            amountSpentOverAYear = [65.20, 134.50, 120.65, 168.8, 186.58, 295.69, 275.67, 256.87, 186.42, 240.23, 200.67, 140.98]
-        }
-        
-        // If there are actually values to display, display the graph
-        if (segmentedController.selectedSegmentIndex == 0)
-        {
-            setBarGraphWeek(values: amountSpentPerWeek)
-        }
-        else if (segmentedController.selectedSegmentIndex == 1)
-        {
-            setBarGraphMonth(values: amountSpentPerMonth)
-        }
-        else
-        {
-            setBarGraphYear(values: amountSpentOverAYear)
-        }
-        
+//        // If there are actually values to display, display the graph
+//        if (segmentedController.selectedSegmentIndex == 0)
+//        {
+//            setBarGraphWeek(values: amountSpentPerWeek)
+//        }
+//        else if (segmentedController.selectedSegmentIndex == 1)
+//        {
+//            setBarGraphMonth(values: amountSpentPerMonth)
+//        }
+//        else
+//        {
+//            setBarGraphYear(values: amountSpentOverAYear)
+//        }
+//
         // Set textfield label for color, and initialize the picker to start at a certain value
-        let CurrentColorIndex = BudgetVariables.budgetArray[BudgetVariables.currentIndex].barGraphColor
-        pickerTextField.text = ColorArrayLabels[CurrentColorIndex]
-        ColorPicker.selectRow(CurrentColorIndex, inComponent: 0, animated: true)
+        //let CurrentColorIndex = BudgetVariables.budgetArray[BudgetVariables.currentIndex].barGraphColor
+        pickerTextField.text = ColorArrayLabels[0]
+        ColorPicker.selectRow(0, inComponent: 0, animated: true)
     }
     
     //Calls this function when the tap is recognized.
@@ -266,6 +298,53 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         pickerTextField.endEditing(true)
     }
     
+    func sendRefreshQuery() {
+        print("REFRESH QUERY")
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("getHistory", forKey: "message")
+        json.setValue(Client.sharedInstance.json?["userID"], forKey: "userID")
+        json.setValue(categoryID, forKey: "categoryID")
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        
+        Client.sharedInstance.socket.write(data: jsonData)
+        print("after send in refresh query")
+    }
+    
+    public func didReceiveData() {
+        periodSpendings.removeAll()
+        let numberFormatter = NumberFormatter()
+        
+        print("IN DID RECEIVE DATA BARGRAPHVIEWCONTROLLER")
+        print(Client.sharedInstance.json)
+        var toPopulate = Client.sharedInstance.json
+        if(Client.sharedInstance.json?["message"] as! String == "getHistorySuccess") {
+            //totalAmountSpent, categoryAmount, historyNum(lowest history number is earliest period), categoryID, startDate, history(x), where 1 is earliest and 6 is most recent
+            
+            var historyStart = 1
+            var count = 0
+            let historySize = toPopulate!["historySize"] as! Int
+            while(count < historySize) {
+                print("history\(historyStart) exists")
+//                print("Category Amount is: ")
+                
+                var populate:[String: Any]
+                populate = (toPopulate?["history\(historyStart)"] as? [String: Any])!
+                print(populate["totalAmountSpent"] as! Int)
+//                print(BigBudgetVariables.formatPeriods(myNum: Int(populate["totalAmountSpent"] as! Double)))
+//                let amount = numberFormatter.string(from: NSNumber(value: ))!
+//                print(type(of: amount))
+                periodSpendings.append(populate["totalAmountSpent"] as! Double)
+//                print(populate["totalAmountSpent"] as! String)
+                historyStart += 1
+                count += 1
+            }
+            print("THE FINISHED PERIOD SPENDINGS IS: ")
+            print(periodSpendings)
+        }
+        setBarGraphWeek(values: periodSpendings)
+    }
+    
     // Set Bar Graph for the past week
     func setBarGraphWeek(values: [Double])
     {
@@ -273,18 +352,23 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let xAxis:XAxis = XAxis()
         
         var dataEntries: [BarChartDataEntry] = []
-        
+        print("IN SET BAR GRAPH WEEK")
+        print(values.count)
         for i in 0..<values.count
         {
+            print("NIGGA WAT")
             let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
+            print("printing data entry")
+            print(dataEntry)
             dataEntries.append(dataEntry)
             
-            let _ = barChartFormatter.stringForValue(Double(i), axis: xAxis)
+//            let _ = barChartFormatter.stringForValue(Double(i), axis: xAxis)
         }
         
         xAxis.valueFormatter = barChartFormatter
         barGraphView.xAxis.valueFormatter = xAxis.valueFormatter
-        
+        barGraphView.xAxis.granularity = 1
+
         // Set a limit line to be the average amount spent in that week
         let average = BudgetVariables.calculateAverage(nums: values)
         
@@ -309,7 +393,7 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let chartDataSet = BarChartDataSet(values: dataEntries, label: "$$ Spent Per Day")
         
         // Select the color scheme
-        chartDataSet.colors = ColorArray[BudgetVariables.budgetArray[BudgetVariables.currentIndex].barGraphColor]
+        chartDataSet.colors = ColorArray[currColor]
         
         chartDataSet.axisDependency = .right
         let chartData = BarChartData(dataSet: chartDataSet)
@@ -317,17 +401,17 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         // Legend font size
         barGraphView.legend.font = UIFont.systemFont(ofSize: 13)
-        barGraphView.legend.formSize = 8
+//        barGraphView.legend.formSize = 8
         
         // Defaults
         chartData.setDrawValues(true)
         barGraphView.rightAxis.drawLabelsEnabled = true
         
-        if BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.isEmpty == true || BudgetVariables.isAllZeros(array: values) == true
-        {
-            chartData.setDrawValues(false)
-            barGraphView.rightAxis.drawLabelsEnabled = false
-        }
+//        if BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.isEmpty == true || BudgetVariables.isAllZeros(array: values) == true
+//        {
+//            chartData.setDrawValues(false)
+//            barGraphView.rightAxis.drawLabelsEnabled = false
+//        }
         
         // Set where axis starts
         barGraphView.setScaleMinima(0, scaleY: 0.0)
@@ -355,10 +439,10 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         barGraphView.rightAxis.labelFont = UIFont.systemFont(ofSize: 11)
         
         // Set X Axis Font
-        barGraphView.xAxis.labelFont = UIFont.systemFont(ofSize: 13)
+        barGraphView.xAxis.labelFont = UIFont.systemFont(ofSize: 9)
         
         // Force all 7 x axis labels to show up
-        barGraphView.xAxis.setLabelCount(7, force: false)
+//        barGraphView.xAxis.setLabelCount(7, force: false)
         
         // Set description texts
         barGraphView.chartDescription?.text = ""
@@ -368,292 +452,293 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         // Animate the chart
         barGraphView.animate(xAxisDuration: 0.0, yAxisDuration: 1.5)
+        print("BABU")
     }
     
-    // Set Bar Graph for the past month
-    func setBarGraphMonth(values: [Double])
-    {
-        // Depending on the size of the given array, generate a different X Axis
-        let barChartFormatter:BarChartFormatterMonth = BarChartFormatterMonth()
-        let xAxis:XAxis = XAxis()
-        
-        var dataEntries: [BarChartDataEntry] = []
-        
-        for i in 0..<values.count
-        {
-            let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
-            dataEntries.append(dataEntry)
-            
-            let _ = barChartFormatter.stringForValue(Double(i), axis: xAxis)
-        }
-        
-        xAxis.valueFormatter = barChartFormatter
-        barGraphView.xAxis.valueFormatter = xAxis.valueFormatter
-        
-        // Set a limit line to be the average amount spent in that week
-        let average = BudgetVariables.calculateAverage(nums: values)
-        
-        // Remove the average line from the previous graph rendered
-        barGraphView.rightAxis.removeAllLimitLines();
-        
-        // Only add the average line if there is actually data in the bar graph
-        if average != 0.0
-        {
-            let ll = ChartLimitLine(limit: average, label: "Average: " + BudgetVariables.numFormat(myNum: average))
-            ll.lineColor = BudgetVariables.hexStringToUIColor(hex: "092140")
-            ll.valueFont = UIFont.systemFont(ofSize: 12)
-            ll.lineWidth = 2
-            ll.labelPosition = .leftTop
-            barGraphView.rightAxis.addLimitLine(ll)
-        }
-        
-        // Set the position of the x axis label
-        barGraphView.rightAxis.axisMinimum = 0
-        barGraphView.xAxis.labelPosition = .bottom
-        
-        let chartDataSet = BarChartDataSet(values: dataEntries, label: "$$ Spent Per Day")
-        
-        // Select the color scheme
-        let colorSelector = BudgetVariables.budgetArray[BudgetVariables.currentIndex].barGraphColor
-        chartDataSet.colors = ColorArray[colorSelector]
-        
-        chartDataSet.axisDependency = .right
-        let chartData = BarChartData(dataSet: chartDataSet)
-        barGraphView.data = chartData
-        
-        // Legend font size
-        barGraphView.legend.font = UIFont.systemFont(ofSize: 13)
-        barGraphView.legend.formSize = 8
-        
-        // Defaults
-        chartData.setDrawValues(true)
-        barGraphView.rightAxis.drawLabelsEnabled = true
-        
-        if BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.isEmpty == true || BudgetVariables.isAllZeros(array: values) == true
-        {
-            chartDataSet.label = "You must spend to see data"
-            chartData.setDrawValues(false)
-            barGraphView.rightAxis.drawLabelsEnabled = false
-        }
-        
-        // Set where axis starts
-        barGraphView.setScaleMinima(0, scaleY: 0.0)
-        
-        // Customization
-        barGraphView.pinchZoomEnabled = false
-        barGraphView.scaleXEnabled = false
-        barGraphView.scaleYEnabled = false
-        barGraphView.xAxis.drawGridLinesEnabled = false
-        barGraphView.leftAxis.drawGridLinesEnabled = false
-        barGraphView.rightAxis.drawGridLinesEnabled = false
-        barGraphView.leftAxis.drawLabelsEnabled = false
-        barGraphView.rightAxis.spaceBottom = 0
-        barGraphView.leftAxis.spaceBottom = 0
-        
-        // Set font size
-        chartData.setValueFont(UIFont.systemFont(ofSize: 0))
-        
-        let format = NumberFormatter()
-        format.numberStyle = .currency
-        let formatter = DefaultValueFormatter(formatter: format)
-        chartData.setValueFormatter(formatter)
-        
-        // Set Y Axis Font
-        barGraphView.rightAxis.labelFont = UIFont.systemFont(ofSize: 11)
-        
-        // Set X Axis Font
-        barGraphView.xAxis.labelFont = UIFont.systemFont(ofSize: 13)
-        
-        // Set labels to be 5 day increments
-        barGraphView.xAxis.setLabelCount(6, force: false)
-        
-        // Set description texts
-        barGraphView.chartDescription?.text = ""
-        
-        // Set the background color
-        // barGraphView.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
-        
-        // Animate the chart
-        barGraphView.animate(xAxisDuration: 0.0, yAxisDuration: 1.5)
-    }
-    
-    // Set Bar Graph for the past year
-    func setBarGraphYear(values: [Double])
-    {
-        let barChartFormatter:BarChartFormatterYear = BarChartFormatterYear()
-        let xAxis:XAxis = XAxis()
-        
-        var dataEntries: [BarChartDataEntry] = []
-        
-        for i in 0..<values.count
-        {
-            let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
-            dataEntries.append(dataEntry)
-            
-            let _ = barChartFormatter.stringForValue(Double(i), axis: xAxis)
-        }
-        
-        xAxis.valueFormatter = barChartFormatter
-        barGraphView.xAxis.valueFormatter = xAxis.valueFormatter
-        
-        // Set a limit line to be the average amount spent in that week
-        let average = BudgetVariables.calculateAverage(nums: values)
-        
-        // Remove the average line from the previous graph
-        barGraphView.rightAxis.removeAllLimitLines();
-        
-        // Only add the average line if there is actually data in the bar graph
-        if average != 0.0
-        {
-            let ll = ChartLimitLine(limit: average, label: "Average: " + BudgetVariables.numFormat(myNum: average))
-            ll.lineColor = BudgetVariables.hexStringToUIColor(hex: "092140")
-            ll.valueFont = UIFont.systemFont(ofSize: 12)
-            ll.lineWidth = 2
-            ll.labelPosition = .leftTop
-            barGraphView.rightAxis.addLimitLine(ll)
-        }
-        
-        // Set the position of the x axis label
-        barGraphView.rightAxis.axisMinimum = 0
-        barGraphView.xAxis.labelPosition = .bottom
-        
-        let chartDataSet = BarChartDataSet(values: dataEntries, label: "$$ Spent Per Month")
-        
-        // Select the color scheme
-        let colorSelector = BudgetVariables.budgetArray[BudgetVariables.currentIndex].barGraphColor
-        chartDataSet.colors = ColorArray[colorSelector]
-        chartDataSet.axisDependency = .right
-        let chartData = BarChartData(dataSet: chartDataSet)
-        barGraphView.data = chartData
-        
-        // Legend font size
-        barGraphView.legend.font = UIFont.systemFont(ofSize: 13)
-        barGraphView.legend.formSize = 8
-        
-        // Defaults
-        chartData.setDrawValues(true)
-        barGraphView.rightAxis.drawLabelsEnabled = true
-        
-        if BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.isEmpty == true || BudgetVariables.isAllZeros(array: values) == true
-        {
-            chartData.setDrawValues(false)
-            barGraphView.rightAxis.drawLabelsEnabled = false
-        }
-        
-        // Set where axis starts
-        barGraphView.setScaleMinima(0, scaleY: 0.0)
-        
-        // Customization
-        barGraphView.pinchZoomEnabled = false
-        barGraphView.scaleXEnabled = false
-        barGraphView.scaleYEnabled = false
-        barGraphView.xAxis.drawGridLinesEnabled = false
-        barGraphView.leftAxis.drawGridLinesEnabled = false
-        barGraphView.rightAxis.drawGridLinesEnabled = false
-        barGraphView.leftAxis.drawLabelsEnabled = false
-        barGraphView.rightAxis.spaceBottom = 0
-        barGraphView.leftAxis.spaceBottom = 0
-        
-        // Set font size
-        chartData.setValueFont(UIFont.systemFont(ofSize: 0))
-        
-        let format = NumberFormatter()
-        format.numberStyle = .currency
-        let formatter = DefaultValueFormatter(formatter: format)
-        chartData.setValueFormatter(formatter)
-        
-        // Set Y Axis Font
-        barGraphView.rightAxis.labelFont = UIFont.systemFont(ofSize: 11)
-        
-        // Set X Axis Font
-        barGraphView.xAxis.labelFont = UIFont.systemFont(ofSize: 12)
-        
-        // Force all 12 x axis labels to show up
-        barGraphView.xAxis.setLabelCount(12, force: false)
-        
-        // Set description texts
-        barGraphView.chartDescription?.text = ""
-        
-        // Set the background color
-        // barGraphView.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
-        
-        // Animate the chart
-        barGraphView.animate(xAxisDuration: 0.0, yAxisDuration: 1.5)
-    }
+//    // Set Bar Graph for the past month
+//    func setBarGraphMonth(values: [Double])
+//    {
+//        // Depending on the size of the given array, generate a different X Axis
+//        let barChartFormatter:BarChartFormatterMonth = BarChartFormatterMonth()
+//        let xAxis:XAxis = XAxis()
+//        
+//        var dataEntries: [BarChartDataEntry] = []
+//        
+//        for i in 0..<values.count
+//        {
+//            let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
+//            dataEntries.append(dataEntry)
+//            
+//            let _ = barChartFormatter.stringForValue(Double(i), axis: xAxis)
+//        }
+//        
+//        xAxis.valueFormatter = barChartFormatter
+//        barGraphView.xAxis.valueFormatter = xAxis.valueFormatter
+//        
+//        // Set a limit line to be the average amount spent in that week
+//        let average = BudgetVariables.calculateAverage(nums: values)
+//        
+//        // Remove the average line from the previous graph rendered
+//        barGraphView.rightAxis.removeAllLimitLines();
+//        
+//        // Only add the average line if there is actually data in the bar graph
+//        if average != 0.0
+//        {
+//            let ll = ChartLimitLine(limit: average, label: "Average: " + BudgetVariables.numFormat(myNum: average))
+//            ll.lineColor = BudgetVariables.hexStringToUIColor(hex: "092140")
+//            ll.valueFont = UIFont.systemFont(ofSize: 12)
+//            ll.lineWidth = 2
+//            ll.labelPosition = .leftTop
+//            barGraphView.rightAxis.addLimitLine(ll)
+//        }
+//        
+//        // Set the position of the x axis label
+//        barGraphView.rightAxis.axisMinimum = 0
+//        barGraphView.xAxis.labelPosition = .bottom
+//        
+//        let chartDataSet = BarChartDataSet(values: dataEntries, label: "$$ Spent Per Day")
+//        
+//        // Select the color scheme
+//        let colorSelector = BudgetVariables.budgetArray[BudgetVariables.currentIndex].barGraphColor
+//        chartDataSet.colors = ColorArray[colorSelector]
+//        
+//        chartDataSet.axisDependency = .right
+//        let chartData = BarChartData(dataSet: chartDataSet)
+//        barGraphView.data = chartData
+//        
+//        // Legend font size
+//        barGraphView.legend.font = UIFont.systemFont(ofSize: 13)
+//        barGraphView.legend.formSize = 8
+//        
+//        // Defaults
+//        chartData.setDrawValues(true)
+//        barGraphView.rightAxis.drawLabelsEnabled = true
+//        
+//        if BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.isEmpty == true || BudgetVariables.isAllZeros(array: values) == true
+//        {
+//            chartDataSet.label = "You must spend to see data"
+//            chartData.setDrawValues(false)
+//            barGraphView.rightAxis.drawLabelsEnabled = false
+//        }
+//        
+//        // Set where axis starts
+//        barGraphView.setScaleMinima(0, scaleY: 0.0)
+//        
+//        // Customization
+//        barGraphView.pinchZoomEnabled = false
+//        barGraphView.scaleXEnabled = false
+//        barGraphView.scaleYEnabled = false
+//        barGraphView.xAxis.drawGridLinesEnabled = false
+//        barGraphView.leftAxis.drawGridLinesEnabled = false
+//        barGraphView.rightAxis.drawGridLinesEnabled = false
+//        barGraphView.leftAxis.drawLabelsEnabled = false
+//        barGraphView.rightAxis.spaceBottom = 0
+//        barGraphView.leftAxis.spaceBottom = 0
+//        
+//        // Set font size
+//        chartData.setValueFont(UIFont.systemFont(ofSize: 0))
+//        
+//        let format = NumberFormatter()
+//        format.numberStyle = .currency
+//        let formatter = DefaultValueFormatter(formatter: format)
+//        chartData.setValueFormatter(formatter)
+//        
+//        // Set Y Axis Font
+//        barGraphView.rightAxis.labelFont = UIFont.systemFont(ofSize: 11)
+//        
+//        // Set X Axis Font
+//        barGraphView.xAxis.labelFont = UIFont.systemFont(ofSize: 13)
+//        
+//        // Set labels to be 5 day increments
+//        barGraphView.xAxis.setLabelCount(6, force: false)
+//        
+//        // Set description texts
+//        barGraphView.chartDescription?.text = ""
+//        
+//        // Set the background color
+//        // barGraphView.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+//        
+//        // Animate the chart
+//        barGraphView.animate(xAxisDuration: 0.0, yAxisDuration: 1.5)
+//    }
+//    
+//    // Set Bar Graph for the past year
+//    func setBarGraphYear(values: [Double])
+//    {
+//        let barChartFormatter:BarChartFormatterYear = BarChartFormatterYear()
+//        let xAxis:XAxis = XAxis()
+//        
+//        var dataEntries: [BarChartDataEntry] = []
+//        
+//        for i in 0..<values.count
+//        {
+//            let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
+//            dataEntries.append(dataEntry)
+//            
+//            let _ = barChartFormatter.stringForValue(Double(i), axis: xAxis)
+//        }
+//        
+//        xAxis.valueFormatter = barChartFormatter
+//        barGraphView.xAxis.valueFormatter = xAxis.valueFormatter
+//        
+//        // Set a limit line to be the average amount spent in that week
+//        let average = BudgetVariables.calculateAverage(nums: values)
+//        
+//        // Remove the average line from the previous graph
+//        barGraphView.rightAxis.removeAllLimitLines();
+//        
+//        // Only add the average line if there is actually data in the bar graph
+//        if average != 0.0
+//        {
+//            let ll = ChartLimitLine(limit: average, label: "Average: " + BudgetVariables.numFormat(myNum: average))
+//            ll.lineColor = BudgetVariables.hexStringToUIColor(hex: "092140")
+//            ll.valueFont = UIFont.systemFont(ofSize: 12)
+//            ll.lineWidth = 2
+//            ll.labelPosition = .leftTop
+//            barGraphView.rightAxis.addLimitLine(ll)
+//        }
+//        
+//        // Set the position of the x axis label
+//        barGraphView.rightAxis.axisMinimum = 0
+//        barGraphView.xAxis.labelPosition = .bottom
+//        
+//        let chartDataSet = BarChartDataSet(values: dataEntries, label: "$$ Spent Per Month")
+//        
+//        // Select the color scheme
+//        let colorSelector = BudgetVariables.budgetArray[BudgetVariables.currentIndex].barGraphColor
+//        chartDataSet.colors = ColorArray[colorSelector]
+//        chartDataSet.axisDependency = .right
+//        let chartData = BarChartData(dataSet: chartDataSet)
+//        barGraphView.data = chartData
+//        
+//        // Legend font size
+//        barGraphView.legend.font = UIFont.systemFont(ofSize: 13)
+//        barGraphView.legend.formSize = 8
+//        
+//        // Defaults
+//        chartData.setDrawValues(true)
+//        barGraphView.rightAxis.drawLabelsEnabled = true
+//        
+//        if BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.isEmpty == true || BudgetVariables.isAllZeros(array: values) == true
+//        {
+//            chartData.setDrawValues(false)
+//            barGraphView.rightAxis.drawLabelsEnabled = false
+//        }
+//        
+//        // Set where axis starts
+//        barGraphView.setScaleMinima(0, scaleY: 0.0)
+//        
+//        // Customization
+//        barGraphView.pinchZoomEnabled = false
+//        barGraphView.scaleXEnabled = false
+//        barGraphView.scaleYEnabled = false
+//        barGraphView.xAxis.drawGridLinesEnabled = false
+//        barGraphView.leftAxis.drawGridLinesEnabled = false
+//        barGraphView.rightAxis.drawGridLinesEnabled = false
+//        barGraphView.leftAxis.drawLabelsEnabled = false
+//        barGraphView.rightAxis.spaceBottom = 0
+//        barGraphView.leftAxis.spaceBottom = 0
+//        
+//        // Set font size
+//        chartData.setValueFont(UIFont.systemFont(ofSize: 0))
+//        
+//        let format = NumberFormatter()
+//        format.numberStyle = .currency
+//        let formatter = DefaultValueFormatter(formatter: format)
+//        chartData.setValueFormatter(formatter)
+//        
+//        // Set Y Axis Font
+//        barGraphView.rightAxis.labelFont = UIFont.systemFont(ofSize: 11)
+//        
+//        // Set X Axis Font
+//        barGraphView.xAxis.labelFont = UIFont.systemFont(ofSize: 12)
+//        
+//        // Force all 12 x axis labels to show up
+//        barGraphView.xAxis.setLabelCount(12, force: false)
+//        
+//        // Set description texts
+//        barGraphView.chartDescription?.text = ""
+//        
+//        // Set the background color
+//        // barGraphView.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+//        
+//        // Animate the chart
+//        barGraphView.animate(xAxisDuration: 0.0, yAxisDuration: 1.5)
+//    }
     
     // Refresh the graph depending on the color or time interval chosen
     func updateGraph()
     {
+        print("UPDATE GRAPH IS CALLED")
         // If the "Week" segment is selected
-        if (segmentedController.selectedSegmentIndex == 0)
-        {
-            var amountSpentPerWeek = BudgetVariables.amountSpentInThePast(interval: "Week")
-            
-            // Index 0 is our test case with random sample data
-            if (BudgetVariables.currentIndex == 0)
-            {
-                amountSpentPerWeek = [20, 4.2, 6.89, 9.99, 60.80, 58.10, 35]
-            }
-            
+//            var amountSpentPerWeek = BudgetVariables.amountSpentInThePast(interval: "Week")
+//
+//            // Index 0 is our test case with random sample data
+//            if (BudgetVariables.currentIndex == 0)
+//            {
+//                amountSpentPerWeek = [20, 4.2, 6.89, 9.99, 60.80, 58.10, 35]
+//            }
+//
             barGraphView.notifyDataSetChanged()
-            setBarGraphWeek(values: amountSpentPerWeek)
-        }
+//            setBarGraphWeek(values: amountSpentPerWeek)
+            sendRefreshQuery()
             
-        // If the "Month" segment is selected
-        else if (segmentedController.selectedSegmentIndex == 1)
-        {
-            var amountSpentPerMonth = BudgetVariables.amountSpentInThePast(interval: "Month")
-            
-            // Index 0 is our test case with random sample data
-            if (BudgetVariables.currentIndex == 0)
-            {
-                var max = 15.0
-                var min = 5.0
-                for i in 0...30
-                {
-                    let randomNum = (Double(arc4random()) / 0xFFFFFFFF) * (max - min) + min
-                    amountSpentPerMonth[i] = Double(randomNum)
-                    if (i < 11)
-                    {
-                        max += 2.0
-                        min += 1.0
-                    }
-                    else if (i < 21)
-                    {
-                        max += 5.0
-                        min += 1.0
-                    }
-                    else
-                    {
-                        max -= 2.0
-                        min -= 1.0
-                    }
-                }
-            }
-            
-            barGraphView.notifyDataSetChanged()
-            setBarGraphMonth(values: amountSpentPerMonth)
-        }
-            
-        // If the "Year" segment is selected
-        else if (segmentedController.selectedSegmentIndex == 2)
-        {
-            var amountSpentOverAYear = BudgetVariables.amountSpentInThePast12Months()
-            
-            // Index 0 is our test case with random sample data
-            if (BudgetVariables.currentIndex == 0)
-            {
-                amountSpentOverAYear = [65.20, 134.50, 120.65, 168.8, 186.58, 295.69, 275.67, 256.87, 186.42, 240.23, 200.67, 140.98]
-            }
-            
-            barGraphView.notifyDataSetChanged()
-            setBarGraphYear(values: amountSpentOverAYear)
-        }
+//        // If the "Month" segment is selected
+//        else if (segmentedController.selectedSegmentIndex == 1)
+//        {
+//            var amountSpentPerMonth = BudgetVariables.amountSpentInThePast(interval: "Month")
+//
+//            // Index 0 is our test case with random sample data
+//            if (BudgetVariables.currentIndex == 0)
+//            {
+//                var max = 15.0
+//                var min = 5.0
+//                for i in 0...30
+//                {
+//                    let randomNum = (Double(arc4random()) / 0xFFFFFFFF) * (max - min) + min
+//                    amountSpentPerMonth[i] = Double(randomNum)
+//                    if (i < 11)
+//                    {
+//                        max += 2.0
+//                        min += 1.0
+//                    }
+//                    else if (i < 21)
+//                    {
+//                        max += 5.0
+//                        min += 1.0
+//                    }
+//                    else
+//                    {
+//                        max -= 2.0
+//                        min -= 1.0
+//                    }
+//                }
+//            }
+//
+//            barGraphView.notifyDataSetChanged()
+//            setBarGraphMonth(values: amountSpentPerMonth)
+//        }
+//
+//        // If the "Year" segment is selected
+//        else if (segmentedController.selectedSegmentIndex == 2)
+//        {
+//            var amountSpentOverAYear = BudgetVariables.amountSpentInThePast12Months()
+//
+//            // Index 0 is our test case with random sample data
+//            if (BudgetVariables.currentIndex == 0)
+//            {
+//                amountSpentOverAYear = [65.20, 134.50, 120.65, 168.8, 186.58, 295.69, 275.67, 256.87, 186.42, 240.23, 200.67, 140.98]
+//            }
+//
+//            barGraphView.notifyDataSetChanged()
+//            setBarGraphYear(values: amountSpentOverAYear)
+//        }
     }
     
     // This functions runs when the user selects a new tab
     @IBAction func indexChanged(_ sender: UISegmentedControl)
     {
+        print("IN INDEX CHANGED")
         updateGraph()
     }
     
@@ -672,13 +757,14 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         pickerTextField.text = ColorArrayLabels[row]
-        BudgetVariables.budgetArray[BudgetVariables.currentIndex].barGraphColor = row
+        currColor = row
         
         // Save and get data to coredata
         self.sharedDelegate.saveContext()
         BudgetVariables.getData()
         
         // Update the graph once a new color is chosen
+        print("IN PICKER VIEW ROW SELECT")
         updateGraph()
     }
     

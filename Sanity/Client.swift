@@ -12,7 +12,7 @@ import Starscream
 class Client: NSObject, WebSocketDelegate {
     static let sharedInstance = Client()
     static var testPassed:Bool!
-    var notifications : [[String:Any]]!
+    var notifications = [String]()
     
     var json: [String: Any]?
     var socket = WebSocket(url: URL(string: "ws://991f3dc4.ngrok.io/SanityBackend1/ws")!)
@@ -149,7 +149,7 @@ class Client: NSObject, WebSocketDelegate {
                 print(json)
                 for i in 0 ..< (json!["notificationSize"] as! Int) {
                     let arrayString = "notification" + String(i + 1);
-                    let messageArray = json![arrayString] as? [String:Any]
+                    let messageArray = json![arrayString] as? String
                     print(arrayString)
                     notifications.append(messageArray!)
                 }
@@ -197,7 +197,7 @@ class Client: NSObject, WebSocketDelegate {
     
     func showAlert(vc: UIViewController) {
         if let notification = notifications.first {
-            let alertController = UIAlertController(title: "Period Notification!", message: notification["notify"] as? String, preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Period Notification!", message: notification, preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .default) { action in
                 self.notifications.remove(at: 0) // remove the message of the alert we have just dismissed
                 

@@ -41,6 +41,8 @@ public class BarChartFormatterWeek: NSObject, IAxisValueFormatter
             count += 1
         }
         print(intervals)
+        print(value)
+        print(intervals[Int(value)])
         return intervals[Int(value)]
     }
 }
@@ -76,6 +78,7 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
 {
     // Clean code
     var sharedDelegate: AppDelegate!
+    var currColor:Int! = 0
 
     // IB Outlets
     @IBOutlet var barGraphView: BarChartView!
@@ -283,9 +286,9 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
 //        }
 //
         // Set textfield label for color, and initialize the picker to start at a certain value
-        let CurrentColorIndex = BudgetVariables.budgetArray[BudgetVariables.currentIndex].barGraphColor
-        pickerTextField.text = ColorArrayLabels[CurrentColorIndex]
-        ColorPicker.selectRow(CurrentColorIndex, inComponent: 0, animated: true)
+        //let CurrentColorIndex = BudgetVariables.budgetArray[BudgetVariables.currentIndex].barGraphColor
+        pickerTextField.text = ColorArrayLabels[0]
+        ColorPicker.selectRow(0, inComponent: 0, animated: true)
     }
     
     //Calls this function when the tap is recognized.
@@ -309,6 +312,7 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     public func didReceiveData() {
+        periodSpendings.removeAll()
         let numberFormatter = NumberFormatter()
         
         print("IN DID RECEIVE DATA BARGRAPHVIEWCONTROLLER")
@@ -338,9 +342,7 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             print("THE FINISHED PERIOD SPENDINGS IS: ")
             print(periodSpendings)
         }
-        if (segmentedController.selectedSegmentIndex == 0) {
-            setBarGraphWeek(values: periodSpendings)
-        }
+        setBarGraphWeek(values: periodSpendings)
     }
     
     // Set Bar Graph for the past week
@@ -391,7 +393,7 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let chartDataSet = BarChartDataSet(values: dataEntries, label: "$$ Spent Per Day")
         
         // Select the color scheme
-        chartDataSet.colors = ColorArray[BudgetVariables.budgetArray[BudgetVariables.currentIndex].barGraphColor]
+        chartDataSet.colors = ColorArray[currColor]
         
         chartDataSet.axisDependency = .right
         let chartData = BarChartData(dataSet: chartDataSet)
@@ -405,11 +407,11 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         chartData.setDrawValues(true)
         barGraphView.rightAxis.drawLabelsEnabled = true
         
-        if BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.isEmpty == true || BudgetVariables.isAllZeros(array: values) == true
-        {
-            chartData.setDrawValues(false)
-            barGraphView.rightAxis.drawLabelsEnabled = false
-        }
+//        if BudgetVariables.budgetArray[BudgetVariables.currentIndex].historyArray.isEmpty == true || BudgetVariables.isAllZeros(array: values) == true
+//        {
+//            chartData.setDrawValues(false)
+//            barGraphView.rightAxis.drawLabelsEnabled = false
+//        }
         
         // Set where axis starts
         barGraphView.setScaleMinima(0, scaleY: 0.0)
@@ -437,7 +439,7 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         barGraphView.rightAxis.labelFont = UIFont.systemFont(ofSize: 11)
         
         // Set X Axis Font
-        barGraphView.xAxis.labelFont = UIFont.systemFont(ofSize: 13)
+        barGraphView.xAxis.labelFont = UIFont.systemFont(ofSize: 9)
         
         // Force all 7 x axis labels to show up
 //        barGraphView.xAxis.setLabelCount(7, force: false)
@@ -669,8 +671,6 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     {
         print("UPDATE GRAPH IS CALLED")
         // If the "Week" segment is selected
-        if (segmentedController.selectedSegmentIndex == 0)
-        {
 //            var amountSpentPerWeek = BudgetVariables.amountSpentInThePast(interval: "Week")
 //
 //            // Index 0 is our test case with random sample data
@@ -682,7 +682,6 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             barGraphView.notifyDataSetChanged()
 //            setBarGraphWeek(values: amountSpentPerWeek)
             sendRefreshQuery()
-        }
             
 //        // If the "Month" segment is selected
 //        else if (segmentedController.selectedSegmentIndex == 1)
@@ -758,7 +757,7 @@ class BarGraphViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         pickerTextField.text = ColorArrayLabels[row]
-        BudgetVariables.budgetArray[BudgetVariables.currentIndex].barGraphColor = row
+        currColor = row
         
         // Save and get data to coredata
         self.sharedDelegate.saveContext()

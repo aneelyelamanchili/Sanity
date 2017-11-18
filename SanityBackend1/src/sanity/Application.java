@@ -71,7 +71,7 @@ public class Application {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/Sanity?user=root&password=root&useSSL=false");
 			st = conn.createStatement();
 			JSONObject r = new JSONObject();
-			if (!message.get("message").equals("signup") && !message.get("message").equals("login")) {
+			if (!message.get("message").equals("signup") && !message.get("message").equals("login") && !message.get("message").equals("changePassword")) {
 				r = notifyPeriod(message, session, conn);
 			}
 			else {
@@ -251,10 +251,14 @@ public class Application {
 	
 	public JSONObject notifyPeriod(JSONObject message, Session session, Connection conn) {
 			try {
+				boolean sent = false;
 				Statement st = conn.createStatement();
 				int userID = message.getInt("userID");
 				ResultSet rs = st.executeQuery("SELECT * FROM BigBudgets WHERE userID = " + userID + ";");
+				int counter = 0;
 				while (rs.next()) {
+//					counter++;
+					JSONObject notify1 = new JSONObject();
 					int bbID = rs.getInt("bigBudgetID");
 					String bbName = rs.getString("BigBudgetName");
 					int daysLeft = rs.getInt("BigBudgetDaysLeft");
@@ -274,8 +278,8 @@ public class Application {
 					
 					Date date = new Date();
 					if (startDate.after(date)) {
-						System.out.println("help");
-						return null;
+						System.out.println(date.toString() + "   " + startDate.toString());
+//						return null;
 					}
 					else if (startDate.before(date)) {
 						String newDate = df.format(date);
@@ -288,14 +292,16 @@ public class Application {
 							double amount = rs.getFloat("BigBudgetAmount");
 							Statement st2 = conn.createStatement();
 	//						if (spent>amount) {
-							st2.executeUpdate("UPDATE BigBudgets SET BigBudgetDaysLeft=" + frequency + ", Date='" + newDate + "', TotalAmountSpent=0, PeriodNotificationChecked='' WHERE BigBudgetID=" + bbID + ";");
+							st2.executeUpdate("UPDATE BigBudgets SET BigBudgetDaysLeft=" + (daysLeft+frequency) + ", Date='" + newDate + "', TotalAmountSpent=0, PeriodNotificationChecked='' WHERE BigBudgetID=" + bbID + ";");
 	//						}
 	//						else {
 	//							st2.executeUpdate("UPDATE BigBudgets SET BigBudgetDaysLeft=" + frequency + ", Date='" + newDate + "', TotalAmountSpent=" + (-(amount-spent)) + " WHERE BigBudgetID=" + bbID + ";");
 	//						}
 							if (rs.getString("BigBudgetName").equals("Annual Savings")) {
-								response.put("message", "periodNotification");
-								response.put("notify", "You saved " + amount + " over the last year.");
+								counter++;
+								sent = true;
+//								notify1.put("message", "periodNotification");
+								response.put("notification" + counter, "You saved " + amount + " over the last year.");
 								Statement st5 = conn.createStatement();
 								ResultSet rs5 = st5.executeQuery("SELECT * FROM Budgets WHERE bigBudgetID=" + bbID + ";");
 								while (rs5.next()) {
@@ -306,8 +312,10 @@ public class Application {
 								
 							}
 							else {
-								response.put("message", "periodNotification");
-								response.put("notify", bbName + " was reset. You spent " + String.format("%.2f",(spent/amount*100)) + "% of your budget this period, $" + spent + " out of $" + amount + ".");
+								counter++;
+								sent=true;
+//								notify1.put("message", "periodNotification");
+								response.put("notification" + counter, bbName + " was reset. You spent " + String.format("%.2f",(spent/amount*100)) + "% of your budget this period, $" + spent + " out of $" + amount + ".");
 								Statement st1 = conn.createStatement();
 								ResultSet rs1 = st1.executeQuery("SELECT * FROM Budgets WHERE bigBudgetID=" + bbID + ";");
 								double saved = amount-spent;
@@ -326,10 +334,11 @@ public class Application {
 
 									Statement sth = conn.createStatement();
 									ResultSet rsh = sth.executeQuery("SELECT * FROM History WHERE budgetID=" + rs1.getInt("budgetID"));
-									int counter = 0;
+									int counter1 = 0;
 									int lowestHistory = 7;
 									int highestHistory = 0;
 									while (rsh.next()) {
+										System.out.println("read through id's " + rsh.getInt("HistoryNum"));
 //										if (rsh.getInt("budgetID")>highestID) {
 //											highestID = rs1.getInt("budgetID");
 //										}
@@ -339,19 +348,25 @@ public class Application {
 										if (rsh.getInt("HistoryNum")<lowestHistory) {
 											lowestHistory = rsh.getInt("HistoryNum");
 										}
-										counter++;
+										counter1++;
 									}
-									if (counter == 6) {
+									long d = (long)daysLeft *(1000*60*60*24);
+									Date d1 = new Date();
+									Date d2 = new Date(d1.getTime() + d);
+									String hDate = df.format(d2);
+									if (counter1 == 6) {
+										System.out.println("deleting oldest history where budgetid is " + rs1.getInt("budgetID") + " and historynum is " + lowestHistory);
 										st3.execute("DELETE FROM History WHERE budgetID=" + rs1.getInt("budgetID") + " AND HistoryNum=" + lowestHistory + ";");
 										Statement stupdate = conn.createStatement();
 										ResultSet rsupdate = stupdate.executeQuery("SELECT * FROM History WHERE budgetID=" + rs1.getInt("budgetID"));
 										while (rsupdate.next()) {
-											st3.executeUpdate("UPDATE History SET HistoryNum=" + (rsupdate.getInt("HistoryNum")-1) + " WHERE budgetID=" + rs1.getInt("budgetID"));
+											System.out.println(rsupdate.getInt("HistoryNum"));
+											st3.executeUpdate("UPDATE History SET HistoryNum=" + (rsupdate.getInt("HistoryNum")-1) + " WHERE budgetID=" + rs1.getInt("budgetID") + " AND historyID = " + rsupdate.getInt("historyID") + ";");
 										}
-										st3.execute(Constants.SQL_INSERT_HISTORY + rs1.getInt("budgetID") + ", " + aAmount + ", " + aSpent + ", 6);");
+										st3.execute(Constants.SQL_INSERT_HISTORY + rs1.getInt("budgetID") + ", " + aAmount + ", " + aSpent + ", 6, '" + hDate + "');");
 									}
 									else {
-										st3.execute(Constants.SQL_INSERT_HISTORY + rs1.getInt("budgetID") + ", " + aAmount + ", " + aSpent + ", " + (highestHistory + 1) + ");");
+										st3.execute(Constants.SQL_INSERT_HISTORY + rs1.getInt("budgetID") + ", " + aAmount + ", " + aSpent + ", " + (highestHistory + 1) + ", '" + hDate + "');");
 									}
 									st3.execute("UPDATE Budgets SET TotalAmountSpent=0 WHERE bigBudgetID=" + bbID + ";");
 									st3.execute("DELETE FROM Transactions WHERE budgetID=" + rs1.getInt("budgetID"));
@@ -359,7 +374,6 @@ public class Application {
 							}
 						}
 						else {
-							boolean sent = false;
 							System.out.println("midway period check");
 							double spent = rs.getFloat("TotalAmountSpent");
 							double amount = rs.getFloat("BigBudgetAmount");
@@ -377,7 +391,7 @@ public class Application {
 								try {
 									pList.add(Integer.parseInt(pCheckedList[i]));
 								} catch(NumberFormatException e) {
-									e.printStackTrace();
+//									e.printStackTrace();
 								}
 								
 							}
@@ -388,8 +402,9 @@ public class Application {
 								System.out.println(i + " "  + nList.get(i));
 								if ((double)(frequency-daysLeft)/frequency >= (double)nList.get(i)/100 && pList.indexOf(nList.get(i))==-1) {
 									sent = true;
-									response.put("message", "periodNotification");
-									response.put("notify", "The period is " + nList.get(i) + "% over. You have spent " + String.format("%.2f",(spent/amount*100)) + "% of your budget this period, $" + spent + " out of $" + amount + ".");
+									counter++;
+//									notify1.put("message", "periodNotification");
+									response.put("notification" + counter, "The period for " + bbName + " is " + nList.get(i) + "% over. You have spent " + String.format("%.2f",(spent/amount*100)) + "% of your budget this period, $" + spent + " out of $" + amount + ".");
 									pList.add(nList.get(i));
 									String edit = "";
 									for (int j=0; j<pList.size(); j++) {
@@ -404,15 +419,19 @@ public class Application {
 									i = -1;
 								}
 							}
-							if (!sent) {
-								return null;
-							}
-							else {
-								return response;
-							}
+							
+//							else {
+//								return response;
+//							}
 						}
 					}
+//					response.put("notification" + counter, notify1);
 				}
+				if (!sent) {
+					return null;
+				}
+				response.put("notificationSize",counter);
+				response.put("message", "periodNotification");
 				
 				
 				
@@ -427,19 +446,23 @@ public class Application {
 			int categoryID = message.getInt("categoryID");
 			ResultSet rs = st.executeQuery("SELECT * FROM History WHERE budgetID=" + categoryID + ";");
 			int counter = 0;
-			JSONObject history = new JSONObject();
+			
+			response = getData(conn, message.getInt("userID"));
 			while (rs.next()) {
+				JSONObject history = new JSONObject();
 				counter++;
 				history.put("totalAmountSpent", rs.getDouble("TotalAmountSpent"));
 				history.put("categoryAmount", rs.getDouble("CategoryAmount"));
 				history.put("historyNum", rs.getInt("HistoryNum"));
-				history.put("categoryID", rs.getInt("CategoryID"));
+				history.put("categoryID", rs.getInt("budgetID"));
+				history.put("startDate", rs.getString("StartDate"));
 				response.put("history" + counter, history);
 			}
 			response.put("historySize", counter);
 			response.put("userID", message.getInt("userID"));
 			response.put("message", "getHistorySuccess");
 		} catch(SQLException | JSONException e) {
+			e.printStackTrace();
 			try {
 				response.put("message", "getHistoryFail");
 				response.put("userID", message.getInt("userID"));
@@ -696,20 +719,32 @@ public class Application {
 			ResultSet rs = null;
 			String newPassword = message.getString("newPassword");
 			String email = message.getString("email");
+			String oldPassword = message.getString("oldPassword");
+			System.out.println("new password");
 			rs = st.executeQuery("SELECT * from TotalUsers WHERE Email='" + email + "';");
 			if (rs.next()) {
 				int p = hash(newPassword);
-				st.executeUpdate("UPDATE TotalUsers SET Password=" + p + " WHERE Email='" + email + "';");
-				response.put("message", "passwordSuccess");
-				response.put("email", rs.getString("Email"));
-				response.put("firstName", rs.getString("FirstName"));
-				response.put("lastName", rs.getString("LastName"));
+				int oldp = hash(oldPassword);
+				if (rs.getInt("Password") == oldp) {
+					System.out.println("new password");
+					Statement st1 = conn.createStatement();
+					st1.executeUpdate("UPDATE TotalUsers SET Password=" + p + " WHERE Email='" + email + "';");
+					response = getData(conn, rs.getInt("userID"));
+					response.put("message", "passwordSuccess");
+					response.put("email", rs.getString("Email"));
+					response.put("firstName", rs.getString("FirstName"));
+					response.put("lastName", rs.getString("LastName"));
+					System.out.println(response);
+				}
+				else {
+					response.put("message",  "passwordFail");
+				}
 			}
 			else {
 				response.put("message",  "passwordFail");
 			}
 		} catch(SQLException sqle) {
-			
+			sqle.printStackTrace();
 		} catch (JSONException e) {
 			e.printStackTrace();
 			
@@ -750,7 +785,7 @@ public class Application {
 				return response;
 			}
 			System.out.println(date);
-			String addBigBudget = "(" + user + ", '"+ name + "', 1, 34.0222, -118.282, " + amount + ", 0, " + freq + ", '" + date + "', " + freq + ", '50','','80 90 95');";
+			String addBigBudget = "(" + user + ", '"+ name + "', 1, 34.0222, -118.282, " + amount + ", 0, " + freq + ", '" + date + "', " + freq + ", '50','','80 90 95 100');";
 			st.execute(Constants.SQL_INSERT_BIGBUDGET + addBigBudget);
 //			if (success) {
 			response = getData(conn, user);

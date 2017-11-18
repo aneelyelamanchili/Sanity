@@ -14,7 +14,7 @@ public class Constants {
 	public static final String SQL_ALTER_BIGBUDGETS = "ALTER TABLE BigBudgets AUTO_INCREMENT=1;";
 	public static final String SQL_ALTER_BUDGETS = "ALTER TABLE Budgets AUTO_INCREMENT=1;";
 	public static final String SQL_ALTER_TRANSACTIONS = "ALTER TABLE Transactions AUTO_INCREMENT=1;";
-	public static final String SQL_INSERT_HISTORY = "INSERT INTO History(budgetID, CategoryAmount, TotalAmountSpent, HistoryNum) VALUES (";
+	public static final String SQL_INSERT_HISTORY = "INSERT INTO History(budgetID, CategoryAmount, TotalAmountSpent, HistoryNum, StartDate) VALUES (";
 	
 	
 	

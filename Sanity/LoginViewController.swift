@@ -102,16 +102,16 @@ class LoginViewController : UIViewController, UITextFieldDelegate {
             myAlert.show()
         } else {
 
-//            var context:LAContext = LAContext();
-//            var error:NSError?
-//            var success:Bool;
-//            var reason:String = "Please authenticate using TouchID.";
-//
-//            if (context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error))
-//            {
-////                good = true
-//                context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: { (success, error) -> Void in
-//                    if (success) {
+            var context:LAContext = LAContext();
+            var error:NSError?
+            var success:Bool;
+            var reason:String = "Please authenticate using TouchID.";
+
+            if (context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error))
+            {
+//                good = true
+                context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: { (success, error) -> Void in
+                    if (success) {
                         print("Auth was OK");
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
@@ -130,14 +130,14 @@ class LoginViewController : UIViewController, UITextFieldDelegate {
 
                         UIApplication.topViewController()?.present(targetNavigationController, animated: true, completion: nil)
 
-//                    }
-//                    else
-//                    {
-//                        //You should do better handling of error here but I'm being lazy
-//                        print("Error received: %d", error!);
-//                    }
-//                });
-//            }
+                    }
+                    else
+                    {
+                        //You should do better handling of error here but I'm being lazy
+                        print("Error received: %d", error!);
+                    }
+                });
+            }
         }
     }
     

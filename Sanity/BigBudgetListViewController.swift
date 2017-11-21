@@ -402,8 +402,10 @@ class BigBudgetListViewController: UIViewController, UITableViewDataSource, UITa
             myCell.textLabel?.textColor = UIColor.black
             myCell.detailTextLabel?.textColor = UIColor.black
             myCell.textLabel?.text = populate["budgetName"] as? String
-            let currentBalance = (populate["budgetAmount"] as? Double)?.roundTo(places: 2)
-            let currentBalanceString = BigBudgetVariables.numFormat(myNum: currentBalance!)
+            var currBal = populate["budgetAmount"] as? Double
+            var spentAmount = populate["totalAmountSpent"] as? Double
+            let currentBalance = (currBal! - spentAmount!).roundTo(places: 2)
+            let currentBalanceString = BigBudgetVariables.numFormat(myNum: currentBalance)
             myCell.detailTextLabel?.text = currentBalanceString
             myCell.selectionStyle = UITableViewCellSelectionStyle.default
             myCell.separatorInset = UIEdgeInsetsMake(0.0, 15.0, 0.0, 15.0)

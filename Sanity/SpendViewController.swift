@@ -362,14 +362,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 else
                 {
                     // If the input can be spent and still result in a valid balance, enable the spend button
-                    if (toPopulate?["categoryAmount"] as! Double) - input < 0
-                    {
-                        spendButton.isEnabled = false
-                    }
-                    else
-                    {
-                        spendButton.isEnabled = true
-                    }
+                    spendButton.isEnabled = true
                     
                     // If the input can be added and still result in a valid balance, enable the add button
                     if (toPopulate?["categoryAmount"] as! Double) + input > 1000000

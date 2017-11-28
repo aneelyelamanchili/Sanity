@@ -249,6 +249,7 @@ public class Application {
 	}
 
 	
+	@SuppressWarnings("deprecation")
 	public JSONObject notifyPeriod(JSONObject message, Session session, Connection conn) {
 			try {
 				boolean sent = false;
@@ -427,6 +428,35 @@ public class Application {
 					}
 //					response.put("notification" + counter, notify1);
 				}
+				
+				int uID = message.getInt("userID");
+				Statement str = conn.createStatement();
+				ResultSet rsr = str.executeQuery("SELECT * FROM Transactions WHERE userID=" + uID + ";");
+				Date d = new Date();
+				while (rsr.next()) {
+					String startDateString = rsr.getString("Date");
+					DateFormat df = new SimpleDateFormat("MM/dd/yyyy"); 
+					Date startDate = null;
+					String newDateString = "";
+					try {
+					    startDate = df.parse(startDateString);
+					    newDateString = df.format(startDate);
+					    System.out.println(newDateString);
+					} catch (ParseException e) {
+					    e.printStackTrace();
+					}
+					
+					Date date = new Date();
+					if (startDate.getMonth()+1 == date.getMonth() && startDate.getDay() == date.getDay()) {
+						Statement sts = conn.createStatement();
+						sts.execute(Constants.SQL_INSERT_TRANSACTION + "(" + rsr.getInt("budgetID") + ", " + rsr.getDouble("Amount") + ", '" + rsr.getString("Details") + "', " + rsr.getDouble("Latitude") + ", " + rsr.getDouble("Longitude") +", '" + newDateString + "', " + rsr.getInt("Automatic") + ");");
+					}
+				}
+				
+				
+				
+				
+				
 				if (!sent) {
 					return null;
 				}
@@ -538,7 +568,7 @@ public class Application {
 					String newDate = df.format(date);
 					System.out.println(newDate);
 					
-					String addBigBudget = "(" + id + ", 'Annual Savings', 1, 0, 0, 0, 0, 365, '" + newDate + "', 365);";
+					String addBigBudget = "(" + id + ", 'Annual Savings', 1, 0, 0, 0, 0, 365, '" + newDate + "', 365, '', '', '50');";
 					st1.execute(Constants.SQL_INSERT_BIGBUDGET + addBigBudget);
 					response = getData(conn, id);
 					response.put("userID", id);
@@ -550,20 +580,6 @@ public class Application {
 				response.put("firstName", signupfirstname);
 				response.put("lastName", signuplastname);
 				
-				
-//				previousSearches.put(signupemail, new ArrayList<String>());
-				
-				//User details for front-end.
-//				JSONObject userDetails = addUserToJSON(signupemail, conn);
-//				for (String key : JSONObject.getNames(userDetails)) {
-//					response.put(key, userDetails.get(key));
-//				}
-//				JSONObject feedDetails = addFeedToJSON(conn);
-//				for (String key : JSONObject.getNames(feedDetails)) {
-//					response.put(key, feedDetails.get(key));
-//				}
-				
-				//return all of the details of user and whatever is needed on frontend
 				return response;
 			}
 			else {
@@ -1336,8 +1352,14 @@ public class Application {
 			double longitude = message.getDouble("longitude");
 			String details = message.getString("details");
 			String date = message.getString("date");
+			int auto = 0;
+			
+			if (message.getBoolean("automaticTransaction")) {
+				System.out.println("help");
+				auto = 1;
+			}
 			//latitude, longitude, details
-			st.execute(Constants.SQL_INSERT_TRANSACTION + "(" + budgetID + ", " + amount + ", '" + details + "', " + latitude + ", " + longitude +", '" + date + "');");
+			st.execute(Constants.SQL_INSERT_TRANSACTION + "(" + budgetID + ", " + amount + ", '" + details + "', " + latitude + ", " + longitude +", '" + date + "', " + auto + ");");
 			ResultSet rs = st.executeQuery("SELECT * FROM Budgets WHERE budgetID = " + budgetID + ";");
 //			System.out.println("rs");
 			int bigBudgetID=0;

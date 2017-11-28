@@ -15,7 +15,7 @@ class Client: NSObject, WebSocketDelegate {
     var notifications = [String]()
     
     var json: [String: Any]?
-    var socket = WebSocket(url: URL(string: "ws://991f3dc4.ngrok.io/SanityBackend1/ws")!)
+    var socket = WebSocket(url: URL(string: "ws://b10dca3a.ngrok.io/SanityBackend1/ws")!)
     
     func websocketDidConnect(socket: WebSocketClient) {
             print("websocket is connected")

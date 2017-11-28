@@ -33,6 +33,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     @IBOutlet weak var totalBalance: UILabel!
     @IBOutlet weak var inputAmount: UITextField!
     @IBOutlet weak var descriptionText: UITextField!
+    @IBOutlet weak var automaticTransactionSwitch: UISwitch!
     
     // Buttons get initially enabled or disabled based on conditions
     override func viewDidLoad()
@@ -217,7 +218,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }
             
             let json:NSMutableDictionary = NSMutableDictionary()
-            json.setValue("addTransaction", forKey: "message")
+            json.setValue("addTransaction", forKey: "mesage")
             
             json.setValue(Client.sharedInstance.json?["userID"], forKey: "userID")
             json.setValue(self.toPopulate?["categoryID"], forKey: "categoryID")
@@ -226,6 +227,7 @@ class SpendViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             json.setValue(longitude, forKey: "longitude")
             json.setValue(input, forKey: "amountToAdd")
             json.setValue(String(date), forKey: "date")
+            json.setValue(automaticTransactionSwitch.isOn, forKey: "automaticTransaction")
             
             let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
             var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
